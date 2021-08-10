@@ -1,0 +1,96 @@
+<!-- Copyright (c) 2021 OFFIS e.V.. All rights reserved. -->
+<!--  -->
+<!-- Redistribution and use in source and binary forms, with or without -->
+<!-- modification, are permitted provided that the following conditions are met: -->
+<!--  -->
+<!-- 1. Redistributions of source code must retain the above copyright notice, this -->
+<!--    list of conditions and the following disclaimer. -->
+<!--     -->
+<!-- 2. Redistributions in binary form must reproduce the above copyright notice, -->
+<!--    this list of conditions and the following disclaimer in the documentation -->
+<!--    and/or other materials provided with the distribution. -->
+<!--     -->
+<!-- 3. Neither the name of the copyright holder nor the names of its contributors -->
+<!--    may be used to endorse or promote products derived from this software without -->
+<!--    specific prior written permission. -->
+<!--     -->
+<!-- THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND -->
+<!-- ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED -->
+<!-- WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE -->
+<!-- DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE -->
+<!-- FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL -->
+<!-- DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR -->
+<!-- SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER -->
+<!-- CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, -->
+<!-- OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE -->
+<!-- OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE. -->
+
+<nav class="main-navigation">
+  <mat-nav-list>
+    <div>
+      <la2-user-display class="center" *ngIf="(under500 && this.electronService.isElectronApp)"></la2-user-display>
+    </div>
+    <mat-divider *ngIf="(under500 && this.electronService.isElectronApp)"></mat-divider>
+    <!-- <h4 i18n></h4> -->
+    <a [routerLink]="['/www/home']" [routerLinkActive]="'active'" (click)="emitNavigation('/www/home')"
+       mat-menu-item>
+      <mat-icon role="presentation">home</mat-icon>
+      <span
+        matBadge="1"
+        matBadgeColor="accent"
+        matBadgePosition="below after"
+        matBadgeSize="medium"
+        matBadgeOverlap="false"
+        [matBadgeHidden]="!showBadge">
+          {{'Application.MainNavigation.Home' | translate}}
+      </span>
+    </a>
+    <a [routerLink]="['/www/participant']" *ngIf="signedIn" [routerLinkActive]="'active'" (click)="emitNavigation('/www/participant')" mat-menu-item>
+      <mat-icon role="presentation">emoji_people</mat-icon>
+      <span matBadge="2"
+            matBadgeColor="accent"
+            matBadgePosition="below after"
+            matBadgeSize="medium"
+            matBadgeOverlap="false"
+            [matBadgeHidden]="!showBadge">
+        {{'Application.MainNavigation.Studies' | translate}}
+      </span>
+    </a>
+    <a [routerLink]="['/www/user']" *ngIf="signedIn" [routerLinkActive]="'active'" (click)="emitNavigation('/www/user')" mat-menu-item>
+      <mat-icon role="presentation">widgets</mat-icon>
+      <span matBadge="3"
+            matBadgeColor="accent"
+            matBadgePosition="below after"
+            matBadgeSize="medium"
+            matBadgeOverlap="false"
+            [matBadgeHidden]="!showBadge">
+        {{'Application.MainNavigation.PersonalSpace' | translate}}
+      </span>
+    </a>
+    <mat-divider></mat-divider>
+    <!-- <h4 i18n>Weitere</h4> -->
+    <la2-theme-selector></la2-theme-selector>
+    <la2-language-selector></la2-language-selector>
+    <mat-divider *ngIf="developerView"></mat-divider>
+    <a [routerLink]="['/www/developer']" *ngIf="developerView" [routerLinkActive]="'active'" (click)="emitNavigation('/www/developer')" mat-menu-item>
+      <mat-icon role="presentation">developer_board</mat-icon>
+      Developer View
+    </a>
+    <la2-developer-tool></la2-developer-tool>
+    <la2-developer-reload></la2-developer-reload>
+    <mat-divider></mat-divider>
+    <a [routerLink]="['/www/about']" [routerLinkActive]="'active'" (click)="emitNavigation('/www/about')" mat-menu-item>
+      <mat-icon role="presentation">info</mat-icon>
+      <span matBadge="9"
+            matBadgeColor="accent"
+            matBadgePosition="below after"
+            matBadgeSize="medium"
+            matBadgeOverlap="false"
+            [matBadgeHidden]="!showBadge">
+        {{'Application.MainNavigation.About' | translate}}
+      </span>
+    </a>
+  </mat-nav-list>
+</nav>
+
+

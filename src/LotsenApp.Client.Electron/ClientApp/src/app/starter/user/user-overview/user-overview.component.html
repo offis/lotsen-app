@@ -1,0 +1,53 @@
+<!-- Copyright (c) 2021 OFFIS e.V.. All rights reserved. -->
+<!--  -->
+<!-- Redistribution and use in source and binary forms, with or without -->
+<!-- modification, are permitted provided that the following conditions are met: -->
+<!--  -->
+<!-- 1. Redistributions of source code must retain the above copyright notice, this -->
+<!--    list of conditions and the following disclaimer. -->
+<!--     -->
+<!-- 2. Redistributions in binary form must reproduce the above copyright notice, -->
+<!--    this list of conditions and the following disclaimer in the documentation -->
+<!--    and/or other materials provided with the distribution. -->
+<!--     -->
+<!-- 3. Neither the name of the copyright holder nor the names of its contributors -->
+<!--    may be used to endorse or promote products derived from this software without -->
+<!--    specific prior written permission. -->
+<!--     -->
+<!-- THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND -->
+<!-- ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED -->
+<!-- WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE -->
+<!-- DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE -->
+<!-- FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL -->
+<!-- DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR -->
+<!-- SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER -->
+<!-- CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, -->
+<!-- OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE -->
+<!-- OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE. -->
+
+<!--
+<div class="dashboard">
+  <div class="demo-width">
+    <la2-reminder-list></la2-reminder-list>
+  </div>
+  <div class="demo2-width">
+    <la2-participant-list></la2-participant-list>
+  </div>
+</div>-->
+<gridster [options]="options">
+  <gridster-item class="theme-item" [item]="item" *ngFor="let item of dashboard; let i = index" (contextmenu)="menuHandle.click()">
+    <div class="grid-item">
+      <button class="menu-handle" #menuHandle [matMenuTriggerFor]="tileMenu" [matMenuTriggerData]="{index: i}"></button>
+      <la2-grid-item [tile]="item.component"></la2-grid-item>
+    </div>
+  </gridster-item>
+</gridster>
+<button class="add-button" mat-mini-fab [attr.aria-label]="'Application.UserOverview.AddHint' | translate" color="primary" (click)="addTile()">
+  <mat-icon>dashboard_customize</mat-icon>
+</button>
+<mat-menu #tileMenu>
+  <ng-template matMenuContent let-index="index">
+    <button mat-menu-item (click)="deleteItem(index)">{{'Application.UserOverview.DeleteTile' | translate}}</button>
+    <la2-dashboard-tile-menu (typeSelected)="updateType(index, $event)"></la2-dashboard-tile-menu>
+  </ng-template>
+</mat-menu>

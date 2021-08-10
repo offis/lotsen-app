@@ -1,0 +1,90 @@
+<!-- Copyright (c) 2021 OFFIS e.V.. All rights reserved. -->
+<!--  -->
+<!-- Redistribution and use in source and binary forms, with or without -->
+<!-- modification, are permitted provided that the following conditions are met: -->
+<!--  -->
+<!-- 1. Redistributions of source code must retain the above copyright notice, this -->
+<!--    list of conditions and the following disclaimer. -->
+<!--     -->
+<!-- 2. Redistributions in binary form must reproduce the above copyright notice, -->
+<!--    this list of conditions and the following disclaimer in the documentation -->
+<!--    and/or other materials provided with the distribution. -->
+<!--     -->
+<!-- 3. Neither the name of the copyright holder nor the names of its contributors -->
+<!--    may be used to endorse or promote products derived from this software without -->
+<!--    specific prior written permission. -->
+<!--     -->
+<!-- THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND -->
+<!-- ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED -->
+<!-- WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE -->
+<!-- DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE -->
+<!-- FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL -->
+<!-- DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR -->
+<!-- SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER -->
+<!-- CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, -->
+<!-- OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE -->
+<!-- OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE. -->
+
+<div class="sign-in">
+  <h1>{{'Application.SignIn.Title' | translate}}</h1>
+  <form cdkTrapFocus cdkTrapFocusAutoCapture>
+    <mat-form-field class="spacing" *ngIf="signInOnline" @toggleServer>
+      <mat-label>{{'Application.SignIn.ServerLabel' | translate}}</mat-label>
+      <input matInput placeholder="http://example.com" [formControl]="serverFormControl" #serverInput
+             [matAutocomplete]="serverAuto" required/>
+      <mat-autocomplete autoActiveFirstOption #serverAuto="matAutocomplete">
+        <mat-option *ngFor="let s of knownServer" [value]="s">{{s}}</mat-option>
+      </mat-autocomplete>
+      <mat-icon *ngIf="!serverFormControl.pending && !serverFormControl.hasError('notReachable')"
+                [attr.aria-label]="'Application.SignIn.ServerAvailable' | translate" matSuffix>
+        done
+      </mat-icon>
+      <mat-spinner *ngIf="serverFormControl.pending" diameter="24"
+                   [attr.aria-label]="'Application.SignIn.SearchingForServer' | translate"
+                   matSuffix></mat-spinner>
+      <mat-error *ngIf="serverFormControl.hasError('required')">
+        {{'Application.SignIn.ServerRequired' | translate}} <strong>{{'Application.SignIn.Required' | translate}}</strong>
+      </mat-error>
+      <mat-error *ngIf="serverFormControl.hasError('valid')">
+        {{'Application.SignIn.ServerInvalid' | translate}}
+      </mat-error>
+      <mat-hint *ngIf="serverFormControl.pending">
+        {{'Application.SignIn.SearchingForServer' | translate}}
+      </mat-hint>
+      <mat-error *ngIf="!serverFormControl.pending && serverFormControl.hasError('notReachable')">
+        {{'Application.SignIn.ServerUnreachable' | translate}}
+      </mat-error>
+    </mat-form-field>
+    <mat-form-field class="spacing">
+      <mat-label>{{'Application.SignIn.UserLabel' | translate}}</mat-label>
+      <input matInput [placeholder]="'Application.SignIn.UserPlaceholder' | translate" [formControl]="userNameFormControl"
+             required/>
+      <mat-error *ngIf="userNameFormControl.hasError('required')">
+        {{'Application.SignIn.UserRequired' | translate}} <strong>{{'Application.SignIn.Required' | translate}}</strong>
+      </mat-error>
+    </mat-form-field>
+    <mat-form-field class="spacing">
+      <mat-label>{{'Application.SignIn.PasswordLabel' | translate}}</mat-label>
+      <input matInput placeholder="*******************" type="password" required [formControl]="passwordFormControl"/>
+      <mat-error *ngIf="passwordFormControl.hasError('required')">
+        {{'Application.SignIn.PasswordRequired' | translate}} <strong>{{'Application.SignIn.Required' | translate}}</strong>
+      </mat-error>
+    </mat-form-field>
+    <mat-checkbox [(ngModel)]="rememberMe" name="rememberMe" class="spacing">
+      {{'Application.SignIn.SaveSignIn' | translate}}
+    </mat-checkbox>
+    <mat-checkbox [(ngModel)]="signInOnline" name="signInOnline" class="spacing">
+      {{'Application.SignIn.SignInOnline' | translate}}
+    </mat-checkbox>
+    <div class="button-panel">
+      <button #signInButton mat-flat-button color="primary" (click)="passwordSignIn()">
+        {{'Application.SignIn.SignIn' | translate}}
+      </button>
+      <a mat-flat-button (click)="passwordRecovery()">
+        {{'Application.SignIn.ForgotPassword' | translate}}
+      </a>
+    </div>
+  </form>
+</div>
+
+<p class="error" *ngIf="error !== ''">{{error | translate}}</p>

@@ -1,0 +1,90 @@
+/*
+ * Copyright (c) 2021 OFFIS e.V.. All rights reserved.
+ * 
+ * Redistribution and use in source and binary forms, with or without
+ * modification, are permitted provided that the following conditions are met:
+ * 
+ * 1. Redistributions of source code must retain the above copyright notice, this
+ *    list of conditions and the following disclaimer.
+ *    
+ * 2. Redistributions in binary form must reproduce the above copyright notice,
+ *    this list of conditions and the following disclaimer in the documentation
+ *    and/or other materials provided with the distribution.
+ *    
+ * 3. Neither the name of the copyright holder nor the names of its contributors
+ *    may be used to endorse or promote products derived from this software without
+ *    specific prior written permission.
+ *    
+ * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND
+ * ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED
+ * WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+ * DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE
+ * FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
+ * DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
+ * SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
+ * CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,
+ * OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
+ * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+ */
+
+@use '~@angular/material' as mat;
+@import '~@angular/material/theming';
+
+// mixin name will be used in main style.scss
+@mixin reminder-editor-component-theme($theme) {
+
+  // retrieve variables from theme
+  // (all possible variables, use only what you really need)
+  $foreground: map-get($theme, foreground);
+  $primary: map-get($theme, primary);
+  $background: map-get($theme, background);
+
+  // all of these variables contain many additional variables
+
+  la2-reminder-editor {
+  }
+
+  ngx-material-timepicker-container {
+    z-index: 2000;
+    position: relative;
+  }
+  .time-picker {
+
+    .timepicker__header {
+      background-color: mat.get-color-from-palette($primary, default);
+    }
+
+    .timepicker-dial__control_editable:focus {
+      outline: mat.get-color-from-palette($primary, lighter);
+      color: mat.get-color-from-palette($foreground, elevation);
+      background-color: mat.get-color-from-palette($background, background);
+    }
+
+    .timepicker-button {
+      color: mat.get-color-from-palette($foreground, text);
+    }
+
+    .clock-face__clock-hand {
+      background-color: mat.get-color-from-palette($primary, default);
+    }
+
+    .clock-face__number > span.active {
+      background-color: mat.get-color-from-palette($primary, default) !important;
+    }
+
+    .clock-face__clock-hand_minute:before {
+      border-color: mat.get-color-from-palette($primary, default);
+    }
+
+    .hint {
+      color: mat.get-color-from-palette($primary, default-contrast);
+      font-size: x-small;
+
+      mat-icon {
+        width: 0.9em;
+        height: 0.9em;
+        font-size: 0.9em;
+      }
+    }
+  }
+}

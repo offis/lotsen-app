@@ -1,0 +1,71 @@
+<!-- Copyright (c) 2021 OFFIS e.V.. All rights reserved. -->
+<!--  -->
+<!-- Redistribution and use in source and binary forms, with or without -->
+<!-- modification, are permitted provided that the following conditions are met: -->
+<!--  -->
+<!-- 1. Redistributions of source code must retain the above copyright notice, this -->
+<!--    list of conditions and the following disclaimer. -->
+<!--     -->
+<!-- 2. Redistributions in binary form must reproduce the above copyright notice, -->
+<!--    this list of conditions and the following disclaimer in the documentation -->
+<!--    and/or other materials provided with the distribution. -->
+<!--     -->
+<!-- 3. Neither the name of the copyright holder nor the names of its contributors -->
+<!--    may be used to endorse or promote products derived from this software without -->
+<!--    specific prior written permission. -->
+<!--     -->
+<!-- THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND -->
+<!-- ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED -->
+<!-- WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE -->
+<!-- DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE -->
+<!-- FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL -->
+<!-- DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR -->
+<!-- SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER -->
+<!-- CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, -->
+<!-- OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE -->
+<!-- OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE. -->
+
+<button mat-icon-button [matMenuTriggerFor]="iconMenu" [matMenuTriggerRestoreFocus]="true" (menuOpened)="focusSearch()"
+        [matTooltip]="'Application.IconChooser.Tooltip' | translate"
+        [attr.aria-label]="'Application.IconChooser.Tooltip' | translate">
+  <mat-icon *ngIf="icon">{{icon}}</mat-icon>
+  <mat-icon *ngIf="!icon">{{fallbackIcon}}</mat-icon>
+</button>
+<mat-menu #iconMenu="matMenu" class="icon-menu">
+  <ng-template matMenuContent>
+    <div class="spacer" role="presentation"></div>
+    <mat-form-field (click)="$event.stopPropagation()" class="border search-field">
+      <mat-label>{{'Application.IconChooser.SearchLabel' | translate}}</mat-label>
+      <input matInput (keyup)="nextPhrase()" [formControl]="searchControl" #searchField/>
+      <button (click)="resetPhrase()" mat-icon-button matSuffix>
+        <mat-icon>close</mat-icon>
+      </button>
+    </mat-form-field><!-- *ngIf="icons$ | async as icons; else loading" -->
+    <mat-accordion [multi]="true" (click)="$event.stopPropagation()">
+      <ng-container *ngFor="let category of icons">
+        <mat-expansion-panel *ngIf="category.icons.length" hideToggle="true"
+                             class="border">
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              {{'Application.IconChooser.Title.' + category.categoryName | translate}}
+            </mat-panel-title>
+            <!--<mat-panel-description i18n>
+              {category.icons, plural, =0 {Keine Icons} =1 {1 Icon} other {{{category.icons.length}} Icons}}
+            </mat-panel-description>-->
+          </mat-expansion-panel-header>
+          <ng-template matExpansionPanelContent>
+            <mat-grid-list cols="5" rowHeight="1:1">
+              <mat-grid-tile *ngFor="let icon of category.icons">
+                <button mat-menu-item title="{{icon}}" [attr.aria-label]="icon" (click)="iconChanged(icon)" class="icon-menu-item">
+                  <button mat-icon-button>
+                    <mat-icon class="icon-preview">{{icon}}</mat-icon>
+                  </button>
+                </button>
+              </mat-grid-tile>
+            </mat-grid-list>
+          </ng-template>
+        </mat-expansion-panel>
+      </ng-container>
+    </mat-accordion>
+  </ng-template>
+</mat-menu>

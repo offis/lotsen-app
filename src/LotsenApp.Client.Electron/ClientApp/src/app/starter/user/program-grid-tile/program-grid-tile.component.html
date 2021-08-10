@@ -1,0 +1,72 @@
+<!-- Copyright (c) 2021 OFFIS e.V.. All rights reserved. -->
+<!--  -->
+<!-- Redistribution and use in source and binary forms, with or without -->
+<!-- modification, are permitted provided that the following conditions are met: -->
+<!--  -->
+<!-- 1. Redistributions of source code must retain the above copyright notice, this -->
+<!--    list of conditions and the following disclaimer. -->
+<!--     -->
+<!-- 2. Redistributions in binary form must reproduce the above copyright notice, -->
+<!--    this list of conditions and the following disclaimer in the documentation -->
+<!--    and/or other materials provided with the distribution. -->
+<!--     -->
+<!-- 3. Neither the name of the copyright holder nor the names of its contributors -->
+<!--    may be used to endorse or promote products derived from this software without -->
+<!--    specific prior written permission. -->
+<!--     -->
+<!-- THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND -->
+<!-- ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED -->
+<!-- WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE -->
+<!-- DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE -->
+<!-- FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL -->
+<!-- DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR -->
+<!-- SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER -->
+<!-- CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, -->
+<!-- OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE -->
+<!-- OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE. -->
+
+<div class="header">
+  <h2>{{'Application.ProgrammeTile.Title' | translate}}</h2>
+  <span class="spacer"></span>
+  <button mat-icon-button [matTooltip]="'Application.ProgrammeTile.AddTooltip' | translate" (click)="programmeSelect.click()">
+    <mat-icon>add</mat-icon>
+  </button>
+</div>
+<div (mousedown)="stopPropagation($event)" (touchstart)="stopPropagation($event)">
+  <mat-list cdkDropList *ngIf="programmes.length" role="list"
+            (cdkDropListDropped)="drop($event)" [cdkDropListData]="programmes">
+    <mat-list-item class="programme-list-item" role="listitem" *ngFor="let definition of programmes; let i = index"
+                   cdkDrag [cdkDragData]="definition">
+      <button *ngIf="!definition.edit" mat-button (click)="startProgramme(definition.path)">{{definition.label}}</button>
+      <mat-form-field #editLabel *ngIf="definition.edit">
+        <mat-label>{{definition.label}}</mat-label>
+        <input matInput
+               #editField
+               [placeholder]="definition.label"
+               [(ngModel)]="definition.label"
+               (keydown)="stopEditingLabel($event, definition)"
+               (focusout)="stopEditingLabel($event, definition)">
+      </mat-form-field>
+      <span class="spacer"></span>
+      <button class="edit-button" mat-icon-button [matMenuTriggerFor]="contextMenu"><mat-icon>more_vert</mat-icon></button>
+      <mat-menu #contextMenu>
+        <button mat-menu-item (click)="editItemLabel(definition)"
+                [matTooltip]="'Application.ProgrammeTile.EditTooltip' | translate">
+          <mat-icon>edit</mat-icon> {{'Application.ProgrammeTile.EditLabel' | translate}}
+        </button>
+        <button mat-menu-item (click)="programmeUpdate.click()"
+                [matTooltip]="'Application.ProgrammeTile.ProgrammeTooltip' | translate">
+          <mat-icon>source</mat-icon> {{'Application.ProgrammeTile.EditProgramme' | translate}}
+        </button>
+        <button mat-menu-item (click)="removeItem(i)"
+                [matTooltip]="'Application.ProgrammeTile.DeleteTooltip' | translate">
+          <mat-icon>delete</mat-icon>{{'Application.ProgrammeTile.Delete' | translate}}
+        </button>
+      </mat-menu>
+      <input type="file" #programmeUpdate class="file-select" (change)="readFile($event, i)" role="presentation"/>
+    </mat-list-item>
+  </mat-list>
+</div>
+
+<span *ngIf="!programmes.length">{{'Application.ProgrammeTile.NoProgrammes' | translate}}</span>
+<input type="file" #programmeSelect class="file-select" (change)="readFile($event)" role="presentation"/>

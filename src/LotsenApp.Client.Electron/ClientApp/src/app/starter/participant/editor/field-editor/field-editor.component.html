@@ -1,0 +1,121 @@
+<!-- Copyright (c) 2021 OFFIS e.V.. All rights reserved. -->
+<!--  -->
+<!-- Redistribution and use in source and binary forms, with or without -->
+<!-- modification, are permitted provided that the following conditions are met: -->
+<!--  -->
+<!-- 1. Redistributions of source code must retain the above copyright notice, this -->
+<!--    list of conditions and the following disclaimer. -->
+<!--     -->
+<!-- 2. Redistributions in binary form must reproduce the above copyright notice, -->
+<!--    this list of conditions and the following disclaimer in the documentation -->
+<!--    and/or other materials provided with the distribution. -->
+<!--     -->
+<!-- 3. Neither the name of the copyright holder nor the names of its contributors -->
+<!--    may be used to endorse or promote products derived from this software without -->
+<!--    specific prior written permission. -->
+<!--     -->
+<!-- THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND -->
+<!-- ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED -->
+<!-- WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE -->
+<!-- DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE -->
+<!-- FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL -->
+<!-- DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR -->
+<!-- SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER -->
+<!-- CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, -->
+<!-- OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE -->
+<!-- OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE. -->
+
+<div class="container" (click)="startEditing()" (mouseleave)="stopEditing()" (contextmenu)="contextMenuTrigger.click()"
+     [tabIndex]="0" (focusin)="focus($event)" (focusout)="focusLost($event)"  #wrapper>
+  <span class="label">{{field.i18NKey ? (field.i18NKey | translate) : field.name }}<span *ngIf="currentValue?.isDelta">*</span>:</span>
+  <button [matMenuTriggerFor]="contextMenu" #contextMenuTrigger class="context-menu-trigger"></button>
+  <mat-menu #contextMenu="matMenu">
+    <button mat-menu-item (click)="createReminder()">{{'Application.FieldEditor.CreateReminder' | translate}}</button>
+    <button mat-menu-item *ngIf="value?.value"
+            (click)="addToParticipantHeader()"
+            [matTooltip]="'Application.FieldEditor.AddToParticipantHeaderTooltip' | translate">
+      {{'Application.FieldEditor.AddToParticipantHeader' | translate}}
+    </button>
+    <button mat-menu-item *ngIf="value?.value"
+            (click)="addToProjectHeader()"
+            [matTooltip]="'Application.FieldEditor.AddToProjectHeaderTooltip' | translate">
+      {{'Application.FieldEditor.AddToProjectHeader' | translate}}
+    </button>
+    <button mat-menu-item *ngIf="value?.value"
+            (click)="removeFromParticipantHeader()"
+            [matTooltip]="'Application.FieldEditor.RemoveFromParticipantHeaderTooltip' | translate">
+      {{'Application.FieldEditor.RemoveFromParticipantHeader' | translate}}
+    </button>
+    <button mat-menu-item *ngIf="value?.value"
+            (click)="removeFromProjectHeader()"
+            [matTooltip]="'Application.FieldEditor.RemoveFromProjectHeaderTooltip' | translate">
+      {{'Application.FieldEditor.RemoveFromProjectHeader' | translate}}
+    </button>
+    <button mat-menu-item *ngIf="hasDisplayValues" [matMenuTriggerFor]="displayValues">
+      {{'Application.FieldEditor.DisplayValue' | translate}}
+    </button>
+    <button mat-menu-item *ngIf="value?.value" (click)="resetValue()">{{'Application.FieldEditor.DeleteValue' | translate}}</button>
+  </mat-menu>
+  <mat-menu #displayValues="matMenu">
+    <button [matTooltip]="displayValue | translate" mat-menu-item *ngFor="let displayValue of fieldDisplayValues; let i = index" (click)="changeDisplayValue(i)">
+      {{displayValue | translate}}
+    </button>
+  </mat-menu>
+  <span class="spacer" role="presentation" *ngIf="!editorMode"></span>
+  <div [class]="'value' + (editorMode ? ' edit' : '')">
+    <la2-string-editor
+      class="editor"
+      *ngIf="field.type.type === FieldType.STRING"
+      [fieldDetail]="field"
+      [(fieldValue)]="value"
+      [(editorMode)]="editorMode"
+      (valueCommit)="commitValue($event)"></la2-string-editor>
+
+    <la2-boolean-editor
+      class="editor"
+      *ngIf="field.type.type === FieldType.BOOLEAN"
+      [fieldDetail]="field"
+      [(fieldValue)]="value"
+      (valueCommit)="commitValue($event)"></la2-boolean-editor>
+
+    <la2-enum-editor
+      class="editor"
+      *ngIf="field.type.type === FieldType.ENUMERABLE"
+      [fieldDetail]="field"
+      [(fieldValue)]="value"
+      (valueCommit)="commitValue($event)"></la2-enum-editor>
+
+    <la2-date-editor
+      class="editor"
+      *ngIf="field.type.type === FieldType.DATE"
+      [fieldDetail]="field"
+      [(fieldValue)]="value"
+      (valueCommit)="commitValue($event)"></la2-date-editor>
+
+    <la2-integer-editor
+      class="editor"
+      *ngIf="field.type.type === FieldType.INTEGER"
+      [fieldDetail]="field"
+      [(fieldValue)]="value"
+      (valueCommit)="commitValue($event)"></la2-integer-editor>
+
+    <la2-double-editor
+      class="editor"
+      *ngIf="field.type.type === FieldType.DOUBLE"
+      [fieldDetail]="field"
+      [(fieldValue)]="value"
+      (valueCommit)="commitValue($event)"></la2-double-editor>
+
+    <p *ngIf="field.type.type !== FieldType.STRING
+             && field.type.type !== FieldType.BOOLEAN
+             && field.type.type !== FieldType.DATE
+             && field.type.type !== FieldType.ENUMERABLE
+             && field.type.type !== FieldType.INTEGER
+             && field.type.type !== FieldType.DOUBLE">
+      {{'Application.FieldEditor.NotDisplayable1' | translate}}
+      {{field.i18NKey ? (field.i18NKey | translate) : field.name }}
+      {{'Application.FieldEditor.NotDisplayable2' | translate}}
+    </p>
+  </div>
+</div>
+

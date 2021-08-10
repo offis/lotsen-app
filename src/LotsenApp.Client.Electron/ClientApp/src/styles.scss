@@ -1,0 +1,120 @@
+/*
+ * Copyright (c) 2021 OFFIS e.V.. All rights reserved.
+ *
+ * Redistribution and use in source and binary forms, with or without
+ * modification, are permitted provided that the following conditions are met:
+ *
+ * 1. Redistributions of source code must retain the above copyright notice, this
+ *    list of conditions and the following disclaimer.
+ *
+ * 2. Redistributions in binary form must reproduce the above copyright notice,
+ *    this list of conditions and the following disclaimer in the documentation
+ *    and/or other materials provided with the distribution.
+ *
+ * 3. Neither the name of the copyright holder nor the names of its contributors
+ *    may be used to endorse or promote products derived from this software without
+ *    specific prior written permission.
+ *
+ * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND
+ * ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED
+ * WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+ * DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE
+ * FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
+ * DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
+ * SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
+ * CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,
+ * OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
+ * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+ */
+
+// mixin name will be used in main style.scss
+@use '~@angular/material' as mat;
+
+/* You can add global styles to this file, and also import other style files */
+
+html, body { height: 100%; }
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+// Theming
+
+@import 'material';
+@import 'theme';
+@import 'app/starter/taskbar/taskbar.component.theme';
+@import 'app/starter/footer/footer.component.theme';
+@import 'app/starter/authentication/sign-in/sign-in.component.theme';
+@import 'app/starter/main-navigation/main-navigation/main-navigation.component.theme';
+@import 'app/starter/participant/participant-item/participant-item.component.theme';
+@import 'app/starter/participant/participant-list-item/participant-list-item.component.theme';
+@import 'app/starter/shared/overview-spacer/overview-spacer.component.theme';
+@import 'app/starter/participant/editor/participant-editor/participant-editor.component.theme';
+@import 'app/starter/participant/editor/string-editor/string-editor.component.theme';
+@import 'app/starter/participant/editor/boolean-editor/boolean-editor.component.theme';
+@import 'app/starter/participant/editor/enum-editor/enum-editor.component.theme';
+@import 'app/starter/participant/editor/date-editor/date-editor.component.theme';
+@import 'app/starter/participant/editor/integer-editor/integer-editor.component.theme';
+@import 'app/starter/participant/editor/double-editor/double-editor.component.theme';
+@import 'app/starter/participant/editor/document-editor/document-editor.component.theme';
+@import 'app/starter/participant/editor/group-editor/group-editor.component.theme';
+@import 'app/starter/participant/editor/field-editor/field-editor.component.theme';
+@import 'app/starter/user/reminder-editor/reminder-editor.component.theme';
+@import 'app/starter/user/participant-list/participant-list.component.theme';
+@import 'app/starter/about/about-us/about-us.component.theme';
+@import 'app/starter/about/data-protection/data-protection.component.theme';
+@import 'app/starter/about/legal-notice/legal-notice.component.theme';
+@import 'app/starter/user/program-grid-tile/program-grid-tile.component.theme';
+@import 'app/starter/user/user-overview/user-overview.component.theme';
+
+@mixin custom-component-theme($theme) {
+  @include taskbar-component-theme($theme);
+  @include footer-component-theme($theme);
+  @include sign-in-component-theme($theme);
+  @include main-navigation-component-theme($theme);
+  @include participant-item-component-theme($theme);
+  @include participant-list-item-component-theme($theme);
+  @include overview-spacer-component-theme($theme);
+  @include participant-editor-component-theme($theme);
+  @include string-editor-component-theme($theme);
+  @include boolean-editor-component-theme($theme);
+  @include enum-editor-component-theme($theme);
+  @include date-editor-component-theme($theme);
+  @include document-editor-component-theme($theme);
+  @include group-editor-component-theme($theme);
+  @include integer-editor-component-theme($theme);
+  @include double-editor-component-theme($theme);
+  @include field-editor-component-theme($theme);
+  @include reminder-editor-component-theme($theme);
+  @include participant-list-item-component-theme($theme);
+  @include about-us-component-theme($theme);
+  @include data-protection-component-theme($theme);
+  @include legal-notice-component-theme($theme);
+  @include program-grid-tile-component-theme($theme);
+  @include user-overview-component-theme($theme);
+}
+
+.light-theme {
+  $background-light: map-get($light-theme, background);
+
+  background: mat.get-color-from-palette($background-light, background);
+
+  @include mat.all-component-themes($light-theme);
+  @include custom-component-theme($light-theme);
+}
+
+.dark-theme {
+  $background-dark: map-get($dark-theme, background);
+
+  background: mat.get-color-from-palette($background-dark, background);
+
+  @include mat.all-component-themes($dark-theme);
+  @include custom-component-theme($dark-theme);
+}
+
+@media print {
+  .cdk-overlay-container {
+    display: none;
+  }
+}
+

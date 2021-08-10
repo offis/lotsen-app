@@ -1,0 +1,144 @@
+<!-- Copyright (c) 2021 OFFIS e.V.. All rights reserved. -->
+<!--  -->
+<!-- Redistribution and use in source and binary forms, with or without -->
+<!-- modification, are permitted provided that the following conditions are met: -->
+<!--  -->
+<!-- 1. Redistributions of source code must retain the above copyright notice, this -->
+<!--    list of conditions and the following disclaimer. -->
+<!--     -->
+<!-- 2. Redistributions in binary form must reproduce the above copyright notice, -->
+<!--    this list of conditions and the following disclaimer in the documentation -->
+<!--    and/or other materials provided with the distribution. -->
+<!--     -->
+<!-- 3. Neither the name of the copyright holder nor the names of its contributors -->
+<!--    may be used to endorse or promote products derived from this software without -->
+<!--    specific prior written permission. -->
+<!--     -->
+<!-- THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND -->
+<!-- ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED -->
+<!-- WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE -->
+<!-- DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE -->
+<!-- FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL -->
+<!-- DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR -->
+<!-- SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER -->
+<!-- CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, -->
+<!-- OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE -->
+<!-- OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE. -->
+
+<mat-horizontal-stepper *ngIf="!under500" #horizontalStepper>
+  <mat-step [label]="'Application.FirstTimeSetup.TanList.Header' | translate" [completed]="horizontalTanList.completed" state="tan"
+            [editable]="!horizontalTanList.completed" [errorMessage]="'Application.FirstTimeSetup.Errors.TanRequired' | translate"
+            [hasError]="!horizontalTanList.completed">
+    <div class="step-panel">
+      <la2-tan-list #horizontalTanList (stepSuccess)="stepForward(0)"></la2-tan-list>
+    </div>
+    <div class="button-panel">
+      <button mat-flat-button matStepperNext color="primary">{{'Application.FirstTimeSetup.Forward' | translate}}</button>
+    </div>
+  </mat-step>
+  <mat-step [label]="'Application.FirstTimeSetup.DataPassword.Header' | translate" [completed]="horizontalDataPassword.completed" state="security"
+            [editable]="!horizontalDataPassword.completed"
+            [errorMessage]="'Application.FirstTimeSetup.Errors.DataPasswordRequired' | translate"
+            [hasError]="!horizontalDataPassword.completed">
+    <div class="step-panel">
+      <la2-data-password #horizontalDataPassword (stepSuccess)="stepForward(1)"></la2-data-password>
+    </div>
+    <div class="button-panel">
+      <button mat-flat-button matStepperPrevious color="accent" *ngIf="!horizontalTanList.completed" >
+        {{'Application.FirstTimeSetup.Backward' | translate}}
+      </button>
+      <button mat-flat-button matStepperNext color="primary">
+        {{'Application.FirstTimeSetup.Forward' | translate}}
+      </button>
+    </div>
+  </mat-step>
+  <mat-step [label]="'Application.FirstTimeSetup.PasswordSet.Header' | translate" state="keys"
+            [errorMessage]="'Application.FirstTimeSetup.Errors.PasswordRequired' | translate"
+            [completed]="horizontalPassword.completed" [editable]="!horizontalPassword.completed"
+            [hasError]="!horizontalPassword.completed">
+    <div class="step-panel">
+      <la2-password-set #horizontalPassword></la2-password-set>
+    </div>
+    <div class="button-panel">
+      <button mat-flat-button color="accent" *ngIf="!horizontalTanList.completed || !horizontalDataPassword.completed"
+              matStepperPrevious>
+        {{'Application.FirstTimeSetup.Backward' | translate}}
+      </button>
+      <!-- <button mat-flat-button color="warn" (click)="reset()">Zurücksetzen</button> -->
+      <button mat-flat-button color="primary" (click)="complete()"
+              [disabled]="!(horizontalTanList.completed && horizontalDataPassword.completed && horizontalPassword.completed)"
+              >
+        {{'Application.FirstTimeSetup.Complete' | translate}}
+      </button>
+    </div>
+  </mat-step>
+
+  <ng-template matStepperIcon="tan">
+    <mat-icon>list</mat-icon>
+  </ng-template>
+  <ng-template matStepperIcon="security">
+    <mat-icon>security</mat-icon>
+  </ng-template>
+  <ng-template matStepperIcon="keys">
+    <mat-icon>vpn_key</mat-icon>
+  </ng-template>
+</mat-horizontal-stepper>
+
+<mat-vertical-stepper *ngIf="under500" #verticalStepper>
+  <mat-step [label]="'Application.FirstTimeSetup.TanList.Header' | translate" [completed]="horizontalTanList.completed" state="tan"
+            [editable]="!horizontalTanList.completed" [errorMessage]="'Application.FirstTimeSetup.Errors.TanRequired' | translate"
+            [hasError]="!horizontalTanList.completed">
+    <div class="step-panel">
+      <la2-tan-list #horizontalTanList (stepSuccess)="stepForward(0)"></la2-tan-list>
+    </div>
+    <div class="button-panel">
+      <button mat-flat-button matStepperNext color="primary">{{'Application.FirstTimeSetup.Forward' | translate}}</button>
+    </div>
+  </mat-step>
+  <mat-step [label]="'Application.FirstTimeSetup.DataPassword.Header' | translate" [completed]="horizontalDataPassword.completed" state="security"
+            [editable]="!horizontalDataPassword.completed"
+            [errorMessage]="'Application.FirstTimeSetup.Errors.DataPasswordRequired' | translate"
+            [hasError]="!horizontalDataPassword.completed">
+    <div class="step-panel">
+      <la2-data-password #horizontalDataPassword (stepSuccess)="stepForward(1)"></la2-data-password>
+    </div>
+    <div class="button-panel">
+      <button mat-flat-button matStepperPrevious color="accent" *ngIf="!horizontalTanList.completed" >
+        {{'Application.FirstTimeSetup.Backward' | translate}}
+      </button>
+      <button mat-flat-button matStepperNext color="primary">
+        {{'Application.FirstTimeSetup.Forward' | translate}}
+      </button>
+    </div>
+  </mat-step>
+  <mat-step [label]="'Application.FirstTimeSetup.PasswordSet.Header' | translate" state="keys"
+            [errorMessage]="'Application.FirstTimeSetup.Errors.PasswordRequired' | translate"
+            [completed]="horizontalPassword.completed" [editable]="!horizontalPassword.completed"
+            [hasError]="!horizontalPassword.completed">
+    <div class="step-panel">
+      <la2-password-set #horizontalPassword></la2-password-set>
+    </div>
+    <div class="button-panel">
+      <button mat-flat-button color="accent" *ngIf="!horizontalTanList.completed || !horizontalDataPassword.completed"
+              matStepperPrevious>
+        {{'Application.FirstTimeSetup.Backward' | translate}}
+      </button>
+      <!-- <button mat-flat-button color="warn" (click)="reset()">Zurücksetzen</button> -->
+      <button mat-flat-button color="primary" (click)="complete()"
+              [disabled]="!(horizontalTanList.completed && horizontalDataPassword.completed && horizontalPassword.completed)"
+      >
+        {{'Application.FirstTimeSetup.Complete' | translate}}
+      </button>
+    </div>
+  </mat-step>
+
+  <ng-template matStepperIcon="tan">
+    <mat-icon>list</mat-icon>
+  </ng-template>
+  <ng-template matStepperIcon="security">
+    <mat-icon>security</mat-icon>
+  </ng-template>
+  <ng-template matStepperIcon="keys">
+    <mat-icon>vpn_key</mat-icon>
+  </ng-template>
+</mat-vertical-stepper>

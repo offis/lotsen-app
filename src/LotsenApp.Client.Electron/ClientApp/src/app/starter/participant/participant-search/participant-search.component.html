@@ -1,0 +1,93 @@
+<!-- Copyright (c) 2021 OFFIS e.V.. All rights reserved. -->
+<!--  -->
+<!-- Redistribution and use in source and binary forms, with or without -->
+<!-- modification, are permitted provided that the following conditions are met: -->
+<!--  -->
+<!-- 1. Redistributions of source code must retain the above copyright notice, this -->
+<!--    list of conditions and the following disclaimer. -->
+<!--     -->
+<!-- 2. Redistributions in binary form must reproduce the above copyright notice, -->
+<!--    this list of conditions and the following disclaimer in the documentation -->
+<!--    and/or other materials provided with the distribution. -->
+<!--     -->
+<!-- 3. Neither the name of the copyright holder nor the names of its contributors -->
+<!--    may be used to endorse or promote products derived from this software without -->
+<!--    specific prior written permission. -->
+<!--     -->
+<!-- THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND -->
+<!-- ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED -->
+<!-- WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE -->
+<!-- DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE -->
+<!-- FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL -->
+<!-- DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR -->
+<!-- SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER -->
+<!-- CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, -->
+<!-- OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE -->
+<!-- OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE. -->
+
+<mat-form-field class="search">
+  <mat-chip-list #searchList>
+    <mat-chip
+      *ngFor="let chip of searchChips"
+      removable="true"
+      selectable="false"
+      (removed)="removeSearchPhrase(chip)">
+      <span *ngIf="chip.key !== 'common'" [matTooltip]="chip.displayKey ? (chip.displayKey | translate) : chip.key">
+        {{chip.displayValue ? (chip.displayValue | translate) : chip.value}}
+      </span>
+      <span *ngIf="chip.key === 'common'">{{chip.displayValue ? (chip.displayValue | translate) : chip.value}}</span>
+      <mat-icon matChipRemove>cancel</mat-icon>
+    </mat-chip>
+  </mat-chip-list>
+  <mat-label>{{'Application.ParticipantSearch.Label' | translate}}</mat-label>
+  <input #searchField
+         matInput
+         [placeholder]="'Application.ParticipantSearch.Placeholder' | translate"
+         [formControl]="searchControl"
+         [matChipInputFor]="searchList"
+         [matChipInputSeparatorKeyCodes]="searchSeparator"
+         (matChipInputTokenEnd)="addSearchPhrase($event)"/>
+  <mat-icon matSuffix *ngIf="searchControl.value === '' && searchChips.length === 0 && headerEntries.length === 0">search</mat-icon>
+  <button mat-icon-button [matMenuTriggerFor]="searchMenu" matSuffix *ngIf="headerEntries.length > 0">
+    <mat-icon>more_vert</mat-icon>
+  </button>
+  <button mat-icon-button
+          [attr.aria-label]="'Application.ParticipantSearch.Reset' | translate"
+          [matTooltip]="'Application.ParticipantSearch.Reset' | translate"
+          matSuffix
+          *ngIf="(searchControl.value !== '' || searchChips.length > 0) && headerEntries.length === 0"
+          (click)="resetSearch()">
+    <mat-icon>close</mat-icon>
+  </button>
+</mat-form-field>
+<mat-menu #searchMenu>
+  <button *ngFor="let entry of headerEntries" mat-menu-item [matMenuTriggerFor]="itemMenu" [matMenuTriggerData]="{items: entry.values, field: entry}">
+    {{entry.i18NKey ? (entry.i18NKey | translate) : entry.name}}
+  </button>
+  <button mat-menu-item (click)="resetSearch()"
+          *ngIf="searchControl.value !== '' || searchChips.length > 0"
+          [attr.aria-label]="'Application.ParticipantSearch.Reset' | translate"
+          [matTooltip]="'Application.ParticipantSearch.Reset' | translate">
+    {{'Application.ParticipantSearch.Reset' | translate}}
+  </button>
+</mat-menu>
+
+<mat-menu #itemMenu>
+  <ng-template matMenuContent let-items="items" let-field="field">
+    <button *ngFor="let item of items" mat-menu-item (click)="addChip(field, item)"
+            [style.backgroundColor]="field.name === 'tint' ? item.value : 'inherit'">
+      <ng-container *ngIf="field.dataType !== DataType.DATE && field.name !== 'icon' && field.dataType !== DataType.BOOLEAN">
+        {{item.i18NKey ? (item.i18NKey | translate) : item.value}}
+      </ng-container>
+      <ng-container *ngIf="field.name === 'icon'">
+        <mat-icon>{{item.value}}</mat-icon>
+      </ng-container>
+      <ng-container *ngIf="field.dataType === DataType.DATE">
+        {{item.value | date:configuration?.localisationConfiguration?.dateFormat}}
+      </ng-container>
+      <ng-container *ngIf="field.dataType === DataType.BOOLEAN">
+        {{item.value ? ('Application.BooleanEditor.Yes' | translate) : ('Application.BooleanEditor.No' | translate)}}
+      </ng-container>
+    </button>
+  </ng-template>
+</mat-menu>

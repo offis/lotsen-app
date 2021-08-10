@@ -1,0 +1,65 @@
+<!-- Copyright (c) 2021 OFFIS e.V.. All rights reserved. -->
+<!--  -->
+<!-- Redistribution and use in source and binary forms, with or without -->
+<!-- modification, are permitted provided that the following conditions are met: -->
+<!--  -->
+<!-- 1. Redistributions of source code must retain the above copyright notice, this -->
+<!--    list of conditions and the following disclaimer. -->
+<!--     -->
+<!-- 2. Redistributions in binary form must reproduce the above copyright notice, -->
+<!--    this list of conditions and the following disclaimer in the documentation -->
+<!--    and/or other materials provided with the distribution. -->
+<!--     -->
+<!-- 3. Neither the name of the copyright holder nor the names of its contributors -->
+<!--    may be used to endorse or promote products derived from this software without -->
+<!--    specific prior written permission. -->
+<!--     -->
+<!-- THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND -->
+<!-- ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED -->
+<!-- WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE -->
+<!-- DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE -->
+<!-- FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL -->
+<!-- DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR -->
+<!-- SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER -->
+<!-- CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, -->
+<!-- OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE -->
+<!-- OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE. -->
+
+<mat-tab-group
+  class="fill"
+  dynamicHeight
+  [(selectedIndex)]="openedTab"
+  (animationDone)="tabSwitched()"
+  (selectedTabChange)="tabSwitching()"
+  animationDuration="100ms"
+  *ngIf="openState.length">
+  <mat-tab *ngFor="let document of openState; index as i">
+    <ng-template matTabLabel>
+      <div (contextmenu)="contextTrigger.click()">
+        <span [matTooltip]="document.parentDocumentName + document.name">
+          <span *ngIf="document.parentDocumentName">{{document.parentDocumentName}}</span>
+          {{document.name}}
+          <span *ngIf="document.isDelta">*</span>
+        </span>
+        <button class="context-menu-trigger" [matMenuTriggerFor]="contextMenu" [matMenuTriggerData]="{index: i}"
+                #contextTrigger></button>
+        <button [attr.aria-label]="'Application.Project.Editor.Close' | translate" mat-icon-button (click)="closeAction(document.id)"
+                class="close-button">
+          <mat-icon>clear</mat-icon>
+        </button>
+      </div>
+    </ng-template>
+    <ng-template matTabContent>
+      <la2-document-editor [participant]="participant" [metadata]="document"></la2-document-editor>
+    </ng-template>
+  </mat-tab>
+</mat-tab-group>
+<mat-menu #contextMenu="matMenu">
+  <ng-template matMenuContent let-index="index">
+    <button mat-menu-item (click)="closeTab(index)">{{'Application.Project.Editor.ContextMenu.Close' | translate}}</button>
+    <button mat-menu-item (click)="closeLeft(index)">{{'Application.Project.Editor.ContextMenu.CloseLeft' | translate}}</button>
+    <button mat-menu-item (click)="closeRight(index)" >{{'Application.Project.Editor.ContextMenu.CloseRight' | translate}}</button>
+    <button mat-menu-item (click)="closeOther(index)">{{'Application.Project.Editor.ContextMenu.CloseOthers' | translate}}</button>
+    <button mat-menu-item (click)="closeAll()">{{'Application.Project.Editor.ContextMenu.CloseAll' | translate}}</button>
+  </ng-template>
+</mat-menu>

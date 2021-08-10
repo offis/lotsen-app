@@ -1,0 +1,138 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+<!-- Copyright (c) 2021 OFFIS e.V.. All rights reserved. -->
+<!--  -->
+<!-- Redistribution and use in source and binary forms, with or without -->
+<!-- modification, are permitted provided that the following conditions are met: -->
+<!--  -->
+<!-- 1. Redistributions of source code must retain the above copyright notice, this -->
+<!--    list of conditions and the following disclaimer. -->
+<!--     -->
+<!-- 2. Redistributions in binary form must reproduce the above copyright notice, -->
+<!--    this list of conditions and the following disclaimer in the documentation -->
+<!--    and/or other materials provided with the distribution. -->
+<!--     -->
+<!-- 3. Neither the name of the copyright holder nor the names of its contributors -->
+<!--    may be used to endorse or promote products derived from this software without -->
+<!--    specific prior written permission. -->
+<!--     -->
+<!-- THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND -->
+<!-- ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED -->
+<!-- WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE -->
+<!-- DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE -->
+<!-- FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL -->
+<!-- DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR -->
+<!-- SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER -->
+<!-- CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, -->
+<!-- OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE -->
+<!-- OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE. -->
+
+  <PropertyGroup>
+    <TargetFramework>net5.0</TargetFramework>
+    <TypeScriptCompileBlocked>true</TypeScriptCompileBlocked>
+    <TypeScriptToolsVersion>Latest</TypeScriptToolsVersion>
+    <IsPackable>false</IsPackable>
+    <SpaRoot>ClientApp\</SpaRoot>
+    <DefaultItemExcludes>$(DefaultItemExcludes);$(SpaRoot)node_modules\**</DefaultItemExcludes>
+    <!-- Set this to true if you enable server-side prerendering -->
+    <BuildServerSideRenderer>false</BuildServerSideRenderer>
+    <Authors>Dr. Timo Michelsen &amp; Timo Wolters</Authors>
+    <Company>OFFIS e.V.</Company>
+    <Copyright>© 2021 OFFIS e.V.</Copyright>
+    <PackageIcon>splashscreen.png</PackageIcon>
+    <AssemblyVersion>2.0.7.0</AssemblyVersion>
+    <FileVersion>2.0.7.0</FileVersion>
+    <PackageVersion>2.0.7-alpha</PackageVersion>
+    <LangVersion>9</LangVersion>
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="ElectronNET.API" Version="13.5.1" />
+    <PackageReference Include="Microsoft.AspNetCore.SpaServices.Extensions" Version="5.0.7" />
+    <PackageReference Include="Serilog.Extensions.Logging.File" Version="2.0.0" />
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="6.1.4" />
+  </ItemGroup>
+  <ItemGroup>
+    <!-- Don't publish the SPA source files, but do show them in the project files list -->
+    <Content Remove="$(SpaRoot)**" />
+    <Content Include="ClientApp\src\assets\icons\mat-icons.json" />
+    <None Remove="$(SpaRoot)**" />
+    <None Include="$(SpaRoot)**" Exclude="$(SpaRoot)node_modules\**" />
+    <None Include="Assets\splashscreen.png">
+      <Pack>True</Pack>
+      <PackagePath></PackagePath>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="Assets\preload.js">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+	<Content Remove="config\plugins.json" />
+	<Content Remove="config/**/*" />
+  </ItemGroup>
+  <Target Name="DebugEnsureNodeEnv" BeforeTargets="Build" Condition=" '$(Configuration)' == 'Debug' And !Exists('$(SpaRoot)node_modules') ">
+    <!-- Ensure Node.js is installed -->
+    <Exec Command="node --version" ContinueOnError="true">
+      <Output TaskParameter="ExitCode" PropertyName="ErrorCode" />
+    </Exec>
+    <Error Condition="'$(ErrorCode)' != '0'" Text="Node.js is required to build and run this project. To continue, please install Node.js from https://nodejs.org/, and then restart your command prompt or IDE." />
+    <Message Importance="high" Text="Restoring dependencies using 'npm'. This may take several minutes..." />
+    <Exec WorkingDirectory="$(SpaRoot)" Command="npm install" />
+  </Target>
+  <Target Name="PublishRunWebpack" AfterTargets="ComputeFilesToPublish">
+    <!-- As part of publishing, ensure the JS resources are freshly built in production mode -->
+    <Exec WorkingDirectory="$(SpaRoot)" Command="npm install" />
+    <Exec WorkingDirectory="$(SpaRoot)" Command="npm run build:production" />
+    <Exec WorkingDirectory="$(SpaRoot)" Command="npm run build:ssr -- --prod" Condition=" '$(BuildServerSideRenderer)' == 'true' " />
+    <!-- Include the newly-built files in the publish output -->
+    <ItemGroup>
+      <DistFiles Include="$(SpaRoot)dist\**; $(SpaRoot)dist-server\**" />
+      <DistFiles Include="$(SpaRoot)node_modules\**" Condition="'$(BuildServerSideRenderer)' == 'true'" />
+      <ResolvedFileToPublish Include="@(DistFiles->'%(FullPath)')" Exclude="@(ResolvedFileToPublish)">
+        <RelativePath>%(DistFiles.Identity)</RelativePath>
+        <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+        <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      </ResolvedFileToPublish>
+    </ItemGroup>
+  </Target>
+  <ItemGroup>
+    <ProjectReference Include="..\LotsenApp.Client.Authentication.DataPassword\LotsenApp.Client.Authentication.DataPassword.csproj" />
+    <ProjectReference Include="..\LotsenApp.Client.Authentication.Offline\LotsenApp.Client.Authentication.Offline.csproj" />
+    <ProjectReference Include="..\LotsenApp.Client.Authentication.Password\LotsenApp.Client.Authentication.Password.csproj" />
+    <ProjectReference Include="..\LotsenApp.Client.Authentication.Token\LotsenApp.Client.Authentication.Token.csproj" />
+    <ProjectReference Include="..\LotsenApp.Client.Authorization\LotsenApp.Client.Authorization.csproj" />
+    <ProjectReference Include="..\LotsenApp.Client.Changelog\LotsenApp.Client.Changelog.csproj" />
+    <ProjectReference Include="..\LotsenApp.Client.Configuration.File\LotsenApp.Client.Configuration.File.csproj" />
+    <ProjectReference Include="..\LotsenApp.Client.Configuration.Rest\LotsenApp.Client.Configuration.Rest.csproj" />
+    <ProjectReference Include="..\LotsenApp.Client.DataFormat.Database\LotsenApp.Client.DataFormat.Database.csproj" />
+    <ProjectReference Include="..\LotsenApp.Client.DataFormat.File\LotsenApp.Client.DataFormat.File.csproj" />
+    <ProjectReference Include="..\LotsenApp.Client.DataFormat.Migrations\LotsenApp.Client.DataFormat.Migrations.csproj" />
+    <ProjectReference Include="..\LotsenApp.Client.DataFormat.StrokeOwl\LotsenApp.Client.DataFormat.StrokeOwl.csproj" />
+    <ProjectReference Include="..\LotsenApp.Client.DataFormat\LotsenApp.Client.DataFormat.csproj" />
+    <ProjectReference Include="..\LotsenApp.Client.File\LotsenApp.Client.File.csproj" />
+    <ProjectReference Include="..\LotsenApp.Client.Http\LotsenApp.Client.Http.csproj" />
+    <ProjectReference Include="..\LotsenApp.Client.I18N\LotsenApp.Client.I18N.csproj" />
+    <ProjectReference Include="..\LotsenApp.Client.Participant\LotsenApp.Client.Participant.csproj" />
+    <ProjectReference Include="..\LotsenApp.Client.Plugin\LotsenApp.Client.Plugin.csproj" />
+    <ProjectReference Include="..\LotsenApp.Client.Programme\LotsenApp.Client.Programme.csproj" />
+    <ProjectReference Include="..\LotsenApp.Client.Project\LotsenApp.Client.Project.csproj" />
+    <ProjectReference Include="..\LotsenApp.Client.Reminder\LotsenApp.Client.Reminder.csproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Update="electron.manifest.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <None Update="Assets\icon.icns">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="Assets\icon.ico">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="Assets\icon.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <_ContentIncludedByDefault Remove="ClientApp\src\assets\i18n\de.json" />
+    <_ContentIncludedByDefault Remove="ClientApp\src\assets\i18n\en.json" />
+  </ItemGroup>
+</Project>

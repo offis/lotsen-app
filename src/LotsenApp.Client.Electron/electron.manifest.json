@@ -1,0 +1,63 @@
+{
+  "executable": "LotsenApp.Client.Electron",
+  "splashscreen": {
+    "imageFile": "Assets/splashscreen.png"
+  },
+  "name": "LotsenApp",
+  "author": "Dr. Timo Michelsen & Timo Wolters",
+  "singleInstance": true,
+  "environment": "Production",
+  "build": {
+    "appId": "LotsenApp",
+    "productName": "LotsenApp",
+    "copyright": "© 2021 OFFIS e.V.",
+    "buildVersion": "2.0.7-alpha",
+    "compression": "maximum",
+    "asar": true,
+    "generateUpdatesFilesForAllChannels": true,
+    "directories": {
+      "output": "../../../bin/Desktop"
+    },
+    "extraResources": [
+      {
+        "from": "./bin",
+        "to": "bin",
+        "filter": [ "**/*" ]
+      },
+      {
+        "from": "../../../../../doc",
+        "to": "bin/ClientApp/dist/lotsen-app-view/assets",
+        "filter": [
+          "changelog.md"
+        ]
+      }
+    ],
+    "files": [
+      {
+        "from": "./ElectronHostHook/node_modules",
+        "to": "ElectronHostHook/node_modules",
+        "filter": [ "**/*" ]
+      },
+      "**/*"
+    ],
+    "mac": {
+      "icon": "bin/Assets/icon.icns",
+      "category": "public.app-category.utilities"
+    },
+    "win": {
+      "icon": "bin/Assets/icon.ico",
+      "publish": [
+        {
+          "provider": "github",
+          "repo": "lotsen-app",
+          "owner": "offis",
+          "private": false,
+          "vPrefixedTagName": false
+        }
+      ]
+    },
+    "linux": {
+      "icon": "bin/Assets/icon.png"
+    }
+  }
+}

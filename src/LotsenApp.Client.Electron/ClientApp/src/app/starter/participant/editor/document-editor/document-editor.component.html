@@ -1,0 +1,107 @@
+<!-- Copyright (c) 2021 OFFIS e.V.. All rights reserved. -->
+<!--  -->
+<!-- Redistribution and use in source and binary forms, with or without -->
+<!-- modification, are permitted provided that the following conditions are met: -->
+<!--  -->
+<!-- 1. Redistributions of source code must retain the above copyright notice, this -->
+<!--    list of conditions and the following disclaimer. -->
+<!--     -->
+<!-- 2. Redistributions in binary form must reproduce the above copyright notice, -->
+<!--    this list of conditions and the following disclaimer in the documentation -->
+<!--    and/or other materials provided with the distribution. -->
+<!--     -->
+<!-- 3. Neither the name of the copyright holder nor the names of its contributors -->
+<!--    may be used to endorse or promote products derived from this software without -->
+<!--    specific prior written permission. -->
+<!--     -->
+<!-- THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND -->
+<!-- ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED -->
+<!-- WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE -->
+<!-- DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE -->
+<!-- FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL -->
+<!-- DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR -->
+<!-- SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER -->
+<!-- CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, -->
+<!-- OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE -->
+<!-- OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE. -->
+
+<div class="document-editor-wrapper" *ngIf="this.values">
+  <div class="name-wrapper">
+    <h1 *ngIf="!editMode" (click)="editName()">{{values.name}}</h1>
+    <mat-form-field *ngIf="editMode" (focusout)="stopEditingName()" class="editor">
+      <mat-label>{{'Application.DocumentEditor.Name' | translate}}</mat-label>
+      <input #name="matInput" matInput [formControl]="nameControl" (keydown)="updateValue($event)"/>
+    </mat-form-field>
+  </div>
+  <mat-accordion [multi]="true" #accordion="matAccordion">
+    <mat-expansion-panel *ngIf="mergedValues.length" class="mat-elevation-z0">
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          {{'Application.DocumentEditor.Fields' | translate}}
+        </mat-panel-title>
+      </mat-expansion-panel-header>
+      <ng-template matExpansionPanelContent>
+        <div class="field-container">
+          <div class="field-wrapper" *ngFor="let field of mergedValues">
+            <la2-field-editor class="fill"
+                              [projectPath]="participant.documentedBy + '.' + metadataDetail?.id + '.' + field.detail.id"
+                              [participantPath]="participant.id + '.' + values.id + '.' + field.value?.id"
+                              [field]="field.detail"
+                              [(value)]="field.value" [participant]="participant"
+                              [documentValue]="values"
+            ></la2-field-editor><!-- (valueCommit)="focusNextField($event)" -->
+          </div>
+        </div>
+      </ng-template>
+    </mat-expansion-panel>
+    <mat-expansion-panel *ngIf="mergedGroups.length" class="mat-elevation-z0">
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          {{'Application.DocumentEditor.Groups' | translate}}
+        </mat-panel-title>
+      </mat-expansion-panel-header>
+      <ng-template matExpansionPanelContent>
+        <div class="group-container">
+          <div class="group-wrapper" *ngFor="let group of mergedGroups">
+            <la2-group-editor
+              [projectPath]="participant.documentedBy + '.' + metadataDetail?.id + '.' + group.detail.id"
+              [participantPath]="participant.id + '.' + values.id"
+              [participant]="participant"
+              [documentValues]="values"
+              [documentId]="metadata.id"
+              [detail]="group.detail"
+              [(values)]="group.values"></la2-group-editor>
+          </div>
+        </div>
+      </ng-template>
+    </mat-expansion-panel>
+  </mat-accordion>
+
+</div>
+
+<div class="placeholder" *ngIf="!this.values">
+  <div class="title"></div>
+  <div class="field-container">
+    <div class="field-wrapper">
+    </div>
+    <div class="field-wrapper">
+    </div>
+    <div class="field-wrapper">
+    </div>
+    <div class="field-wrapper">
+    </div>
+    <div class="field-wrapper">
+    </div>
+    <div class="field-wrapper">
+    </div>
+    <div class="field-wrapper">
+    </div>
+    <div class="field-wrapper">
+    </div>
+    <div class="field-wrapper">
+    </div>
+    <div class="field-wrapper">
+    </div>
+  </div>
+
+</div>

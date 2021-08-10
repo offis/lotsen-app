@@ -1,0 +1,76 @@
+<!-- Copyright (c) 2021 OFFIS e.V.. All rights reserved. -->
+<!--  -->
+<!-- Redistribution and use in source and binary forms, with or without -->
+<!-- modification, are permitted provided that the following conditions are met: -->
+<!--  -->
+<!-- 1. Redistributions of source code must retain the above copyright notice, this -->
+<!--    list of conditions and the following disclaimer. -->
+<!--     -->
+<!-- 2. Redistributions in binary form must reproduce the above copyright notice, -->
+<!--    this list of conditions and the following disclaimer in the documentation -->
+<!--    and/or other materials provided with the distribution. -->
+<!--     -->
+<!-- 3. Neither the name of the copyright holder nor the names of its contributors -->
+<!--    may be used to endorse or promote products derived from this software without -->
+<!--    specific prior written permission. -->
+<!--     -->
+<!-- THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND -->
+<!-- ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED -->
+<!-- WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE -->
+<!-- DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE -->
+<!-- FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL -->
+<!-- DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR -->
+<!-- SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER -->
+<!-- CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, -->
+<!-- OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE -->
+<!-- OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE. -->
+
+<h2 *ngIf="level === 0">{{detail.i18NKey ? (detail.i18NKey | translate) : detail.name }}</h2>
+<h3 *ngIf="level === 1">{{detail.i18NKey ? (detail.i18NKey | translate) : detail.name }}</h3>
+<h4 *ngIf="level === 2">{{detail.i18NKey ? (detail.i18NKey | translate) : detail.name }}</h4>
+<h5 *ngIf="level === 3">{{detail.i18NKey ? (detail.i18NKey | translate) : detail.name }}</h5>
+<h6 *ngIf="level >= 4">{{detail.i18NKey ? (detail.i18NKey | translate) : detail.name }}</h6>
+<div class="group-list" [cdkDropListData]="values" cdkDropList (cdkDropListDropped)="reorderGroups($event)">
+  <div [class]="'group-wrapper' + (this.detail.cardinality === Cardinality.One) ? ' no-border' : ''"
+       *ngFor="let value of values; index as i" [cdkDragData]="value" cdkDrag>
+    <div class="group-actions" *ngIf="this.detail.cardinality === Cardinality.Many">
+      <button mat-icon-button cdkDragHandle>
+        <mat-icon>reorder</mat-icon>
+      </button>
+      <span class="spacer" role="presentation"></span>
+      <button (click)="removeGroup(value)" mat-icon-button>
+        <mat-icon>delete</mat-icon>
+      </button>
+    </div>
+    <div class="field-container">
+      <la2-field-editor
+        class="field-wrapper"
+        *ngFor="let field of mergedFields[i]"
+        [participantPath]="participantPath + '.' + value.id"
+        [projectPath]="projectPath + '.' + value.groupId"
+        [field]="field.detail"
+        [(value)]="field.value"
+        [participant]="participant"
+        [documentValue]="documentValues"
+        (valueChange)="updateValue(i, field)"></la2-field-editor>
+    </div>
+    <la2-group-editor *ngFor="let group of mergedChildren[i]; index as j"
+                      [participantPath]="participantPath + '.' + value.id"
+                      [projectPath]="projectPath + '.' + value.groupId"
+                      [detail]="group.detail"
+                      [(values)]="group.values"
+                      (valuesChange)="updateChildren(i, j, group)"
+                      [participant]="participant"
+                      [documentValues]="documentValues"
+                      [documentId]="documentId"
+                      [parentGroupId]="value.id"
+                      [level]="level + 1"></la2-group-editor>
+  </div>
+</div>
+<button class="add-button" *ngIf="detail.cardinality === Cardinality.Many || !values.length" mat-button
+        (click)="addGroup()">
+  <mat-icon>add</mat-icon>
+  {{detail.i18NKey ? (detail.i18NKey | translate) : detail.name }} {{'Application.GroupEditor.Add' | translate}}
+</button>
+
+

@@ -1,0 +1,69 @@
+<!-- Copyright (c) 2021 OFFIS e.V.. All rights reserved. -->
+<!--  -->
+<!-- Redistribution and use in source and binary forms, with or without -->
+<!-- modification, are permitted provided that the following conditions are met: -->
+<!--  -->
+<!-- 1. Redistributions of source code must retain the above copyright notice, this -->
+<!--    list of conditions and the following disclaimer. -->
+<!--     -->
+<!-- 2. Redistributions in binary form must reproduce the above copyright notice, -->
+<!--    this list of conditions and the following disclaimer in the documentation -->
+<!--    and/or other materials provided with the distribution. -->
+<!--     -->
+<!-- 3. Neither the name of the copyright holder nor the names of its contributors -->
+<!--    may be used to endorse or promote products derived from this software without -->
+<!--    specific prior written permission. -->
+<!--     -->
+<!-- THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND -->
+<!-- ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED -->
+<!-- WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE -->
+<!-- DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE -->
+<!-- FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL -->
+<!-- DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR -->
+<!-- SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER -->
+<!-- CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, -->
+<!-- OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE -->
+<!-- OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE. -->
+
+<mat-toolbar color="primary" class="toolbar">
+  <button mat-icon-button
+          class="icon"
+          [attr.aria-label]="'Application.Taskbar.OpenMenuTooltip' | translate"
+          [matTooltip]="'Application.Taskbar.OpenMenuTooltip' | translate"
+          href="#" (click)="openMenu()">
+    <la2-animated-icon aria-hidden="true" class="centering" start="menu" end="close" [internalToggle]="false"
+                       [animate]="true"></la2-animated-icon>
+  </button>
+  <img class="drag" src="assets/icons/LA2_Logo.svg" [alt]="'Application.Taskbar.Logo' | translate"/>
+  <span class="drag branding">LotsenApp <span class="version">2.0.7-alpha</span></span>
+  <span *ngIf="under800" class="drag spacer" role="presentation"></span>
+  <span class="drag disclaimer">{{'Application.Taskbar.Disclaimer' | translate}}</span>
+  <div class="button-stack">
+    <la2-update-check-button></la2-update-check-button>
+    <la2-download-progress></la2-download-progress>
+    <la2-update-restart></la2-update-restart>
+  </div>
+  <la2-user-display *ngIf="!(under500 && this.electronService.isElectronApp)"></la2-user-display>
+  <button *ngIf="this.electronService.isElectronApp"
+          mat-icon-button class="icon"
+          [matTooltip]="'Application.Taskbar.MinimizeTooltip' | translate"
+          [attr.aria-label]="'Application.Taskbar.MinimizeTooltip' | translate"
+          href="#" (click)="minimize()">
+    <mat-icon aria-hidden="true">remove</mat-icon>
+  </button>
+  <button *ngIf="this.electronService.isElectronApp && !this.electronService.isLinux"
+          mat-icon-button class="icon"
+          [matTooltip]="'Application.Taskbar.MaximizeTooltip' | translate"
+          [attr.aria-label]="'Application.Taskbar.MaximizeTooltip' | translate"
+          href="#" (click)="maximize()">
+    <mat-icon *ngIf="isMaximized" aria-hidden="true" class="centering">crop_free</mat-icon>
+    <mat-icon *ngIf="!isMaximized" aria-hidden="true" class="centering">crop_din</mat-icon>
+  </button>
+  <button *ngIf="this.electronService.isElectronApp"
+          mat-icon-button class="icon"
+          [matTooltip]="'Application.Taskbar.CloseTooltip' | translate"
+          [attr.aria-label]="'Application.Taskbar.CloseTooltip' | translate"
+          href="#" (click)="close()">
+    <mat-icon aria-hidden="true" class="centering">clear</mat-icon>
+  </button>
+</mat-toolbar>

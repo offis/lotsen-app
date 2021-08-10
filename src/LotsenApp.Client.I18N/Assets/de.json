@@ -1,0 +1,542 @@
+{
+	"Application": {
+		"About": {
+			"DataProtection": "Datenschutz",
+			"LegalNotice": "Impressum",
+			"ThirdParty": "Drittanbieterlizenzen",
+			"Us": "Über die LotsenApp",
+			"Changelog": "Änderungshistorie"
+		},
+		"AboutUs": {
+			"Description1": "Die LotsenApp war die Umsetzung der digitalen Belotstungsakte aus dem Projekt STROKE OWL. Ziel der digitalen  Belostungsakte war die strukturierte Erfassung von Studien- und Prozessdaten für die Betreuung der Patienten, zur Durchführung der Studie, und zur Bereitstellung für Krankenkassen und Abrechnungsdienstleitser.",
+			"Description2": "Mit der Version 2 der LotsenApp wurde die Anwendung weiter entwickelt, sodass diese allgemein als Studienwerkzeug oder als Werkzeug mit ähnlichen und teilweise strengeren technischen Sicherheitskonzepten verwendet werden kann und über den konkreten Anwendungsfall \"Schlaganfall\" hinaus nutzbar wird.",
+			"Description3-1": "Entwickelt wird die LotsenApp von der Gruppe \"Datenmanagement und Analyse für die Versorgungsforschung\" des",
+			"Description3-2": ", sowie den Mitwirkenden der Open Source Gemeinschaft.",
+			"License": "Lizenz",
+			"LogoAlt": "Logo der LotsenApp",
+			"TechnicalInformation": "Technische Information",
+			"Title": "Über die LotsenApp",
+			"Update": "Updates"
+		},
+		"AuthenticationMode": {
+			"SignInOffline": "Offline anmelden",
+			"SignInOnline": "Online anmelden"
+		},
+		"BooleanEditor": {
+			"No": "Nein",
+			"Yes": "Ja"
+		},
+		"CreateParticipant": {
+			"ColorLabel": "Wählen Sie eine Farbe",
+			"ColorTooltip": "Der Farbcode kann zur Suche nach Teilnehmern genutzt werden",
+			"Create": "Teilnehmer erstellen",
+			"CreateTooltip": "Neue Teilnehmer oder Dokumente erstellen",
+			"Document": "Dokument",
+			"Error": "Der Teilnehmer konnte nicht erstellt werden. Bitte versuchen Sie es erneut",
+			"GuidePathLabel": "Belostungspfad nach",
+			"GuidePathTooltip": "Über den Belostungspfad werden die möglichen Dokumente und Dokumentationsereignisse ausgewählt",
+			"NameLabel": "Name",
+			"NamePlaceholder": "John Doe",
+			"NameTooltip": "Der Name des Teilnehmers zur Anzeige in der Übersicht.",
+			"NoProject": "Kein Project",
+			"Participant": "Teilnehmer",
+			"ProjectLabel": "Projekt",
+			"ProjectTooltip": "Das Projekt dient der Gruppierung der Teilnehmer und der Auswertung von Studien im Rahmen des Projekts",
+			"SpinnerLabel": "Teilnehmer wird erstellt...",
+			"Template": "Dokumentenvorlage"
+		},
+		"DataFormat": {
+			"Metadata": {
+				"name": "Name",
+				"tint": "Farbe",
+				"icon": "Icon"
+			}
+		},
+		"DataPassword": {
+			"DataPasswordHint": "Bitte geben Sie das Datenpasswort ein",
+			"DontUseRecoveryKey": "Wiederherstellungsschlüssel nicht benutzen",
+			"Error": "Das Datenpasswort oder der Wiederherstellungsschlüssel konnte nicht verifiziert werden.",
+			"Fields": {
+				"DataPassword": "Datenpasswort",
+				"RecoveryKey": "Wiederherstellungsschlüssel"
+			},
+			"Hints": {
+				"DataPasswordRequired": "Das Datenpasswort ist ",
+				"RecoveryKeyRequired": "Der Wiederherstellungsschlüssel ist ",
+				"Required": "erforderlich"
+			},
+			"LoadFromFile": "Aus Datei laden",
+			"RecoveryKeyHint": "Mit dem Wiederherstellungsschlüssel kann das Datenpasswort neu gesetzt werden. Der Wiederherstellungsschlüssel wurde in der Ersteinrichtung angezeigt und unter Umständen in einer Datei gespeichert.",
+			"SetDataPassword": "Datenpasswort setzen",
+			"UseRecoveryKey": "Wiederherstellungsschlüssel benutzen",
+			"VerifyDataPassword": "Datenpasswort überprüfen",
+			"Waiting": "Warte auf Server"
+		},
+		"DeleteDocumentConfirm": {
+			"Cancel": "Abbrechen",
+			"Confirm": "Ja, Dokument löschen",
+			"Message": "Möchten Sie das Dokument '{{name}}' wirklich löschen? Das Dokument wird nach dem nächsten Speichern aus den Daten entfernt. Sollte dieses Dokument Teildokumente enthalten, dann werden diese ebenfalls gelöscht.",
+			"Title": "Dokument Löschen"
+		},
+		"DeleteReminder": {
+			"Cancel": "Abbrechen",
+			"Confirm": "Ja, Erinnerung löschen",
+			"Header": "Erinnerung löschen",
+			"Hint1": "Soll die Erinnerung ",
+			"Hint2": " wirklich gelöscht werden?"
+		},
+		"DirectDependencies": {
+			"AllDependencies": "Alle Abhängigkeiten mit Lizenzen",
+			"Title": "Direkte Abhängigkeiten"
+		},
+		"DocumentCreateMenu": {
+			"CreateTooltip": "Ein neues Dokument oder Dokumentationsereignis erstellen [Strg + N]"
+		},
+		"DocumentEditor": {
+			"Fields": "Felder",
+			"Groups": "Gruppen",
+			"Name": "Dokumentenname"
+		},
+		"DocumentOverview": {
+			"UnknownDocument": "Das Dokument is unbekannt und kann nicht geöffnet werden."
+		},
+		"DocumentOverviewDisplay": {
+			"Delete": "Dokument löschen",
+			"NewDocument": "Neues Dokument"
+		},
+		"DoubleEditor": {
+			"MaxError": "Ein Maximimum von {{max}} ist erlaubt",
+			"MinError": "Ein Minimum von {{min}} ist erlaubt",
+			"PatternError": "Der eingegebene Wert ist keine Gleitkommazahl"
+		},
+		"Editor": {
+			"Header": "Editor",
+			"Error": {
+				"UnknownParticipant": "Der Teilnehmer is unbekannt und kann nicht geöffnet werden."
+			},
+			"NoValue": "Kein Wert vorhanden"
+		},
+		"Errors": {
+			"Dismiss": "Schließen"
+		},
+		"FieldEditor": {
+			"CreateReminder": "Erinnerung erstellen",
+			"DeleteValue": "Wert löschen",
+			"DisplayValue": "Darstellungswert",
+			"NotDisplayable1": "Feld",
+			"NotDisplayable2": "kann aktuell nicht dargestellt werden",
+			"AddToParticipantHeader": "Nach diesem Wert suchen",
+			"AddToProjectHeader": "Für alle Teilnehmer des Projekts nach diesem Wert suchen",
+			"AddToParticipantHeaderTooltip": "Nach diesem Wert kann in der Teilnehmerübersicht gesucht werden. Der Wert wird nur für diesen Teilnehmer hinzugefügt.",
+			"AddToProjectHeaderTooltip": "Nach diesem Wert kann in der Teilnehmerübersicht gesucht werden. Der Wert wird für alle Teilnehmer des Projekts hinzugefügt.",
+			"RemoveFromParticipantHeader": "Nicht nach diesem Wert suchen",
+			"RemoveFromProjectHeader": "Nicht nach diesem Wert im Projekt suchen",
+			"RemoveFromParticipantHeaderTooltip": "Nach diesem Wert kann in der Teilnehmerübersicht nicht mehr gesucht werden. Der Wert wird nur für diesen Teilnehmer entfernt, falls er für diesen Teilnehmer hinzugefügt wurde.",
+			"RemoveFromProjectHeaderTooltip": "Nach diesem Wert kann in der Teilnehmerübersicht nicht mehr gesucht werden. Der Wert wird für alle Teilnehmer des Projekts entfernt. Werte, die direkt für Teilnehmer hinzugefügt wurden, bleiben unberührt."
+		},
+		"FirstTimeSetup": {
+			"Backward": "Zurück",
+			"Complete": "Abschließen",
+			"DataPassword": {
+				"Fields": {
+					"DataPassword": "Datenpasswort",
+					"RecoveryKey": "Wiederherstellungsschlüssel",
+					"Repeat": "Datenpasswort wiederholen"
+				},
+				"Header": "Datenpasswort",
+				"Hint": {
+					"Hint1": "Das Datenpasswort wird für die Verschlüsselung der erfassten Daten verwendet. Die App speichert das Passwort ",
+					"Hint2": ". Falls das Passwort verloren geht, dann können die Daten mit dem Wiederherstellungsschlüssel noch entschlüsselt werden. Dieser wird auf diesem Bildschirm einmal angezeigt und auch nicht gespeichert. Wenn sowohl das Datenpasswort, als auch der Wiederherstellungsschlüssel verloren gehen, dann können die Daten ",
+					"Hint3": " mehr entschlüsselt werden und sind verloren.",
+					"Hint4": "Über den 'Speichern'-Knopf kann der Wiederherstellungsschlüssel als Datei gespeichert werden. Dieser ist über das Eingabefeld auch änderbar. Wenn der Wiederherstellungsschlüssel gespeichert wird, dann sollte dieser auf einem externen Medium oder verschlüsselt gespeichert werden. Ansonsten können die Daten kompromittiert werden.",
+					"Not": "nicht"
+				},
+				"Hints": {
+					"DataPasswordRequired": "Das Datenpasswort ist ",
+					"Error": "Das Datenpasswort konnte nicht gespeichert werden",
+					"NotEqual": "Die Datenpasswörter sind nicht gleich",
+					"RecoveryKeyRequired": "Ein Wiederherstellungsschlüssel ist ",
+					"RepeatRequired": "Die Wiederholung des Datenpassworts ist ",
+					"Required": "erforderlich"
+				},
+				"Save": "Speichern",
+				"SaveKeys": "Datenpasswort und Wiederherstellungsschlüssel speichern",
+				"Waiting": "Warte auf Server"
+			},
+			"Errors": {
+				"DataPasswordRequired": "Das Datenpasswort ist erforderlich",
+				"KeyRequired": "Das Erzeugen von Schlüsseln ist erforderlich",
+				"PasswordRequired": "Das setzen eines Passworts ist erforderlich",
+				"PasswordSetFailed": "Das Passwort konnte nicht gesetzt werden. Entweder erfüllt das Passwort nicht die Anforderung oder die TAN ist ungültig.",
+				"TanRequired": "Die TAN-Liste ist erforderlich"
+			},
+			"Forward": "Weiter",
+			"PasswordSet": {
+				"Fields": {
+					"Password": "Passwort",
+					"PasswordRepeat": "Passwort wiederholen",
+					"Save": "Passwort speichern"
+				},
+				"Header": "Passwort ändern",
+				"Hint": "Der lokale Account ist nicht durch ein Passwort geschützt. Bitte setzen Sie ein Passwort.",
+				"Hints": {
+					"NotEqual": "Die Passwörter sind nicht gleich",
+					"PasswordDigit": "Das Passwort muss eine Zahl enthalten",
+					"PasswordLength": "Das Passwort muss mindestens aus 6 Zeichen bestehen",
+					"PasswordLowerCase": "Das Passwort muss einen Kleinbuchstaben enthalten",
+					"PasswordNonAlphaNumeric": "Das Passwort muss einen nicht alphanumerisches Zeichen enthalten",
+					"PasswordRequired": "Das Passwort ist ",
+					"PasswordUpperCase": "Das Passwort muss einen Großbuchstaben enthalten",
+					"Repeat": "Die Wiederholung des Passworts ist",
+					"Required": "erforderlich"
+				},
+				"Protected": "Der Account ist durch ein Passwort geschützt.",
+				"Waiting": "Warte auf Server"
+			},
+			"TanList": {
+				"Acknowledge": "Ich habe den Hinweis zur Kenntnis genommen.",
+				"Create": "TAN-Liste erzeugen",
+				"Created": "Die TAN-Liste wurde erzeugt",
+				"Header": "TAN-Liste",
+				"Hint": "Die TAN-Liste wird als zusätzlicher Schutz für einige Operationen wie das Zurücksetzen des Account-Passworts benötigt und sollte aus Sicherheitsgründen ",
+				"Hint2": " auf dem gleichen Geräte gespeichert werden. Die Datei sollte auf einem verschlüsselten USB-Stick oder in einem Passwort-Safe abgelegt werden.",
+				"Unencrypted": "nicht unverschlüsselt"
+			}
+		},
+		"Footer": {
+			"DataProtection": "Datenschutz",
+			"DevelopedBy": "LotsenApp - entwickelt von OFFIS e.V.",
+			"DevelopedByDetail": ", Bereich Gesundheit, Gruppe Datenmanagement und -analyse für die Versorgungsforschung",
+			"LegalNotice": "Impressum",
+			"LogoAlt": "OFFIS Logo"
+		},
+		"GroupEditor": {
+			"Add": "Hinzufügen"
+		},
+		"Home": {
+			"WelcomeSignIn": "Willkommen in der LotsenApp 2.0!",
+			"WelcomeSignOut": "Willkommen in der LotsenApp 2.0! Bitte melden Sie sich am System an."
+		},
+		"IconChooser": {
+			"SearchLabel": "Nach Icon suchen...",
+			"Title": {
+				"action": "Aktionen",
+				"alert": "Alarm",
+				"av": "Audio/Video",
+				"communication": "Kommunikation",
+				"content": "Inhalt",
+				"device": "Gerät",
+				"editor": "Editor",
+				"file": "Datei",
+				"hardware": "Hardware",
+				"home": "Zuhause",
+				"image": "Bild",
+				"maps": "Karte",
+				"navigation": "Navigation",
+				"notification": "Benachrichtigung",
+				"places": "Orte",
+				"social": "Sozial",
+				"toggle": "Toggle"
+			},
+			"Tooltip": "Wählen Sie ein Icon für den Teilnehmer aus"
+		},
+		"IntegerEditor": {
+			"MaxError": "Ein Maximimum von {{max}} ist erlaubt",
+			"MinError": "Ein Minimum von {{min}} ist erlaubt",
+			"PatternError": "Der eingegebene Wert ist keine Ganzzahl"
+		},
+		"LanguageSelector": {
+			"Errors": {
+				"LanguageSaveForbidden": "Die Sprache konnte nicht gespeichert werden. Sie sind wahrscheinlich nicht angemeldet."
+			},
+			"Label": "Sprache"
+		},
+		"MainNavigation": {
+			"About": "Über die LotsenApp",
+			"Home": "Startseite",
+			"PersonalSpace": "Mein Bereich",
+			"Studies": "Studien"
+		},
+		"MultiProjectOverview": {
+			"NoProject": "Keinem Projekt zugeordnet",
+			"ParticipantCount": {
+				"=0": "Keine Teilnehmer",
+				"=1": "Ein Teilnehmer",
+				"other": "{{count}} Teilnehmer"
+			}
+		},
+		"Participant": {
+			"Synchronisation": "Zuletzt synchronisiert am"
+		},
+		"ParticipantDeleteConfirm": {
+			"Cancel": "Abbrechen",
+			"Confirm": "Ja, Teilnehmer löschen",
+			"Message": "Möchten Sie den Teilnehmer '{{name}}' wirklich löschen? Die Daten des Teilnehmers werden nach 14 Tagen von Ihrem Gerät entfernt.",
+			"Title": "Teilnehmer Löschen"
+		},
+		"ParticipantEditor": {
+			"DeleteTooltip": "Diesen Teilnehmer löschen [Strg + Entf]",
+			"LocalIdTooltip": "Lokale ID",
+			"NoDocuments": "Es sind noch keine Dokumente vorhanden",
+			"OnlineIdTooltip": "Online ID",
+			"PrintTooltip": "Aktuelles Dokument drucken [Strg + P]",
+			"SaveTooltip": "Speichern [Strg + S]",
+			"EditTooltip": "Teilnehmer bearbeiten"
+		},
+		"ParticipantList": {
+			"Header": "Teilnehmer"
+		},
+		"ParticipantOverview": {
+			"Close": "Schließen"
+		},
+		"ParticipantSearch": {
+			"Label": "Suchen...",
+			"Placeholder": "John Doe",
+			"Reset": "Suche zurücksetzen"
+		},
+		"ParticipantView": {
+			"Automatic": "Automatisch entscheiden",
+			"Grid": "Kachelansicht",
+			"GroupingLabel": "Gruppierung der Teilnehmer",
+			"List": "Listenansicht",
+			"NoProject": "Keine Projektgruppierung",
+			"Project": "Projektgruppierung",
+			"ViewLabel": "Ansicht der Teilnehmer"
+		},
+		"PasswordReset": {
+			"Cancel": "Abbrechen",
+			"LoadFromFile": "Aus Datei laden",
+			"NewPassword": "Neues Passwort",
+			"SavePassword": "Passwort speichern",
+			"TAN": "TAN",
+			"TANRequired": "Eine TAN ist",
+			"Title": "Passwort zurücksetzen",
+			"WaitingForServer": "Warte auf Server"
+		},
+		"Project": {
+			"Create": {
+				"Id": "<unbekannt>"
+			},
+			"Editor": {
+				"Close": "Schließe diesen Tab",
+				"ContextMenu": {
+					"Close": "Schließen",
+					"CloseAll": "Alle schließen",
+					"CloseLeft": "Alle links schließen",
+					"CloseOthers": "Alle anderen schließen",
+					"CloseRight": "Alle rechts schließen"
+				},
+				"NoParticipants": "Es sind keine Teilnehmer geöffnet",
+				"Tree": {
+					"Toggle": "Öffne/Schließe das Dokument oder Dokumentationsereignis"
+				}
+			}
+		},
+		"ReminderEditor": {
+			"Cancel": "Dialog schließen",
+			"CreateReminder": "Erinnerung erstellen",
+			"CreatingReminder": "Erinnerung wird erstellt",
+			"Fields": {
+				"Cancel": "Abbrechen",
+				"Date": "Erinnerungsdatum",
+				"DateEnd": "Enddatum",
+				"Ok": "OK",
+				"Time": "Zeit",
+				"TimeEnd": "Endzeit",
+				"Title": "Titel"
+			},
+			"Header": "Erinnerung erstellen",
+			"Hints": {
+				"DateRequired": "Das Datum ist erforderlich",
+				"DateEndRequired": "Das Enddatum ist erforderlich",
+				"Down": "Unten",
+				"SetTime": "um die Zeit einzustellen",
+				"TimeRequired": "Die Zeit ist erforderlich",
+				"TimeEndRequired": "Die Endzeit ist erforderlich",
+				"TitleRequired": "Der Titel ist erforderlich",
+				"Up": "Oben",
+				"UseArrowKeys": "Benutzen Sie die Pfeiltasten",
+				"TimeEndInPast": "Die Endzeit liegt vor dem Start",
+				"DateEndInPast": "Das Enddatum liegt vor dem Start"
+			},
+			"UpdateReminder": "Erinnerung aktualisieren"
+		},
+		"ReminderList": {
+			"CreateReminderTooltip": "Erinnerung erstellen",
+			"DeleteReminderTooltip": "Erinnerung löschen",
+			"EditReminderTooltip": "Erinnerung bearbeiten",
+			"Header": "Erinnerungen",
+			"OriginNavigationTooltip": "Zum Ursprung navigieren"
+		},
+		"SignIn": {
+			"Errors": {
+				"OfflineSignInFailed": "Die Offline Anmeldung war nicht erfolgreich. Bitte wenden Sie sich an einen Entwickler.",
+				"PasswordSignInFailed": "Die Anmeldung war nicht erfolgreich.",
+				"ServerUnreachable": "Der Server kann nicht erreicht werden."
+			},
+			"ForgotPassword": "Passwort vergessen?",
+			"PasswordLabel": "Passwort",
+			"PasswordRequired": "Das Passwort ist",
+			"Required": "erforderlich",
+			"SaveSignIn": "Anmeldung speichern",
+			"SearchingForServer": "Suche Server",
+			"ServerAvailable": "Server verfügbar",
+			"ServerInvalid": "Die angegebene Adresse ist ungültig",
+			"ServerLabel": "Server",
+			"ServerRequired": "Der Server ist",
+			"ServerUnreachable": "Server nicht erreichbar!",
+			"SignIn": "Anmelden",
+			"SignInOnline": "Online anmelden",
+			"Title": "Anmeldung",
+			"UserLabel": "Benutzername",
+			"UserPlaceholder": "jDoe",
+			"UserRequired": "Der Benutzername ist"
+		},
+		"SingleProjectOverview": {
+			"NoParticipants": "Es existieren noch keine Teilnehmer."
+		},
+		"Taskbar": {
+			"CloseTooltip": "Schließe die LotsenApp [Alt + F4]",
+			"Disclaimer": "[Test-Version, nicht für den produktiven Einsatz gedacht]",
+			"Logo": "LotsenApp Logo",
+			"MaximizeTooltip": "Maximiere die LotsenApp [F11]",
+			"MinimizeTooltip": "Minimiere die LotsenApp [Strg + M]",
+			"OpenMenuTooltip": "Öffne das Menü [F2]"
+		},
+		"ThemeSelector": {
+			"DarkTheme": "Dunkle Darstellung",
+			"Errors": {
+				"ReceivingThemeNotPossible": "Der Darstellungsmodus konnte nicht ermittelt werden.",
+				"ThemeSaveForbidden": "Die Darstellung konnte nicht gespeichert werden. Sie sind nicht angemeldet.",
+				"ThemeSaveNotPossible": "Änderungen der Darstellungen konnten nicht gespeichert werden."
+			},
+			"Label": "Darstellung",
+			"LightTheme": "Helle Darstellung"
+		},
+		"UserDisplay": {
+			"Errors": {
+				"SignOutForbidden": "Die Abmeldung war nicht erfolgreich. Sie waren nicht angemeldet."
+			},
+			"OnlineSignIn": "Online Anmelden",
+			"SignIn": "Anmelden",
+			"SignOut": "Abmelden"
+		},
+		"DashboardTileMenu": {
+			"Select": "Kachel auswählen",
+			"Tiles": {
+				"Reminder": "Erinnerungen",
+				"Programmes": "Programme",
+				"ParticipantList": "Teilnehmer",
+				"Empty": "Kachel leeren"
+			}
+		},
+		"EmptyGridItem": {
+			"Hint": "Wählen Sie die Art der Kachel mit Hilfe des Kontextmenüs aus.\n  Das Kontextmenü wird mit rechter Maustaste oder durch langes\n  Drücken auf den Touchscreen aufgerufen."
+		},
+		"UserOverview": {
+			"AddHint": "Eine Kachel hinzufügen",
+			"DeleteTile": "Kachel löschen"
+		},
+		"ProgrammeTile": {
+			"Title": "Programme",
+			"AddTooltip": "Ein Programm hinzufügen",
+			"EditTooltip": "Label bearbeiten",
+			"ProgrammeTooltip": "Programm ändern",
+			"DeleteTooltip": "Programm aus Liste löschen",
+			"NoProgrammes": "Es sind noch keine Programme vorhanden.",
+			"EditLabel": "Label ändern",
+			"EditProgramme": "Programm ändern",
+			"Delete": "Löschen"
+		},
+		"Update": {
+			"Check": "Nach Updates suchen",
+			"UpdateAvailable": "Es sind Updates verfügbar",
+			"Download": "Update herunterladen",
+			"Downloading": "Update wird heruntergeladen",
+			"UpToDate": "Keine Updates verfügbar",
+			"Error": "Es ist ein Fehler beim Suchen nach Updates aufgetreten. Versuchen Sie es später erneut.",
+			"Downloaded": "Das Update wurde heruntergeladen. Es wird nach Beenden der Anwendung installiert.",
+			"Progress": "Geschwindigkeit: ",
+			"RestartConfirmTitle": "Neustart bestätigen",
+			"RestartConfirmMessage": "Ein Update wurde erfolgreich heruntergeladen. Wollen Sie die Anwendung beenden und jetzt das Update installieren? Achtung: sollten Sie Daten im Editor eingegeben haben, schließen Sie alle Editor-Tabs oder verlassen Sie den Editor, da es sonst potentiell zu Datenverlusten kommen kann.",
+			"Confirm": "Ja, Update installieren und Anwendung neustarten",
+			"Cancel": "Nein, das Update wird es nach Beenden der Anwendung installiert",
+			"Restart": "Klicken, um die Anwendung neu zu starten und das Update anzuwenden",
+			"NotificationTitle": "Ein Update ist verfügbar",
+			"NotificationContent": "Klicken Sie die Benachrichtigung, um die Version {{version}} herunterzuladen."
+		},
+		"User": {
+			"Dashboard": "Dashboard",
+			"Project": "Projekte",
+			"Configuration": "Konfiguration"
+		},
+		"UserConfiguration": {
+			"Display": "Darstellung",
+			"Notification": "Benachrichtigung",
+			"Synchronisation": "Synchronisation",
+			"SaveButton": "Änderungen speichern",
+			"SaveButtonTooltip": "Änderungen werden gespeichert. Einige Änderungen (wie Sprache und Darstellung) können hier auch nur für die aktuelle Sitzung angepasst werden.",
+			"Theme": "Darstellungsart",
+			"SaveSuccess": "Die Änderungen wurden erfolgreich gespeichert.",
+			"Localisation": {
+				"Header": "Datum und Sprache",
+				"Currency": "Währung",
+				"CurrencyTooltip": "Währung, die angezeigt werden soll. Diese Einstellung verändert nicht die Werte (keine Währungsumrechnung), sondern zeigt nur ein anderes Währungszeichen an.",
+				"Date": "Datumsformat",
+				"DateTooltip": "Das Datumsformat wird in den Studien-Dokumenten verwendet."
+			},
+			"Notifications": {
+				"DisplayNotifications": "Push-Benachrichtigungen anzeigen",
+				"UpdateNotifications": "für Updates",
+				"ReminderNotifications": "für Erinnerungen"
+			},
+			"Synchronization": {
+				"Automatic": "Automatisch mit Servern synchronisieren",
+				"AutomaticTooltip": "Automatische Synchronisationen können die Akkulaufzeit verringern",
+				"Every": "Automatische Synchronisation alle (Minuten)",
+				"Server": "Synchronisationsserver",
+				"NoServer": "Es sind noch keine Synchronisationsserver vorhanden"
+			},
+			"Update": {
+				"Header": "Update",
+				"AutoDownload": "Updates automatisch herunterladen",
+				"AutoDownloadTooltip": "Bei mobilen Datenverbindungen können Kosten für Roaming-Gebühren anfallen",
+				"AutoInstall": "Updates automatisch installieren",
+				"AutoInstallTooltip": "Nachdem ein Update heruntergeladen wurde, wird die Anwendung beendet und das Update installiert. Alle Änderungen, die auf der aktuellen Seite vorgenommen wurden, werden nicht gespeichert.",
+				"Channel": "Update-Kanal",
+				"TestTooltip": "Regulärer Update-Kanal für den Testbetrieb. Die essentiellen Funktionen der Anwendungen sind getestet und erprobt.",
+				"DevelopTooltip": "Update-Kanal mit den neusten Features. Funktionen sind nicht getestet und es kann zu Verlusten und Fehlern kommen"
+			}
+		},
+		"UserProject": {
+			"ID": "ID",
+			"Name": "Name",
+			"Version": "Version",
+			"Locales": "Verfügbare Sprachen",
+			"Participant": "Teil des Projects",
+			"Search": "Projekte durchsuchen...",
+			"Reset": "Suche zurücksetzen",
+			"IsParticipant": "Sie sind Teil des Projekts",
+			"NoParticipant": "Sie haben Zugriff auf die Projektdokumentation",
+			"DataFormat": "Datenformat",
+			"DataFormatTooltip": "Ein neues Datenformat hochladen oder ein bestehendes Datenformat aktualisieren",
+			"I18N": "Lokalisation",
+			"I18NTooltip": "Eine Übersetzung für ein Datenformat hochladen oder eine bestehende Übersetzung aktualisieren",
+			"UploadSuccessful": "Der Upload war erfolgreich"
+		},
+		"Paginator": {
+			"RangeLabel": "Seite {{page}} von {{length}}",
+			"ItemsPerPageLabel": "Elemente pro Seite:",
+			"PreviousPageLabel": "Vorherige Seite",
+			"NextPageLabel": "Nächste Seite",
+			"FirstPageLabel": "Erste Seite",
+			"LastPageLabel": "Letzte Seite"
+		},
+		"ParticipantMetadataEditor": {
+			"Back": "Zurück zum Editor",
+			"Save": "Änderungen speichern",
+			"SaveSuccess": "Die Änderungen wurden erfolgreich gespeichert",
+			"SaveFailure": "Die Änderungen konnten nicht gespeichert werden"
+		}
+	}
+}

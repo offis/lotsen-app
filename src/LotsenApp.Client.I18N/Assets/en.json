@@ -1,0 +1,542 @@
+{
+	"Application": {
+		"About": {
+			"DataProtection": "Data Protection",
+			"LegalNotice": "Legal Notice",
+			"ThirdParty": "Third Party Licenses",
+			"Us": "About",
+			"Changelog": "Changelog"
+		},
+		"AboutUs": {
+			"Description1": "The LotsenApp was the implementation of the digital patient file from the STROKE OWL project. The aim of the digital patient file was the structured collection of study and process data for the care of patients, for the implementation of the study, and for the provision of data for health insurance companies and billing service providers.",
+			"Description2": "With version 2 of the LotsenApp, the application has been further developed so that it can be used generally as a study tool or as a tool with similar and partly more stringent technical safety concepts and can be used beyond the specific use case \"stroke\".",
+			"Description3-1": "The LotsenApp is being developed by the \"Data Management and Analysis for Health Services Research\" group of the",
+			"Description3-2": ", as well as the contributors of the open source community.",
+			"License": "License",
+			"LogoAlt": "Logo of the LotsenApp",
+			"TechnicalInformation": "Technical information",
+			"Title": "About",
+			"Update": "Updates"
+		},
+		"AuthenticationMode": {
+			"SignInOffline": "Log in offline",
+			"SignInOnline": "Online Sign In"
+		},
+		"BooleanEditor": {
+			"No": "No",
+			"Yes": "Yes"
+		},
+		"CreateParticipant": {
+			"ColorLabel": "Choose a color",
+			"ColorTooltip": "The color code can be used to search for participants",
+			"Create": "Create participant",
+			"CreateTooltip": "Create new participants or documents",
+			"Document": "Document",
+			"Error": "The participant could not be created. Please try again",
+			"GuidePathLabel": "Pilot path according to",
+			"GuidePathTooltip": "The possible documents and documentation events are selected via the pilot path",
+			"NameLabel": "Name",
+			"NamePlaceholder": "John Doe",
+			"NameTooltip": "The name of the participant to display in the overview.",
+			"NoProject": "No Project",
+			"Participant": "Participant",
+			"ProjectLabel": "Project",
+			"ProjectTooltip": "The project serves to group the participants and evaluate studies within the framework of the project",
+			"SpinnerLabel": "Participant is created...",
+			"Template": "Document Template"
+		},
+		"DataFormat": {
+			"Metadata": {
+				"name": "Name",
+				"tint": "Color",
+				"icon": "Icon"
+			}
+		},
+		"DataPassword": {
+			"DataPasswordHint": "Please enter the data password",
+			"DontUseRecoveryKey": "Do not use recovery key",
+			"Error": "The data password or recovery key could not be verified.",
+			"Fields": {
+				"DataPassword": "Data password",
+				"RecoveryKey": "Recovery key"
+			},
+			"Hints": {
+				"DataPasswordRequired": "The data password is",
+				"RecoveryKeyRequired": "The recovery key is",
+				"Required": "required"
+			},
+			"LoadFromFile": "Load from file",
+			"RecoveryKeyHint": "The recovery key can be used to reset the data password. The recovery key was displayed in the initial setup and may have been saved in a file.",
+			"SetDataPassword": "Set data password",
+			"UseRecoveryKey": "Use recovery key",
+			"VerifyDataPassword": "Check data password",
+			"Waiting": "Waiting for server"
+		},
+		"DeleteDocumentConfirm": {
+			"Cancel": "Cancel",
+			"Confirm": "Yes, delete document",
+			"Message": "Do you want to delete the document '{{name}}'? The document will be removed from the file after saving. If the document contains other documents, then they too will be deleted.",
+			"Title": "Delete document"
+		},
+		"DeleteReminder": {
+			"Cancel": "Cancel",
+			"Confirm": "Yes, delete reminder",
+			"Header": "Delete reminder",
+			"Hint1": "Should the reminder",
+			"Hint2": " really be deleted?"
+		},
+		"DirectDependencies": {
+			"AllDependencies": "All dependencies with licenses",
+			"Title": "Direct dependencies"
+		},
+		"DocumentCreateMenu": {
+			"CreateTooltip": "Create a new document or documentation event [Ctrl + N]."
+		},
+		"DocumentEditor": {
+			"Fields": "Fields",
+			"Groups": "Groups",
+			"Name": "Document name"
+		},
+		"DocumentOverview": {
+			"UnknownDocument": "The document is unknown and cannot be opened."
+		},
+		"DocumentOverviewDisplay": {
+			"Delete": "Delete document",
+			"NewDocument": "New document"
+		},
+		"DoubleEditor": {
+			"MaxError": "A maximum of {{max}} is allowed",
+			"MinError": "A minimum of {{min}} is allowed",
+			"PatternError": "The entered value is not a floating point number"
+		},
+		"Editor": {
+			"Header": "Editor",
+			"Error": {
+				"UnknownParticipant": "The participant is unknown and cannot be opened."
+			},
+			"NoValue": "No value"
+		},
+		"Errors": {
+			"Dismiss": "Dismiss"
+		},
+		"FieldEditor": {
+			"CreateReminder": "Create reminder",
+			"DeleteValue": "Delete value",
+			"DisplayValue": "Display value",
+			"NotDisplayable1": "Field",
+			"NotDisplayable2": "cannot be displayed at the moment",
+			"AddToParticipantHeader": "Search for this value",
+			"AddToProjectHeader": "Search for this value for all project participants",
+			"AddToParticipantHeaderTooltip": "One may search for this value in the participant overview. The value will only be added for this participant.",
+			"AddToProjectHeaderTooltip": "One may search for this value in the participant overview. The entry will be added for all participants of the project.",
+			"RemoveFromParticipantHeader": "Do not search for this value",
+			"RemoveFromProjectHeader": "Do not search for this value for all project participants",
+			"RemoveFromParticipantHeaderTooltip": "One may no longer search for this value in the participant overview. The value will only be removed for this participant.",
+			"RemoveFromProjectHeaderTooltip": "One may no longer search for this value in the participant overview. The entry will be removed for all participants of the project."
+		},
+		"FirstTimeSetup": {
+			"Backward": "Back",
+			"Complete": "Finish",
+			"DataPassword": {
+				"Fields": {
+					"DataPassword": "Data password",
+					"RecoveryKey": "Recovery key",
+					"Repeat": "Repeat data password"
+				},
+				"Header": "Data password",
+				"Hint": {
+					"Hint1": "The data password is used to encrypt the captured data. The app does",
+					"Hint2": "store the password. If the password is lost, then the data may be decrypted by using the recovery key. The recovery key will be displayed once in this screen and will not be saved. If the data password and recovery key are lost, then the data can",
+					"Hint3": "be decrypted and are lost.",
+					"Hint4": "Using the 'Save'-Button allows you to save the recovery key in a file. You may also change the recovery key using the input field. If the recovery key is saved, then it should be saved to an external drive or be encrypted. Otherwise unauthorized access of the data may be possible.",
+					"Not": "not"
+				},
+				"Hints": {
+					"DataPasswordRequired": "The data password is",
+					"Error": "The data password could not be saved",
+					"NotEqual": "The data passwords are not the same",
+					"RecoveryKeyRequired": "A recovery key is",
+					"RepeatRequired": "The repetition of the data password is",
+					"Required": "required"
+				},
+				"Save": "Save",
+				"SaveKeys": "Save data password and recovery key",
+				"Waiting": "Waiting for server"
+			},
+			"Errors": {
+				"DataPasswordRequired": "The data password is required",
+				"KeyRequired": "Generating keys is required",
+				"PasswordRequired": "A password is required",
+				"PasswordSetFailed": "The password could not be set. Please choose another password.",
+				"TanRequired": "The TAN list is required"
+			},
+			"Forward": "Next",
+			"PasswordSet": {
+				"Fields": {
+					"Password": "Password",
+					"PasswordRepeat": "Repeat password",
+					"Save": "Save password"
+				},
+				"Header": "Change password",
+				"Hint": "The local account is not protected by a password. Please set a password.",
+				"Hints": {
+					"NotEqual": "The passwords are not the same",
+					"PasswordDigit": "The password must contain a number",
+					"PasswordLength": "The password must consist of at least 6 characters",
+					"PasswordLowerCase": "The password must contain a lowercase letter",
+					"PasswordNonAlphaNumeric": "The password must contain a non-alphanumeric character",
+					"PasswordRequired": "The password is",
+					"PasswordUpperCase": "The password must contain a capital letter",
+					"Repeat": "The repetition of the password is",
+					"Required": "required"
+				},
+				"Protected": "The account is protected by a password.",
+				"Waiting": "Waiting for server"
+			},
+			"TanList": {
+				"Acknowledge": "I have taken note of the notice.",
+				"Create": "Generate TAN list",
+				"Created": "The TAN list has been generated",
+				"Header": "TAN list",
+				"Hint": "The TAN list is required as additional protection for some operations such as resetting the account password and should ",
+				"Hint2": " be stored unencrypted on the same devices for security purposes. The file should be stored on an encrypted USB stick or in a password safe.",
+				"Unencrypted": "not"
+			}
+		},
+		"Footer": {
+			"DataProtection": "Data Protection",
+			"DevelopedBy": "LotsenApp - developed by OFFIS e.V.",
+			"DevelopedByDetail": ", Division Health, Group Data Management and Analysis for Health Services Research",
+			"LegalNotice": "Legal Notice",
+			"LogoAlt": "OFFIS Logo"
+		},
+		"GroupEditor": {
+			"Add": "add"
+		},
+		"Home": {
+			"WelcomeSignIn": "Welcome to the LotsenApp 2.0!",
+			"WelcomeSignOut": "Welcome to the LotsenApp 2.0! Please sign in."
+		},
+		"IconChooser": {
+			"SearchLabel": "Search for an icon...",
+			"Title": {
+				"action": "Action",
+				"alert": "Alert",
+				"av": "Audio/Video",
+				"communication": "Communication",
+				"content": "Content",
+				"device": "Device",
+				"editor": "Editor",
+				"file": "File",
+				"hardware": "Hardware",
+				"home": "Home",
+				"image": "Image",
+				"maps": "Maps",
+				"navigation": "Navigation",
+				"notification": "Notification",
+				"places": "Places",
+				"social": "Social",
+				"toggle": "Toggle"
+			},
+			"Tooltip": "Select an icon for the participant"
+		},
+		"IntegerEditor": {
+			"MaxError": "A maximum of {{max}} is allowed",
+			"MinError": "A minimum of {{min}} is allowed",
+			"PatternError": "The entered value is not an integer"
+		},
+		"LanguageSelector": {
+			"Errors": {
+				"LanguageSaveForbidden": "The language could not be saved. You are not logged in."
+			},
+			"Label": "Language"
+		},
+		"MainNavigation": {
+			"About": "About",
+			"Home": "Home",
+			"PersonalSpace": "Personal Area",
+			"Studies": "Studies"
+		},
+		"MultiProjectOverview": {
+			"NoProject": "Not assigned to a project",
+			"ParticipantCount": {
+				"=0": "No participants",
+				"=1": "One participant",
+				"other": "{{count}} Participants"
+			}
+		},
+		"Participant": {
+			"Synchronisation": "Last synchronized on"
+		},
+		"ParticipantDeleteConfirm": {
+			"Cancel": "Cancel",
+			"Confirm": "Yes, delete participant",
+			"Message": "Do you really want to delete the subscriber '{{name}}'? The participant's data will be removed from your device after 14 days.",
+			"Title": "Delete Participant"
+		},
+		"ParticipantEditor": {
+			"DeleteTooltip": "Delete this participant [Ctrl + Del].",
+			"LocalIdTooltip": "Local ID",
+			"NoDocuments": "There are no documents available yet",
+			"OnlineIdTooltip": "Online ID",
+			"PrintTooltip": "Print current document [Ctrl + P]",
+			"SaveTooltip": "Save [Ctrl + S]",
+			"EditTooltip": "Edit participant"
+		},
+		"ParticipantList": {
+			"Header": "Participants"
+		},
+		"ParticipantOverview": {
+			"Close": "Close"
+		},
+		"ParticipantSearch": {
+			"Label": "Search...",
+			"Placeholder": "John Doe",
+			"Reset": "Reset search"
+		},
+		"ParticipantView": {
+			"Automatic": "Decide automatically",
+			"Grid": "Tile view",
+			"GroupingLabel": "Grouping of the participants",
+			"List": "List view",
+			"NoProject": "No project grouping",
+			"Project": "Project grouping",
+			"ViewLabel": "Participants view"
+		},
+		"PasswordReset": {
+			"Cancel": "Cancel",
+			"LoadFromFile": "Load from file",
+			"NewPassword": "New password",
+			"SavePassword": "Save password",
+			"TAN": "TAN",
+			"TANRequired": "A TAN is",
+			"Title": "Reset password",
+			"WaitingForServer": "Waiting for server"
+		},
+		"Project": {
+			"Create": {
+				"Id": "<undetermined>"
+			},
+			"Editor": {
+				"Close": "Close this tab",
+				"ContextMenu": {
+					"Close": "Close",
+					"CloseAll": "Close all",
+					"CloseLeft": "Close all left",
+					"CloseOthers": "Close others",
+					"CloseRight": "Close all right"
+				},
+				"NoParticipants": "There are no participants open",
+				"Tree": {
+					"Toggle": "Open/Close the document or documentation event"
+				}
+			}
+		},
+		"ReminderEditor": {
+			"Cancel": "Close dialog",
+			"CreateReminder": "Create reminder",
+			"CreatingReminder": "Reminder is created",
+			"Fields": {
+				"Cancel": "Cancel",
+				"Date": "Reminder date",
+				"DateEnd": "End date",
+				"Ok": "Ok",
+				"Time": "Time",
+				"TimeEnd": "End time",
+				"Title": "Title"
+			},
+			"Header": "Create reminder",
+			"Hints": {
+				"DateRequired": "The date is required",
+				"DateEndRequired": "Das Enddatum ist erforderlich",
+				"Down": "Below",
+				"SetTime": "to set the time",
+				"TimeRequired": "The time is required",
+				"TimeEndRequired": "The end time is required",
+				"TitleRequired": "The title is required",
+				"Up": "Top",
+				"UseArrowKeys": "Use the arrow keys",
+				"TimeEndInPast": "The end time is smaller than the start",
+				"DateEndInPast": "The end date is smaller than the start"
+			},
+			"UpdateReminder": "Update reminder"
+		},
+		"ReminderList": {
+			"CreateReminderTooltip": "Create reminder",
+			"DeleteReminderTooltip": "Delete reminder",
+			"EditReminderTooltip": "Edit reminder",
+			"Header": "Reminder",
+			"OriginNavigationTooltip": "Navigate to the origin"
+		},
+		"SignIn": {
+			"Errors": {
+				"OfflineSignInFailed": "The offline log in was not successful. Please contact a developer.",
+				"PasswordSignInFailed": "The log in was not successful.",
+				"ServerUnreachable": "The server cannot be reached."
+			},
+			"ForgotPassword": "Password forgotten?",
+			"PasswordLabel": "Password",
+			"PasswordRequired": "The password is",
+			"Required": "Required",
+			"SaveSignIn": "Save login",
+			"SearchingForServer": "Searching for server",
+			"ServerAvailable": "Server available",
+			"ServerInvalid": "The specified address is invalid",
+			"ServerLabel": "Server",
+			"ServerRequired": "The server is",
+			"ServerUnreachable": "Server not reachable!",
+			"SignIn": "Login",
+			"SignInOnline": "Online Login",
+			"Title": "Login",
+			"UserLabel": "Username",
+			"UserPlaceholder": "jDoe",
+			"UserRequired": "The username is"
+		},
+		"SingleProjectOverview": {
+			"NoParticipants": "There are no participants yet."
+		},
+		"Taskbar": {
+			"CloseTooltip": "Close the LotsenApp [Alt + F4].",
+			"Disclaimer": "[Test version, not intended for productive use]",
+			"Logo": "LotsenApp Logo",
+			"MaximizeTooltip": "Maximize the LotsenApp [F11].",
+			"MinimizeTooltip": "Minimize the LotsenApp [Ctrl + M].",
+			"OpenMenuTooltip": "Open the menu [F2]"
+		},
+		"ThemeSelector": {
+			"DarkTheme": "Dark Theme",
+			"Errors": {
+				"ReceivingThemeNotPossible": "The appearance could not be determined.",
+				"ThemeSaveForbidden": "The appearance could not be saved. You are not logged in.",
+				"ThemeSaveNotPossible": "Changes to the appearance could not be saved."
+			},
+			"Label": "Theme",
+			"LightTheme": "Light Theme"
+		},
+		"UserDisplay": {
+			"Errors": {
+				"SignOutForbidden": "The logoff was not successful. You were not logged in."
+			},
+			"OnlineSignIn": "Online login",
+			"SignIn": "Login",
+			"SignOut": "Log out"
+		},
+		"DashboardTileMenu": {
+			"Select": "Select Tile",
+			"Tiles": {
+				"Reminder": "Reminder",
+				"Programmes": "Programs",
+				"ParticipantList": "Participants",
+				"Empty": "Empty Tile"
+			}
+		},
+		"EmptyGridItem": {
+			"Hint": "Please select a tile by using the context menu. The context menu can be opened by using the right mouse click on the tile or a long press on touchscreens."
+		},
+		"UserOverview": {
+			"AddHint": "Add a tile",
+			"DeleteTile": "Delete Tile"
+		},
+		"ProgrammeTile": {
+			"Title": "Programmes",
+			"AddTooltip": "Add a programme",
+			"EditTooltip": "Edit label",
+			"ProgrammeTooltip": "Change programme",
+			"DeleteTooltip": "Remove programme from list",
+			"NoProgrammes": "There are no programmes in the list.",
+			"EditLabel": "Edit label",
+			"EditProgramme": "Change programme",
+			"Delete": "Delete"
+		},
+		"Update": {
+			"Check": "Search for updates",
+			"UpdateAvailable": "Updates are available.",
+			"Download": "Download updates",
+			"Downloading": "The update is downloading",
+			"UpToDate": "No updates are available.",
+			"Error": "There was an error searching for updates. Please try again later.",
+			"Downloaded": "The update was downloaded. It will be installed after the application has been closed.",
+			"Progress": "Speed: ",
+			"RestartConfirmTitle": "Confirm restart",
+			"RestartConfirmMessage": "An update was downloaded successfully. Would you like to close the application and apply the update? Attention: to prevent loss of data you should leave the editor before restarting the application.",
+			"Confirm": "Yes, apply updates and restart the application",
+			"Cancel": "No, install updates after I closed the application",
+			"Restart": "Click to restart the application and apply the update",
+			"NotificationTitle": "An update is available",
+			"NotificationContent": "To download version {{version}} click this notification."
+		},
+		"User": {
+			"Dashboard": "Dashboard",
+			"Project": "Projects",
+			"Configuration": "Configuration"
+		},
+		"UserConfiguration": {
+			"Display": "Display",
+			"Notification": "Notification",
+			"Synchronisation": "Synchronisation",
+			"SaveButton": "Änderungen speichern",
+			"SaveButtonTooltip": "Änderungen werden gespeichert. Einige Änderungen (wie Sprache und Darstellung) können hier auch nur für die aktuelle Sitzung angepasst werden.",
+			"Theme": "Darstellungsart",
+			"SaveSuccess": "The changes were saved successfully.",
+			"Localisation": {
+				"Header": "Date and Language",
+				"Currency": "Currency",
+				"CurrencyTooltip": "Currency to be displayed. This setting does not change the values (no currency conversion), but only displays a different currency sign.",
+				"Date": "Date format",
+				"DateTooltip": "The date format is used in the study documents."
+			},
+			"Notifications": {
+				"DisplayNotifications": "Display Push-Notifications",
+				"UpdateNotifications": "for Updates",
+				"ReminderNotifications": "for reminder"
+			},
+			"Synchronization": {
+				"Automatic": "Automatically synchronize with servers",
+				"AutomaticTooltip": "Automatic synchronizations can reduce battery life",
+				"Every": "Automatic synchronization every (minutes)",
+				"Server": "Synchronization server",
+				"NoServer": "There are no synchronization servers yet"
+			},
+			"Update": {
+				"Header": "Update",
+				"AutoDownload": "Download updates automatically",
+				"AutoDownloadTooltip": "Mobile data connections may incur costs for roaming charges",
+				"AutoInstall": "Install updates automatically",
+				"AutoInstallTooltip": "After an update is downloaded, the application is closed and the update is installed. All changes made on the current page are not saved.",
+				"Channel": "Update-Channel",
+				"TestTooltip": "Regular update channel for test operation. The essential functions of the applications are tested and proven.",
+				"DevelopTooltip": "Update channel with the latest features. Features are not tested and there may be losses and errors"
+			}
+		},
+		"UserProject": {
+			"ID": "ID",
+			"Name": "Name",
+			"Version": "Version",
+			"Locales": "Available Languages",
+			"Participant": "Part of Project",
+			"Search": "Search in projects...",
+			"Reset": "Reset search",
+			"IsParticipant": "You are part of the project",
+			"NoParticipant": "You have access to the project documentation",
+			"DataFormat": "Data Format",
+			"DataFormatTooltip": "Upload a new data format or update an existing data format",
+			"I18N": "Localisation",
+			"I18NTooltip": "Upload a new translation or update an existing translation",
+			"UploadSuccessful": "The upload was successful"
+		},
+		"Paginator": {
+			"RangeLabel": "Page {{page}} of {{length}}",
+			"ItemsPerPageLabel": "Items per page:",
+			"PreviousPageLabel": "Previous page",
+			"NextPageLabel": "Next page",
+			"FirstPageLabel": "First page",
+			"LastPageLabel": "Last page"
+		},
+		"ParticipantMetadataEditor": {
+			"Back": "Back to the editor",
+			"Save": "Save changes",
+			"SaveSuccess": "The changes were saved successfully",
+			"SaveFailure": "The changes could not be saved"
+		}
+	}
+}

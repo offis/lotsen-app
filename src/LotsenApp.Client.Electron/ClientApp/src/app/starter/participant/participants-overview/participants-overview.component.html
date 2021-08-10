@@ -1,0 +1,54 @@
+<!-- Copyright (c) 2021 OFFIS e.V.. All rights reserved. -->
+<!--  -->
+<!-- Redistribution and use in source and binary forms, with or without -->
+<!-- modification, are permitted provided that the following conditions are met: -->
+<!--  -->
+<!-- 1. Redistributions of source code must retain the above copyright notice, this -->
+<!--    list of conditions and the following disclaimer. -->
+<!--     -->
+<!-- 2. Redistributions in binary form must reproduce the above copyright notice, -->
+<!--    this list of conditions and the following disclaimer in the documentation -->
+<!--    and/or other materials provided with the distribution. -->
+<!--     -->
+<!-- 3. Neither the name of the copyright holder nor the names of its contributors -->
+<!--    may be used to endorse or promote products derived from this software without -->
+<!--    specific prior written permission. -->
+<!--     -->
+<!-- THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND -->
+<!-- ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED -->
+<!-- WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE -->
+<!-- DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE -->
+<!-- FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL -->
+<!-- DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR -->
+<!-- SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER -->
+<!-- CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, -->
+<!-- OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE -->
+<!-- OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE. -->
+
+<div class="participant-toolbar">
+  <la2-participant-search #search [participants]="participants" [configuration]="configuration" class="search"></la2-participant-search>
+  <span class="spacer" role="presentation"></span>
+  <la2-participant-display [(listView)]="currentListView" (listViewChange)="updateListView($event)"
+                           class="display-group"></la2-participant-display>
+  <la2-project-display [projects]="projects.length" [(grouping)]="currentGrouping"
+                       (groupingChange)="updateGrouping($event)" class="display-group"></la2-project-display>
+</div>
+<la2-create-fab-button class="create-button"></la2-create-fab-button>
+<div class="display-row">
+  <div [class]="'first-display-column' + (closeVisible ? ' limited' : '')" *ngIf="overviewVisible"
+       @fadeInOut (@fadeInOut.start)="startAnimation($event)" (@fadeInOut.done)="endAnimation($event)">
+    <la2-participants-display class="full-width" [participants]="search.filteredParticipants"
+                              [listView]="listView !== undefined && listView" [calculateWidth]="calculateWidth"
+                              [grouping]="grouping"></la2-participants-display>
+
+  </div>
+  <la2-overview-spacer class="overview-spacer" (toggled)="toggleParticipants($event)"
+                       *ngIf="closeVisible  && participants.length > 0"
+                       @fadeInOut (@fadeInOut.start)="startAnimation($event)"
+                       (@fadeInOut.done)="endAnimation($event)"></la2-overview-spacer>
+  <div [class]="'second-display-column' + (overviewVisible ? ' cropped' : '')" *ngIf="closeVisible"
+       @fadeInOut (@fadeInOut.start)="startAnimation($event)" (@fadeInOut.done)="endAnimation($event)">
+    <la2-close-editor-button *ngIf="closeVisible" class="close-button"></la2-close-editor-button>
+    <router-outlet (activate)="changeOverviewDisplay(true)" (deactivate)="changeOverviewDisplay(false)"></router-outlet>
+  </div>
+</div>

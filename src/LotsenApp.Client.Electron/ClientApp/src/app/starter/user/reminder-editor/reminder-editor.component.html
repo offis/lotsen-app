@@ -1,0 +1,124 @@
+<!-- Copyright (c) 2021 OFFIS e.V.. All rights reserved. -->
+<!--  -->
+<!-- Redistribution and use in source and binary forms, with or without -->
+<!-- modification, are permitted provided that the following conditions are met: -->
+<!--  -->
+<!-- 1. Redistributions of source code must retain the above copyright notice, this -->
+<!--    list of conditions and the following disclaimer. -->
+<!--     -->
+<!-- 2. Redistributions in binary form must reproduce the above copyright notice, -->
+<!--    this list of conditions and the following disclaimer in the documentation -->
+<!--    and/or other materials provided with the distribution. -->
+<!--     -->
+<!-- 3. Neither the name of the copyright holder nor the names of its contributors -->
+<!--    may be used to endorse or promote products derived from this software without -->
+<!--    specific prior written permission. -->
+<!--     -->
+<!-- THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND -->
+<!-- ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED -->
+<!-- WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE -->
+<!-- DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE -->
+<!-- FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL -->
+<!-- DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR -->
+<!-- SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER -->
+<!-- CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, -->
+<!-- OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE -->
+<!-- OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE. -->
+
+<form class="editor-wrapper">
+  <mat-form-field>
+    <mat-label>{{'Application.ReminderEditor.Fields.Title' | translate}}</mat-label>
+    <input matInput value="" [formControl]="titleControl">
+    <mat-error
+      *ngIf="titleControl.hasError('required')">{{'Application.ReminderEditor.Hints.TitleRequired' | translate}}</mat-error>
+  </mat-form-field>
+  <div class="time-wrapper">
+    <mat-form-field>
+      <mat-label>{{'Application.ReminderEditor.Fields.Date' | translate}}</mat-label>
+      <input matInput [matDatepicker]="picker" [formControl]="dateControl">
+      <mat-error
+        *ngIf="dateControl.hasError('required')">{{'Application.ReminderEditor.Hints.DateRequired' | translate}}</mat-error>
+      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
+    </mat-form-field>
+    <span role="presentation" class="spacer"></span>
+    <mat-form-field>
+      <mat-label>{{'Application.ReminderEditor.Fields.Time' | translate}}</mat-label>
+      <input matInput [ngxTimepicker]="timePicker" #timeInput class="time-input" [format]="24"
+             [formControl]="timeControl" readonly>
+      <mat-error
+        *ngIf="timeControl.hasError('required')">{{'Application.ReminderEditor.Hints.TimeRequired' | translate}}</mat-error>
+      <button mat-icon-button (click)="timeInput.click()" matSuffix>
+        <mat-icon role="presentation">access_time</mat-icon>
+      </button>
+      <ngx-material-timepicker
+        [format]="24"
+        [enableKeyboardInput]="true"
+        [timepickerClass]="'time-picker'"
+        [editableHintTmpl]="editableHint"
+        [cancelBtnTmpl]="cancelButton"
+        [confirmBtnTmpl]="okButton"
+        #timePicker></ngx-material-timepicker>
+    </mat-form-field> -
+  </div>
+  <div class="time-wrapper">
+    <mat-form-field>
+      <mat-label>{{'Application.ReminderEditor.Fields.DateEnd' | translate}}</mat-label>
+      <input matInput [matDatepicker]="pickerEnd" [formControl]="dateEndControl">
+      <mat-error
+        *ngIf="dateEndControl.hasError('required')">{{'Application.ReminderEditor.Hints.DateEndRequired' | translate}}</mat-error>
+      <mat-error
+        *ngIf="dateEndControl.hasError('endDateInPast')">{{'Application.ReminderEditor.Hints.DateEndInPast' | translate}}</mat-error>
+      <mat-datepicker-toggle matSuffix [for]="pickerEnd"></mat-datepicker-toggle>
+      <mat-datepicker #pickerEnd></mat-datepicker>
+    </mat-form-field>
+    <span role="presentation" class="spacer"></span>
+    <mat-form-field>
+      <mat-label>{{'Application.ReminderEditor.Fields.TimeEnd' | translate}}</mat-label>
+      <input matInput [ngxTimepicker]="timePickerEnd" #timeEndInput class="time-input" [format]="24"
+             [formControl]="timeEndControl" readonly>
+      <mat-error
+        *ngIf="timeEndControl.hasError('required')">{{'Application.ReminderEditor.Hints.TimeEndRequired' | translate}}</mat-error>
+      <mat-error
+        *ngIf="timeEndControl.hasError('timestampInPast')">{{'Application.ReminderEditor.Hints.TimeEndInPast' | translate}}</mat-error>
+      <button mat-icon-button (click)="timeEndInput.click()" matSuffix>
+        <mat-icon role="presentation">access_time</mat-icon>
+      </button>
+      <ngx-material-timepicker
+        [format]="24"
+        [enableKeyboardInput]="true"
+        [timepickerClass]="'time-picker'"
+        [editableHintTmpl]="editableHint"
+        [cancelBtnTmpl]="cancelButton"
+        [confirmBtnTmpl]="okButton"
+        #timePickerEnd></ngx-material-timepicker>
+    </mat-form-field>
+  </div>
+  <div #textEditor>
+
+  </div>
+  <button mat-flat-button color="primary" (click)="saveReminder()" [disabled]="createButtonDisabled" #createButton>
+    <span
+      *ngIf="!createButton.disabled && !reminderId">{{'Application.ReminderEditor.CreateReminder' | translate}}</span>
+    <span
+      *ngIf="!createButton.disabled && reminderId">{{'Application.ReminderEditor.UpdateReminder' | translate}}</span>
+    <mat-spinner
+      [attr.aria-label]="'Application.ReminderEditor.CreatingReminder' | translate"
+      color="accent"
+      [diameter]="36"
+      *ngIf="createButton.disabled"></mat-spinner>
+  </button>
+
+  <ng-template #editableHint>
+  <span class="hint">{{'Application.ReminderEditor.Hints.UseArrowKeys' | translate}}
+    (<mat-icon [attr.label]="'Application.ReminderEditor.Hints.Up' | translate">north</mat-icon>,
+    <mat-icon [attr.label]="'Application.ReminderEditor.Hints.Down' | translate">south</mat-icon>),
+    {{'Application.ReminderEditor.Hints.SetTime' | translate}}.</span>
+  </ng-template>
+  <ng-template #cancelButton>
+    <button mat-flat-button>{{'Application.ReminderEditor.Fields.Cancel' | translate}}</button>
+  </ng-template>
+  <ng-template #okButton>
+    <button mat-flat-button color="primary">{{'Application.ReminderEditor.Fields.Ok' | translate}}</button>
+  </ng-template>
+</form>
