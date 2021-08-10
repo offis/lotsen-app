@@ -118,7 +118,8 @@ namespace LotsenApp.Client.Electron
             var keyDirectory = fileService.Join("config/keys");
             Directory.CreateDirectory(keyDirectory);
             services.AddDataProtection()
-                .PersistKeysToFileSystem(new DirectoryInfo(keyDirectory));
+                .PersistKeysToFileSystem(new DirectoryInfo(keyDirectory))
+                .ProtectKeysWithCertificate(CertificateProvider.ProvideCertificate(Configuration, keyDirectory));
 
             services
                 .AddTransient<IElectronHook, CloseApplicationHook>()
