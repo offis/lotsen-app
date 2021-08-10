@@ -1,0 +1,147 @@
+{
+  "Id": "sports",
+  "Name": "Sport Sample",
+  "I18NKey": "Sports.Name",
+  "OpenForDocumentation": true,
+  "DataFormatVersion": 2,
+  "Version": 1,
+  "DataDefinition": {
+    "DataTypes": [
+      {
+        "Id": "string",
+        "Name": "String",
+        "Type": 0,
+        "Values": null
+      },
+      {
+        "Id": "text",
+        "Name": "Big Text",
+        "Type": 0,
+        "Values": null
+      },
+      {
+        "Id": "boolean",
+        "Name": "Boolean",
+        "Type": 4,
+        "Values": null
+      },
+      {
+        "Id": "gender",
+        "Name": "Gender",
+        "Type": 3,
+        "Values": "men,woman,diverse,unknown"
+      },
+      {
+        "Id": "date",
+        "Name": "Date",
+        "Type": 5,
+        "Values": "date-only"
+      },
+      {
+        "Id": "positive_integer",
+        "Name": "Positive Integer",
+        "Type": 1,
+        "Values": "0+"
+      },
+      {
+        "Id": "double",
+        "Name": "Double",
+        "Type": 2,
+        "Values": null
+      },
+      {
+        "Id": "marital_status",
+        "Name": "Marital Status",
+        "Type": 3,
+        "Values": "single,married,widowed,divorced,partnership"
+      },
+      {
+        "Id": "type_of_sport",
+        "Name": "Type of Sport",
+        "Type": 3,
+        "Values": "acrobatics,air,archery,ball_over_net,basketball,bat_and_ball,baton_twirling,board,catching,climbing,cycling,combat,cue,dog,equestrian,fishing,fyling_disc,football,golf,gymnastics,yoga,handball,hunting,ice,kite,mixed_discipline,parkour,racket,rodeo,running,sailing,snow,shooting,stacking,stick_and_ball,street,strength,tag_games,walking,wall_and_ball,aquatic,weightlifting,marker,fantasy,custom"
+      }
+    ],
+    "DataFields": [
+      {
+        "Id": "first_name",
+        "Name": "First Name",
+        "Expression": null,
+        "DataType": "string"
+      },
+      {
+        "Id": "middle_name",
+        "Name": "Middle Name",
+        "Expression": null,
+        "DataType": "string"
+      },
+      {
+        "Id": "last_name",
+        "Name": "Last Name",
+        "Expression": null,
+        "DataType": "string"
+      },
+      {
+        "Id": "marital_status_field",
+        "Name": "Marital Status",
+        "Expression": null,
+        "DataType": "marital_status"
+      },
+      {
+        "Id": "gender_field",
+        "Name": "Gender",
+        "Expression": null,
+        "DataType": "gender"
+      },
+      {
+        "Id": "age",
+        "Name": "Age",
+        "DataType": "positive_integer"
+      },
+      {
+        "Id": "hours_watched",
+        "Name": "Estimated Hours watched",
+        "DataType": "double"
+      },
+      {
+        "Id": "type_of_sport_field",
+        "Name": "Type of Sport",
+        "DataType": "type_of_sport"
+      }
+    ],
+    "Groups": [
+      {
+        "Id": "sport_interest",
+        "Name": "Interest in sport",
+        "Cardinality": 1,
+        "Fields": [
+          "type_of_sport_field",
+          "hours_watched"
+        ]
+      }
+    ],
+    "Documents": [
+      {
+        "Id": "interest",
+        "Name": "Interest",
+        "DocumentType": 0,
+        "DataFields": [
+          "first_name",
+          "middle_name",
+          "last_name",
+          "gender_field",
+          "marital_status_field",
+          "age"
+        ],
+        "Groups": [
+          "sport_interest"
+        ]
+      }
+    ]
+  },
+  "DataDisplay": {
+    "TopLevelDocuments": [
+      "interest"
+    ]
+  }
+}

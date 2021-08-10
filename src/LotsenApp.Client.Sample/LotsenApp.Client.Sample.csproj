@@ -1,0 +1,22 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>net5.0</TargetFramework>
+        <Authors>Timo Wolters</Authors>
+        <Copyright>© 2021 OFFIS e.V.</Copyright>
+        <Company>OFFIS e.V.</Company>
+        <AssemblyVersion>1.0.0.0</AssemblyVersion>
+        <FileVersion>1.0.0.0</FileVersion>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\LotsenApp.Client.DataFormat\LotsenApp.Client.DataFormat.csproj" />
+      <ProjectReference Include="..\LotsenApp.Client.Plugin\LotsenApp.Client.Plugin.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <None Remove="Assets\sports.json" />
+      <EmbeddedResource Include="Assets\sports.json" />
+    </ItemGroup>
+
+</Project>

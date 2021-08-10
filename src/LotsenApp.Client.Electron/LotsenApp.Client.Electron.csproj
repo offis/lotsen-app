@@ -104,7 +104,6 @@
     <ProjectReference Include="..\LotsenApp.Client.DataFormat.Database\LotsenApp.Client.DataFormat.Database.csproj" />
     <ProjectReference Include="..\LotsenApp.Client.DataFormat.File\LotsenApp.Client.DataFormat.File.csproj" />
     <ProjectReference Include="..\LotsenApp.Client.DataFormat.Migrations\LotsenApp.Client.DataFormat.Migrations.csproj" />
-    <ProjectReference Include="..\LotsenApp.Client.DataFormat.StrokeOwl\LotsenApp.Client.DataFormat.StrokeOwl.csproj" />
     <ProjectReference Include="..\LotsenApp.Client.DataFormat\LotsenApp.Client.DataFormat.csproj" />
     <ProjectReference Include="..\LotsenApp.Client.File\LotsenApp.Client.File.csproj" />
     <ProjectReference Include="..\LotsenApp.Client.Http\LotsenApp.Client.Http.csproj" />
@@ -114,6 +113,7 @@
     <ProjectReference Include="..\LotsenApp.Client.Programme\LotsenApp.Client.Programme.csproj" />
     <ProjectReference Include="..\LotsenApp.Client.Project\LotsenApp.Client.Project.csproj" />
     <ProjectReference Include="..\LotsenApp.Client.Reminder\LotsenApp.Client.Reminder.csproj" />
+    <ProjectReference Include="..\LotsenApp.Client.Sample\LotsenApp.Client.Sample.csproj" />
   </ItemGroup>
   <ItemGroup>
     <Content Update="electron.manifest.json">
