@@ -27,6 +27,7 @@
 
 using System.IO;
 using System.Text.RegularExpressions;
+using LotsenApp.Tools.Common;
 
 namespace LotsenApp.VersionManager
 {

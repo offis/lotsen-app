@@ -26,6 +26,7 @@
 // OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 using System.IO;
+using LotsenApp.Tools.Common;
 using Newtonsoft.Json.Linq;
 
 namespace LotsenApp.VersionManager

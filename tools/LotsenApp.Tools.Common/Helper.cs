@@ -29,7 +29,7 @@ using System;
 using System.IO;
 using System.Linq;
 
-namespace LotsenApp.VersionManager
+namespace LotsenApp.Tools.Common
 {
     public static class Helper
     {
