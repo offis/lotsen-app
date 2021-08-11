@@ -5,6 +5,7 @@ using System.IO;
 using System.Security.Cryptography;
 using System.Security.Cryptography.X509Certificates;
 using Microsoft.Extensions.Configuration;
+using Microsoft.OpenApi.Extensions;
 using Org.BouncyCastle.Asn1.X509;
 using Org.BouncyCastle.Crypto;
 using Org.BouncyCastle.Crypto.Generators;
@@ -29,15 +30,36 @@ namespace LotsenApp.Client.Electron
             if (!string.IsNullOrEmpty(thumbprint))
             {
                 Debug.WriteLine($"Locating certificate by thumbprint");
-                return LoadCertificateWithThumbprint(thumbprint);
+                return LoadCertificateWithThumbprint(thumbprint, StoreName.My.GetDisplayName(), StoreLocation.CurrentUser.GetDisplayName());
             }
 
             return !string.IsNullOrEmpty(file) ? LoadCertificateFromFile(file) : GenerateAndPersistCertificate(keyDirectory, password);
         }
-
-        private static X509Certificate2 LoadCertificateWithThumbprint(string thumbprint)
+        
+        public static X509Certificate2 ProvideCertificateForEndpoint(EndpointConfiguration configuration)
         {
-            var store = new X509Store(StoreName.My, StoreLocation.CurrentUser);
+            if (!configuration.Ssl)
+            {
+                return null;
+            }
+            // Try to load certificate from file
+            var certificate = LoadCertificateFromFile(configuration.Certificate);
+            if (certificate != null)
+            {
+                return certificate;
+            }
+
+            if (!string.IsNullOrEmpty(configuration.CertificateStore) && !string.IsNullOrEmpty(configuration.CertificateStoreLocation))
+            {
+                return LoadCertificateWithThumbprint(configuration.Certificate, configuration.CertificateStore, configuration.CertificateStoreLocation);                
+            }
+
+            return GenerateTransientCertificate(128, configuration.CipherBits ?? 2048);
+        }
+
+        private static X509Certificate2 LoadCertificateWithThumbprint(string thumbprint, string storeName, string storeLocation)
+        {
+            var store = new X509Store(Enum.Parse<StoreName>(storeName), Enum.Parse<StoreLocation>(storeLocation));
             store.Open(OpenFlags.OpenExistingOnly);
             if (!store.IsOpen)
             {
@@ -50,22 +72,17 @@ namespace LotsenApp.Client.Electron
         private static X509Certificate2 LoadCertificateFromFile(string fileLocation)
         {
             Debug.WriteLine("Locating certificate from file");
-            return new(fileLocation);
+            return !System.IO.File.Exists(fileLocation) ? null : new X509Certificate2(fileLocation);
         }
 
-        private static X509Certificate2 GenerateAndPersistCertificate(string keyDirectory, string password)
+        private static X509Certificate2 GenerateTransientCertificate(int serialNumberBits = 128,
+            int cipherLength = 4096, string password = null)
         {
-            var existingCertificate = CheckExistingCertificate(keyDirectory, password);
-            if (existingCertificate != null)
-            {
-                return existingCertificate;
-            }
-            Debug.WriteLine("Creating new certificate");
-            var keyGenerator = CreateKeyPairGenerator();
+            var keyGenerator = CreateKeyPairGenerator(cipherLength);
             var keyPair = keyGenerator.GenerateKeyPair();
 
             var generator = new X509V3CertificateGenerator();
-            var serialNumber = BigInteger.ProbablePrime(128, new Random());
+            var serialNumber = BigInteger.ProbablePrime(serialNumberBits, new Random());
             var certificateName = new X509Name($"CN={Environment.UserName}");
             generator.SetSerialNumber(serialNumber);
             generator.SetSubjectDN(certificateName);
@@ -76,18 +93,38 @@ namespace LotsenApp.Client.Electron
 
             var signatureFactory = new Asn1SignatureFactory("SHA256WITHRSA", keyPair.Private);
             var certificate = generator.Generate(signatureFactory);
-            return ConvertToDotnetCertificate(certificate, keyPair, keyDirectory, password);
+            return ConvertToDotnetCertificate(certificate, keyPair, password);
         }
 
-        private static IAsymmetricCipherKeyPairGenerator CreateKeyPairGenerator()
+        private static X509Certificate2 GenerateAndPersistCertificate(string keyDirectory, string password)
+        {
+            var existingCertificate = CheckExistingCertificate(keyDirectory, password);
+            if (existingCertificate != null)
+            {
+                return existingCertificate;
+            }
+            Debug.WriteLine("Creating new certificate");
+            var certificate = GenerateTransientCertificate(password: password);
+            PersistCertificate(keyDirectory, password, certificate);
+            return certificate;
+        }
+
+        private static IAsymmetricCipherKeyPairGenerator CreateKeyPairGenerator(int cipherLength = 4096)
         {
             var generator = new RsaKeyPairGenerator();
-            generator.Init(new KeyGenerationParameters(new SecureRandom(new CryptoApiRandomGenerator()), 4096));
+            generator.Init(new KeyGenerationParameters(new SecureRandom(new CryptoApiRandomGenerator()), cipherLength));
             return generator;
         }
 
-        private static X509Certificate2 ConvertToDotnetCertificate(X509Certificate certificate, AsymmetricCipherKeyPair keyPair, string keyDirectory, string password)
+        public static void PersistCertificate(string keyDirectory, string password, X509Certificate2 cert2, string name = "cert")
         {
+            // Export Certificate with private key
+            System.IO.File.WriteAllBytes(Path.Join(keyDirectory, $"{name}.pfx"), cert2.Export(X509ContentType.Pkcs12, password));
+        }
+
+        private static X509Certificate2 ConvertToDotnetCertificate(X509Certificate certificate, AsymmetricCipherKeyPair keyPair, string password = null)
+        {
+            password ??= Guid.NewGuid().ToString();
             // Taken from https://stackoverflow.com/questions/6128541/bouncycastle-privatekey-to-x509certificate2-privatekey
             // Convert BouncyCastle X509 Certificate to .NET's X509Certificate
             var cert = DotNetUtilities.ToX509Certificate(certificate);
@@ -100,12 +137,8 @@ namespace LotsenApp.Client.Electron
             var rsaPrivateKey = DotNetUtilities.ToRSA(keyPair.Private as RsaPrivateCrtKeyParameters);
             
             // Set private key on our X509Certificate2
-            //cert2.PrivateKey = rsaPrivateKey;
-            cert2 = cert2.CopyWithPrivateKey(rsaPrivateKey);
-            
-            // Export Certificate with private key
-            System.IO.File.WriteAllBytes(Path.Join(keyDirectory, "cert.pfx"), cert2.Export(X509ContentType.Pkcs12, password));
-            return cert2;
+            //cert2.PrivateKey = rsaPrivateKey; // Throws on .NET Core
+            return cert2.CopyWithPrivateKey(rsaPrivateKey);
         }
 
         private static X509Certificate2 CheckExistingCertificate(string keyDirectory, string password)

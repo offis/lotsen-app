@@ -55,6 +55,14 @@ namespace LotsenApp.Client.Electron
                     Startup.Mode = parsedMode;
                 }
             }
+
+            // Cannot be used since the ASP.NET Core Server is started after electron is ready
+            // if (Startup.Mode == ApplicationMode.Desktop)
+            // {
+                // ElectronNET.API.Electron.App.CommandLine.AppendArgument("ignore-certificate-errors");            
+                // ElectronNET.API.Electron.App.CommandLine.AppendSwitch("allow-insecure-localhost", "true");
+            // }
+
             CreateHostBuilder(args).Build().Run();
         }
 
@@ -62,12 +70,17 @@ namespace LotsenApp.Client.Electron
             Host.CreateDefaultBuilder(args)
                 .ConfigureWebHostDefaults(webBuilder =>
                 {
+                    webBuilder.UseUrls();
                     if (Startup.Mode == ApplicationMode.Desktop)
                     {
                         webBuilder.UseElectron(args);
                     }
                     
                     webBuilder.UseStartup<Startup>();
+                    if (Startup.Mode != ApplicationMode.Desktop)
+                    {
+                        webBuilder.UseKestrel(options => options.ConfigureEndpoints());
+                    }
                 });
     }
 }

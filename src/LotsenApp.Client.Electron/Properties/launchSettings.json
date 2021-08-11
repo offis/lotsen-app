@@ -10,8 +10,8 @@
   "profiles": {
     "Electron.NET App": {
       "commandName": "Executable",
-      "executablePath": "electronize",
-      "commandLineArgs": "start",
+      "executablePath": "dotnet",
+      "commandLineArgs": "electronize start",
       "workingDirectory": "."
     },
     "IIS Express": {
@@ -24,8 +24,7 @@
       "commandName": "Project",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
-      },
-      "applicationUrl": "https://localhost:5005;http://localhost:5004"
+      }
     }
   }
 }

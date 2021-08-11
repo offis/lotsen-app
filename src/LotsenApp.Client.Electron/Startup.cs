@@ -49,13 +49,13 @@ namespace LotsenApp.Client.Electron
         private ILotsenAppPlugin[] _plugins;
 
         public static ApplicationMode Mode = ApplicationMode.Desktop;
+        
+        public IConfiguration Configuration { get; }
 
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
         }
-
-        public IConfiguration Configuration { get; }
 
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
@@ -237,7 +237,7 @@ namespace LotsenApp.Client.Electron
                     {
                         NodeIntegration = false,
                         ContextIsolation = true,
-                        Preload = preloadPath
+                        Preload = preloadPath,
                     },
 #if RELEASE
                     // Do not Show the window frame in Release mode. The view should handle all operations (closing, minimizing, maximizing).
@@ -247,9 +247,23 @@ namespace LotsenApp.Client.Electron
 #if DEBUG
                 await window.WebContents.Session.ClearCacheAsync();
 #endif
+                
                 // customize window
                 window.SetTitle($"LotsenApp v{Program.Version}");
 
+                // Load correct url
+                // var serverConfiguration = new ServerConfiguration();
+                // Configuration.GetSection("Server").Bind(serverConfiguration);
+                // var sslConfiguration = serverConfiguration.Endpoints.FirstOrDefault(e => e.Ssl);
+                // if (sslConfiguration != null)
+                // {
+                //     window.LoadURL($"https://{sslConfiguration.Host}:{sslConfiguration.Port ?? 443}");
+                // }
+                // else
+                // {
+                //     var configuration = serverConfiguration.Endpoints.First();
+                //     window.LoadURL($"http://{configuration.Host}:{configuration.Port ?? 80}");
+                // }
                 // Finally show the window
                 window.OnReadyToShow += () => window.Show();
             });
