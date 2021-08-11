@@ -28,6 +28,7 @@
 using System.Diagnostics.CodeAnalysis;
 using System.Net.Http;
 using System.Threading.Tasks;
+using LibGit2Sharp;
 using LotsenApp.LicenseManager.Configuration;
 using LotsenApp.LicenseManager.DependencyCrawling.Nuget;
 using LotsenApp.LicenseManager.LicenseResolving;
@@ -36,6 +37,7 @@ using Xunit;
 namespace LotsenApp.LicenseManager.Test
 {
     [ExcludeFromCodeCoverage]
+    [Trait("Type", "Integration")]
     public class LicenseResolverTest
     {
         public static LicenseResolver CreateInstance()
@@ -53,12 +55,20 @@ namespace LotsenApp.LicenseManager.Test
         [Fact]
         public async Task TestCrawl()
         {
-            var configuration = new LicenseManagerConfiguration();
-            var crawlingProcess = CrawlingProcessTest.CreateInstance();
-            var dependencies = await crawlingProcess.Crawl(configuration.LotsenAppRepositoryRoot);
-            var licenseResolver = CreateInstance();
-            var licenses = await licenseResolver.Crawl(dependencies);
-            Assert.NotEmpty(licenses);
+            try
+            {
+                var configuration = new LicenseManagerConfiguration();
+                var crawlingProcess = CrawlingProcessTest.CreateInstance();
+                var dependencies = await crawlingProcess.Crawl(configuration.LotsenAppRepositoryRoot);
+                var licenseResolver = CreateInstance();
+                var licenses = await licenseResolver.Crawl(dependencies);
+                Assert.NotEmpty(licenses);
+            }
+            catch (NotFoundException)
+            {
+                // A commit was not found
+            }
+
         }
     }
 }

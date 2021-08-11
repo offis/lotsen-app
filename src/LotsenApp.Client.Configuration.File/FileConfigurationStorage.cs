@@ -25,6 +25,7 @@
 // OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
 // OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
+using System;
 using System.IO;
 using System.Threading.Tasks;
 using LotsenApp.Client.Configuration.Api;
@@ -72,9 +73,27 @@ namespace LotsenApp.Client.Configuration.File
 
         public Task<GlobalConfiguration> GetGlobalConfiguration(AccessMode accessMode = AccessMode.Read)
         {
-            var globalConfiguration = _utility.ReadConfiguration<GlobalConfiguration>(accessMode, null,
-                _fileService.Join("config/global.json"));
-            return Task.FromResult(globalConfiguration);
+            var configurationFile = _fileService.Join("config/global.json");
+            try
+            {
+                var globalConfiguration = _utility.ReadConfiguration<GlobalConfiguration>(accessMode, null,
+                    configurationFile);
+                return Task.FromResult(globalConfiguration);
+            }
+            catch(Exception)
+            {
+                var accessor = ConcurrentFileAccessHelper.GetAccessor(configurationFile);
+                if (accessor.IsWriteLockHeld)
+                {
+                    accessor.ExitWriteLock();
+                }
+                else
+                {
+                    accessor.ExitReadLock();
+                }
+            }
+
+            throw new Exception("There was an error accessing the global configuration");
         }
 
         public Task SaveGlobalConfiguration(GlobalConfiguration configuration)

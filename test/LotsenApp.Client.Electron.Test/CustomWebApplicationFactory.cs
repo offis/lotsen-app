@@ -27,8 +27,11 @@
 
 using System;
 using System.Diagnostics.CodeAnalysis;
+using System.IO;
+using System.Linq;
 using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Mvc.Razor;
 using Microsoft.AspNetCore.Mvc.Testing;
 using Microsoft.AspNetCore.TestHost;
 
@@ -38,6 +41,34 @@ namespace LotsenApp.Client.Electron.Test
     public class CustomWebApplicationFactory<TStartup>
         : WebApplicationFactory<TStartup> where TStartup: class
     {
+        private string _directory;
+        
+        private string _directoryRoot;
+        public string LotsenAppRepositoryRoot
+        {
+            get
+            {
+                if (_directoryRoot != null)
+                {
+                    return _directoryRoot;
+                }
+                var currentDirectory = Environment.CurrentDirectory;
+                var currentDirectoryInfo = new DirectoryInfo(currentDirectory);
+                while (currentDirectoryInfo?.GetFiles().All(f => f.Name != "LotsenApp.Client.sln") ?? false)
+                {
+                    currentDirectoryInfo = currentDirectoryInfo.Parent;
+                }
+
+                _directoryRoot = currentDirectoryInfo?.FullName;
+
+                return currentDirectoryInfo?.FullName ?? currentDirectory;
+            }
+        }
+        public CustomWebApplicationFactory()
+        {
+            _directory = $"src/LotsenApp.Client.Electron/obj/Debug/{Guid.NewGuid().ToString()}";
+            // Directory.CreateDirectory(Path.Join(LotsenAppRepositoryRoot, _directory));
+        }
         protected override void ConfigureWebHost(IWebHostBuilder builder)
         {
             Startup.Mode = ApplicationMode.Server;

@@ -134,7 +134,9 @@ namespace LotsenApp.Client.Electron
             var cert2 = new X509Certificate2(certBytes, password);
 
             // Convert BouncyCastle Private Key to RSA
-            var rsaPrivateKey = DotNetUtilities.ToRSA(keyPair.Private as RsaPrivateCrtKeyParameters);
+            var parameters = DotNetUtilities.ToRSAParameters(keyPair.Private as RsaPrivateCrtKeyParameters);
+            var rsaPrivateKey = RSA.Create(parameters);
+            // var rsaPrivateKey = DotNetUtilities.ToRSA(keyPair.Private as RsaPrivateCrtKeyParameters); throws on Ubuntu
             
             // Set private key on our X509Certificate2
             //cert2.PrivateKey = rsaPrivateKey; // Throws on .NET Core

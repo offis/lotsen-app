@@ -25,13 +25,14 @@
 // OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
 // OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
+using System;
 using LotsenApp.Client.File;
 
 namespace LotsenApp.Client.File
 {
     public class GlobalFileService: IFileService
     {
-        private static string _globalRootDirectory = "./";
+        private static string _globalRootDirectory = Environment.CurrentDirectory;
         public string Root
         {
             get => _globalRootDirectory;
