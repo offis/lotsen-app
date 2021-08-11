@@ -37,6 +37,7 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.DataProtection;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc.Formatters;
+using Microsoft.AspNetCore.SpaServices.AngularCli;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -49,7 +50,7 @@ namespace LotsenApp.Client.Electron
         private ILotsenAppPlugin[] _plugins;
 
         public static ApplicationMode Mode = ApplicationMode.Desktop;
-        
+
         public IConfiguration Configuration { get; }
 
         public Startup(IConfiguration configuration)
@@ -78,6 +79,7 @@ namespace LotsenApp.Client.Electron
                 {
                     pluginManager.PluginFilePath = Guid.NewGuid().ToString();
                 }
+
                 _plugins = pluginManager.DiscoverPlugins(true);
 #else
                 _plugins = pluginManager.DiscoverPlugins();
@@ -105,13 +107,16 @@ namespace LotsenApp.Client.Electron
             if (Mode == ApplicationMode.Desktop)
             {
                 logger.LogDebug("Application is started as Electron Application");
-                Task.WaitAll(new [] {Task.Run(async () =>
+                Task.WaitAll(new[]
                 {
-                    logger.LogDebug("Receiving data directory from electron");
-                    var rootPath = await ElectronNET.API.Electron.App.GetPathAsync(PathName.UserData);
-                    fileService.Root = rootPath;
-                    logger.LogDebug($"Data will be stored in {rootPath}");
-                })}, TimeSpan.FromSeconds(10));
+                    Task.Run(async () =>
+                    {
+                        logger.LogDebug("Receiving data directory from electron");
+                        var rootPath = await ElectronNET.API.Electron.App.GetPathAsync(PathName.UserData);
+                        fileService.Root = rootPath;
+                        logger.LogDebug($"Data will be stored in {rootPath}");
+                    })
+                }, TimeSpan.FromSeconds(10));
             }
 
             // Use Root-Path
@@ -129,7 +134,7 @@ namespace LotsenApp.Client.Electron
                 .AddTransient<IElectronHook, PrintHook>()
                 .AddTransient<IElectronHook, UpdateHook>()
                 .AddTransient<IElectronHook, VersionHook>();
-            
+
             // Execute the AfterConfiguration method for the plugins
             foreach (var plugin in _plugins)
             {
@@ -213,11 +218,24 @@ namespace LotsenApp.Client.Electron
 
                 spa.Options.SourcePath = "ClientApp";
                 // spa.Options.DefaultPage = $"/{_language}/index.html";
-
-                if (env.IsDevelopment())
+                if (!env.IsDevelopment())
                 {
-                    spa.UseProxyToSpaDevelopmentServer("http://localhost:4200");
+                    return;
                 }
+
+                
+                var integrateProcess = Configuration.GetValue<bool>("IntegrateFrontendDevelopmentProcess");
+                Console.WriteLine($"Integrating frontend development process: {integrateProcess}");
+                
+                if (integrateProcess)
+                {
+                    spa.UseAngularCliServer(npmScript: "start");
+                }
+                else
+                {
+                    spa.UseProxyToSpaDevelopmentServer("http://localhost:4200");      
+                }
+
             });
             if (Mode == ApplicationMode.Server)
             {
@@ -247,7 +265,7 @@ namespace LotsenApp.Client.Electron
 #if DEBUG
                 await window.WebContents.Session.ClearCacheAsync();
 #endif
-                
+
                 // customize window
                 window.SetTitle($"LotsenApp v{Program.Version}");
 
