@@ -21,13 +21,11 @@ namespace LotsenApp.Development.Setup
             for (var i = interval; i < maxExecutionTime; i+= interval)
             {
                 var j = i;
-                // ReSharper disable once MethodSupportsCancellation
-                Task.Delay(TimeSpan.FromSeconds(j))
-                    // ReSharper disable once MethodSupportsCancellation
+                Task.Delay(TimeSpan.FromSeconds(j), cancellationToken.Token)
                     .ContinueWith(_ =>
                 {
                     Console.Write($"\rnpm install ran for {j} seconds and will be cancelled in {maxExecutionTime - j} seconds. Press 'c' to cancel the operation immediately.");
-                });
+                }, cancellationToken.Token);
             }
 
             // ReSharper disable once MethodSupportsCancellation

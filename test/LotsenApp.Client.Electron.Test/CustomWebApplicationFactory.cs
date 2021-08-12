@@ -26,9 +26,11 @@
 // OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 using System;
+using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.IO;
 using System.Linq;
+using System.Net;
 using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc.Razor;
@@ -67,10 +69,11 @@ namespace LotsenApp.Client.Electron.Test
         public CustomWebApplicationFactory()
         {
             _directory = $"src/LotsenApp.Client.Electron/obj/Debug/{Guid.NewGuid().ToString()}";
-            // Directory.CreateDirectory(Path.Join(LotsenAppRepositoryRoot, _directory));
         }
         protected override void ConfigureWebHost(IWebHostBuilder builder)
         {
+            var dir = Directory.CreateDirectory(Path.Join(Environment.CurrentDirectory, Guid.NewGuid().ToString()));
+            Environment.CurrentDirectory = dir.FullName;
             Startup.Mode = ApplicationMode.Server;
             // builder.UseStartup<Startup>();
             builder.UseSolutionRelativeContentRoot("src/LotsenApp.Client.Electron");

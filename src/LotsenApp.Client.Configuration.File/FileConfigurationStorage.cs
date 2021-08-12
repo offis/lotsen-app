@@ -93,7 +93,8 @@ namespace LotsenApp.Client.Configuration.File
                 }
             }
 
-            throw new Exception("There was an error accessing the global configuration");
+            return Task.FromResult(new GlobalConfiguration());
+            // throw new Exception("There was an error accessing the global configuration");
         }
 
         public Task SaveGlobalConfiguration(GlobalConfiguration configuration)

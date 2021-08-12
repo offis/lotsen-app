@@ -48780,5 +48780,48 @@
         "TargetFramework": ".NETStandard2.0"
       }
     ]
+  },
+  "Portable.BouncyCastle@1.8.10": {
+    "@id": "https://api.nuget.org/v3/catalog0/data/2021.02.19.21.16.19/portable.bouncycastle.1.8.10.json",
+    "@type": [
+      "PackageDetails",
+      "catalog:Permalink"
+    ],
+    "Authors": "Claire Novotny",
+    "Copyright": "© 2000-2021 Legion of the Bouncy Castle Inc.",
+    "Created": "2021-02-19T21:14:13.537Z",
+    "Description": "BouncyCastle portable version with support for .NET 4, .NET Standard 2.0",
+    "IconFile": null,
+    "Id": "Portable.BouncyCastle",
+    "IsPrerelease": false,
+    "LastEdited": "2021-02-19T21:16:18.95Z",
+    "LicenseExpression": null,
+    "LicenseUrl": "https://www.bouncycastle.org/csharp/licence.html",
+    "Listed": true,
+    "MinClientVersion": null,
+    "PackageHash": "b7zjLYytAljmNGKnthuwXbiLKfPMNoi04YHUeWj8BwPMVI6R7dwJRQnnfMfOReSPxjU/KvKNJnO9I1Q5yn4EQA==",
+    "PackageHashAlgorithm": "SHA512",
+    "PackageSize": 3153922,
+    "ProjectUrl": "https://www.bouncycastle.org/csharp/",
+    "Published": "2021-02-19T21:14:13.537Z",
+    "Repository": "",
+    "RequireLicenseAcceptance": false,
+    "Title": "Bouncy Castle Portable",
+    "VerbatimVersion": "1.8.10",
+    "Version": "1.8.10",
+    "DependencyGroups": [
+      {
+        "@id": "https://api.nuget.org/v3/catalog0/data/2021.02.19.21.16.19/portable.bouncycastle.1.8.10.json#dependencygroup/.netframework4.0",
+        "@type": "PackageDependencyGroup",
+        "Dependencies": [],
+        "TargetFramework": ".NETFramework4.0"
+      },
+      {
+        "@id": "https://api.nuget.org/v3/catalog0/data/2021.02.19.21.16.19/portable.bouncycastle.1.8.10.json#dependencygroup/.netstandard2.0",
+        "@type": "PackageDependencyGroup",
+        "Dependencies": [],
+        "TargetFramework": ".NETStandard2.0"
+      }
+    ]
   }
 }
