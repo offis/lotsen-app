@@ -40179,7 +40179,7 @@
     "IsPrerelease": false,
     "LastEdited": "2021-04-01T10:15:35.723Z",
     "LicenseExpression": null,
-    "LicenseUrl": "https://aka.ms/deprecateLicenseUrl",
+    "LicenseUrl": "https://www.nuget.org/packages/Microsoft.NET.Test.Sdk/16.9.4/License",
     "Listed": true,
     "MinClientVersion": null,
     "PackageHash": "4m2Grb546G2Lg3CUVWsTzYO08C39nRZo7diPcjhJ7oSG0XzsDDW3ZqVXuXIleMxiLWgw4ewIopr86uJpr5i/hQ==",
@@ -43724,7 +43724,7 @@
     "IsPrerelease": false,
     "LastEdited": "2021-05-25T20:17:57.933Z",
     "LicenseExpression": null,
-    "LicenseUrl": "https://aka.ms/deprecateLicenseUrl",
+    "LicenseUrl": "https://www.nuget.org/packages/Microsoft.NET.Test.Sdk/16.10.0/License",
     "Listed": true,
     "MinClientVersion": null,
     "PackageHash": "4Qz7qCxd3rMjnnWjeA9y02dFC0TSz6knZNYKtSIrZpMn4mi9gDXbYDGDNUeNW+kg9zn13zuXNW/I2XcCzB05Rw==",
@@ -48818,6 +48818,1979 @@
       },
       {
         "@id": "https://api.nuget.org/v3/catalog0/data/2021.02.19.21.16.19/portable.bouncycastle.1.8.10.json#dependencygroup/.netstandard2.0",
+        "@type": "PackageDependencyGroup",
+        "Dependencies": [],
+        "TargetFramework": ".NETStandard2.0"
+      }
+    ]
+  },
+  "Microsoft.EntityFrameworkCore@5.0.9": {
+    "@id": "https://api.nuget.org/v3/catalog0/data/2021.08.10.16.46.04/microsoft.entityframeworkcore.5.0.9.json",
+    "@type": [
+      "PackageDetails",
+      "catalog:Permalink"
+    ],
+    "Authors": "Microsoft",
+    "Copyright": "© Microsoft Corporation. All rights reserved.",
+    "Created": "2021-08-10T16:43:56.877Z",
+    "Description": "Entity Framework Core is a modern object-database mapper for .NET. It supports LINQ queries, change tracking, updates, and schema migrations. EF Core works with SQL Server, Azure SQL Database, SQLite, Azure Cosmos DB, MySQL, PostgreSQL, and other databases through a provider plugin API.\n\nCommonly Used Types:\nMicrosoft.EntityFrameworkCore.DbContext\nMicrosoft.EntityFrameworkCore.DbSet",
+    "IconFile": "Icon.png",
+    "Id": "Microsoft.EntityFrameworkCore",
+    "IsPrerelease": false,
+    "LastEdited": "2021-08-10T16:46:00.69Z",
+    "LicenseExpression": "Apache-2.0",
+    "LicenseUrl": "https://licenses.nuget.org/Apache-2.0",
+    "Listed": true,
+    "MinClientVersion": "3.6",
+    "PackageHash": "GTIq8Sm9qa6ccWCmPUhWnJgFJeq1lFhybBwPPBnY4VQSgf8lQnoq7HtUJrfkyPwkrty5iyTj6CKzaokANW1isA==",
+    "PackageHashAlgorithm": "SHA512",
+    "PackageSize": 924858,
+    "ProjectUrl": "https://docs.microsoft.com/ef/core/",
+    "Published": "2021-08-10T16:43:56.877Z",
+    "Repository": "",
+    "RequireLicenseAcceptance": true,
+    "Title": null,
+    "VerbatimVersion": "5.0.9",
+    "Version": "5.0.9",
+    "DependencyGroups": [
+      {
+        "@id": "https://api.nuget.org/v3/catalog0/data/2021.08.10.16.46.04/microsoft.entityframeworkcore.5.0.9.json#dependencygroup/.netstandard2.1",
+        "@type": "PackageDependencyGroup",
+        "Dependencies": [
+          {
+            "@id": "https://api.nuget.org/v3/catalog0/data/2021.08.10.16.46.04/microsoft.entityframeworkcore.5.0.9.json#dependencygroup/.netstandard2.1/microsoft.entityframeworkcore.abstractions",
+            "@type": "PackageDependency",
+            "Id": "Microsoft.EntityFrameworkCore.Abstractions",
+            "Range": "[5.0.9, )"
+          },
+          {
+            "@id": "https://api.nuget.org/v3/catalog0/data/2021.08.10.16.46.04/microsoft.entityframeworkcore.5.0.9.json#dependencygroup/.netstandard2.1/microsoft.entityframeworkcore.analyzers",
+            "@type": "PackageDependency",
+            "Id": "Microsoft.EntityFrameworkCore.Analyzers",
+            "Range": "[5.0.9, )"
+          },
+          {
+            "@id": "https://api.nuget.org/v3/catalog0/data/2021.08.10.16.46.04/microsoft.entityframeworkcore.5.0.9.json#dependencygroup/.netstandard2.1/microsoft.extensions.caching.memory",
+            "@type": "PackageDependency",
+            "Id": "Microsoft.Extensions.Caching.Memory",
+            "Range": "[5.0.0, )"
+          },
+          {
+            "@id": "https://api.nuget.org/v3/catalog0/data/2021.08.10.16.46.04/microsoft.entityframeworkcore.5.0.9.json#dependencygroup/.netstandard2.1/microsoft.extensions.dependencyinjection",
+            "@type": "PackageDependency",
+            "Id": "Microsoft.Extensions.DependencyInjection",
+            "Range": "[5.0.2, )"
+          },
+          {
+            "@id": "https://api.nuget.org/v3/catalog0/data/2021.08.10.16.46.04/microsoft.entityframeworkcore.5.0.9.json#dependencygroup/.netstandard2.1/microsoft.extensions.logging",
+            "@type": "PackageDependency",
+            "Id": "Microsoft.Extensions.Logging",
+            "Range": "[5.0.0, )"
+          },
+          {
+            "@id": "https://api.nuget.org/v3/catalog0/data/2021.08.10.16.46.04/microsoft.entityframeworkcore.5.0.9.json#dependencygroup/.netstandard2.1/system.collections.immutable",
+            "@type": "PackageDependency",
+            "Id": "System.Collections.Immutable",
+            "Range": "[5.0.0, )"
+          },
+          {
+            "@id": "https://api.nuget.org/v3/catalog0/data/2021.08.10.16.46.04/microsoft.entityframeworkcore.5.0.9.json#dependencygroup/.netstandard2.1/system.componentmodel.annotations",
+            "@type": "PackageDependency",
+            "Id": "System.ComponentModel.Annotations",
+            "Range": "[5.0.0, )"
+          },
+          {
+            "@id": "https://api.nuget.org/v3/catalog0/data/2021.08.10.16.46.04/microsoft.entityframeworkcore.5.0.9.json#dependencygroup/.netstandard2.1/system.diagnostics.diagnosticsource",
+            "@type": "PackageDependency",
+            "Id": "System.Diagnostics.DiagnosticSource",
+            "Range": "[5.0.1, )"
+          }
+        ],
+        "TargetFramework": ".NETStandard2.1"
+      }
+    ]
+  },
+  "System.IdentityModel.Tokens.Jwt@6.12.0": {
+    "@id": "https://api.nuget.org/v3/catalog0/data/2021.07.21.17.05.46/system.identitymodel.tokens.jwt.6.12.0.json",
+    "@type": [
+      "PackageDetails",
+      "catalog:Permalink"
+    ],
+    "Authors": "Microsoft",
+    "Copyright": "© Microsoft Corporation. All rights reserved.",
+    "Created": "2021-07-21T17:03:39.067Z",
+    "Description": "Includes types that provide support for creating, serializing and validating JSON Web Tokens.",
+    "IconFile": null,
+    "Id": "System.IdentityModel.Tokens.Jwt",
+    "IsPrerelease": false,
+    "LastEdited": "2021-07-21T17:05:41.98Z",
+    "LicenseExpression": "MIT",
+    "LicenseUrl": "https://licenses.nuget.org/MIT",
+    "Listed": true,
+    "MinClientVersion": null,
+    "PackageHash": "2sOWIOGr7euiNDvwY+mFX1HCT2knaZXeeRaRSnk67M9WiwtLn5TJ2pJ/GogHJDbKEGfDv9SFDxdDSMZSzEQ1bg==",
+    "PackageHashAlgorithm": "SHA512",
+    "PackageSize": 191319,
+    "ProjectUrl": "https://github.com/AzureAD/azure-activedirectory-identitymodel-extensions-for-dotnet",
+    "Published": "2021-07-21T17:03:39.067Z",
+    "Repository": "",
+    "RequireLicenseAcceptance": false,
+    "Title": null,
+    "VerbatimVersion": "6.12.0",
+    "Version": "6.12.0",
+    "DependencyGroups": [
+      {
+        "@id": "https://api.nuget.org/v3/catalog0/data/2021.07.21.17.05.46/system.identitymodel.tokens.jwt.6.12.0.json#dependencygroup/.netframework4.5",
+        "@type": "PackageDependencyGroup",
+        "Dependencies": [
+          {
+            "@id": "https://api.nuget.org/v3/catalog0/data/2021.07.21.17.05.46/system.identitymodel.tokens.jwt.6.12.0.json#dependencygroup/.netframework4.5/microsoft.identitymodel.jsonwebtokens",
+            "@type": "PackageDependency",
+            "Id": "Microsoft.IdentityModel.JsonWebTokens",
+            "Range": "[6.12.0, )"
+          },
+          {
+            "@id": "https://api.nuget.org/v3/catalog0/data/2021.07.21.17.05.46/system.identitymodel.tokens.jwt.6.12.0.json#dependencygroup/.netframework4.5/microsoft.identitymodel.tokens",
+            "@type": "PackageDependency",
+            "Id": "Microsoft.IdentityModel.Tokens",
+            "Range": "[6.12.0, )"
+          }
+        ],
+        "TargetFramework": ".NETFramework4.5"
+      },
+      {
+        "@id": "https://api.nuget.org/v3/catalog0/data/2021.07.21.17.05.46/system.identitymodel.tokens.jwt.6.12.0.json#dependencygroup/.netframework4.6.1",
+        "@type": "PackageDependencyGroup",
+        "Dependencies": [
+          {
+            "@id": "https://api.nuget.org/v3/catalog0/data/2021.07.21.17.05.46/system.identitymodel.tokens.jwt.6.12.0.json#dependencygroup/.netframework4.6.1/microsoft.identitymodel.jsonwebtokens",
+            "@type": "PackageDependency",
+            "Id": "Microsoft.IdentityModel.JsonWebTokens",
+            "Range": "[6.12.0, )"
+          },
+          {
+            "@id": "https://api.nuget.org/v3/catalog0/data/2021.07.21.17.05.46/system.identitymodel.tokens.jwt.6.12.0.json#dependencygroup/.netframework4.6.1/microsoft.identitymodel.tokens",
+            "@type": "PackageDependency",
+            "Id": "Microsoft.IdentityModel.Tokens",
+            "Range": "[6.12.0, )"
+          }
+        ],
+        "TargetFramework": ".NETFramework4.6.1"
+      },
+      {
+        "@id": "https://api.nuget.org/v3/catalog0/data/2021.07.21.17.05.46/system.identitymodel.tokens.jwt.6.12.0.json#dependencygroup/.netframework4.7.2",
+        "@type": "PackageDependencyGroup",
+        "Dependencies": [
+          {
+            "@id": "https://api.nuget.org/v3/catalog0/data/2021.07.21.17.05.46/system.identitymodel.tokens.jwt.6.12.0.json#dependencygroup/.netframework4.7.2/microsoft.identitymodel.jsonwebtokens",
+            "@type": "PackageDependency",
+            "Id": "Microsoft.IdentityModel.JsonWebTokens",
+            "Range": "[6.12.0, )"
+          },
+          {
+            "@id": "https://api.nuget.org/v3/catalog0/data/2021.07.21.17.05.46/system.identitymodel.tokens.jwt.6.12.0.json#dependencygroup/.netframework4.7.2/microsoft.identitymodel.tokens",
+            "@type": "PackageDependency",
+            "Id": "Microsoft.IdentityModel.Tokens",
+            "Range": "[6.12.0, )"
+          }
+        ],
+        "TargetFramework": ".NETFramework4.7.2"
+      },
+      {
+        "@id": "https://api.nuget.org/v3/catalog0/data/2021.07.21.17.05.46/system.identitymodel.tokens.jwt.6.12.0.json#dependencygroup/.netstandard2.0",
+        "@type": "PackageDependencyGroup",
+        "Dependencies": [
+          {
+            "@id": "https://api.nuget.org/v3/catalog0/data/2021.07.21.17.05.46/system.identitymodel.tokens.jwt.6.12.0.json#dependencygroup/.netstandard2.0/microsoft.identitymodel.jsonwebtokens",
+            "@type": "PackageDependency",
+            "Id": "Microsoft.IdentityModel.JsonWebTokens",
+            "Range": "[6.12.0, )"
+          },
+          {
+            "@id": "https://api.nuget.org/v3/catalog0/data/2021.07.21.17.05.46/system.identitymodel.tokens.jwt.6.12.0.json#dependencygroup/.netstandard2.0/microsoft.identitymodel.tokens",
+            "@type": "PackageDependency",
+            "Id": "Microsoft.IdentityModel.Tokens",
+            "Range": "[6.12.0, )"
+          }
+        ],
+        "TargetFramework": ".NETStandard2.0"
+      }
+    ]
+  },
+  "Microsoft.AspNetCore.SpaServices.Extensions@5.0.9": {
+    "@id": "https://api.nuget.org/v3/catalog0/data/2021.08.10.16.42.46/microsoft.aspnetcore.spaservices.extensions.5.0.9.json",
+    "@type": [
+      "PackageDetails",
+      "catalog:Permalink"
+    ],
+    "Authors": "Microsoft",
+    "Copyright": "© Microsoft Corporation. All rights reserved.",
+    "Created": "2021-08-10T16:40:42.31Z",
+    "Description": "Helpers for building single-page applications on ASP.NET MVC Core.\n\nThis package was built from the source code at https://github.com/dotnet/aspnetcore/tree/c663adee8e64ba5d379fa0edfb8201984a7df7d0",
+    "IconFile": "Icon.png",
+    "Id": "Microsoft.AspNetCore.SpaServices.Extensions",
+    "IsPrerelease": false,
+    "LastEdited": "2021-08-10T16:42:43.44Z",
+    "LicenseExpression": "Apache-2.0",
+    "LicenseUrl": "https://licenses.nuget.org/Apache-2.0",
+    "Listed": true,
+    "MinClientVersion": null,
+    "PackageHash": "WL4f/uw1oMxCVcZu2/4x9irnDRTZDN7mmyJrhT+QUoa3JV8TsUNnQmgLAPh+OOtqfu5m5J7kb9Hg+Bb9iBOjEQ==",
+    "PackageHashAlgorithm": "SHA512",
+    "PackageSize": 58363,
+    "ProjectUrl": "https://asp.net/",
+    "Published": "2021-08-10T16:40:42.31Z",
+    "Repository": "",
+    "RequireLicenseAcceptance": true,
+    "Title": null,
+    "VerbatimVersion": "5.0.9",
+    "Version": "5.0.9",
+    "DependencyGroups": [
+      {
+        "@id": "https://api.nuget.org/v3/catalog0/data/2021.08.10.16.42.46/microsoft.aspnetcore.spaservices.extensions.5.0.9.json#dependencygroup/net5.0",
+        "@type": "PackageDependencyGroup",
+        "Dependencies": [
+          {
+            "@id": "https://api.nuget.org/v3/catalog0/data/2021.08.10.16.42.46/microsoft.aspnetcore.spaservices.extensions.5.0.9.json#dependencygroup/net5.0/microsoft.extensions.fileproviders.physical",
+            "@type": "PackageDependency",
+            "Id": "Microsoft.Extensions.FileProviders.Physical",
+            "Range": "[5.0.0, )"
+          }
+        ],
+        "TargetFramework": "net5.0"
+      }
+    ]
+  },
+  "Microsoft.EntityFrameworkCore.Design@5.0.9": {
+    "@id": "https://api.nuget.org/v3/catalog0/data/2021.08.10.16.46.31/microsoft.entityframeworkcore.design.5.0.9.json",
+    "@type": [
+      "PackageDetails",
+      "catalog:Permalink"
+    ],
+    "Authors": "Microsoft",
+    "Copyright": "© Microsoft Corporation. All rights reserved.",
+    "Created": "2021-08-10T16:44:07.98Z",
+    "Description": "Shared design-time components for Entity Framework Core tools.",
+    "IconFile": "Icon.png",
+    "Id": "Microsoft.EntityFrameworkCore.Design",
+    "IsPrerelease": false,
+    "LastEdited": "2021-08-10T16:46:11.667Z",
+    "LicenseExpression": "Apache-2.0",
+    "LicenseUrl": "https://licenses.nuget.org/Apache-2.0",
+    "Listed": true,
+    "MinClientVersion": null,
+    "PackageHash": "+z/lDLRD0fKa9sbHpaPKpUtsqotOkWR0O0tyysTMRT/UUab4nh3Xhbj+/JKe3xkYwrvkh+P3yz4fo+8xtJVLOw==",
+    "PackageHashAlgorithm": "SHA512",
+    "PackageSize": 166511,
+    "ProjectUrl": "https://docs.microsoft.com/ef/core/",
+    "Published": "2021-08-10T16:44:07.98Z",
+    "Repository": "",
+    "RequireLicenseAcceptance": true,
+    "Title": null,
+    "VerbatimVersion": "5.0.9",
+    "Version": "5.0.9",
+    "DependencyGroups": [
+      {
+        "@id": "https://api.nuget.org/v3/catalog0/data/2021.08.10.16.46.31/microsoft.entityframeworkcore.design.5.0.9.json#dependencygroup/.netstandard2.1",
+        "@type": "PackageDependencyGroup",
+        "Dependencies": [
+          {
+            "@id": "https://api.nuget.org/v3/catalog0/data/2021.08.10.16.46.31/microsoft.entityframeworkcore.design.5.0.9.json#dependencygroup/.netstandard2.1/microsoft.entityframeworkcore.relational",
+            "@type": "PackageDependency",
+            "Id": "Microsoft.EntityFrameworkCore.Relational",
+            "Range": "[5.0.9, )"
+          },
+          {
+            "@id": "https://api.nuget.org/v3/catalog0/data/2021.08.10.16.46.31/microsoft.entityframeworkcore.design.5.0.9.json#dependencygroup/.netstandard2.1/humanizer.core",
+            "@type": "PackageDependency",
+            "Id": "Humanizer.Core",
+            "Range": "[2.8.26, )"
+          },
+          {
+            "@id": "https://api.nuget.org/v3/catalog0/data/2021.08.10.16.46.31/microsoft.entityframeworkcore.design.5.0.9.json#dependencygroup/.netstandard2.1/microsoft.csharp",
+            "@type": "PackageDependency",
+            "Id": "Microsoft.CSharp",
+            "Range": "[4.7.0, )"
+          }
+        ],
+        "TargetFramework": ".NETStandard2.1"
+      }
+    ]
+  },
+  "Microsoft.AspNetCore.Identity.EntityFrameworkCore@5.0.9": {
+    "@id": "https://api.nuget.org/v3/catalog0/data/2021.08.10.16.46.31/microsoft.aspnetcore.identity.entityframeworkcore.5.0.9.json",
+    "@type": [
+      "PackageDetails",
+      "catalog:Permalink"
+    ],
+    "Authors": "Microsoft",
+    "Copyright": "© Microsoft Corporation. All rights reserved.",
+    "Created": "2021-08-10T16:43:18.35Z",
+    "Description": "ASP.NET Core Identity provider that uses Entity Framework Core.\n\nThis package was built from the source code at https://github.com/dotnet/aspnetcore/tree/c663adee8e64ba5d379fa0edfb8201984a7df7d0",
+    "IconFile": "Icon.png",
+    "Id": "Microsoft.AspNetCore.Identity.EntityFrameworkCore",
+    "IsPrerelease": false,
+    "LastEdited": "2021-08-10T16:46:21.06Z",
+    "LicenseExpression": "Apache-2.0",
+    "LicenseUrl": "https://licenses.nuget.org/Apache-2.0",
+    "Listed": true,
+    "MinClientVersion": null,
+    "PackageHash": "uVPnv76ifF0Y/BJ+ntbQgW2ytDIgea2ZQ1viWkUsIWIRHRi4+AvycX0D3oItGe8ARRW6tuGZ1+xMZZjEYV7ieg==",
+    "PackageHashAlgorithm": "SHA512",
+    "PackageSize": 116515,
+    "ProjectUrl": "https://asp.net/",
+    "Published": "2021-08-10T16:43:18.35Z",
+    "Repository": "",
+    "RequireLicenseAcceptance": true,
+    "Title": null,
+    "VerbatimVersion": "5.0.9",
+    "Version": "5.0.9",
+    "DependencyGroups": [
+      {
+        "@id": "https://api.nuget.org/v3/catalog0/data/2021.08.10.16.46.31/microsoft.aspnetcore.identity.entityframeworkcore.5.0.9.json#dependencygroup/net5.0",
+        "@type": "PackageDependencyGroup",
+        "Dependencies": [
+          {
+            "@id": "https://api.nuget.org/v3/catalog0/data/2021.08.10.16.46.31/microsoft.aspnetcore.identity.entityframeworkcore.5.0.9.json#dependencygroup/net5.0/microsoft.extensions.identity.stores",
+            "@type": "PackageDependency",
+            "Id": "Microsoft.Extensions.Identity.Stores",
+            "Range": "[5.0.9, )"
+          },
+          {
+            "@id": "https://api.nuget.org/v3/catalog0/data/2021.08.10.16.46.31/microsoft.aspnetcore.identity.entityframeworkcore.5.0.9.json#dependencygroup/net5.0/microsoft.entityframeworkcore.relational",
+            "@type": "PackageDependency",
+            "Id": "Microsoft.EntityFrameworkCore.Relational",
+            "Range": "[5.0.9, )"
+          }
+        ],
+        "TargetFramework": "net5.0"
+      },
+      {
+        "@id": "https://api.nuget.org/v3/catalog0/data/2021.08.10.16.46.31/microsoft.aspnetcore.identity.entityframeworkcore.5.0.9.json#dependencygroup/.netstandard2.1",
+        "@type": "PackageDependencyGroup",
+        "Dependencies": [
+          {
+            "@id": "https://api.nuget.org/v3/catalog0/data/2021.08.10.16.46.31/microsoft.aspnetcore.identity.entityframeworkcore.5.0.9.json#dependencygroup/.netstandard2.1/microsoft.extensions.identity.stores",
+            "@type": "PackageDependency",
+            "Id": "Microsoft.Extensions.Identity.Stores",
+            "Range": "[5.0.9, )"
+          },
+          {
+            "@id": "https://api.nuget.org/v3/catalog0/data/2021.08.10.16.46.31/microsoft.aspnetcore.identity.entityframeworkcore.5.0.9.json#dependencygroup/.netstandard2.1/microsoft.entityframeworkcore.relational",
+            "@type": "PackageDependency",
+            "Id": "Microsoft.EntityFrameworkCore.Relational",
+            "Range": "[5.0.9, )"
+          }
+        ],
+        "TargetFramework": ".NETStandard2.1"
+      }
+    ]
+  },
+  "coverlet.collector@3.1.0": {
+    "@id": "https://api.nuget.org/v3/catalog0/data/2021.07.19.18.02.50/coverlet.collector.3.1.0.json",
+    "@type": [
+      "PackageDetails",
+      "catalog:Permalink"
+    ],
+    "Authors": "tonerdo",
+    "Copyright": null,
+    "Created": "2021-07-19T18:00:25.28Z",
+    "Description": "Coverlet is a cross platform code coverage library for .NET, with support for line, branch and method coverage.",
+    "IconFile": "coverlet-icon.png",
+    "Id": "coverlet.collector",
+    "IsPrerelease": false,
+    "LastEdited": "2021-07-19T18:02:32.273Z",
+    "LicenseExpression": "MIT",
+    "LicenseUrl": "https://licenses.nuget.org/MIT",
+    "Listed": true,
+    "MinClientVersion": null,
+    "PackageHash": "uwJtQ6gJjbVySSyU6vo76cRP4IdDp1uTaXqRwvWVYZa4pTTfFeOVGQ1dZ9QM1sxTN+9ARevziiRdwenBhHEA6g==",
+    "PackageHashAlgorithm": "SHA512",
+    "PackageSize": 2075305,
+    "ProjectUrl": "https://github.com/coverlet-coverage/coverlet",
+    "Published": "2021-07-19T18:00:25.28Z",
+    "Repository": "",
+    "RequireLicenseAcceptance": false,
+    "Title": "coverlet.collector",
+    "VerbatimVersion": "3.1.0",
+    "Version": "3.1.0",
+    "DependencyGroups": []
+  },
+  "Swashbuckle.AspNetCore@6.1.5": {
+    "@id": "https://api.nuget.org/v3/catalog0/data/2021.08.02.09.39.40/swashbuckle.aspnetcore.6.1.5.json",
+    "@type": [
+      "PackageDetails",
+      "catalog:Permalink"
+    ],
+    "Authors": "Swashbuckle.AspNetCore",
+    "Copyright": null,
+    "Created": "2021-08-02T09:36:35.58Z",
+    "Description": "Swagger tools for documenting APIs built on ASP.NET Core",
+    "IconFile": null,
+    "Id": "Swashbuckle.AspNetCore",
+    "IsPrerelease": false,
+    "LastEdited": "2021-08-02T09:39:37.25Z",
+    "LicenseExpression": "MIT",
+    "LicenseUrl": "https://licenses.nuget.org/MIT",
+    "Listed": true,
+    "MinClientVersion": null,
+    "PackageHash": "5clVTnZvoEQM9JgjuOTHKAMG7ajH359+LBY1X1MCxuemndwQD8qTuOw1LUa3JnUptD+x6t+0eufkLcSpSMr+pg==",
+    "PackageHashAlgorithm": "SHA512",
+    "PackageSize": 11929,
+    "ProjectUrl": "https://github.com/domaindrivendev/Swashbuckle.AspNetCore",
+    "Published": "2021-08-02T09:36:35.58Z",
+    "Repository": "",
+    "RequireLicenseAcceptance": false,
+    "Title": null,
+    "VerbatimVersion": "6.1.5",
+    "Version": "6.1.5",
+    "DependencyGroups": [
+      {
+        "@id": "https://api.nuget.org/v3/catalog0/data/2021.08.02.09.39.40/swashbuckle.aspnetcore.6.1.5.json#dependencygroup/.netstandard2.0",
+        "@type": "PackageDependencyGroup",
+        "Dependencies": [
+          {
+            "@id": "https://api.nuget.org/v3/catalog0/data/2021.08.02.09.39.40/swashbuckle.aspnetcore.6.1.5.json#dependencygroup/.netstandard2.0/swashbuckle.aspnetcore.swagger",
+            "@type": "PackageDependency",
+            "Id": "Swashbuckle.AspNetCore.Swagger",
+            "Range": "[6.1.5, )"
+          },
+          {
+            "@id": "https://api.nuget.org/v3/catalog0/data/2021.08.02.09.39.40/swashbuckle.aspnetcore.6.1.5.json#dependencygroup/.netstandard2.0/swashbuckle.aspnetcore.swaggergen",
+            "@type": "PackageDependency",
+            "Id": "Swashbuckle.AspNetCore.SwaggerGen",
+            "Range": "[6.1.5, )"
+          },
+          {
+            "@id": "https://api.nuget.org/v3/catalog0/data/2021.08.02.09.39.40/swashbuckle.aspnetcore.6.1.5.json#dependencygroup/.netstandard2.0/swashbuckle.aspnetcore.swaggerui",
+            "@type": "PackageDependency",
+            "Id": "Swashbuckle.AspNetCore.SwaggerUI",
+            "Range": "[6.1.5, )"
+          },
+          {
+            "@id": "https://api.nuget.org/v3/catalog0/data/2021.08.02.09.39.40/swashbuckle.aspnetcore.6.1.5.json#dependencygroup/.netstandard2.0/microsoft.extensions.apidescription.server",
+            "@type": "PackageDependency",
+            "Id": "Microsoft.Extensions.ApiDescription.Server",
+            "Range": "[3.0.0, )"
+          }
+        ],
+        "TargetFramework": ".NETStandard2.0"
+      }
+    ]
+  },
+  "Microsoft.IdentityModel.Tokens@6.12.0": {
+    "@id": "https://api.nuget.org/v3/catalog0/data/2021.07.21.17.05.46/microsoft.identitymodel.tokens.6.12.0.json",
+    "@type": [
+      "PackageDetails",
+      "catalog:Permalink"
+    ],
+    "Authors": "Microsoft",
+    "Copyright": "© Microsoft Corporation. All rights reserved.",
+    "Created": "2021-07-21T17:03:32.723Z",
+    "Description": "Includes types that provide support for SecurityTokens, Cryptographic operations: Signing, Verifying Signatures, Encryption.",
+    "IconFile": null,
+    "Id": "Microsoft.IdentityModel.Tokens",
+    "IsPrerelease": false,
+    "LastEdited": "2021-07-21T17:05:36.487Z",
+    "LicenseExpression": "MIT",
+    "LicenseUrl": "https://licenses.nuget.org/MIT",
+    "Listed": true,
+    "MinClientVersion": null,
+    "PackageHash": "jqWkg2DndljMAAjYAZQy/WZab5AlrLdPKCJ18DW01DMnAJgMeFXFbqF+pEnx3yBFK0DIBumkODOsSgAejS0CWQ==",
+    "PackageHashAlgorithm": "SHA512",
+    "PackageSize": 1620937,
+    "ProjectUrl": "https://github.com/AzureAD/azure-activedirectory-identitymodel-extensions-for-dotnet",
+    "Published": "2021-07-21T17:03:32.723Z",
+    "Repository": "",
+    "RequireLicenseAcceptance": false,
+    "Title": null,
+    "VerbatimVersion": "6.12.0",
+    "Version": "6.12.0",
+    "DependencyGroups": [
+      {
+        "@id": "https://api.nuget.org/v3/catalog0/data/2021.07.21.17.05.46/microsoft.identitymodel.tokens.6.12.0.json#dependencygroup/.netframework4.5",
+        "@type": "PackageDependencyGroup",
+        "Dependencies": [
+          {
+            "@id": "https://api.nuget.org/v3/catalog0/data/2021.07.21.17.05.46/microsoft.identitymodel.tokens.6.12.0.json#dependencygroup/.netframework4.5/microsoft.identitymodel.logging",
+            "@type": "PackageDependency",
+            "Id": "Microsoft.IdentityModel.Logging",
+            "Range": "[6.12.0, )"
+          }
+        ],
+        "TargetFramework": ".NETFramework4.5"
+      },
+      {
+        "@id": "https://api.nuget.org/v3/catalog0/data/2021.07.21.17.05.46/microsoft.identitymodel.tokens.6.12.0.json#dependencygroup/.netframework4.6.1",
+        "@type": "PackageDependencyGroup",
+        "Dependencies": [
+          {
+            "@id": "https://api.nuget.org/v3/catalog0/data/2021.07.21.17.05.46/microsoft.identitymodel.tokens.6.12.0.json#dependencygroup/.netframework4.6.1/microsoft.identitymodel.logging",
+            "@type": "PackageDependency",
+            "Id": "Microsoft.IdentityModel.Logging",
+            "Range": "[6.12.0, )"
+          }
+        ],
+        "TargetFramework": ".NETFramework4.6.1"
+      },
+      {
+        "@id": "https://api.nuget.org/v3/catalog0/data/2021.07.21.17.05.46/microsoft.identitymodel.tokens.6.12.0.json#dependencygroup/.netframework4.7.2",
+        "@type": "PackageDependencyGroup",
+        "Dependencies": [
+          {
+            "@id": "https://api.nuget.org/v3/catalog0/data/2021.07.21.17.05.46/microsoft.identitymodel.tokens.6.12.0.json#dependencygroup/.netframework4.7.2/microsoft.identitymodel.logging",
+            "@type": "PackageDependency",
+            "Id": "Microsoft.IdentityModel.Logging",
+            "Range": "[6.12.0, )"
+          }
+        ],
+        "TargetFramework": ".NETFramework4.7.2"
+      },
+      {
+        "@id": "https://api.nuget.org/v3/catalog0/data/2021.07.21.17.05.46/microsoft.identitymodel.tokens.6.12.0.json#dependencygroup/.netstandard2.0",
+        "@type": "PackageDependencyGroup",
+        "Dependencies": [
+          {
+            "@id": "https://api.nuget.org/v3/catalog0/data/2021.07.21.17.05.46/microsoft.identitymodel.tokens.6.12.0.json#dependencygroup/.netstandard2.0/microsoft.identitymodel.logging",
+            "@type": "PackageDependency",
+            "Id": "Microsoft.IdentityModel.Logging",
+            "Range": "[6.12.0, )"
+          },
+          {
+            "@id": "https://api.nuget.org/v3/catalog0/data/2021.07.21.17.05.46/microsoft.identitymodel.tokens.6.12.0.json#dependencygroup/.netstandard2.0/microsoft.csharp",
+            "@type": "PackageDependency",
+            "Id": "Microsoft.CSharp",
+            "Range": "[4.5.0, )"
+          },
+          {
+            "@id": "https://api.nuget.org/v3/catalog0/data/2021.07.21.17.05.46/microsoft.identitymodel.tokens.6.12.0.json#dependencygroup/.netstandard2.0/system.security.cryptography.cng",
+            "@type": "PackageDependency",
+            "Id": "System.Security.Cryptography.Cng",
+            "Range": "[4.5.0, )"
+          }
+        ],
+        "TargetFramework": ".NETStandard2.0"
+      }
+    ]
+  },
+  "Microsoft.EntityFrameworkCore.Proxies@5.0.9": {
+    "@id": "https://api.nuget.org/v3/catalog0/data/2021.08.10.16.46.58/microsoft.entityframeworkcore.proxies.5.0.9.json",
+    "@type": [
+      "PackageDetails",
+      "catalog:Permalink"
+    ],
+    "Authors": "Microsoft",
+    "Copyright": "© Microsoft Corporation. All rights reserved.",
+    "Created": "2021-08-10T16:44:09.94Z",
+    "Description": "Lazy-loading proxies for Entity Framework Core.",
+    "IconFile": "Icon.png",
+    "Id": "Microsoft.EntityFrameworkCore.Proxies",
+    "IsPrerelease": false,
+    "LastEdited": "2021-08-10T16:46:40.29Z",
+    "LicenseExpression": "Apache-2.0",
+    "LicenseUrl": "https://licenses.nuget.org/Apache-2.0",
+    "Listed": true,
+    "MinClientVersion": "3.6",
+    "PackageHash": "TKTv1Na4GpNkrxtw5t0h2uyjBuSMPIo8Jo5Upr9+sP49SI6ZxbepMGl2EGTUncH0HL7tf/o17DeowDJdUfcVzA==",
+    "PackageHashAlgorithm": "SHA512",
+    "PackageSize": 73332,
+    "ProjectUrl": "https://docs.microsoft.com/ef/core/",
+    "Published": "2021-08-10T16:44:09.94Z",
+    "Repository": "",
+    "RequireLicenseAcceptance": true,
+    "Title": null,
+    "VerbatimVersion": "5.0.9",
+    "Version": "5.0.9",
+    "DependencyGroups": [
+      {
+        "@id": "https://api.nuget.org/v3/catalog0/data/2021.08.10.16.46.58/microsoft.entityframeworkcore.proxies.5.0.9.json#dependencygroup/.netstandard2.1",
+        "@type": "PackageDependencyGroup",
+        "Dependencies": [
+          {
+            "@id": "https://api.nuget.org/v3/catalog0/data/2021.08.10.16.46.58/microsoft.entityframeworkcore.proxies.5.0.9.json#dependencygroup/.netstandard2.1/microsoft.entityframeworkcore",
+            "@type": "PackageDependency",
+            "Id": "Microsoft.EntityFrameworkCore",
+            "Range": "[5.0.9, )"
+          },
+          {
+            "@id": "https://api.nuget.org/v3/catalog0/data/2021.08.10.16.46.58/microsoft.entityframeworkcore.proxies.5.0.9.json#dependencygroup/.netstandard2.1/castle.core",
+            "@type": "PackageDependency",
+            "Id": "Castle.Core",
+            "Range": "[4.4.1, )"
+          }
+        ],
+        "TargetFramework": ".NETStandard2.1"
+      }
+    ]
+  },
+  "Microsoft.AspNetCore.DataProtection.Abstractions@5.0.9": {
+    "@id": "https://api.nuget.org/v3/catalog0/data/2021.08.10.16.44.38/microsoft.aspnetcore.dataprotection.abstractions.5.0.9.json",
+    "@type": [
+      "PackageDetails",
+      "catalog:Permalink"
+    ],
+    "Authors": "Microsoft",
+    "Copyright": "© Microsoft Corporation. All rights reserved.",
+    "Created": "2021-08-10T16:42:05.92Z",
+    "Description": "ASP.NET Core data protection abstractions.\nCommonly used types:\nMicrosoft.AspNetCore.DataProtection.IDataProtectionProvider\nMicrosoft.AspNetCore.DataProtection.IDataProtector\n\nThis package was built from the source code at https://github.com/dotnet/aspnetcore/tree/c663adee8e64ba5d379fa0edfb8201984a7df7d0",
+    "IconFile": "Icon.png",
+    "Id": "Microsoft.AspNetCore.DataProtection.Abstractions",
+    "IsPrerelease": false,
+    "LastEdited": "2021-08-10T16:44:09.62Z",
+    "LicenseExpression": "Apache-2.0",
+    "LicenseUrl": "https://licenses.nuget.org/Apache-2.0",
+    "Listed": true,
+    "MinClientVersion": null,
+    "PackageHash": "yMo9MLhQGfU2dTZyh0sluQbrFVPKe4QLW2ADoMzuopne0m9Ud4G2/HBfkXWt4P882Gek/JKDRFTXBn+qAbBW5w==",
+    "PackageHashAlgorithm": "SHA512",
+    "PackageSize": 79744,
+    "ProjectUrl": "https://asp.net/",
+    "Published": "2021-08-10T16:42:05.92Z",
+    "Repository": "",
+    "RequireLicenseAcceptance": true,
+    "Title": null,
+    "VerbatimVersion": "5.0.9",
+    "Version": "5.0.9",
+    "DependencyGroups": [
+      {
+        "@id": "https://api.nuget.org/v3/catalog0/data/2021.08.10.16.44.38/microsoft.aspnetcore.dataprotection.abstractions.5.0.9.json#dependencygroup/.netframework4.6.1",
+        "@type": "PackageDependencyGroup",
+        "Dependencies": [],
+        "TargetFramework": ".NETFramework4.6.1"
+      },
+      {
+        "@id": "https://api.nuget.org/v3/catalog0/data/2021.08.10.16.44.38/microsoft.aspnetcore.dataprotection.abstractions.5.0.9.json#dependencygroup/net5.0",
+        "@type": "PackageDependencyGroup",
+        "Dependencies": [],
+        "TargetFramework": "net5.0"
+      },
+      {
+        "@id": "https://api.nuget.org/v3/catalog0/data/2021.08.10.16.44.38/microsoft.aspnetcore.dataprotection.abstractions.5.0.9.json#dependencygroup/.netstandard2.0",
+        "@type": "PackageDependencyGroup",
+        "Dependencies": [],
+        "TargetFramework": ".NETStandard2.0"
+      }
+    ]
+  },
+  "Microsoft.AspNetCore.Mvc.Testing@5.0.9": {
+    "@id": "https://api.nuget.org/v3/catalog0/data/2021.08.10.16.44.11/microsoft.aspnetcore.mvc.testing.5.0.9.json",
+    "@type": [
+      "PackageDetails",
+      "catalog:Permalink"
+    ],
+    "Authors": "Microsoft",
+    "Copyright": "© Microsoft Corporation. All rights reserved.",
+    "Created": "2021-08-10T16:42:10.723Z",
+    "Description": "Support for writing functional tests for MVC applications.\n\nThis package was built from the source code at https://github.com/dotnet/aspnetcore/tree/c663adee8e64ba5d379fa0edfb8201984a7df7d0",
+    "IconFile": "Icon.png",
+    "Id": "Microsoft.AspNetCore.Mvc.Testing",
+    "IsPrerelease": false,
+    "LastEdited": "2021-08-10T16:43:43.597Z",
+    "LicenseExpression": "Apache-2.0",
+    "LicenseUrl": "https://licenses.nuget.org/Apache-2.0",
+    "Listed": true,
+    "MinClientVersion": null,
+    "PackageHash": "JeRp2DI8v4TLdDLxuLBxiMY5cwt74o/dS6GjpXK1rFjpjOcZ0Dv9xo92MKLtys9UTg9XbiS+COT7aUZkAqf4oA==",
+    "PackageHashAlgorithm": "SHA512",
+    "PackageSize": 55993,
+    "ProjectUrl": "https://asp.net/",
+    "Published": "2021-08-10T16:42:10.723Z",
+    "Repository": "",
+    "RequireLicenseAcceptance": true,
+    "Title": null,
+    "VerbatimVersion": "5.0.9",
+    "Version": "5.0.9",
+    "DependencyGroups": [
+      {
+        "@id": "https://api.nuget.org/v3/catalog0/data/2021.08.10.16.44.11/microsoft.aspnetcore.mvc.testing.5.0.9.json#dependencygroup/net5.0",
+        "@type": "PackageDependencyGroup",
+        "Dependencies": [
+          {
+            "@id": "https://api.nuget.org/v3/catalog0/data/2021.08.10.16.44.11/microsoft.aspnetcore.mvc.testing.5.0.9.json#dependencygroup/net5.0/microsoft.aspnetcore.testhost",
+            "@type": "PackageDependency",
+            "Id": "Microsoft.AspNetCore.TestHost",
+            "Range": "[5.0.9, )"
+          },
+          {
+            "@id": "https://api.nuget.org/v3/catalog0/data/2021.08.10.16.44.11/microsoft.aspnetcore.mvc.testing.5.0.9.json#dependencygroup/net5.0/microsoft.extensions.dependencymodel",
+            "@type": "PackageDependency",
+            "Id": "Microsoft.Extensions.DependencyModel",
+            "Range": "[5.0.0, )"
+          },
+          {
+            "@id": "https://api.nuget.org/v3/catalog0/data/2021.08.10.16.44.11/microsoft.aspnetcore.mvc.testing.5.0.9.json#dependencygroup/net5.0/microsoft.extensions.hosting",
+            "@type": "PackageDependency",
+            "Id": "Microsoft.Extensions.Hosting",
+            "Range": "[5.0.0, )"
+          }
+        ],
+        "TargetFramework": "net5.0"
+      }
+    ]
+  },
+  "Microsoft.EntityFrameworkCore.Sqlite@5.0.9": {
+    "@id": "https://api.nuget.org/v3/catalog0/data/2021.08.10.16.46.58/microsoft.entityframeworkcore.sqlite.5.0.9.json",
+    "@type": [
+      "PackageDetails",
+      "catalog:Permalink"
+    ],
+    "Authors": "Microsoft",
+    "Copyright": "© Microsoft Corporation. All rights reserved.",
+    "Created": "2021-08-10T16:44:14.75Z",
+    "Description": "SQLite database provider for Entity Framework Core.",
+    "IconFile": "Icon.png",
+    "Id": "Microsoft.EntityFrameworkCore.Sqlite",
+    "IsPrerelease": false,
+    "LastEdited": "2021-08-10T16:46:46.09Z",
+    "LicenseExpression": "Apache-2.0",
+    "LicenseUrl": "https://licenses.nuget.org/Apache-2.0",
+    "Listed": true,
+    "MinClientVersion": "3.6",
+    "PackageHash": "nX9RlOkjVU4AYTA0aGJWIBoYRyxL9em6WKIJHdx0zVtlPY9z+7KpmtYG95X+fZ+LwrIVePrTXkl/3Ba0W5Ex8Q==",
+    "PackageHashAlgorithm": "SHA512",
+    "PackageSize": 26918,
+    "ProjectUrl": "https://docs.microsoft.com/ef/core/",
+    "Published": "2021-08-10T16:44:14.75Z",
+    "Repository": "",
+    "RequireLicenseAcceptance": true,
+    "Title": null,
+    "VerbatimVersion": "5.0.9",
+    "Version": "5.0.9",
+    "DependencyGroups": [
+      {
+        "@id": "https://api.nuget.org/v3/catalog0/data/2021.08.10.16.46.58/microsoft.entityframeworkcore.sqlite.5.0.9.json#dependencygroup/.netstandard2.1",
+        "@type": "PackageDependencyGroup",
+        "Dependencies": [
+          {
+            "@id": "https://api.nuget.org/v3/catalog0/data/2021.08.10.16.46.58/microsoft.entityframeworkcore.sqlite.5.0.9.json#dependencygroup/.netstandard2.1/microsoft.entityframeworkcore.sqlite.core",
+            "@type": "PackageDependency",
+            "Id": "Microsoft.EntityFrameworkCore.Sqlite.Core",
+            "Range": "[5.0.9, )"
+          },
+          {
+            "@id": "https://api.nuget.org/v3/catalog0/data/2021.08.10.16.46.58/microsoft.entityframeworkcore.sqlite.5.0.9.json#dependencygroup/.netstandard2.1/sqlitepclraw.bundle_e_sqlite3",
+            "@type": "PackageDependency",
+            "Id": "SQLitePCLRaw.bundle_e_sqlite3",
+            "Range": "[2.0.4, )"
+          }
+        ],
+        "TargetFramework": ".NETStandard2.1"
+      }
+    ]
+  },
+  "Microsoft.IdentityModel.JsonWebTokens@6.12.0": {
+    "@id": "https://api.nuget.org/v3/catalog0/data/2021.07.21.17.05.27/microsoft.identitymodel.jsonwebtokens.6.12.0.json",
+    "@type": [
+      "PackageDetails",
+      "catalog:Permalink"
+    ],
+    "Authors": "Microsoft",
+    "Copyright": "© Microsoft Corporation. All rights reserved.",
+    "Created": "2021-07-21T17:03:14.99Z",
+    "Description": "Includes types that provide support for creating, serializing and validating JSON Web Tokens.",
+    "IconFile": null,
+    "Id": "Microsoft.IdentityModel.JsonWebTokens",
+    "IsPrerelease": false,
+    "LastEdited": "2021-07-21T17:05:16.367Z",
+    "LicenseExpression": "MIT",
+    "LicenseUrl": "https://licenses.nuget.org/MIT",
+    "Listed": true,
+    "MinClientVersion": null,
+    "PackageHash": "+f3Ya8vi7+S6MFsqTpPD6syrr2ESyK0kq9k6liAAB2tUh+F4WrY6Re+eNzUM5waD0mNkdNBcbaIT326HWS3WkQ==",
+    "PackageHashAlgorithm": "SHA512",
+    "PackageSize": 151221,
+    "ProjectUrl": "https://github.com/AzureAD/azure-activedirectory-identitymodel-extensions-for-dotnet",
+    "Published": "2021-07-21T17:03:14.99Z",
+    "Repository": "",
+    "RequireLicenseAcceptance": false,
+    "Title": null,
+    "VerbatimVersion": "6.12.0",
+    "Version": "6.12.0",
+    "DependencyGroups": [
+      {
+        "@id": "https://api.nuget.org/v3/catalog0/data/2021.07.21.17.05.27/microsoft.identitymodel.jsonwebtokens.6.12.0.json#dependencygroup/.netframework4.5",
+        "@type": "PackageDependencyGroup",
+        "Dependencies": [
+          {
+            "@id": "https://api.nuget.org/v3/catalog0/data/2021.07.21.17.05.27/microsoft.identitymodel.jsonwebtokens.6.12.0.json#dependencygroup/.netframework4.5/microsoft.identitymodel.tokens",
+            "@type": "PackageDependency",
+            "Id": "Microsoft.IdentityModel.Tokens",
+            "Range": "[6.12.0, )"
+          }
+        ],
+        "TargetFramework": ".NETFramework4.5"
+      },
+      {
+        "@id": "https://api.nuget.org/v3/catalog0/data/2021.07.21.17.05.27/microsoft.identitymodel.jsonwebtokens.6.12.0.json#dependencygroup/.netframework4.6.1",
+        "@type": "PackageDependencyGroup",
+        "Dependencies": [
+          {
+            "@id": "https://api.nuget.org/v3/catalog0/data/2021.07.21.17.05.27/microsoft.identitymodel.jsonwebtokens.6.12.0.json#dependencygroup/.netframework4.6.1/microsoft.identitymodel.tokens",
+            "@type": "PackageDependency",
+            "Id": "Microsoft.IdentityModel.Tokens",
+            "Range": "[6.12.0, )"
+          }
+        ],
+        "TargetFramework": ".NETFramework4.6.1"
+      },
+      {
+        "@id": "https://api.nuget.org/v3/catalog0/data/2021.07.21.17.05.27/microsoft.identitymodel.jsonwebtokens.6.12.0.json#dependencygroup/.netframework4.7.2",
+        "@type": "PackageDependencyGroup",
+        "Dependencies": [
+          {
+            "@id": "https://api.nuget.org/v3/catalog0/data/2021.07.21.17.05.27/microsoft.identitymodel.jsonwebtokens.6.12.0.json#dependencygroup/.netframework4.7.2/microsoft.identitymodel.tokens",
+            "@type": "PackageDependency",
+            "Id": "Microsoft.IdentityModel.Tokens",
+            "Range": "[6.12.0, )"
+          }
+        ],
+        "TargetFramework": ".NETFramework4.7.2"
+      },
+      {
+        "@id": "https://api.nuget.org/v3/catalog0/data/2021.07.21.17.05.27/microsoft.identitymodel.jsonwebtokens.6.12.0.json#dependencygroup/.netstandard2.0",
+        "@type": "PackageDependencyGroup",
+        "Dependencies": [
+          {
+            "@id": "https://api.nuget.org/v3/catalog0/data/2021.07.21.17.05.27/microsoft.identitymodel.jsonwebtokens.6.12.0.json#dependencygroup/.netstandard2.0/microsoft.identitymodel.tokens",
+            "@type": "PackageDependency",
+            "Id": "Microsoft.IdentityModel.Tokens",
+            "Range": "[6.12.0, )"
+          }
+        ],
+        "TargetFramework": ".NETStandard2.0"
+      }
+    ]
+  },
+  "Swashbuckle.AspNetCore.Swagger@6.1.5": {
+    "@id": "https://api.nuget.org/v3/catalog0/data/2021.08.02.09.40.02/swashbuckle.aspnetcore.swagger.6.1.5.json",
+    "@type": [
+      "PackageDetails",
+      "catalog:Permalink"
+    ],
+    "Authors": "Swashbuckle.AspNetCore.Swagger",
+    "Copyright": null,
+    "Created": "2021-08-02T09:36:39.57Z",
+    "Description": "Middleware to expose Swagger JSON endpoints from APIs built on ASP.NET Core",
+    "IconFile": null,
+    "Id": "Swashbuckle.AspNetCore.Swagger",
+    "IsPrerelease": false,
+    "LastEdited": "2021-08-02T09:39:44.07Z",
+    "LicenseExpression": "MIT",
+    "LicenseUrl": "https://licenses.nuget.org/MIT",
+    "Listed": true,
+    "MinClientVersion": null,
+    "PackageHash": "YvrTUTkjVJjTLarbgP0NjStGoBmGc5ghAUxHmdo/UVsPPhCeXcTxbhpXZNoFWuONC15QzKSztmuUgRAyW04OOA==",
+    "PackageHashAlgorithm": "SHA512",
+    "PackageSize": 64976,
+    "ProjectUrl": "https://github.com/domaindrivendev/Swashbuckle.AspNetCore",
+    "Published": "2021-08-02T09:36:39.57Z",
+    "Repository": "",
+    "RequireLicenseAcceptance": false,
+    "Title": null,
+    "VerbatimVersion": "6.1.5",
+    "Version": "6.1.5",
+    "DependencyGroups": [
+      {
+        "@id": "https://api.nuget.org/v3/catalog0/data/2021.08.02.09.40.02/swashbuckle.aspnetcore.swagger.6.1.5.json#dependencygroup/.netcoreapp3.0",
+        "@type": "PackageDependencyGroup",
+        "Dependencies": [
+          {
+            "@id": "https://api.nuget.org/v3/catalog0/data/2021.08.02.09.40.02/swashbuckle.aspnetcore.swagger.6.1.5.json#dependencygroup/.netcoreapp3.0/microsoft.openapi",
+            "@type": "PackageDependency",
+            "Id": "Microsoft.OpenApi",
+            "Range": "[1.2.3, )"
+          }
+        ],
+        "TargetFramework": ".NETCoreApp3.0"
+      },
+      {
+        "@id": "https://api.nuget.org/v3/catalog0/data/2021.08.02.09.40.02/swashbuckle.aspnetcore.swagger.6.1.5.json#dependencygroup/net5.0",
+        "@type": "PackageDependencyGroup",
+        "Dependencies": [
+          {
+            "@id": "https://api.nuget.org/v3/catalog0/data/2021.08.02.09.40.02/swashbuckle.aspnetcore.swagger.6.1.5.json#dependencygroup/net5.0/microsoft.openapi",
+            "@type": "PackageDependency",
+            "Id": "Microsoft.OpenApi",
+            "Range": "[1.2.3, )"
+          }
+        ],
+        "TargetFramework": "net5.0"
+      },
+      {
+        "@id": "https://api.nuget.org/v3/catalog0/data/2021.08.02.09.40.02/swashbuckle.aspnetcore.swagger.6.1.5.json#dependencygroup/.netstandard2.0",
+        "@type": "PackageDependencyGroup",
+        "Dependencies": [
+          {
+            "@id": "https://api.nuget.org/v3/catalog0/data/2021.08.02.09.40.02/swashbuckle.aspnetcore.swagger.6.1.5.json#dependencygroup/.netstandard2.0/microsoft.aspnetcore.routing",
+            "@type": "PackageDependency",
+            "Id": "Microsoft.AspNetCore.Routing",
+            "Range": "[2.1.0, )"
+          },
+          {
+            "@id": "https://api.nuget.org/v3/catalog0/data/2021.08.02.09.40.02/swashbuckle.aspnetcore.swagger.6.1.5.json#dependencygroup/.netstandard2.0/microsoft.openapi",
+            "@type": "PackageDependency",
+            "Id": "Microsoft.OpenApi",
+            "Range": "[1.2.3, )"
+          }
+        ],
+        "TargetFramework": ".NETStandard2.0"
+      }
+    ]
+  },
+  "Microsoft.EntityFrameworkCore.Analyzers@5.0.9": {
+    "@id": "https://api.nuget.org/v3/catalog0/data/2021.08.10.16.46.04/microsoft.entityframeworkcore.analyzers.5.0.9.json",
+    "@type": [
+      "PackageDetails",
+      "catalog:Permalink"
+    ],
+    "Authors": "Microsoft",
+    "Copyright": "© Microsoft Corporation. All rights reserved.",
+    "Created": "2021-08-10T16:44:00.35Z",
+    "Description": "CSharp Analyzers for Entity Framework Core.",
+    "IconFile": "Icon.png",
+    "Id": "Microsoft.EntityFrameworkCore.Analyzers",
+    "IsPrerelease": false,
+    "LastEdited": "2021-08-10T16:46:02.01Z",
+    "LicenseExpression": "Apache-2.0",
+    "LicenseUrl": "https://licenses.nuget.org/Apache-2.0",
+    "Listed": true,
+    "MinClientVersion": "3.6",
+    "PackageHash": "WAguZZYhnZ7WkDHNnbxJkIEt7hR9Bx1/1JTQfXqS1aUpidqpa3qzADHq+MAm45gESYDCV84ugvhks8rjb4IPRw==",
+    "PackageHashAlgorithm": "SHA512",
+    "PackageSize": 41126,
+    "ProjectUrl": "https://docs.microsoft.com/ef/core/",
+    "Published": "2021-08-10T16:44:00.35Z",
+    "Repository": "",
+    "RequireLicenseAcceptance": true,
+    "Title": null,
+    "VerbatimVersion": "5.0.9",
+    "Version": "5.0.9",
+    "DependencyGroups": [
+      {
+        "@id": "https://api.nuget.org/v3/catalog0/data/2021.08.10.16.46.04/microsoft.entityframeworkcore.analyzers.5.0.9.json#dependencygroup/.netstandard2.0",
+        "@type": "PackageDependencyGroup",
+        "Dependencies": [],
+        "TargetFramework": ".NETStandard2.0"
+      }
+    ]
+  },
+  "Microsoft.EntityFrameworkCore.Abstractions@5.0.9": {
+    "@id": "https://api.nuget.org/v3/catalog0/data/2021.08.10.16.46.04/microsoft.entityframeworkcore.abstractions.5.0.9.json",
+    "@type": [
+      "PackageDetails",
+      "catalog:Permalink"
+    ],
+    "Authors": "Microsoft",
+    "Copyright": "© Microsoft Corporation. All rights reserved.",
+    "Created": "2021-08-10T16:43:44.723Z",
+    "Description": "Provides abstractions and attributes that are used to configure Entity Framework Core",
+    "IconFile": "Icon.png",
+    "Id": "Microsoft.EntityFrameworkCore.Abstractions",
+    "IsPrerelease": false,
+    "LastEdited": "2021-08-10T16:45:48.567Z",
+    "LicenseExpression": "Apache-2.0",
+    "LicenseUrl": "https://licenses.nuget.org/Apache-2.0",
+    "Listed": true,
+    "MinClientVersion": "3.6",
+    "PackageHash": "mXV4x8bjHt5x4mrC9Kd8dK1e3GrIedDJtti9HxC0Et+gL7GBGwgoHEtdNCxgfLv1FBj4HTKIgjyUA3pL2+6QAQ==",
+    "PackageHashAlgorithm": "SHA512",
+    "PackageSize": 45108,
+    "ProjectUrl": "https://docs.microsoft.com/ef/core/",
+    "Published": "2021-08-10T16:43:44.723Z",
+    "Repository": "",
+    "RequireLicenseAcceptance": true,
+    "Title": null,
+    "VerbatimVersion": "5.0.9",
+    "Version": "5.0.9",
+    "DependencyGroups": [
+      {
+        "@id": "https://api.nuget.org/v3/catalog0/data/2021.08.10.16.46.04/microsoft.entityframeworkcore.abstractions.5.0.9.json#dependencygroup/.netstandard2.1",
+        "@type": "PackageDependencyGroup",
+        "Dependencies": [],
+        "TargetFramework": ".NETStandard2.1"
+      }
+    ]
+  },
+  "Microsoft.IdentityModel.Logging@6.12.0": {
+    "@id": "https://api.nuget.org/v3/catalog0/data/2021.07.21.17.05.27/microsoft.identitymodel.logging.6.12.0.json",
+    "@type": [
+      "PackageDetails",
+      "catalog:Permalink"
+    ],
+    "Authors": "Microsoft",
+    "Copyright": "© Microsoft Corporation. All rights reserved.",
+    "Created": "2021-07-21T17:03:18.97Z",
+    "Description": "Includes Event Source based logging support.",
+    "IconFile": null,
+    "Id": "Microsoft.IdentityModel.Logging",
+    "IsPrerelease": false,
+    "LastEdited": "2021-07-21T17:05:20.19Z",
+    "LicenseExpression": "MIT",
+    "LicenseUrl": "https://licenses.nuget.org/MIT",
+    "Listed": true,
+    "MinClientVersion": null,
+    "PackageHash": "fj9ZVKga1zm5VFG27MzmEV6qe+xEoNvevfUdzPelLuiju8NJw4MjjWDyG4LMoN4+1KPKL7+Xv0oh5XKYBJLe5Q==",
+    "PackageHashAlgorithm": "SHA512",
+    "PackageSize": 86893,
+    "ProjectUrl": "https://github.com/AzureAD/azure-activedirectory-identitymodel-extensions-for-dotnet",
+    "Published": "2021-07-21T17:03:18.97Z",
+    "Repository": "",
+    "RequireLicenseAcceptance": false,
+    "Title": null,
+    "VerbatimVersion": "6.12.0",
+    "Version": "6.12.0",
+    "DependencyGroups": [
+      {
+        "@id": "https://api.nuget.org/v3/catalog0/data/2021.07.21.17.05.27/microsoft.identitymodel.logging.6.12.0.json#dependencygroup/.netframework4.5",
+        "@type": "PackageDependencyGroup",
+        "Dependencies": [],
+        "TargetFramework": ".NETFramework4.5"
+      },
+      {
+        "@id": "https://api.nuget.org/v3/catalog0/data/2021.07.21.17.05.27/microsoft.identitymodel.logging.6.12.0.json#dependencygroup/.netframework4.6.1",
+        "@type": "PackageDependencyGroup",
+        "Dependencies": [],
+        "TargetFramework": ".NETFramework4.6.1"
+      },
+      {
+        "@id": "https://api.nuget.org/v3/catalog0/data/2021.07.21.17.05.27/microsoft.identitymodel.logging.6.12.0.json#dependencygroup/.netframework4.7.2",
+        "@type": "PackageDependencyGroup",
+        "Dependencies": [],
+        "TargetFramework": ".NETFramework4.7.2"
+      },
+      {
+        "@id": "https://api.nuget.org/v3/catalog0/data/2021.07.21.17.05.27/microsoft.identitymodel.logging.6.12.0.json#dependencygroup/.netstandard2.0",
+        "@type": "PackageDependencyGroup",
+        "Dependencies": [],
+        "TargetFramework": ".NETStandard2.0"
+      }
+    ]
+  },
+  "Microsoft.AspNetCore.TestHost@5.0.9": {
+    "@id": "https://api.nuget.org/v3/catalog0/data/2021.08.10.16.43.12/microsoft.aspnetcore.testhost.5.0.9.json",
+    "@type": [
+      "PackageDetails",
+      "catalog:Permalink"
+    ],
+    "Authors": "Microsoft",
+    "Copyright": "© Microsoft Corporation. All rights reserved.",
+    "Created": "2021-08-10T16:40:46.68Z",
+    "Description": "ASP.NET Core web server for writing and running tests.\n\nThis package was built from the source code at https://github.com/dotnet/aspnetcore/tree/c663adee8e64ba5d379fa0edfb8201984a7df7d0",
+    "IconFile": "Icon.png",
+    "Id": "Microsoft.AspNetCore.TestHost",
+    "IsPrerelease": false,
+    "LastEdited": "2021-08-10T16:42:50.293Z",
+    "LicenseExpression": "Apache-2.0",
+    "LicenseUrl": "https://licenses.nuget.org/Apache-2.0",
+    "Listed": true,
+    "MinClientVersion": null,
+    "PackageHash": "V+UWrxLMZepjB45gxyN0BvujmDCOT0gOi7/fXqyn5dEJmgrwdfN4dcmL6kvJe1KNHsyCZEcSKhz3SJIyjGqI3g==",
+    "PackageHashAlgorithm": "SHA512",
+    "PackageSize": 66253,
+    "ProjectUrl": "https://asp.net/",
+    "Published": "2021-08-10T16:40:46.68Z",
+    "Repository": "",
+    "RequireLicenseAcceptance": true,
+    "Title": null,
+    "VerbatimVersion": "5.0.9",
+    "Version": "5.0.9",
+    "DependencyGroups": [
+      {
+        "@id": "https://api.nuget.org/v3/catalog0/data/2021.08.10.16.43.12/microsoft.aspnetcore.testhost.5.0.9.json#dependencygroup/net5.0",
+        "@type": "PackageDependencyGroup",
+        "Dependencies": [
+          {
+            "@id": "https://api.nuget.org/v3/catalog0/data/2021.08.10.16.43.12/microsoft.aspnetcore.testhost.5.0.9.json#dependencygroup/net5.0/system.io.pipelines",
+            "@type": "PackageDependency",
+            "Id": "System.IO.Pipelines",
+            "Range": "[5.0.1, )"
+          }
+        ],
+        "TargetFramework": "net5.0"
+      }
+    ]
+  },
+  "Microsoft.Extensions.DependencyInjection@5.0.2": {
+    "@id": "https://api.nuget.org/v3/catalog0/data/2021.07.13.13.40.20/microsoft.extensions.dependencyinjection.5.0.2.json",
+    "@type": [
+      "PackageDetails",
+      "catalog:Permalink"
+    ],
+    "Authors": "Microsoft",
+    "Copyright": "© Microsoft Corporation. All rights reserved.",
+    "Created": "2021-07-13T13:36:40.49Z",
+    "Description": "Default implementation of dependency injection for Microsoft.Extensions.DependencyInjection. \nWhen using NuGet 3.x this package requires at least version 3.4.",
+    "IconFile": "Icon.png",
+    "Id": "Microsoft.Extensions.DependencyInjection",
+    "IsPrerelease": false,
+    "LastEdited": "2021-07-13T13:39:52.217Z",
+    "LicenseExpression": "MIT",
+    "LicenseUrl": "https://licenses.nuget.org/MIT",
+    "Listed": true,
+    "MinClientVersion": "2.12",
+    "PackageHash": "dXlAA2hQC/VhCZiHNKxzx5C/IpTZ5tS0QAUtlk/9DSdOMWTNPYo+mtlljjCbad16IRMJcpjrBTQk9GKEEsz+XA==",
+    "PackageHashAlgorithm": "SHA512",
+    "PackageSize": 184357,
+    "ProjectUrl": "https://github.com/dotnet/runtime",
+    "Published": "2021-07-13T13:36:40.49Z",
+    "Repository": "",
+    "RequireLicenseAcceptance": false,
+    "Title": "Microsoft.Extensions.DependencyInjection",
+    "VerbatimVersion": "5.0.2",
+    "Version": "5.0.2",
+    "DependencyGroups": [
+      {
+        "@id": "https://api.nuget.org/v3/catalog0/data/2021.07.13.13.40.20/microsoft.extensions.dependencyinjection.5.0.2.json#dependencygroup/.netframework4.6.1",
+        "@type": "PackageDependencyGroup",
+        "Dependencies": [
+          {
+            "@id": "https://api.nuget.org/v3/catalog0/data/2021.07.13.13.40.20/microsoft.extensions.dependencyinjection.5.0.2.json#dependencygroup/.netframework4.6.1/microsoft.bcl.asyncinterfaces",
+            "@type": "PackageDependency",
+            "Id": "Microsoft.Bcl.AsyncInterfaces",
+            "Range": "[5.0.0, )"
+          },
+          {
+            "@id": "https://api.nuget.org/v3/catalog0/data/2021.07.13.13.40.20/microsoft.extensions.dependencyinjection.5.0.2.json#dependencygroup/.netframework4.6.1/microsoft.extensions.dependencyinjection.abstractions",
+            "@type": "PackageDependency",
+            "Id": "Microsoft.Extensions.DependencyInjection.Abstractions",
+            "Range": "[5.0.0, )"
+          },
+          {
+            "@id": "https://api.nuget.org/v3/catalog0/data/2021.07.13.13.40.20/microsoft.extensions.dependencyinjection.5.0.2.json#dependencygroup/.netframework4.6.1/system.threading.tasks.extensions",
+            "@type": "PackageDependency",
+            "Id": "System.Threading.Tasks.Extensions",
+            "Range": "[4.5.4, )"
+          }
+        ],
+        "TargetFramework": ".NETFramework4.6.1"
+      },
+      {
+        "@id": "https://api.nuget.org/v3/catalog0/data/2021.07.13.13.40.20/microsoft.extensions.dependencyinjection.5.0.2.json#dependencygroup/.netcoreapp5.0",
+        "@type": "PackageDependencyGroup",
+        "Dependencies": [
+          {
+            "@id": "https://api.nuget.org/v3/catalog0/data/2021.07.13.13.40.20/microsoft.extensions.dependencyinjection.5.0.2.json#dependencygroup/.netcoreapp5.0/microsoft.extensions.dependencyinjection.abstractions",
+            "@type": "PackageDependency",
+            "Id": "Microsoft.Extensions.DependencyInjection.Abstractions",
+            "Range": "[5.0.0, )"
+          }
+        ],
+        "TargetFramework": ".NETCoreApp5.0"
+      },
+      {
+        "@id": "https://api.nuget.org/v3/catalog0/data/2021.07.13.13.40.20/microsoft.extensions.dependencyinjection.5.0.2.json#dependencygroup/.netcoreapp2.1",
+        "@type": "PackageDependencyGroup",
+        "Dependencies": [
+          {
+            "@id": "https://api.nuget.org/v3/catalog0/data/2021.07.13.13.40.20/microsoft.extensions.dependencyinjection.5.0.2.json#dependencygroup/.netcoreapp2.1/microsoft.bcl.asyncinterfaces",
+            "@type": "PackageDependency",
+            "Id": "Microsoft.Bcl.AsyncInterfaces",
+            "Range": "[5.0.0, )"
+          },
+          {
+            "@id": "https://api.nuget.org/v3/catalog0/data/2021.07.13.13.40.20/microsoft.extensions.dependencyinjection.5.0.2.json#dependencygroup/.netcoreapp2.1/microsoft.extensions.dependencyinjection.abstractions",
+            "@type": "PackageDependency",
+            "Id": "Microsoft.Extensions.DependencyInjection.Abstractions",
+            "Range": "[5.0.0, )"
+          }
+        ],
+        "TargetFramework": ".NETCoreApp2.1"
+      },
+      {
+        "@id": "https://api.nuget.org/v3/catalog0/data/2021.07.13.13.40.20/microsoft.extensions.dependencyinjection.5.0.2.json#dependencygroup/.netcoreapp3.0",
+        "@type": "PackageDependencyGroup",
+        "Dependencies": [
+          {
+            "@id": "https://api.nuget.org/v3/catalog0/data/2021.07.13.13.40.20/microsoft.extensions.dependencyinjection.5.0.2.json#dependencygroup/.netcoreapp3.0/microsoft.extensions.dependencyinjection.abstractions",
+            "@type": "PackageDependency",
+            "Id": "Microsoft.Extensions.DependencyInjection.Abstractions",
+            "Range": "[5.0.0, )"
+          }
+        ],
+        "TargetFramework": ".NETCoreApp3.0"
+      },
+      {
+        "@id": "https://api.nuget.org/v3/catalog0/data/2021.07.13.13.40.20/microsoft.extensions.dependencyinjection.5.0.2.json#dependencygroup/.netstandard2.0",
+        "@type": "PackageDependencyGroup",
+        "Dependencies": [
+          {
+            "@id": "https://api.nuget.org/v3/catalog0/data/2021.07.13.13.40.20/microsoft.extensions.dependencyinjection.5.0.2.json#dependencygroup/.netstandard2.0/microsoft.bcl.asyncinterfaces",
+            "@type": "PackageDependency",
+            "Id": "Microsoft.Bcl.AsyncInterfaces",
+            "Range": "[5.0.0, )"
+          },
+          {
+            "@id": "https://api.nuget.org/v3/catalog0/data/2021.07.13.13.40.20/microsoft.extensions.dependencyinjection.5.0.2.json#dependencygroup/.netstandard2.0/microsoft.extensions.dependencyinjection.abstractions",
+            "@type": "PackageDependency",
+            "Id": "Microsoft.Extensions.DependencyInjection.Abstractions",
+            "Range": "[5.0.0, )"
+          },
+          {
+            "@id": "https://api.nuget.org/v3/catalog0/data/2021.07.13.13.40.20/microsoft.extensions.dependencyinjection.5.0.2.json#dependencygroup/.netstandard2.0/system.threading.tasks.extensions",
+            "@type": "PackageDependency",
+            "Id": "System.Threading.Tasks.Extensions",
+            "Range": "[4.5.4, )"
+          }
+        ],
+        "TargetFramework": ".NETStandard2.0"
+      },
+      {
+        "@id": "https://api.nuget.org/v3/catalog0/data/2021.07.13.13.40.20/microsoft.extensions.dependencyinjection.5.0.2.json#dependencygroup/.netstandard2.1",
+        "@type": "PackageDependencyGroup",
+        "Dependencies": [
+          {
+            "@id": "https://api.nuget.org/v3/catalog0/data/2021.07.13.13.40.20/microsoft.extensions.dependencyinjection.5.0.2.json#dependencygroup/.netstandard2.1/microsoft.extensions.dependencyinjection.abstractions",
+            "@type": "PackageDependency",
+            "Id": "Microsoft.Extensions.DependencyInjection.Abstractions",
+            "Range": "[5.0.0, )"
+          }
+        ],
+        "TargetFramework": ".NETStandard2.1"
+      }
+    ]
+  },
+  "Swashbuckle.AspNetCore.SwaggerUI@6.1.5": {
+    "@id": "https://api.nuget.org/v3/catalog0/data/2021.08.02.09.40.02/swashbuckle.aspnetcore.swaggerui.6.1.5.json",
+    "@type": [
+      "PackageDetails",
+      "catalog:Permalink"
+    ],
+    "Authors": "Swashbuckle.AspNetCore.SwaggerUI",
+    "Copyright": null,
+    "Created": "2021-08-02T09:36:41.43Z",
+    "Description": "Middleware to expose an embedded version of the swagger-ui from an ASP.NET Core application",
+    "IconFile": null,
+    "Id": "Swashbuckle.AspNetCore.SwaggerUI",
+    "IsPrerelease": false,
+    "LastEdited": "2021-08-02T09:39:44.653Z",
+    "LicenseExpression": "MIT",
+    "LicenseUrl": "https://licenses.nuget.org/MIT",
+    "Listed": true,
+    "MinClientVersion": null,
+    "PackageHash": "tyvYTff+klw30U4k+iIcir6oCFrroxxPmEmnfmSqiLW+6vnXD00q1LL8VmKqG2KJrmVzIyNjZB5XeUzP9+zEtg==",
+    "PackageHashAlgorithm": "SHA512",
+    "PackageSize": 3385800,
+    "ProjectUrl": "https://github.com/domaindrivendev/Swashbuckle.AspNetCore",
+    "Published": "2021-08-02T09:36:41.43Z",
+    "Repository": "",
+    "RequireLicenseAcceptance": false,
+    "Title": null,
+    "VerbatimVersion": "6.1.5",
+    "Version": "6.1.5",
+    "DependencyGroups": [
+      {
+        "@id": "https://api.nuget.org/v3/catalog0/data/2021.08.02.09.40.02/swashbuckle.aspnetcore.swaggerui.6.1.5.json#dependencygroup/.netcoreapp3.0",
+        "@type": "PackageDependencyGroup",
+        "Dependencies": [],
+        "TargetFramework": ".NETCoreApp3.0"
+      },
+      {
+        "@id": "https://api.nuget.org/v3/catalog0/data/2021.08.02.09.40.02/swashbuckle.aspnetcore.swaggerui.6.1.5.json#dependencygroup/net5.0",
+        "@type": "PackageDependencyGroup",
+        "Dependencies": [],
+        "TargetFramework": "net5.0"
+      },
+      {
+        "@id": "https://api.nuget.org/v3/catalog0/data/2021.08.02.09.40.02/swashbuckle.aspnetcore.swaggerui.6.1.5.json#dependencygroup/.netstandard2.0",
+        "@type": "PackageDependencyGroup",
+        "Dependencies": [
+          {
+            "@id": "https://api.nuget.org/v3/catalog0/data/2021.08.02.09.40.02/swashbuckle.aspnetcore.swaggerui.6.1.5.json#dependencygroup/.netstandard2.0/microsoft.aspnetcore.routing",
+            "@type": "PackageDependency",
+            "Id": "Microsoft.AspNetCore.Routing",
+            "Range": "[2.1.0, )"
+          },
+          {
+            "@id": "https://api.nuget.org/v3/catalog0/data/2021.08.02.09.40.02/swashbuckle.aspnetcore.swaggerui.6.1.5.json#dependencygroup/.netstandard2.0/microsoft.aspnetcore.staticfiles",
+            "@type": "PackageDependency",
+            "Id": "Microsoft.AspNetCore.StaticFiles",
+            "Range": "[2.1.0, )"
+          },
+          {
+            "@id": "https://api.nuget.org/v3/catalog0/data/2021.08.02.09.40.02/swashbuckle.aspnetcore.swaggerui.6.1.5.json#dependencygroup/.netstandard2.0/microsoft.extensions.fileproviders.embedded",
+            "@type": "PackageDependency",
+            "Id": "Microsoft.Extensions.FileProviders.Embedded",
+            "Range": "[2.1.0, )"
+          },
+          {
+            "@id": "https://api.nuget.org/v3/catalog0/data/2021.08.02.09.40.02/swashbuckle.aspnetcore.swaggerui.6.1.5.json#dependencygroup/.netstandard2.0/system.text.json",
+            "@type": "PackageDependency",
+            "Id": "System.Text.Json",
+            "Range": "[4.6.0, )"
+          }
+        ],
+        "TargetFramework": ".NETStandard2.0"
+      }
+    ]
+  },
+  "Swashbuckle.AspNetCore.SwaggerGen@6.1.5": {
+    "@id": "https://api.nuget.org/v3/catalog0/data/2021.08.02.09.40.02/swashbuckle.aspnetcore.swaggergen.6.1.5.json",
+    "@type": [
+      "PackageDetails",
+      "catalog:Permalink"
+    ],
+    "Authors": "Swashbuckle.AspNetCore.SwaggerGen",
+    "Copyright": null,
+    "Created": "2021-08-02T09:36:40.423Z",
+    "Description": "Swagger Generator for APIs built on ASP.NET Core",
+    "IconFile": null,
+    "Id": "Swashbuckle.AspNetCore.SwaggerGen",
+    "IsPrerelease": false,
+    "LastEdited": "2021-08-02T09:39:42.87Z",
+    "LicenseExpression": "MIT",
+    "LicenseUrl": "https://licenses.nuget.org/MIT",
+    "Listed": true,
+    "MinClientVersion": null,
+    "PackageHash": "YdFOgT58ndp9XSTuqnONCDauIZ9q31lF/OJlySblsYboCQEJ0YT7WFK/I4yxajtnGf9atjrhB7qQ8Y8h1dpk1w==",
+    "PackageHashAlgorithm": "SHA512",
+    "PackageSize": 195812,
+    "ProjectUrl": "https://github.com/domaindrivendev/Swashbuckle.AspNetCore",
+    "Published": "2021-08-02T09:36:40.423Z",
+    "Repository": "",
+    "RequireLicenseAcceptance": false,
+    "Title": null,
+    "VerbatimVersion": "6.1.5",
+    "Version": "6.1.5",
+    "DependencyGroups": [
+      {
+        "@id": "https://api.nuget.org/v3/catalog0/data/2021.08.02.09.40.02/swashbuckle.aspnetcore.swaggergen.6.1.5.json#dependencygroup/.netcoreapp3.0",
+        "@type": "PackageDependencyGroup",
+        "Dependencies": [
+          {
+            "@id": "https://api.nuget.org/v3/catalog0/data/2021.08.02.09.40.02/swashbuckle.aspnetcore.swaggergen.6.1.5.json#dependencygroup/.netcoreapp3.0/swashbuckle.aspnetcore.swagger",
+            "@type": "PackageDependency",
+            "Id": "Swashbuckle.AspNetCore.Swagger",
+            "Range": "[6.1.5, )"
+          }
+        ],
+        "TargetFramework": ".NETCoreApp3.0"
+      },
+      {
+        "@id": "https://api.nuget.org/v3/catalog0/data/2021.08.02.09.40.02/swashbuckle.aspnetcore.swaggergen.6.1.5.json#dependencygroup/net5.0",
+        "@type": "PackageDependencyGroup",
+        "Dependencies": [
+          {
+            "@id": "https://api.nuget.org/v3/catalog0/data/2021.08.02.09.40.02/swashbuckle.aspnetcore.swaggergen.6.1.5.json#dependencygroup/net5.0/swashbuckle.aspnetcore.swagger",
+            "@type": "PackageDependency",
+            "Id": "Swashbuckle.AspNetCore.Swagger",
+            "Range": "[6.1.5, )"
+          }
+        ],
+        "TargetFramework": "net5.0"
+      },
+      {
+        "@id": "https://api.nuget.org/v3/catalog0/data/2021.08.02.09.40.02/swashbuckle.aspnetcore.swaggergen.6.1.5.json#dependencygroup/.netstandard2.0",
+        "@type": "PackageDependencyGroup",
+        "Dependencies": [
+          {
+            "@id": "https://api.nuget.org/v3/catalog0/data/2021.08.02.09.40.02/swashbuckle.aspnetcore.swaggergen.6.1.5.json#dependencygroup/.netstandard2.0/swashbuckle.aspnetcore.swagger",
+            "@type": "PackageDependency",
+            "Id": "Swashbuckle.AspNetCore.Swagger",
+            "Range": "[6.1.5, )"
+          },
+          {
+            "@id": "https://api.nuget.org/v3/catalog0/data/2021.08.02.09.40.02/swashbuckle.aspnetcore.swaggergen.6.1.5.json#dependencygroup/.netstandard2.0/microsoft.aspnetcore.mvc.apiexplorer",
+            "@type": "PackageDependency",
+            "Id": "Microsoft.AspNetCore.Mvc.ApiExplorer",
+            "Range": "[2.1.0, )"
+          },
+          {
+            "@id": "https://api.nuget.org/v3/catalog0/data/2021.08.02.09.40.02/swashbuckle.aspnetcore.swaggergen.6.1.5.json#dependencygroup/.netstandard2.0/microsoft.aspnetcore.mvc.dataannotations",
+            "@type": "PackageDependency",
+            "Id": "Microsoft.AspNetCore.Mvc.DataAnnotations",
+            "Range": "[2.1.0, )"
+          },
+          {
+            "@id": "https://api.nuget.org/v3/catalog0/data/2021.08.02.09.40.02/swashbuckle.aspnetcore.swaggergen.6.1.5.json#dependencygroup/.netstandard2.0/system.text.json",
+            "@type": "PackageDependency",
+            "Id": "System.Text.Json",
+            "Range": "[4.6.0, )"
+          }
+        ],
+        "TargetFramework": ".NETStandard2.0"
+      }
+    ]
+  },
+  "Microsoft.Extensions.Identity.Stores@5.0.9": {
+    "@id": "https://api.nuget.org/v3/catalog0/data/2021.08.10.16.43.41/microsoft.extensions.identity.stores.5.0.9.json",
+    "@type": [
+      "PackageDetails",
+      "catalog:Permalink"
+    ],
+    "Authors": "Microsoft",
+    "Copyright": "© Microsoft Corporation. All rights reserved.",
+    "Created": "2021-08-10T16:41:48.823Z",
+    "Description": "ASP.NET Core Identity is the membership system for building ASP.NET Core web applications, including membership, login, and user data. ASP.NET Core Identity allows you to add login features to your application and makes it easy to customize data about the logged in user.\n\nThis package was built from the source code at https://github.com/dotnet/aspnetcore/tree/c663adee8e64ba5d379fa0edfb8201984a7df7d0",
+    "IconFile": "Icon.png",
+    "Id": "Microsoft.Extensions.Identity.Stores",
+    "IsPrerelease": false,
+    "LastEdited": "2021-08-10T16:43:20.67Z",
+    "LicenseExpression": "Apache-2.0",
+    "LicenseUrl": "https://licenses.nuget.org/Apache-2.0",
+    "Listed": true,
+    "MinClientVersion": null,
+    "PackageHash": "NzPCigBv6G2+PflIyGvLVTlfUsx8e0A/XsFj1i35MHCirsH4JLcK8fhzsDunFrIoVTPp9BdI/WUy1l4AwKkRiQ==",
+    "PackageHashAlgorithm": "SHA512",
+    "PackageSize": 105917,
+    "ProjectUrl": "https://asp.net/",
+    "Published": "2021-08-10T16:41:48.823Z",
+    "Repository": "",
+    "RequireLicenseAcceptance": true,
+    "Title": null,
+    "VerbatimVersion": "5.0.9",
+    "Version": "5.0.9",
+    "DependencyGroups": [
+      {
+        "@id": "https://api.nuget.org/v3/catalog0/data/2021.08.10.16.43.41/microsoft.extensions.identity.stores.5.0.9.json#dependencygroup/.netframework4.6.1",
+        "@type": "PackageDependencyGroup",
+        "Dependencies": [
+          {
+            "@id": "https://api.nuget.org/v3/catalog0/data/2021.08.10.16.43.41/microsoft.extensions.identity.stores.5.0.9.json#dependencygroup/.netframework4.6.1/microsoft.extensions.identity.core",
+            "@type": "PackageDependency",
+            "Id": "Microsoft.Extensions.Identity.Core",
+            "Range": "[5.0.9, )"
+          },
+          {
+            "@id": "https://api.nuget.org/v3/catalog0/data/2021.08.10.16.43.41/microsoft.extensions.identity.stores.5.0.9.json#dependencygroup/.netframework4.6.1/microsoft.extensions.caching.abstractions",
+            "@type": "PackageDependency",
+            "Id": "Microsoft.Extensions.Caching.Abstractions",
+            "Range": "[5.0.0, )"
+          },
+          {
+            "@id": "https://api.nuget.org/v3/catalog0/data/2021.08.10.16.43.41/microsoft.extensions.identity.stores.5.0.9.json#dependencygroup/.netframework4.6.1/microsoft.extensions.logging",
+            "@type": "PackageDependency",
+            "Id": "Microsoft.Extensions.Logging",
+            "Range": "[5.0.0, )"
+          }
+        ],
+        "TargetFramework": ".NETFramework4.6.1"
+      },
+      {
+        "@id": "https://api.nuget.org/v3/catalog0/data/2021.08.10.16.43.41/microsoft.extensions.identity.stores.5.0.9.json#dependencygroup/net5.0",
+        "@type": "PackageDependencyGroup",
+        "Dependencies": [
+          {
+            "@id": "https://api.nuget.org/v3/catalog0/data/2021.08.10.16.43.41/microsoft.extensions.identity.stores.5.0.9.json#dependencygroup/net5.0/microsoft.extensions.identity.core",
+            "@type": "PackageDependency",
+            "Id": "Microsoft.Extensions.Identity.Core",
+            "Range": "[5.0.9, )"
+          },
+          {
+            "@id": "https://api.nuget.org/v3/catalog0/data/2021.08.10.16.43.41/microsoft.extensions.identity.stores.5.0.9.json#dependencygroup/net5.0/microsoft.extensions.caching.abstractions",
+            "@type": "PackageDependency",
+            "Id": "Microsoft.Extensions.Caching.Abstractions",
+            "Range": "[5.0.0, )"
+          },
+          {
+            "@id": "https://api.nuget.org/v3/catalog0/data/2021.08.10.16.43.41/microsoft.extensions.identity.stores.5.0.9.json#dependencygroup/net5.0/microsoft.extensions.logging",
+            "@type": "PackageDependency",
+            "Id": "Microsoft.Extensions.Logging",
+            "Range": "[5.0.0, )"
+          }
+        ],
+        "TargetFramework": "net5.0"
+      },
+      {
+        "@id": "https://api.nuget.org/v3/catalog0/data/2021.08.10.16.43.41/microsoft.extensions.identity.stores.5.0.9.json#dependencygroup/.netstandard2.0",
+        "@type": "PackageDependencyGroup",
+        "Dependencies": [
+          {
+            "@id": "https://api.nuget.org/v3/catalog0/data/2021.08.10.16.43.41/microsoft.extensions.identity.stores.5.0.9.json#dependencygroup/.netstandard2.0/microsoft.extensions.identity.core",
+            "@type": "PackageDependency",
+            "Id": "Microsoft.Extensions.Identity.Core",
+            "Range": "[5.0.9, )"
+          },
+          {
+            "@id": "https://api.nuget.org/v3/catalog0/data/2021.08.10.16.43.41/microsoft.extensions.identity.stores.5.0.9.json#dependencygroup/.netstandard2.0/microsoft.extensions.caching.abstractions",
+            "@type": "PackageDependency",
+            "Id": "Microsoft.Extensions.Caching.Abstractions",
+            "Range": "[5.0.0, )"
+          },
+          {
+            "@id": "https://api.nuget.org/v3/catalog0/data/2021.08.10.16.43.41/microsoft.extensions.identity.stores.5.0.9.json#dependencygroup/.netstandard2.0/microsoft.extensions.logging",
+            "@type": "PackageDependency",
+            "Id": "Microsoft.Extensions.Logging",
+            "Range": "[5.0.0, )"
+          }
+        ],
+        "TargetFramework": ".NETStandard2.0"
+      }
+    ]
+  },
+  "Microsoft.EntityFrameworkCore.Relational@5.0.9": {
+    "@id": "https://api.nuget.org/v3/catalog0/data/2021.08.10.16.46.31/microsoft.entityframeworkcore.relational.5.0.9.json",
+    "@type": [
+      "PackageDetails",
+      "catalog:Permalink"
+    ],
+    "Authors": "Microsoft",
+    "Copyright": "© Microsoft Corporation. All rights reserved.",
+    "Created": "2021-08-10T16:44:12.557Z",
+    "Description": "Shared Entity Framework Core components for relational database providers.",
+    "IconFile": "Icon.png",
+    "Id": "Microsoft.EntityFrameworkCore.Relational",
+    "IsPrerelease": false,
+    "LastEdited": "2021-08-10T16:46:12.46Z",
+    "LicenseExpression": "Apache-2.0",
+    "LicenseUrl": "https://licenses.nuget.org/Apache-2.0",
+    "Listed": true,
+    "MinClientVersion": "3.6",
+    "PackageHash": "TfWZmALxoUkuIkt5OcZY6COh7xgy7Fz5twG940FjMB77jLbp2gsKObz4sAgn7nvG7NlDI142wyNJ4ZacvfwFeA==",
+    "PackageHashAlgorithm": "SHA512",
+    "PackageSize": 626885,
+    "ProjectUrl": "https://docs.microsoft.com/ef/core/",
+    "Published": "2021-08-10T16:44:12.557Z",
+    "Repository": "",
+    "RequireLicenseAcceptance": true,
+    "Title": null,
+    "VerbatimVersion": "5.0.9",
+    "Version": "5.0.9",
+    "DependencyGroups": [
+      {
+        "@id": "https://api.nuget.org/v3/catalog0/data/2021.08.10.16.46.31/microsoft.entityframeworkcore.relational.5.0.9.json#dependencygroup/.netstandard2.1",
+        "@type": "PackageDependencyGroup",
+        "Dependencies": [
+          {
+            "@id": "https://api.nuget.org/v3/catalog0/data/2021.08.10.16.46.31/microsoft.entityframeworkcore.relational.5.0.9.json#dependencygroup/.netstandard2.1/microsoft.entityframeworkcore",
+            "@type": "PackageDependency",
+            "Id": "Microsoft.EntityFrameworkCore",
+            "Range": "[5.0.9, )"
+          },
+          {
+            "@id": "https://api.nuget.org/v3/catalog0/data/2021.08.10.16.46.31/microsoft.entityframeworkcore.relational.5.0.9.json#dependencygroup/.netstandard2.1/microsoft.extensions.configuration.abstractions",
+            "@type": "PackageDependency",
+            "Id": "Microsoft.Extensions.Configuration.Abstractions",
+            "Range": "[5.0.0, )"
+          }
+        ],
+        "TargetFramework": ".NETStandard2.1"
+      }
+    ]
+  },
+  "Microsoft.EntityFrameworkCore.Sqlite.Core@5.0.9": {
+    "@id": "https://api.nuget.org/v3/catalog0/data/2021.08.10.16.46.31/microsoft.entityframeworkcore.sqlite.core.5.0.9.json",
+    "@type": [
+      "PackageDetails",
+      "catalog:Permalink"
+    ],
+    "Authors": "Microsoft",
+    "Copyright": "© Microsoft Corporation. All rights reserved.",
+    "Created": "2021-08-10T16:44:16.673Z",
+    "Description": "SQLite database provider for Entity Framework Core. This package does not include a copy of the native SQLite library.",
+    "IconFile": "Icon.png",
+    "Id": "Microsoft.EntityFrameworkCore.Sqlite.Core",
+    "IsPrerelease": false,
+    "LastEdited": "2021-08-10T16:46:19.74Z",
+    "LicenseExpression": "Apache-2.0",
+    "LicenseUrl": "https://licenses.nuget.org/Apache-2.0",
+    "Listed": true,
+    "MinClientVersion": "3.6",
+    "PackageHash": "2s4Zy6SADUhCfrSqfFmsi0wymlpHyM9F558x62u32x5GL3U3W/lv68CzxcB8yCrtH5a70FrMBQ3NOfyuCnD2YA==",
+    "PackageHashAlgorithm": "SHA512",
+    "PackageSize": 114334,
+    "ProjectUrl": "https://docs.microsoft.com/ef/core/",
+    "Published": "2021-08-10T16:44:16.673Z",
+    "Repository": "",
+    "RequireLicenseAcceptance": true,
+    "Title": null,
+    "VerbatimVersion": "5.0.9",
+    "Version": "5.0.9",
+    "DependencyGroups": [
+      {
+        "@id": "https://api.nuget.org/v3/catalog0/data/2021.08.10.16.46.31/microsoft.entityframeworkcore.sqlite.core.5.0.9.json#dependencygroup/.netstandard2.1",
+        "@type": "PackageDependencyGroup",
+        "Dependencies": [
+          {
+            "@id": "https://api.nuget.org/v3/catalog0/data/2021.08.10.16.46.31/microsoft.entityframeworkcore.sqlite.core.5.0.9.json#dependencygroup/.netstandard2.1/microsoft.entityframeworkcore.relational",
+            "@type": "PackageDependency",
+            "Id": "Microsoft.EntityFrameworkCore.Relational",
+            "Range": "[5.0.9, )"
+          },
+          {
+            "@id": "https://api.nuget.org/v3/catalog0/data/2021.08.10.16.46.31/microsoft.entityframeworkcore.sqlite.core.5.0.9.json#dependencygroup/.netstandard2.1/microsoft.data.sqlite.core",
+            "@type": "PackageDependency",
+            "Id": "Microsoft.Data.Sqlite.Core",
+            "Range": "[5.0.9, )"
+          },
+          {
+            "@id": "https://api.nuget.org/v3/catalog0/data/2021.08.10.16.46.31/microsoft.entityframeworkcore.sqlite.core.5.0.9.json#dependencygroup/.netstandard2.1/microsoft.dotnet.platformabstractions",
+            "@type": "PackageDependency",
+            "Id": "Microsoft.DotNet.PlatformAbstractions",
+            "Range": "[3.1.6, )"
+          },
+          {
+            "@id": "https://api.nuget.org/v3/catalog0/data/2021.08.10.16.46.31/microsoft.entityframeworkcore.sqlite.core.5.0.9.json#dependencygroup/.netstandard2.1/microsoft.extensions.dependencymodel",
+            "@type": "PackageDependency",
+            "Id": "Microsoft.Extensions.DependencyModel",
+            "Range": "[5.0.0, )"
+          }
+        ],
+        "TargetFramework": ".NETStandard2.1"
+      }
+    ]
+  },
+  "LibGit2Sharp@0.27.0-preview-0102": {
+    "@id": "https://api.nuget.org/v3/catalog0/data/2021.07.03.22.25.27/libgit2sharp.0.27.0-preview-0102.json",
+    "@type": [
+      "PackageDetails",
+      "catalog:Permalink"
+    ],
+    "Authors": "LibGit2Sharp contributors",
+    "Copyright": "Copyright © LibGit2Sharp contributors",
+    "Created": "2021-07-03T22:22:04.087Z",
+    "Description": "LibGit2Sharp brings all the might and speed of libgit2, a native Git implementation, to the managed world of .Net and Mono.",
+    "IconFile": "square-logo.png",
+    "Id": "LibGit2Sharp",
+    "IsPrerelease": true,
+    "LastEdited": "2021-07-03T22:25:12.647Z",
+    "LicenseExpression": "MIT",
+    "LicenseUrl": "https://aka.ms/deprecateLicenseUrl",
+    "Listed": true,
+    "MinClientVersion": null,
+    "PackageHash": "IhX661FU3S2rcb5yhUovu+XEFQe7mk8HvSMOWVDHrbOLggNLzV/4yiqgtorTHKAWRILm1KFI5z5t2wegr9CBwA==",
+    "PackageHashAlgorithm": "SHA512",
+    "PackageSize": 721605,
+    "ProjectUrl": "https://github.com/libgit2/libgit2sharp/",
+    "Published": "2021-07-03T22:22:04.087Z",
+    "Repository": "",
+    "RequireLicenseAcceptance": false,
+    "Title": null,
+    "VerbatimVersion": "0.27.0-preview-0102",
+    "Version": "0.27.0-preview-0102",
+    "DependencyGroups": [
+      {
+        "@id": "https://api.nuget.org/v3/catalog0/data/2021.07.03.22.25.27/libgit2sharp.0.27.0-preview-0102.json#dependencygroup/.netcoreapp2.1",
+        "@type": "PackageDependencyGroup",
+        "Dependencies": [
+          {
+            "@id": "https://api.nuget.org/v3/catalog0/data/2021.07.03.22.25.27/libgit2sharp.0.27.0-preview-0102.json#dependencygroup/.netcoreapp2.1/libgit2sharp.nativebinaries",
+            "@type": "PackageDependency",
+            "Id": "LibGit2Sharp.NativeBinaries",
+            "Range": "[2.0.312, 2.0.312]"
+          }
+        ],
+        "TargetFramework": ".NETCoreApp2.1"
+      },
+      {
+        "@id": "https://api.nuget.org/v3/catalog0/data/2021.07.03.22.25.27/libgit2sharp.0.27.0-preview-0102.json#dependencygroup/.netstandard2.0",
+        "@type": "PackageDependencyGroup",
+        "Dependencies": [
+          {
+            "@id": "https://api.nuget.org/v3/catalog0/data/2021.07.03.22.25.27/libgit2sharp.0.27.0-preview-0102.json#dependencygroup/.netstandard2.0/libgit2sharp.nativebinaries",
+            "@type": "PackageDependency",
+            "Id": "LibGit2Sharp.NativeBinaries",
+            "Range": "[2.0.312, 2.0.312]"
+          }
+        ],
+        "TargetFramework": ".NETStandard2.0"
+      }
+    ]
+  },
+  "LibGit2Sharp.NativeBinaries@2.0.312": {
+    "@id": "https://api.nuget.org/v3/catalog0/data/2020.04.05.04.09.01/libgit2sharp.nativebinaries.2.0.312.json",
+    "@type": [
+      "PackageDetails",
+      "catalog:Permalink"
+    ],
+    "Authors": "LibGit2Sharp contributors",
+    "Copyright": null,
+    "Created": "2020-04-05T04:05:35.297Z",
+    "Description": "Native binaries for LibGit2Sharp",
+    "IconFile": null,
+    "Id": "LibGit2Sharp.NativeBinaries",
+    "IsPrerelease": false,
+    "LastEdited": "2020-04-05T04:08:31.85Z",
+    "LicenseExpression": null,
+    "LicenseUrl": "https://raw.githubusercontent.com/libgit2/libgit2/master/COPYING",
+    "Listed": true,
+    "MinClientVersion": null,
+    "PackageHash": "JdwRZ90c51p8VCEkHJ9fibR9gQ6DdT6kMTBND6Qp4O/5uROwOXK9xfL67oIjJfuvYcVMLaVxXr8nmXDSRnEkPg==",
+    "PackageHashAlgorithm": "SHA512",
+    "PackageSize": 8304872,
+    "ProjectUrl": "https://github.com/libgit2/libgit2sharp.nativebinaries",
+    "Published": "2020-04-05T04:05:35.297Z",
+    "Repository": null,
+    "RequireLicenseAcceptance": false,
+    "Title": null,
+    "VerbatimVersion": "2.0.312",
+    "Version": "2.0.312",
+    "DependencyGroups": []
+  },
+  "Microsoft.Extensions.Identity.Core@5.0.9": {
+    "@id": "https://api.nuget.org/v3/catalog0/data/2021.08.10.16.43.41/microsoft.extensions.identity.core.5.0.9.json",
+    "@type": [
+      "PackageDetails",
+      "catalog:Permalink"
+    ],
+    "Authors": "Microsoft",
+    "Copyright": "© Microsoft Corporation. All rights reserved.",
+    "Created": "2021-08-10T16:41:53.023Z",
+    "Description": "ASP.NET Core Identity is the membership system for building ASP.NET Core web applications, including membership, login, and user data. ASP.NET Core Identity allows you to add login features to your application and makes it easy to customize data about the logged in user.\n\nThis package was built from the source code at https://github.com/dotnet/aspnetcore/tree/c663adee8e64ba5d379fa0edfb8201984a7df7d0",
+    "IconFile": "Icon.png",
+    "Id": "Microsoft.Extensions.Identity.Core",
+    "IsPrerelease": false,
+    "LastEdited": "2021-08-10T16:43:25.037Z",
+    "LicenseExpression": "Apache-2.0",
+    "LicenseUrl": "https://licenses.nuget.org/Apache-2.0",
+    "Listed": true,
+    "MinClientVersion": null,
+    "PackageHash": "lCmJZOq8MPMeAlpYh88orDM64xuH3YgMc6mqZD3TWdGEaWfcR2QRTJf06eN7t7jkcyR9HuaRwr/Ssup2ciD1DQ==",
+    "PackageHashAlgorithm": "SHA512",
+    "PackageSize": 290694,
+    "ProjectUrl": "https://asp.net/",
+    "Published": "2021-08-10T16:41:53.023Z",
+    "Repository": "",
+    "RequireLicenseAcceptance": true,
+    "Title": null,
+    "VerbatimVersion": "5.0.9",
+    "Version": "5.0.9",
+    "DependencyGroups": [
+      {
+        "@id": "https://api.nuget.org/v3/catalog0/data/2021.08.10.16.43.41/microsoft.extensions.identity.core.5.0.9.json#dependencygroup/.netframework4.6.1",
+        "@type": "PackageDependencyGroup",
+        "Dependencies": [
+          {
+            "@id": "https://api.nuget.org/v3/catalog0/data/2021.08.10.16.43.41/microsoft.extensions.identity.core.5.0.9.json#dependencygroup/.netframework4.6.1/microsoft.aspnetcore.cryptography.keyderivation",
+            "@type": "PackageDependency",
+            "Id": "Microsoft.AspNetCore.Cryptography.KeyDerivation",
+            "Range": "[5.0.9, )"
+          },
+          {
+            "@id": "https://api.nuget.org/v3/catalog0/data/2021.08.10.16.43.41/microsoft.extensions.identity.core.5.0.9.json#dependencygroup/.netframework4.6.1/microsoft.extensions.logging",
+            "@type": "PackageDependency",
+            "Id": "Microsoft.Extensions.Logging",
+            "Range": "[5.0.0, )"
+          },
+          {
+            "@id": "https://api.nuget.org/v3/catalog0/data/2021.08.10.16.43.41/microsoft.extensions.identity.core.5.0.9.json#dependencygroup/.netframework4.6.1/microsoft.extensions.options",
+            "@type": "PackageDependency",
+            "Id": "Microsoft.Extensions.Options",
+            "Range": "[5.0.0, )"
+          },
+          {
+            "@id": "https://api.nuget.org/v3/catalog0/data/2021.08.10.16.43.41/microsoft.extensions.identity.core.5.0.9.json#dependencygroup/.netframework4.6.1/system.componentmodel.annotations",
+            "@type": "PackageDependency",
+            "Id": "System.ComponentModel.Annotations",
+            "Range": "[5.0.0, )"
+          }
+        ],
+        "TargetFramework": ".NETFramework4.6.1"
+      },
+      {
+        "@id": "https://api.nuget.org/v3/catalog0/data/2021.08.10.16.43.41/microsoft.extensions.identity.core.5.0.9.json#dependencygroup/net5.0",
+        "@type": "PackageDependencyGroup",
+        "Dependencies": [
+          {
+            "@id": "https://api.nuget.org/v3/catalog0/data/2021.08.10.16.43.41/microsoft.extensions.identity.core.5.0.9.json#dependencygroup/net5.0/microsoft.aspnetcore.cryptography.keyderivation",
+            "@type": "PackageDependency",
+            "Id": "Microsoft.AspNetCore.Cryptography.KeyDerivation",
+            "Range": "[5.0.9, )"
+          },
+          {
+            "@id": "https://api.nuget.org/v3/catalog0/data/2021.08.10.16.43.41/microsoft.extensions.identity.core.5.0.9.json#dependencygroup/net5.0/microsoft.extensions.logging",
+            "@type": "PackageDependency",
+            "Id": "Microsoft.Extensions.Logging",
+            "Range": "[5.0.0, )"
+          },
+          {
+            "@id": "https://api.nuget.org/v3/catalog0/data/2021.08.10.16.43.41/microsoft.extensions.identity.core.5.0.9.json#dependencygroup/net5.0/microsoft.extensions.options",
+            "@type": "PackageDependency",
+            "Id": "Microsoft.Extensions.Options",
+            "Range": "[5.0.0, )"
+          }
+        ],
+        "TargetFramework": "net5.0"
+      },
+      {
+        "@id": "https://api.nuget.org/v3/catalog0/data/2021.08.10.16.43.41/microsoft.extensions.identity.core.5.0.9.json#dependencygroup/.netstandard2.0",
+        "@type": "PackageDependencyGroup",
+        "Dependencies": [
+          {
+            "@id": "https://api.nuget.org/v3/catalog0/data/2021.08.10.16.43.41/microsoft.extensions.identity.core.5.0.9.json#dependencygroup/.netstandard2.0/microsoft.aspnetcore.cryptography.keyderivation",
+            "@type": "PackageDependency",
+            "Id": "Microsoft.AspNetCore.Cryptography.KeyDerivation",
+            "Range": "[5.0.9, )"
+          },
+          {
+            "@id": "https://api.nuget.org/v3/catalog0/data/2021.08.10.16.43.41/microsoft.extensions.identity.core.5.0.9.json#dependencygroup/.netstandard2.0/microsoft.extensions.logging",
+            "@type": "PackageDependency",
+            "Id": "Microsoft.Extensions.Logging",
+            "Range": "[5.0.0, )"
+          },
+          {
+            "@id": "https://api.nuget.org/v3/catalog0/data/2021.08.10.16.43.41/microsoft.extensions.identity.core.5.0.9.json#dependencygroup/.netstandard2.0/microsoft.extensions.options",
+            "@type": "PackageDependency",
+            "Id": "Microsoft.Extensions.Options",
+            "Range": "[5.0.0, )"
+          },
+          {
+            "@id": "https://api.nuget.org/v3/catalog0/data/2021.08.10.16.43.41/microsoft.extensions.identity.core.5.0.9.json#dependencygroup/.netstandard2.0/system.componentmodel.annotations",
+            "@type": "PackageDependency",
+            "Id": "System.ComponentModel.Annotations",
+            "Range": "[5.0.0, )"
+          }
+        ],
+        "TargetFramework": ".NETStandard2.0"
+      }
+    ]
+  },
+  "Microsoft.Data.Sqlite.Core@5.0.9": {
+    "@id": "https://api.nuget.org/v3/catalog0/data/2021.08.10.16.46.04/microsoft.data.sqlite.core.5.0.9.json",
+    "@type": [
+      "PackageDetails",
+      "catalog:Permalink"
+    ],
+    "Authors": "Microsoft",
+    "Copyright": "© Microsoft Corporation. All rights reserved.",
+    "Created": "2021-08-10T16:43:46.74Z",
+    "Description": "Microsoft.Data.Sqlite is a lightweight ADO.NET provider for SQLite. This package does not include a copy of the native SQLite library.\n\nCommonly Used Types:\nMicrosoft.Data.Sqlite.SqliteCommand\nMicrosoft.Data.Sqlite.SqliteConnection\nMicrosoft.Data.Sqlite.SqliteConnectionStringBuilder\nMicrosoft.Data.Sqlite.SqliteDataReader\nMicrosoft.Data.Sqlite.SqliteException\nMicrosoft.Data.Sqlite.SqliteFactory\nMicrosoft.Data.Sqlite.SqliteParameter\nMicrosoft.Data.Sqlite.SqliteTransaction",
+    "IconFile": "Icon.png",
+    "Id": "Microsoft.Data.Sqlite.Core",
+    "IsPrerelease": false,
+    "LastEdited": "2021-08-10T16:45:49.813Z",
+    "LicenseExpression": "Apache-2.0",
+    "LicenseUrl": "https://licenses.nuget.org/Apache-2.0",
+    "Listed": true,
+    "MinClientVersion": "3.6",
+    "PackageHash": "GwzMuQyC8gxldeKghbNb25pQKbG3Weey0SiPgsu+/BDRcfsknoVlc4ziIY7q4aTpbpjU0tcRasjviizFD4WUqQ==",
+    "PackageHashAlgorithm": "SHA512",
+    "PackageSize": 102746,
+    "ProjectUrl": "https://docs.microsoft.com/dotnet/standard/data/sqlite/",
+    "Published": "2021-08-10T16:43:46.74Z",
+    "Repository": "",
+    "RequireLicenseAcceptance": true,
+    "Title": null,
+    "VerbatimVersion": "5.0.9",
+    "Version": "5.0.9",
+    "DependencyGroups": [
+      {
+        "@id": "https://api.nuget.org/v3/catalog0/data/2021.08.10.16.46.04/microsoft.data.sqlite.core.5.0.9.json#dependencygroup/.netstandard2.0",
+        "@type": "PackageDependencyGroup",
+        "Dependencies": [
+          {
+            "@id": "https://api.nuget.org/v3/catalog0/data/2021.08.10.16.46.04/microsoft.data.sqlite.core.5.0.9.json#dependencygroup/.netstandard2.0/sqlitepclraw.core",
+            "@type": "PackageDependency",
+            "Id": "SQLitePCLRaw.core",
+            "Range": "[2.0.4, )"
+          }
+        ],
+        "TargetFramework": ".NETStandard2.0"
+      }
+    ]
+  },
+  "Microsoft.AspNetCore.Cryptography.KeyDerivation@5.0.9": {
+    "@id": "https://api.nuget.org/v3/catalog0/data/2021.08.10.16.44.11/microsoft.aspnetcore.cryptography.keyderivation.5.0.9.json",
+    "@type": [
+      "PackageDetails",
+      "catalog:Permalink"
+    ],
+    "Authors": "Microsoft",
+    "Copyright": "© Microsoft Corporation. All rights reserved.",
+    "Created": "2021-08-10T16:42:14.8Z",
+    "Description": "ASP.NET Core utilities for key derivation.\n\nThis package was built from the source code at https://github.com/dotnet/aspnetcore/tree/c663adee8e64ba5d379fa0edfb8201984a7df7d0",
+    "IconFile": "Icon.png",
+    "Id": "Microsoft.AspNetCore.Cryptography.KeyDerivation",
+    "IsPrerelease": false,
+    "LastEdited": "2021-08-10T16:43:46.24Z",
+    "LicenseExpression": "Apache-2.0",
+    "LicenseUrl": "https://licenses.nuget.org/Apache-2.0",
+    "Listed": true,
+    "MinClientVersion": null,
+    "PackageHash": "/Bh4yyJ4e8uNkmSkLEb49Zubjcr/JTPkuhUYJvcXHeRT4Id9BRp0ZKzd1M1vTVoi4HkUln2PGuqbenSu2C5P/g==",
+    "PackageHashAlgorithm": "SHA512",
+    "PackageSize": 71922,
+    "ProjectUrl": "https://asp.net/",
+    "Published": "2021-08-10T16:42:14.8Z",
+    "Repository": "",
+    "RequireLicenseAcceptance": true,
+    "Title": null,
+    "VerbatimVersion": "5.0.9",
+    "Version": "5.0.9",
+    "DependencyGroups": [
+      {
+        "@id": "https://api.nuget.org/v3/catalog0/data/2021.08.10.16.44.11/microsoft.aspnetcore.cryptography.keyderivation.5.0.9.json#dependencygroup/.netframework4.6.1",
+        "@type": "PackageDependencyGroup",
+        "Dependencies": [
+          {
+            "@id": "https://api.nuget.org/v3/catalog0/data/2021.08.10.16.44.11/microsoft.aspnetcore.cryptography.keyderivation.5.0.9.json#dependencygroup/.netframework4.6.1/microsoft.aspnetcore.cryptography.internal",
+            "@type": "PackageDependency",
+            "Id": "Microsoft.AspNetCore.Cryptography.Internal",
+            "Range": "[5.0.9, )"
+          }
+        ],
+        "TargetFramework": ".NETFramework4.6.1"
+      },
+      {
+        "@id": "https://api.nuget.org/v3/catalog0/data/2021.08.10.16.44.11/microsoft.aspnetcore.cryptography.keyderivation.5.0.9.json#dependencygroup/net5.0",
+        "@type": "PackageDependencyGroup",
+        "Dependencies": [
+          {
+            "@id": "https://api.nuget.org/v3/catalog0/data/2021.08.10.16.44.11/microsoft.aspnetcore.cryptography.keyderivation.5.0.9.json#dependencygroup/net5.0/microsoft.aspnetcore.cryptography.internal",
+            "@type": "PackageDependency",
+            "Id": "Microsoft.AspNetCore.Cryptography.Internal",
+            "Range": "[5.0.9, )"
+          }
+        ],
+        "TargetFramework": "net5.0"
+      },
+      {
+        "@id": "https://api.nuget.org/v3/catalog0/data/2021.08.10.16.44.11/microsoft.aspnetcore.cryptography.keyderivation.5.0.9.json#dependencygroup/.netstandard2.0",
+        "@type": "PackageDependencyGroup",
+        "Dependencies": [
+          {
+            "@id": "https://api.nuget.org/v3/catalog0/data/2021.08.10.16.44.11/microsoft.aspnetcore.cryptography.keyderivation.5.0.9.json#dependencygroup/.netstandard2.0/microsoft.aspnetcore.cryptography.internal",
+            "@type": "PackageDependency",
+            "Id": "Microsoft.AspNetCore.Cryptography.Internal",
+            "Range": "[5.0.9, )"
+          }
+        ],
+        "TargetFramework": ".NETStandard2.0"
+      }
+    ]
+  },
+  "Microsoft.AspNetCore.Cryptography.Internal@5.0.9": {
+    "@id": "https://api.nuget.org/v3/catalog0/data/2021.08.10.16.44.38/microsoft.aspnetcore.cryptography.internal.5.0.9.json",
+    "@type": [
+      "PackageDetails",
+      "catalog:Permalink"
+    ],
+    "Authors": "Microsoft",
+    "Copyright": "© Microsoft Corporation. All rights reserved.",
+    "Created": "2021-08-10T16:42:12.75Z",
+    "Description": "Infrastructure for ASP.NET Core cryptographic packages. Applications and libraries should not reference this package directly.\n\nThis package was built from the source code at https://github.com/dotnet/aspnetcore/tree/c663adee8e64ba5d379fa0edfb8201984a7df7d0",
+    "IconFile": "Icon.png",
+    "Id": "Microsoft.AspNetCore.Cryptography.Internal",
+    "IsPrerelease": false,
+    "LastEdited": "2021-08-10T16:44:14.35Z",
+    "LicenseExpression": "Apache-2.0",
+    "LicenseUrl": "https://licenses.nuget.org/Apache-2.0",
+    "Listed": true,
+    "MinClientVersion": null,
+    "PackageHash": "GsemZvNYvBQCu5uxnXHtS4KWB2Zs4bnQuHYj3xVSRAE9153qEGIkjA12a80vEU3XaGewLCV57j9VvhXzMWsw4Q==",
+    "PackageHashAlgorithm": "SHA512",
+    "PackageSize": 98288,
+    "ProjectUrl": "https://asp.net/",
+    "Published": "2021-08-10T16:42:12.75Z",
+    "Repository": "",
+    "RequireLicenseAcceptance": true,
+    "Title": null,
+    "VerbatimVersion": "5.0.9",
+    "Version": "5.0.9",
+    "DependencyGroups": [
+      {
+        "@id": "https://api.nuget.org/v3/catalog0/data/2021.08.10.16.44.38/microsoft.aspnetcore.cryptography.internal.5.0.9.json#dependencygroup/.netframework4.6.1",
+        "@type": "PackageDependencyGroup",
+        "Dependencies": [],
+        "TargetFramework": ".NETFramework4.6.1"
+      },
+      {
+        "@id": "https://api.nuget.org/v3/catalog0/data/2021.08.10.16.44.38/microsoft.aspnetcore.cryptography.internal.5.0.9.json#dependencygroup/net5.0",
+        "@type": "PackageDependencyGroup",
+        "Dependencies": [],
+        "TargetFramework": "net5.0"
+      },
+      {
+        "@id": "https://api.nuget.org/v3/catalog0/data/2021.08.10.16.44.38/microsoft.aspnetcore.cryptography.internal.5.0.9.json#dependencygroup/.netstandard2.0",
         "@type": "PackageDependencyGroup",
         "Dependencies": [],
         "TargetFramework": ".NETStandard2.0"
