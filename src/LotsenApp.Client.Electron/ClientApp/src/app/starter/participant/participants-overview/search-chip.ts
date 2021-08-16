@@ -32,5 +32,5 @@ export interface SearchChip {
   key: string;
   displayKey?: string;
   value: string;
-  displayValue?:string;
+  displayValue?: string;
 }

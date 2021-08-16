@@ -33,13 +33,8 @@ import { Component, OnInit } from '@angular/core';
 @Component({
   selector: 'la2-save-configuration',
   templateUrl: './save-configuration.component.html',
-  styleUrls: ['./save-configuration.component.scss']
+  styleUrls: ['./save-configuration.component.scss'],
 })
-export class SaveConfigurationComponent implements OnInit {
-
-  constructor() { }
-
-  ngOnInit(): void {
-  }
-
+export class SaveConfigurationComponent {
+  constructor() {}
 }

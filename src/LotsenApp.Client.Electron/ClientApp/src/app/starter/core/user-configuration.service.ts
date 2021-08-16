@@ -39,9 +39,7 @@ import { UserConfiguration } from './user-configuration';
   providedIn: 'root',
 })
 export class UserConfigurationService {
-  constructor(
-    private httpClient: HttpClient,
-  ) {}
+  constructor(private httpClient: HttpClient) {}
 
   public async GetUserConfiguration(): Promise<UserConfiguration> {
     return await this.httpClient

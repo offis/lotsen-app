@@ -38,9 +38,8 @@ describe('LocalisationConfigurationComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ LocalisationConfigurationComponent ]
-    })
-    .compileComponents();
+      declarations: [LocalisationConfigurationComponent],
+    }).compileComponents();
   });
 
   beforeEach(() => {

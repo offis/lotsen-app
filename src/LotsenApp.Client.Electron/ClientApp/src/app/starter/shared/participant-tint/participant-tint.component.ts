@@ -28,19 +28,18 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-import {Component, Input, OnInit, EventEmitter, Output} from '@angular/core';
+import { Component, Input, OnInit, EventEmitter, Output } from '@angular/core';
 
 @Component({
   selector: 'la2-participant-tint',
   templateUrl: './participant-tint.component.html',
-  styleUrls: ['./participant-tint.component.scss']
+  styleUrls: ['./participant-tint.component.scss'],
 })
-export class ParticipantTintComponent implements OnInit {
-
+export class ParticipantTintComponent {
   private internalColor = '#0002';
 
   @Input()
-  set color (value: string) {
+  set color(value: string) {
     this.internalColor = value;
     this.colorChange.emit(value);
   }
@@ -50,9 +49,5 @@ export class ParticipantTintComponent implements OnInit {
   }
   @Output()
   colorChange = new EventEmitter<string>();
-  constructor() { }
-
-  ngOnInit(): void {
-  }
-
+  constructor() {}
 }

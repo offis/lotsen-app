@@ -28,21 +28,16 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-import {Component, Input, OnInit} from '@angular/core';
-import {SynchronisationConfiguration} from "../../../core/synchronisation-configuration";
+import { Component, Input, OnInit } from '@angular/core';
+import { SynchronisationConfiguration } from '../../../core/synchronisation-configuration';
 
 @Component({
   selector: 'la2-synchronization-configuration',
   templateUrl: './synchronization-configuration.component.html',
-  styleUrls: ['./synchronization-configuration.component.scss']
+  styleUrls: ['./synchronization-configuration.component.scss'],
 })
-export class SynchronizationConfigurationComponent implements OnInit {
-
+export class SynchronizationConfigurationComponent {
   @Input()
   configuration!: SynchronisationConfiguration;
-  constructor() { }
-
-  ngOnInit(): void {
-  }
-
+  constructor() {}
 }

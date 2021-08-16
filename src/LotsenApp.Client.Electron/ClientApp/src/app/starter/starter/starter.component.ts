@@ -35,14 +35,14 @@ import {
   OnInit,
   ViewChild,
 } from '@angular/core';
-import {MatSidenav} from '@angular/material/sidenav';
-import {TaskbarComponent} from '../taskbar/taskbar.component';
-import {Subscription} from 'rxjs';
-import {NavigationEnd, Router} from '@angular/router';
-import {ElectronService} from '../core/electron.service';
-import {UserService} from '../core/user.service';
-import {ReminderService} from '../core/reminder.service';
-import {UserConfigurationService} from '../core/user-configuration.service';
+import { MatSidenav } from '@angular/material/sidenav';
+import { TaskbarComponent } from '../taskbar/taskbar.component';
+import { Subscription } from 'rxjs';
+import { NavigationEnd, Router } from '@angular/router';
+import { ElectronService } from '../core/electron.service';
+import { UserService } from '../core/user.service';
+import { ReminderService } from '../core/reminder.service';
+import { UserConfigurationService } from '../core/user-configuration.service';
 
 @Component({
   selector: 'la2-starter',

@@ -39,11 +39,11 @@ import {
   ViewChild,
 } from '@angular/core';
 import Editor from '@toast-ui/editor';
-import {ReminderService} from '../../core/reminder.service';
-import {AbstractControl, FormControl, Validators} from '@angular/forms';
-import {Reminder} from '../../core/reminder';
-import {EventEmitter} from '@angular/core';
-import {Subscription} from 'rxjs';
+import { ReminderService } from '../../core/reminder.service';
+import { AbstractControl, FormControl, Validators } from '@angular/forms';
+import { Reminder } from '../../core/reminder';
+import { EventEmitter } from '@angular/core';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'la2-reminder-editor',
@@ -51,9 +51,9 @@ import {Subscription} from 'rxjs';
   styleUrls: ['./reminder-editor.component.scss'],
 })
 export class ReminderEditorComponent
-  implements OnInit, AfterViewInit, OnDestroy {
-  constructor(private reminderService: ReminderService) {
-  }
+  implements OnInit, AfterViewInit, OnDestroy
+{
+  constructor(private reminderService: ReminderService) {}
 
   titleControl = new FormControl(null, Validators.required);
   timeControl = new FormControl(null, Validators.required);
@@ -122,30 +122,21 @@ export class ReminderEditorComponent
   private editor!: Editor;
   private subscriptions: Subscription[] = [];
   private items = [
-    ['heading',
-      'bold',
-      'italic',
-      'strike',
-    ],
-    ['hr',
-      'quote',
-    ],
+    ['heading', 'bold', 'italic', 'strike'],
+    ['hr', 'quote'],
     [
       'ul',
       'ol',
       // 'task',
       'indent',
-      'outdent'
+      'outdent',
     ],
     [
       'table',
       // 'image',
       // 'link',
     ],
-    [
-      'code',
-      'codeblock',
-    ]
+    ['code', 'codeblock'],
   ];
 
   private static formatStringDate(date: string): Date {
@@ -210,8 +201,8 @@ export class ReminderEditorComponent
         startDate.setMinutes(startDate.getMinutes() + 15);
         this.timeEndControl.setValue(
           `${startDate.getHours()}`.padStart(2, '0') +
-          ':' +
-          `${startDate.getMinutes()}`.padStart(2, '0')
+            ':' +
+            `${startDate.getMinutes()}`.padStart(2, '0')
         );
         if (
           this.dateEndControl.value === this.dateControl.value ||
@@ -280,7 +271,6 @@ export class ReminderEditorComponent
         reminderId: this.reminderId ?? null,
         actionUrl: this.actionUrl ?? null,
       };
-
 
       if (this.reminderId) {
         await this.reminderService.updateReminder(reminder);

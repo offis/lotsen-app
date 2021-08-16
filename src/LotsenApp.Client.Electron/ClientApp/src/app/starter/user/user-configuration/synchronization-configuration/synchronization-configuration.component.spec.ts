@@ -38,9 +38,8 @@ describe('SynchronizationConfigurationComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ SynchronizationConfigurationComponent ]
-    })
-    .compileComponents();
+      declarations: [SynchronizationConfigurationComponent],
+    }).compileComponents();
   });
 
   beforeEach(() => {

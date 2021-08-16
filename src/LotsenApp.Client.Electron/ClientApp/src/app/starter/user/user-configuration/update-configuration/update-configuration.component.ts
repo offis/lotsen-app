@@ -28,21 +28,16 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-import {Component, Input, OnInit} from '@angular/core';
-import {UpdateConfiguration} from "../../../core/update-configuration";
+import { Component, Input, OnInit } from '@angular/core';
+import { UpdateConfiguration } from '../../../core/update-configuration';
 
 @Component({
   selector: 'la2-update-configuration',
   templateUrl: './update-configuration.component.html',
-  styleUrls: ['./update-configuration.component.scss']
+  styleUrls: ['./update-configuration.component.scss'],
 })
-export class UpdateConfigurationComponent implements OnInit {
-
+export class UpdateConfigurationComponent {
   @Input()
   configuration!: UpdateConfiguration;
-  constructor() { }
-
-  ngOnInit(): void {
-  }
-
+  constructor() {}
 }

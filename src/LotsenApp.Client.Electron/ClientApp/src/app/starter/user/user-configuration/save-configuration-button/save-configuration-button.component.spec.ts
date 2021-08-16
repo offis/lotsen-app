@@ -38,9 +38,8 @@ describe('SaveConfigurationButtonComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ SaveConfigurationButtonComponent ]
-    })
-    .compileComponents();
+      declarations: [SaveConfigurationButtonComponent],
+    }).compileComponents();
   });
 
   beforeEach(() => {

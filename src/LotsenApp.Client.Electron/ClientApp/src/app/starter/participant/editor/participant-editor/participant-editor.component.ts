@@ -526,7 +526,9 @@ export class ParticipantEditorComponent implements OnInit, OnDestroy {
   }
 
   async editMetadata() {
-    await this.router.navigate([`/www/participant/editor/${this.participant.id}/metadata`]);
+    await this.router.navigate([
+      `/www/participant/editor/${this.participant.id}/metadata`,
+    ]);
   }
 
   private removeDocument(

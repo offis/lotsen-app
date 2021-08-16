@@ -28,17 +28,16 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-import {Component, Input, OnInit} from '@angular/core';
-import {FormControl, Validators} from "@angular/forms";
-import {IProject} from "../../participant/iproject";
+import { Component, Input, OnInit } from '@angular/core';
+import { FormControl, Validators } from '@angular/forms';
+import { IProject } from '../../participant/iproject';
 
 @Component({
   selector: 'la2-participant-project',
   templateUrl: './participant-project.component.html',
-  styleUrls: ['./participant-project.component.scss']
+  styleUrls: ['./participant-project.component.scss'],
 })
-export class ParticipantProjectComponent implements OnInit {
-
+export class ParticipantProjectComponent {
   @Input()
   selectedProject = new FormControl('');
   @Input()
@@ -48,9 +47,5 @@ export class ParticipantProjectComponent implements OnInit {
   projects: IProject[] = [];
   @Input()
   documents: IProject[] = [];
-  constructor() { }
-
-  ngOnInit(): void {
-  }
-
+  constructor() {}
 }

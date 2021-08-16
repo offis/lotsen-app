@@ -38,9 +38,8 @@ describe('CreateFabButtonComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ CreateFabButtonComponent ]
-    })
-    .compileComponents();
+      declarations: [CreateFabButtonComponent],
+    }).compileComponents();
   });
 
   beforeEach(() => {

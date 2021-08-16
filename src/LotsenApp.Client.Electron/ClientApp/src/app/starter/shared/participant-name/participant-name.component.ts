@@ -28,16 +28,24 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-import {Component, ElementRef, EventEmitter, Input, OnInit, Output, TemplateRef, ViewChild} from '@angular/core';
-import {FormControl, Validators} from "@angular/forms";
+import {
+  Component,
+  ElementRef,
+  EventEmitter,
+  Input,
+  OnInit,
+  Output,
+  TemplateRef,
+  ViewChild,
+} from '@angular/core';
+import { FormControl, Validators } from '@angular/forms';
 
 @Component({
   selector: 'la2-participant-name',
   templateUrl: './participant-name.component.html',
-  styleUrls: ['./participant-name.component.scss']
+  styleUrls: ['./participant-name.component.scss'],
 })
-export class ParticipantNameComponent implements OnInit {
-
+export class ParticipantNameComponent {
   @Input()
   nameControl = new FormControl('', [Validators.required]);
   @Input()
@@ -49,14 +57,9 @@ export class ParticipantNameComponent implements OnInit {
   @ViewChild('nameField')
   nameField!: ElementRef;
 
-
-  constructor() { }
-
-  ngOnInit(): void {
-  }
+  constructor() {}
 
   focus() {
     setTimeout(() => this.nameField.nativeElement.focus(), 300);
   }
-
 }

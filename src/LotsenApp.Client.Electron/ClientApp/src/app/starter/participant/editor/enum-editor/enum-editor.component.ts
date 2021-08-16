@@ -116,7 +116,7 @@ export class EnumEditorComponent implements OnInit, OnDestroy {
       this.fieldDetail.type.values?.split(',').map((v) => v.trim()) ?? [];
     this.options = this.options.filter((o) => o !== 'custom');
     const displayValuesDetail = this.fieldDetail.type.displayValues ?? {};
-    if(Object.keys(displayValuesDetail).length > 0) {
+    if (Object.keys(displayValuesDetail).length > 0) {
       this.displayValues = this.options.map((o) => {
         return {
           key: o,

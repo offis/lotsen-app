@@ -38,9 +38,8 @@ describe('ConfigurationNavigationComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ ConfigurationNavigationComponent ]
-    })
-    .compileComponents();
+      declarations: [ConfigurationNavigationComponent],
+    }).compileComponents();
   });
 
   beforeEach(() => {

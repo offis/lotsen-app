@@ -28,26 +28,25 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-import {Component, OnInit, ViewChild} from '@angular/core';
-import {ParticipantService} from "../../participant.service";
-import {IParticipant} from "../../iparticipant";
-import {ActivatedRoute} from "@angular/router";
-import {ParticipantNameComponent} from "../../../shared/participant-name/participant-name.component";
-import {ParticipantProjectComponent} from "../../../shared/participant-project/participant-project.component";
-import {ParticipantTintComponent} from "../../../shared/participant-tint/participant-tint.component";
-import {ProjectService} from "../../project.service";
-import {IProject} from "../../iproject";
-import {FormControl} from "@angular/forms";
-import {MatSnackBar} from "@angular/material/snack-bar";
-import {TranslateService} from "@ngx-translate/core";
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { ParticipantService } from '../../participant.service';
+import { IParticipant } from '../../iparticipant';
+import { ActivatedRoute } from '@angular/router';
+import { ParticipantNameComponent } from '../../../shared/participant-name/participant-name.component';
+import { ParticipantProjectComponent } from '../../../shared/participant-project/participant-project.component';
+import { ParticipantTintComponent } from '../../../shared/participant-tint/participant-tint.component';
+import { ProjectService } from '../../project.service';
+import { IProject } from '../../iproject';
+import { FormControl } from '@angular/forms';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'la2-participant-metadata-editor',
   templateUrl: './participant-metadata-editor.component.html',
-  styleUrls: ['./participant-metadata-editor.component.scss']
+  styleUrls: ['./participant-metadata-editor.component.scss'],
 })
 export class ParticipantMetadataEditorComponent implements OnInit {
-
   participant!: IParticipant;
   projects: IProject[] = [];
   documents: IProject[] = [];
@@ -61,11 +60,13 @@ export class ParticipantMetadataEditorComponent implements OnInit {
   @ViewChild('tintComponent')
   tintComponent!: ParticipantTintComponent;
 
-  constructor(private participantService: ParticipantService,
-              private projectService: ProjectService,
-              private route: ActivatedRoute,
-              private snackBar: MatSnackBar,
-              private translateService: TranslateService) { }
+  constructor(
+    private participantService: ParticipantService,
+    private projectService: ProjectService,
+    private route: ActivatedRoute,
+    private snackBar: MatSnackBar,
+    private translateService: TranslateService
+  ) {}
 
   async ngOnInit() {
     const id = this.route.snapshot.params['id'];
@@ -82,15 +83,13 @@ export class ParticipantMetadataEditorComponent implements OnInit {
   }
 
   async save() {
-    const dismiss = this.translateService.instant(
-      'Application.Errors.Dismiss'
-    );
+    const dismiss = this.translateService.instant('Application.Errors.Dismiss');
     try {
       await this.participantService.UpdateHeader({
         participantId: this.participant.id,
         name: this.nameControl.value,
         icon: this.participant.header.icon[0],
-        tint: this.participant.header.tint[0]
+        tint: this.participant.header.tint[0],
       });
       // Show save confirmation
       const message = this.translateService.instant(
@@ -99,7 +98,7 @@ export class ParticipantMetadataEditorComponent implements OnInit {
       this.snackBar.open(message, dismiss, {
         duration: 5000,
       });
-    } catch(error) {
+    } catch (error) {
       console.error(error);
       const message = this.translateService.instant(
         'Application.ParticipantMetadataEditor.SaveFailure'
@@ -108,6 +107,5 @@ export class ParticipantMetadataEditorComponent implements OnInit {
         duration: 5000,
       });
     }
-
   }
 }

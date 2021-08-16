@@ -31,12 +31,12 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { EditorComponent } from './editor/editor.component';
-import {ParticipantMetadataEditorComponent} from "./participant-metadata-editor/participant-metadata-editor.component";
+import { ParticipantMetadataEditorComponent } from './participant-metadata-editor/participant-metadata-editor.component';
 
 const routes: Routes = [
   {
     path: ':id/metadata',
-    component: ParticipantMetadataEditorComponent
+    component: ParticipantMetadataEditorComponent,
   },
   {
     path: '',

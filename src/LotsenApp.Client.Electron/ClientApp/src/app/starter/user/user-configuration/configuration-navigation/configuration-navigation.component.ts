@@ -37,13 +37,11 @@ import { DOCUMENT } from '@angular/common';
   templateUrl: './configuration-navigation.component.html',
   styleUrls: ['./configuration-navigation.component.scss'],
 })
-export class ConfigurationNavigationComponent implements OnInit {
+export class ConfigurationNavigationComponent {
   constructor(
     private router: Router,
     @Inject(DOCUMENT) private document: Document
   ) {}
-
-  ngOnInit(): void {}
 
   async navigateTo(fragment: string) {
     // await this.router.navigate(['./'], { fragment: fragment });

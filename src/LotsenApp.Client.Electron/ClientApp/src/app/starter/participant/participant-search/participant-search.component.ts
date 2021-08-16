@@ -28,17 +28,24 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-import {Component, ElementRef, HostListener, Input, OnInit, ViewChild,} from '@angular/core';
-import {FormControl} from '@angular/forms';
-import {SearchChip} from '../participants-overview/search-chip';
-import {COMMA, ENTER, SEMICOLON} from '@angular/cdk/keycodes';
-import {IParticipant} from '../iparticipant';
-import {MatChipInputEvent} from '@angular/material/chips';
-import {ParticipantService} from "../participant.service";
-import {HeaderEntryDto} from "../header-entry-dto";
-import {HeaderValueDto} from "../header-value-dto";
-import {DataType} from "../data-type.enum";
-import {UserConfiguration} from "../../core/user-configuration";
+import {
+  Component,
+  ElementRef,
+  HostListener,
+  Input,
+  OnInit,
+  ViewChild,
+} from '@angular/core';
+import { FormControl } from '@angular/forms';
+import { SearchChip } from '../participants-overview/search-chip';
+import { COMMA, ENTER, SEMICOLON } from '@angular/cdk/keycodes';
+import { IParticipant } from '../iparticipant';
+import { MatChipInputEvent } from '@angular/material/chips';
+import { ParticipantService } from '../participant.service';
+import { HeaderEntryDto } from '../header-entry-dto';
+import { HeaderValueDto } from '../header-value-dto';
+import { DataType } from '../data-type.enum';
+import { UserConfiguration } from '../../core/user-configuration';
 
 @Component({
   selector: 'la2-participant-search',
@@ -142,7 +149,8 @@ export class ParticipantSearchComponent implements OnInit {
           case 'createdat':
             return p.createdAt.startsWith(chip.value);
           default:
-            return p.header[chip.key]?.join(' ')
+            return p.header[chip.key]
+              ?.join(' ')
               .split(' ')
               .some((h) => h.startsWith(chip.value));
         }
@@ -154,14 +162,17 @@ export class ParticipantSearchComponent implements OnInit {
 
   addChip(field: HeaderEntryDto, value: HeaderValueDto) {
     let displayValue = value.i18NKey ?? value.value;
-    if(field.dataType === DataType.BOOLEAN) {
-      displayValue = value.value === 'true' ? 'Application.BooleanEditor.Yes' : 'Application.BooleanEditor.No';
+    if (field.dataType === DataType.BOOLEAN) {
+      displayValue =
+        value.value === 'true'
+          ? 'Application.BooleanEditor.Yes'
+          : 'Application.BooleanEditor.No';
     }
     this.searchChips.push({
       key: field.fieldId.trim().toLowerCase(),
       displayKey: field.i18NKey ?? field.name,
       value: value.value,
-      displayValue: displayValue
+      displayValue: displayValue,
     });
     this.filterParticipants();
   }

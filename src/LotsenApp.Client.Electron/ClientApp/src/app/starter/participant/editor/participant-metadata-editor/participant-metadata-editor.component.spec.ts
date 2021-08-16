@@ -38,9 +38,8 @@ describe('ParticipantMetadataEditorComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ ParticipantMetadataEditorComponent ]
-    })
-    .compileComponents();
+      declarations: [ParticipantMetadataEditorComponent],
+    }).compileComponents();
   });
 
   beforeEach(() => {

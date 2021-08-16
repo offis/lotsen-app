@@ -36,7 +36,7 @@ import { EDisplayMode } from '../../core/edisplay-mode.enum';
   templateUrl: './project-display.component.html',
   styleUrls: ['./project-display.component.scss'],
 })
-export class ProjectDisplayComponent implements OnInit {
+export class ProjectDisplayComponent {
   private groupingInternal = `${EDisplayMode.Automatic}`;
   EDisplayMode = EDisplayMode;
   verticalToggles = false;
@@ -57,6 +57,4 @@ export class ProjectDisplayComponent implements OnInit {
   groupingChange = new EventEmitter<string>();
 
   constructor() {}
-
-  ngOnInit(): void {}
 }

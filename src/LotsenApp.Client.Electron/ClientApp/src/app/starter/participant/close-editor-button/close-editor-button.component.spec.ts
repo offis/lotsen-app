@@ -38,9 +38,8 @@ describe('CloseEditorButtonComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ CloseEditorButtonComponent ]
-    })
-    .compileComponents();
+      declarations: [CloseEditorButtonComponent],
+    }).compileComponents();
   });
 
   beforeEach(() => {

@@ -38,9 +38,8 @@ describe('ParticipantTintComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ ParticipantTintComponent ]
-    })
-    .compileComponents();
+      declarations: [ParticipantTintComponent],
+    }).compileComponents();
   });
 
   beforeEach(() => {

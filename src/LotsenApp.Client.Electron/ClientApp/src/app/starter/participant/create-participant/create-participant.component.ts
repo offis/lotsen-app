@@ -46,8 +46,8 @@ import { Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 import { ParticipantService } from '../participant.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import {ParticipantNameComponent} from "../../shared/participant-name/participant-name.component";
-import {ProjectService} from "../project.service";
+import { ParticipantNameComponent } from '../../shared/participant-name/participant-name.component';
+import { ProjectService } from '../project.service';
 
 @Component({
   selector: 'la2-create-participant',

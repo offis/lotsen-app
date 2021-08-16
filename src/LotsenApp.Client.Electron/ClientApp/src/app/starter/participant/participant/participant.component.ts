@@ -33,13 +33,8 @@ import { Component, OnInit } from '@angular/core';
 @Component({
   selector: 'la2-participant',
   templateUrl: './participant.component.html',
-  styleUrls: ['./participant.component.scss']
+  styleUrls: ['./participant.component.scss'],
 })
-export class ParticipantComponent implements OnInit {
-
-  constructor() { }
-
-  ngOnInit(): void {
-  }
-
+export class ParticipantComponent {
+  constructor() {}
 }

@@ -28,8 +28,8 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-import {DataType} from "./data-type.enum";
-import {HeaderValueDto} from "./header-value-dto";
+import { DataType } from './data-type.enum';
+import { HeaderValueDto } from './header-value-dto';
 
 export interface HeaderEntryDto {
   fieldId: string;

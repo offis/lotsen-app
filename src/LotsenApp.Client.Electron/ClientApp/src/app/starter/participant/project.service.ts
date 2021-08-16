@@ -120,8 +120,6 @@ export class ProjectService {
   }
 
   public GetDocumentationProjects() {
-    return this.httpClient
-      .get<IProject[]>('/api/project/document')
-      .toPromise();
+    return this.httpClient.get<IProject[]>('/api/project/document').toPromise();
   }
 }

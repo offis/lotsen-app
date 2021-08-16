@@ -31,7 +31,7 @@
 import { Component, OnInit } from '@angular/core';
 import { UserConfigurationService } from '../../../core/user-configuration.service';
 import { UserConfiguration } from '../../../core/user-configuration';
-import {ElectronService} from "../../../core/electron.service";
+import { ElectronService } from '../../../core/electron.service';
 
 @Component({
   selector: 'la2-user-configuration',

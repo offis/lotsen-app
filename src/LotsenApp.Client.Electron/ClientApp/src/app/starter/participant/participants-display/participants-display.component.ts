@@ -28,7 +28,7 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-import {Component, Input, OnInit} from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { IProject } from '../iproject';
 import { IParticipant } from '../iparticipant';
 import { Subscription } from 'rxjs';
@@ -57,7 +57,8 @@ export class ParticipantsDisplayComponent implements OnInit {
   constructor(private configurationService: UserConfigurationService) {}
 
   async ngOnInit() {
-    const configuration = await this.configurationService.GetUserConfiguration();
+    const configuration =
+      await this.configurationService.GetUserConfiguration();
     this.dateFormat = configuration.localisationConfiguration.dateFormat;
   }
 }

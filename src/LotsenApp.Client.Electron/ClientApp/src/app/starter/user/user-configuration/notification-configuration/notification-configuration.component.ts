@@ -28,21 +28,16 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-import {Component, Input, OnInit} from '@angular/core';
-import {NotificationConfiguration} from "../../../core/notification-configuration";
+import { Component, Input, OnInit } from '@angular/core';
+import { NotificationConfiguration } from '../../../core/notification-configuration';
 
 @Component({
   selector: 'la2-notification-configuration',
   templateUrl: './notification-configuration.component.html',
-  styleUrls: ['./notification-configuration.component.scss']
+  styleUrls: ['./notification-configuration.component.scss'],
 })
-export class NotificationConfigurationComponent implements OnInit {
-
+export class NotificationConfigurationComponent {
   @Input()
   configuration!: NotificationConfiguration;
-  constructor() { }
-
-  ngOnInit(): void {
-  }
-
+  constructor() {}
 }

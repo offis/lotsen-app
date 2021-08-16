@@ -36,7 +36,6 @@ import { Injectable } from '@angular/core';
   providedIn: 'root',
 })
 export class PaginatorIntl extends MatPaginatorIntl {
-
   /** A label for the range of items within the current page and the length of the whole list. */
   getRangeLabel = (page: number, pageSize: number, length: number) => {
     page++;

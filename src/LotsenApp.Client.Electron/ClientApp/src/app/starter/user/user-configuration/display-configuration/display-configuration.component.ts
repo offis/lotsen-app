@@ -38,7 +38,7 @@ import { DOCUMENT } from '@angular/common';
   templateUrl: './display-configuration.component.html',
   styleUrls: ['./display-configuration.component.scss'],
 })
-export class DisplayConfigurationComponent implements OnInit {
+export class DisplayConfigurationComponent {
   @Input()
   configuration!: DisplayConfiguration;
 
@@ -47,11 +47,12 @@ export class DisplayConfigurationComponent implements OnInit {
     private renderer: Renderer2
   ) {}
 
-  ngOnInit(): void {}
-
   updateTheme(event: MatSelectChange) {
     console.log(event, this.configuration);
-    this.renderer.removeClass(this.document.body, this.configuration.theme === 'light-theme' ? 'dark-theme': 'light-theme');
+    this.renderer.removeClass(
+      this.document.body,
+      this.configuration.theme === 'light-theme' ? 'dark-theme' : 'light-theme'
+    );
     this.renderer.addClass(this.document.body, event.value);
   }
 }

@@ -28,9 +28,9 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-import {Component, HostListener, OnInit, ViewChild} from '@angular/core';
+import { Component, HostListener, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
-import {MatButton} from "@angular/material/button";
+import { MatButton } from '@angular/material/button';
 
 @Component({
   selector: 'la2-create-fab-button',
@@ -38,7 +38,6 @@ import {MatButton} from "@angular/material/button";
   styleUrls: ['./create-fab-button.component.scss'],
 })
 export class CreateFabButtonComponent {
-
   @ViewChild('createButton')
   createButton!: MatButton;
   constructor(private router: Router) {}

@@ -36,10 +36,8 @@ import { Router } from '@angular/router';
   templateUrl: './close-editor-button.component.html',
   styleUrls: ['./close-editor-button.component.scss'],
 })
-export class CloseEditorButtonComponent implements OnInit {
+export class CloseEditorButtonComponent {
   constructor(private router: Router) {}
-
-  ngOnInit(): void {}
 
   async closeChildren(): Promise<void> {
     await this.router.navigate(['/www/participant']);

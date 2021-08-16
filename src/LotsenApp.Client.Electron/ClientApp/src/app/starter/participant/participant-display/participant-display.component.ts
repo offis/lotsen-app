@@ -53,5 +53,4 @@ export class ParticipantDisplayComponent {
   @Output()
   listViewChange = new EventEmitter<string>();
   constructor() {}
-
 }

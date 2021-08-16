@@ -44,9 +44,9 @@ import { DocumentValue } from './document-value';
 import { GroupValue } from './group-value';
 import { DocumentRename } from './document-rename';
 import { SpecificDocumentDto } from './specific-document-dto';
-import {HeaderEntryDto} from "./header-entry-dto";
-import {HeaderDto} from "./header-dto";
-import {HeaderEditDto} from "./header-edit-dto";
+import { HeaderEntryDto } from './header-entry-dto';
+import { HeaderDto } from './header-dto';
+import { HeaderEditDto } from './header-edit-dto';
 
 @Injectable({
   providedIn: 'root',
@@ -265,23 +265,16 @@ export class ParticipantService {
 
   public GetHeaderEntryDtos(): Promise<HeaderEntryDto[]> {
     return this.httpClient
-      .get<HeaderEntryDto[]>(
-        `/api/participants/header`)
+      .get<HeaderEntryDto[]>(`/api/participants/header`)
       .toPromise();
   }
 
   public async AddHeaderEntry(dto: HeaderDto): Promise<void> {
-    await this.httpClient
-      .post(
-        `/api/participants/header`, dto)
-      .toPromise();
+    await this.httpClient.post(`/api/participants/header`, dto).toPromise();
   }
 
   public async RemoveHeaderEntry(dto: HeaderDto): Promise<void> {
-    await this.httpClient
-      .put(
-        `/api/participants/header`, dto)
-      .toPromise();
+    await this.httpClient.put(`/api/participants/header`, dto).toPromise();
   }
 
   public RenameDocument(
@@ -297,6 +290,8 @@ export class ParticipantService {
   }
 
   public UpdateHeader(dto: HeaderEditDto) {
-    return this.httpClient.post(`/api/participants/${dto.participantId}/header`, dto).toPromise();
+    return this.httpClient
+      .post(`/api/participants/${dto.participantId}/header`, dto)
+      .toPromise();
   }
 }
