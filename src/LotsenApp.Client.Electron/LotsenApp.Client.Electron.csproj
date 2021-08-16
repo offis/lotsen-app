@@ -39,9 +39,9 @@
     <Company>OFFIS e.V.</Company>
     <Copyright>© 2021 OFFIS e.V.</Copyright>
     <PackageIcon>splashscreen.png</PackageIcon>
-    <AssemblyVersion>2.0.7.0</AssemblyVersion>
-    <FileVersion>2.0.7.0</FileVersion>
-    <PackageVersion>2.0.7-alpha</PackageVersion>
+    <AssemblyVersion>2.1.0.0</AssemblyVersion>
+    <FileVersion>2.1.0.0</FileVersion>
+    <PackageVersion>2.1.0-alpha</PackageVersion>
     <LangVersion>9</LangVersion>
   </PropertyGroup>
   <ItemGroup>

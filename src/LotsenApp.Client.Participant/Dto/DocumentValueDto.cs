@@ -25,6 +25,9 @@
 // OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
 // OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
+using System;
+using System.Linq;
+
 namespace LotsenApp.Client.Participant.Dto
 {
     public class DocumentValueDto
@@ -33,7 +36,19 @@ namespace LotsenApp.Client.Participant.Dto
         public string DocumentId { get; set; }
         public string Name { get; set; }
         public bool IsDelta { get; set; }
-        public FieldDto[] Fields { get; set; }
-        public GroupDto[] Groups { get; set; }
+        public FieldDto[] Fields { get; set; } = Array.Empty<FieldDto>();
+        public GroupDto[] Groups { get; set; } = Array.Empty<GroupDto>();
+
+        public UpdateDocumentDto AsUpdateDto()
+        {
+            var updateDto = new UpdateDocumentDto
+            {
+                Id = Id,
+                Name = Name,
+                Fields = Fields.Cast<UpdateFieldDto>().ToArray(),
+                Groups = Groups.Cast<UpdateGroupDto>().ToArray()
+            };
+            return updateDto;
+        }
     }
 }

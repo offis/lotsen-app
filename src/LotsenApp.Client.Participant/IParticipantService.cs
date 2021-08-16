@@ -42,6 +42,7 @@ namespace LotsenApp.Client.Participant
 
         Task<ParticipantDocumentDto> GetDocumentsForUser(string userId, string participantId);
         Task<DocumentDto> GetDocumentForUser(string userId, string participantId, string documentId);
+        Task CopyValues(string userId, string participantId, string documentId, string documentId2, bool preserve);
 
         Task<IdentifierResponse> CreateDocument(string userId, string participantId, CreateDocumentDto createDocumentDto);
 

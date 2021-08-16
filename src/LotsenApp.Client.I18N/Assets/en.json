@@ -102,7 +102,12 @@
 		},
 		"DocumentOverviewDisplay": {
 			"Delete": "Delete document",
-			"NewDocument": "New document"
+			"NewDocument": "New document",
+			"CopyValues": "Copy values from",
+			"PreserveCopy": "and preserve existing values",
+			"PreserveCopyTooltip": "Existing values are retained and missing values are inserted.",
+			"OverwriteCopy": "and overwrite values",
+			"OverwriteCopyTooltip": "Existing values are discarded and all values will be copied."
 		},
 		"DoubleEditor": {
 			"MaxError": "A maximum of {{max}} is allowed",

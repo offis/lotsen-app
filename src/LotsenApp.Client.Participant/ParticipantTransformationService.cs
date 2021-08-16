@@ -332,6 +332,67 @@ namespace LotsenApp.Client.Participant
             return await _participantCryptographyService.EncryptHeaderAsync(model, userId, decryptedHeader);
         }
 
+        public Task<DocumentValueDto> CopyValues(DocumentValueDto document1, DocumentValueDto document2, bool preserve)
+        {
+            if (document1.DocumentId != document2.DocumentId)
+            {
+                return Task.FromResult(document1);
+            }
+
+            document1.Groups = CopyGroups(document1.Groups, document2.Groups, preserve);
+            document1.Fields = CopyFields(document1.Fields, document2.Fields, preserve);
+            return Task.FromResult(document1);
+        }
+
+        internal GroupDto[] CopyGroups(GroupDto[] group1, GroupDto[] group2, bool preserve)
+        {
+            var groups = new List<GroupDto>();
+            if (preserve)
+            {
+                groups.AddRange(group1);
+            }
+            for (var i = 0; i < group2.Length; i++)
+            {
+                var currentGroup2 = group2[i];
+                if (i >= group1.Length || preserve)
+                {
+                    groups.Add(currentGroup2);
+                    continue;
+                }
+
+                var currentGroup1 = group1[i];
+                currentGroup1.Id = currentGroup2.Id;
+                currentGroup1.GroupId = currentGroup2.GroupId;
+                currentGroup1.Children = CopyGroups(currentGroup1.Children, currentGroup2.Children, false);
+                currentGroup1.Fields = CopyFields(currentGroup1.Fields, currentGroup2.Fields, false);
+                groups.Add(currentGroup1);
+            }
+            return groups.ToArray();
+        }
+
+        internal FieldDto[] CopyFields(FieldDto[] fields1, FieldDto[] fields2, bool preserve)
+        {
+            var fields = fields1.ToDictionary(k => k.Id, v => v);
+            foreach (var field in fields2)
+            {
+                if (!fields.ContainsKey(field.Id))
+                {
+                    fields.Add(field.Id, field);
+                    continue;
+                }
+
+                if (preserve && !string.IsNullOrEmpty(fields[field.Id].Value) || string.IsNullOrEmpty(field.Value))
+                {
+                    continue;
+                }
+
+                var candidate = fields[field.Id];
+                candidate.Value = field.Value;
+                candidate.UseDisplay = field.UseDisplay;
+            }
+            return fields.Values.ToArray();
+        }
+
         internal IDictionary<string, List<string>> UpdateParticipantHeader(
             IDictionary<string, List<string>> decryptedHeader, HeaderEditDto dto)
         {

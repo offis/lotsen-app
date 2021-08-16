@@ -294,4 +294,17 @@ export class ParticipantService {
       .post(`/api/participants/${dto.participantId}/header`, dto)
       .toPromise();
   }
+
+  public CopyDocumentValues(
+    participantId: string,
+    documentId: string,
+    documentId2: string,
+    preserve: boolean
+  ) {
+    return this.httpClient
+      .get(
+        `/api/participants/${participantId}/document/${documentId}/copy/${documentId2}?preserve=${preserve}`
+      )
+      .toPromise();
+  }
 }

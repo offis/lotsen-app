@@ -51,7 +51,15 @@ export class DocumentOverviewDisplayComponent implements OnInit {
   @Input()
   participant!: IParticipant;
 
+  @Input()
+  similarDocuments: DocumentDto[] = [];
+
+  get otherDocuments() {
+    return this.similarDocuments.filter((d) => d.id !== this.documentDto.id);
+  }
+
   subDocuments: Displayable[] = [];
+
   constructor(
     private participantService: ParticipantService,
     private projectService: ProjectService,
@@ -108,5 +116,30 @@ export class DocumentOverviewDisplayComponent implements OnInit {
         openDocument: idResponse.id,
       },
     });
+  }
+
+  async performAction(documentDto: DocumentDto) {
+    console.log(documentDto);
+    await this.preserveCopy(documentDto);
+  }
+
+  async preserveCopy(documentDto: DocumentDto) {
+    await this.participantService.CopyDocumentValues(
+      this.participant.id,
+      this.documentDto.id,
+      documentDto.id,
+      true
+    );
+    console.log('PreserveCopy success');
+  }
+
+  async overwriteCopy(documentDto: DocumentDto) {
+    await this.participantService.CopyDocumentValues(
+      this.participant.id,
+      this.documentDto.id,
+      documentDto.id,
+      false
+    );
+    console.log('OverwriteCopy success');
   }
 }

@@ -154,6 +154,16 @@ namespace LotsenApp.Client.Participant
             return Ok(await _participantService.GetDocumentForUser(user.Id, participantId, documentId));
 
         }
+        
+        [HttpGet("{participantId}/document/{documentId}/copy/{documentId2}")]
+        [Authorize]
+        public async Task<IActionResult> CopyValuesForDocument([FromRoute] string participantId, [FromRoute] string documentId, [FromRoute] string documentId2, [FromQuery] bool preserve = true)
+        {
+            var user = await _userManager.GetUserAsync(HttpContext.User);
+            _logger.LogInformation($"Specific document {documentId} for user {user.Id} and participant {participantId} requested");
+            await _participantService.CopyValues(user.Id, participantId, documentId, documentId2, preserve);
+            return Ok();
+        }
 
         [HttpPost("{participantId}/document")]
         [Authorize]

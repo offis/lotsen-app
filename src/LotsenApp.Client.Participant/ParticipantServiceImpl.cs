@@ -120,6 +120,14 @@ namespace LotsenApp.Client.Participant
             }
         }
 
+        public async Task CopyValues(string userId, string participantId, string documentId, string documentId2, bool preserve)
+        {
+            var document1 = await GetDocumentValues(userId, participantId, documentId);
+            var document2 = await GetDocumentValues(userId, participantId, documentId2);
+            var updatedDocument = await _transformationService.CopyValues(document1, document2, preserve);
+            await UpdateDocument(userId, participantId, updatedDocument.AsUpdateDto());
+        }
+
         public async Task<IdentifierResponse> CreateDocument(string userId, string participantId,
             CreateDocumentDto createDocumentDto)
         {

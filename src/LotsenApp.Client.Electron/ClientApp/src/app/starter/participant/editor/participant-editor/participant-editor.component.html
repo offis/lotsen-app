@@ -59,6 +59,7 @@
                      (click)="openDocument($event, node)"
                      class="node-wrapper">
         <la2-document-overview-display class="document-node" [participant]="participant"
+                                       [similarDocuments]="similarDocuments[node.displayable.id]"
                                        [documentDto]="node.displayable"></la2-document-overview-display>
       </mat-tree-node>
       <!-- nodes -->

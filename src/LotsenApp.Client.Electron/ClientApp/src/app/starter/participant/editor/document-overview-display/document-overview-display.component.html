@@ -30,6 +30,9 @@
 </button>
 <button [matMenuTriggerFor]="contextMenu" #contextMenuTrigger class="context-menu-trigger"></button>
 <mat-menu #contextMenu="matMenu">
+  <button mat-menu-item *ngIf="otherDocuments.length" [matMenuTriggerFor]="otherDocumentsMenu">
+    {{'Application.DocumentOverviewDisplay.CopyValues' | translate}}
+  </button>
   <button mat-menu-item *ngIf="subDocuments.length" [matMenuTriggerFor]="subDocumentsMenu">
     {{'Application.DocumentOverviewDisplay.NewDocument' | translate}}
   </button>
@@ -40,5 +43,22 @@
 <mat-menu #subDocumentsMenu="matMenu">
   <button *ngFor="let document of subDocuments" (click)="createDocument(document)"
           mat-menu-item>{{document.i18NKey ? (document.i18NKey | translate) : document.name }}</button>
+</mat-menu>
+<mat-menu #otherDocumentsMenu="matMenu">
+  <button *ngFor="let document of otherDocuments" (dblclick)="performAction(document)"
+          [matMenuTriggerFor]="copyActionMenu" [matMenuTriggerData]="{document: document}"
+          mat-menu-item>
+    {{ document.name }}
+  </button>
+</mat-menu>
+<mat-menu #copyActionMenu="matMenu" >
+  <ng-template matMenuContent let-document="document">
+    <button mat-menu-item (click)="preserveCopy(document)" [matTooltip]="'Application.DocumentOverviewDisplay.PreserveCopyTooltip' | translate">
+      {{'Application.DocumentOverviewDisplay.PreserveCopy' | translate}}
+    </button>
+    <button mat-menu-item (click)="overwriteCopy(document)" [matTooltip]="'Application.DocumentOverviewDisplay.OverwriteCopyTooltip' | translate">
+      {{'Application.DocumentOverviewDisplay.OverwriteCopy' | translate}}
+    </button>
+  </ng-template>
 </mat-menu>
 

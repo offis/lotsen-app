@@ -152,6 +152,8 @@ export class ParticipantEditorComponent implements OnInit, OnDestroy {
 
   documentOverviewVisible = true;
 
+  similarDocuments: { [key: string]: DocumentDto[] } = {};
+
   private subscriptions: Subscription[] = [];
 
   constructor(
@@ -196,6 +198,7 @@ export class ParticipantEditorComponent implements OnInit, OnDestroy {
           }
           foundDocument.documents.push(next.displayable);
           this.dataSource.data = this.documents.documents ?? [];
+          this.updateSimilarDocuments();
         }
       }),
       this.participantService.DocumentDeleted.subscribe(async (next) => {
@@ -222,6 +225,7 @@ export class ParticipantEditorComponent implements OnInit, OnDestroy {
           },
         });
         this.dataSource.data = this.documents.documents;
+        this.updateSimilarDocuments();
       }),
       this.participantService.DocumentRenamed.subscribe((next) => {
         if (next.participantId !== this.participant.id) {
@@ -248,6 +252,8 @@ export class ParticipantEditorComponent implements OnInit, OnDestroy {
       this.treeControl,
       treeFlattener
     );
+
+    this.updateSimilarDocuments();
 
     this.dataSource.data = this.documents.documents;
   }
@@ -531,6 +537,15 @@ export class ParticipantEditorComponent implements OnInit, OnDestroy {
     ]);
   }
 
+  private updateSimilarDocuments() {
+    for (const document of this.documents.documents) {
+      this.similarDocuments[document.id] = this.findAllDocuments(
+        document.documentId,
+        this.documents.documents
+      );
+    }
+  }
+
   private removeDocument(
     path: string[],
     level: DocumentDto[]
@@ -564,6 +579,18 @@ export class ParticipantEditorComponent implements OnInit, OnDestroy {
         ?.map((d) => this.getAllChildren(d))
         .reduce((prev, cur) => prev.concat(cur), []) ?? [];
     return document?.documents?.map((d) => d.id).concat(children) ?? [];
+  }
+
+  private findAllDocuments(
+    documentId: string,
+    level: DocumentDto[]
+  ): DocumentDto[] {
+    const documents = level.filter((d) => d.documentId == documentId);
+
+    for (const dto of level) {
+      documents.push(...this.findAllDocuments(documentId, dto.documents ?? []));
+    }
+    return documents;
   }
 
   private findDocument(documentId: string, level: DocumentDto[]): string[] {

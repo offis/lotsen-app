@@ -29,6 +29,7 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
+using System.Threading.Tasks;
 using LotsenApp.Client.Authentication.DataPassword;
 using LotsenApp.Client.Configuration.Api;
 using LotsenApp.Client.DataFormat;
@@ -662,6 +663,196 @@ namespace LotsenApp.Client.Participant.Test
             Assert.Equal("newVal1", newHeader["name"][0]);
             Assert.Equal("newVal2", newHeader["icon"][0]);
             Assert.Equal("newVal3", newHeader["tint"][0]);
+        }
+
+        [Fact]
+        public void ShouldAddNewFields()
+        {
+            var service = CreateInstance();
+
+            var fields1 = new[]
+            {
+                new FieldDto
+                {
+                    Id = "field1",
+                    Value = "value1"
+                }
+            };
+            var fields2 = new[]
+            {
+                new FieldDto
+                {
+                    Id = "field2",
+                    Value = "value2"
+                }
+            };
+            var result = service.CopyFields(fields1, fields2, false);
+            // New field has been added
+            Assert.Equal(2, result.Length);
+            
+            Assert.Same(fields1[0], result[0]);
+            Assert.Same(fields2[0], result[1]);
+        }
+        
+        [Fact]
+        public void ShouldReplaceField()
+        {
+            var service = CreateInstance();
+
+            var fields1 = new[]
+            {
+                new FieldDto
+                {
+                    Id = "field1",
+                    Value = "value1"
+                }
+            };
+            var fields2 = new[]
+            {
+                new FieldDto
+                {
+                    Id = "field1",
+                    Value = "value2",
+                    UseDisplay = 1
+                }
+            };
+            var result = service.CopyFields(fields1, fields2, false);
+            // New field has been added
+            Assert.Single(result);
+
+            var result1 = result[0];
+            Assert.Equal("value2", result1.Value);
+            Assert.Equal(1, result1.UseDisplay);
+        }
+        
+        [Fact]
+        public void ShouldKeepOldFieldValues()
+        {
+            var service = CreateInstance();
+
+            var fields1 = new[]
+            {
+                new FieldDto
+                {
+                    Id = "field1",
+                    Value = "value1"
+                }
+            };
+            var fields2 = new[]
+            {
+                new FieldDto
+                {
+                    Id = "field1",
+                    Value = "value2",
+                    UseDisplay = 1
+                }
+            };
+            var result = service.CopyFields(fields1, fields2, true);
+            // New field has been added
+            Assert.Single(result);
+
+            var result1 = result[0];
+            Assert.Equal("value1", result1.Value);
+            Assert.Null(result1.UseDisplay);
+        }
+        
+        [Fact]
+        public void ShouldAddNewGroups()
+        {
+            var service = CreateInstance();
+
+            var group1 = new[]
+            {
+                new GroupDto
+                {
+                    Id = "group1",
+                }
+            };
+            var group2 = new[]
+            {
+                new GroupDto
+                {
+                    Id = "group2",
+                }
+            };
+            var result = service.CopyGroups(group1, group2, true);
+         
+            Assert.Equal(2, result.Length);
+            
+            Assert.Same(group1[0], result[0]);
+            Assert.Same(group2[0], result[1]);
+        }
+        
+        [Fact]
+        public void ShouldReplaceGroup()
+        {
+            var service = CreateInstance();
+
+            var group1 = new[]
+            {
+                new GroupDto
+                {
+                    Id = "group1",
+                }
+            };
+            var group2 = new[]
+            {
+                new GroupDto
+                {
+                    Id = "group2",
+                }
+            };
+            var result = service.CopyGroups(group1, group2, false);
+            
+            Assert.Single(result);
+            var resultGroup = result[0];
+            Assert.Equal(group2[0].Id, resultGroup.Id);
+            Assert.Equal(group2[0].GroupId, resultGroup.GroupId);
+            Assert.Equal(group2[0].Fields, resultGroup.Fields);
+            Assert.Equal(group2[0].Children, resultGroup.Children);
+        }
+
+        [Fact]
+        public async Task ShouldReplaceDocumentValues()
+        {
+            var service = CreateInstance();
+
+            var document1 = new DocumentValueDto
+            {
+                Id = "document1",
+                Name = "document"
+            };
+            var document2 = new DocumentValueDto
+            {
+                Id = "document2",
+                Name = "document2"
+            };
+            var result = await service.CopyValues(document1, document2, false);
+            // The name should not be replaced.
+            Assert.Equal("document", result.Name);
+            Assert.Equal("document1", result.Id);
+        }
+        
+        [Fact]
+        public async Task ShouldReturnDocumentOnIdMismatch()
+        {
+            var service = CreateInstance();
+
+            var document1 = new DocumentValueDto
+            {
+                Id = "document1",
+                DocumentId = "doc",
+                Name = "document"
+            };
+            var document2 = new DocumentValueDto
+            {
+                Id = "document2",
+                DocumentId = "doc2",
+                Name = "document2"
+            };
+            var result = await service.CopyValues(document1, document2, false);
+            
+            Assert.Same(document1, result);
         }
     }
 }

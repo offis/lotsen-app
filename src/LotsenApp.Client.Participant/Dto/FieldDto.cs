@@ -27,11 +27,8 @@
 
 namespace LotsenApp.Client.Participant.Dto
 {
-    public class FieldDto
+    public class FieldDto: UpdateFieldDto
     {
-        public string Id { get; set; }
         public bool IsDelta { get; set; }
-        public string Value { get; set; }
-        public int? UseDisplay { get; set; }
     }
 }

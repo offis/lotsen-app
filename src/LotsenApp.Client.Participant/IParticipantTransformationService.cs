@@ -57,5 +57,7 @@ namespace LotsenApp.Client.Participant
 
         Task<EncryptedParticipantModel> UpdateParticipantHeader(string userId, HeaderEditDto dto,
             EncryptedParticipantModel model);
+
+        Task<DocumentValueDto> CopyValues(DocumentValueDto document1, DocumentValueDto document2, bool preserve);
     }
 }

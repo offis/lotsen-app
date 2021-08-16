@@ -27,12 +27,11 @@
 
 namespace LotsenApp.Client.Participant.Dto
 {
-    public class GroupDto
+    public class GroupDto: UpdateGroupDto
     {
-        public string Id { get; set; }
         public string GroupId { get; set; }
         public bool IsDelta { get; set; }
-        public GroupDto[] Children { get; set; } = System.Array.Empty<GroupDto>();
-        public FieldDto[] Fields { get; set; } = System.Array.Empty<FieldDto>();
+        public new GroupDto[] Children { get; set; } = System.Array.Empty<GroupDto>();
+        public new FieldDto[] Fields { get; set; } = System.Array.Empty<FieldDto>();
     }
 }

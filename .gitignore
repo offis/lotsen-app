@@ -266,3 +266,4 @@ Electron/LotsenApp.Client.Electron/data/
 src/LotsenApp.Client.Electron/config/
 src/LotsenApp.Client.Electron/data/
 src/LotsenApp.Client.Electron/build_release.bat
+tools/LotsenApp.LicenseManager/Assets/licenses-association.json
