@@ -76,7 +76,7 @@ namespace LotsenApp.Client.Participant
                 DocumentedBy = additional.ContainsKey("documentedBy")
                     ? additional["documentedBy"]
                     : null,
-                Header = header // TODO Transform header with i18nValues
+                Header = header 
             };
         }
 

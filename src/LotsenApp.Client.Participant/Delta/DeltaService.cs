@@ -45,8 +45,7 @@ namespace LotsenApp.Client.Participant.Delta
             _participantCryptographyService = participantCryptographyService;
             _helper = helper;
         }
-
-        [ExcludeFromCodeCoverage]
+        
         public async Task<EncryptedDeltaFile> UpdateDocument(string userId, EncryptedParticipantModel model,
             EncryptedDeltaFile currentDelta,
             UpdateDocumentDto dto)
@@ -75,6 +74,7 @@ namespace LotsenApp.Client.Participant.Delta
             targetDelta.Value = dto.Name;
             targetDelta.Groups = UpdateGroups(targetDelta.Groups, relatedDocument?.Groups, dto.Groups);
             targetDelta.Values = UpdateFields(targetDelta.Values, relatedDocument?.Values, dto.Fields);
+            CalculateTree(delta);
         }
 
         internal IDictionary<string, GroupDelta> UpdateGroups(IDictionary<string, GroupDelta> deltas,
@@ -99,6 +99,8 @@ namespace LotsenApp.Client.Participant.Delta
                     };
                     deltas.Add(dto.Id, relatedDelta);
                 }
+
+                relatedDelta.GroupId ??= dto.GroupId;
                 relatedDelta.Fields = UpdateFields(relatedDelta.Fields, relatedGroup?.Fields, dto.Fields);
                 relatedDelta.Children = UpdateGroups(relatedDelta.Children, relatedGroup?.Children, dto.Children);
                 relatedDelta.Ordinal = dtos.IndexOf(dto);
@@ -143,8 +145,7 @@ namespace LotsenApp.Client.Participant.Delta
                 .Where(d => d.Type != DeltaType.Unchanged) // Unchanged value deltas are not needed.
                 .ToDictionary(k => k.Id, v => v);
         }
-
-        [ExcludeFromCodeCoverage]
+        
         public async Task<EncryptedDeltaFile> ReorderGroups(string userId, EncryptedDeltaFile encryptedDelta,
             string documentId, ReOrderDto[] orderDtos)
         {
@@ -176,8 +177,7 @@ namespace LotsenApp.Client.Participant.Delta
 
             return currentDeltas.ToDictionary(k => k.Id, v => v);
         }
-
-        [ExcludeFromCodeCoverage]
+        
         public async Task<(EncryptedDeltaFile, string groupId)> AddGroup(string userId, EncryptedDeltaFile deltaFile,
             CreateGroupDto dto)
         {
@@ -226,8 +226,7 @@ namespace LotsenApp.Client.Participant.Delta
 
             return newId;
         }
-
-        [ExcludeFromCodeCoverage]
+        
         public async Task<EncryptedDeltaFile> RemoveGroup(string userId,
             EncryptedDeltaFile deltaFile, string documentId, string groupId)
         {
@@ -258,8 +257,7 @@ namespace LotsenApp.Client.Participant.Delta
                 delta.DocumentTree);
             return delta;
         }
-
-        [ExcludeFromCodeCoverage]
+        
         public async Task<EncryptedDeltaFile> ReorderDocuments(string userId, EncryptedDeltaFile encryptedDelta,
             ReOrderDto[] orderDtos)
         {
@@ -322,8 +320,7 @@ namespace LotsenApp.Client.Participant.Delta
 
             return deltas;
         }
-
-        [ExcludeFromCodeCoverage]
+        
         public async Task<(EncryptedDeltaFile nextDelta, string documentId)> AddDocument(string userId,
             EncryptedDeltaFile currentDelta, CreateDocumentDto dto)
         {
@@ -363,8 +360,7 @@ namespace LotsenApp.Client.Participant.Delta
             delta.DocumentTree = UpdateTree(pathWithChild, DeltaType.Create, delta.DocumentTree);
             return documentId;
         }
-
-        [ExcludeFromCodeCoverage]
+        
         public async Task<EncryptedDeltaFile> DeleteDocument(string userId,
             EncryptedDeltaFile currentDelta,
             string documentId)
@@ -410,8 +406,7 @@ namespace LotsenApp.Client.Participant.Delta
             tree[currentId].Children = UpdateTree(path.Skip(1).ToArray(), type, tree[currentId].Children);
             return tree;
         }
-
-        [ExcludeFromCodeCoverage]
+        
         public async Task<EncryptedDeltaFile> SeedDeltaFile(string userId, EncryptedParticipantModel encryptedModel,
             EncryptedDeltaFile encryptedDelta)
         {
@@ -444,6 +439,27 @@ namespace LotsenApp.Client.Participant.Delta
                     .Select(d => CreateTreeItem(d.Value))
                     .ToDictionary(k => k.Id, v => v),
             };
+        }
+
+        internal void CalculateTree(DeltaFile deltaFile)
+        {
+            var existingDocuments = FlattenTree(deltaFile.DocumentTree);
+            var missingDocuments = deltaFile.Documents
+                .Where(d => !existingDocuments.Contains(d.Key))
+                .Select(d => d.Value)
+                .ToList();
+            foreach (var document in missingDocuments)
+            {
+                deltaFile.DocumentTree.Add(document.Id, new TreeItem
+                {
+                    Id = document.Id
+                });
+            }
+        }
+
+        internal List<string> FlattenTree(IDictionary<string, TreeItem> tree)
+        {
+            return tree.Keys.Concat(tree.SelectMany(t => FlattenTree(t.Value.Children))).ToList();
         }
     }
 }

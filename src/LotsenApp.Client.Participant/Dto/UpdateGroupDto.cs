@@ -32,6 +32,7 @@ namespace LotsenApp.Client.Participant.Dto
     public class UpdateGroupDto
     {
         public string Id { get; set; }
+        public string GroupId { get; set; }
         public virtual UpdateGroupDto[] Children { get; set; } = Array.Empty<UpdateGroupDto>();
         public virtual UpdateFieldDto[] Fields { get; set; } = Array.Empty<UpdateFieldDto>();
     }

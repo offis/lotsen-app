@@ -25,13 +25,32 @@
 // OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
 // OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
+using System.Linq;
+
 namespace LotsenApp.Client.Participant.Dto
 {
-    public class GroupDto: UpdateGroupDto
+    public class GroupDto
     {
+        public string Id { get; set; }
         public string GroupId { get; set; }
         public bool IsDelta { get; set; }
-        public new GroupDto[] Children { get; set; } = System.Array.Empty<GroupDto>();
-        public new FieldDto[] Fields { get; set; } = System.Array.Empty<FieldDto>();
+        public GroupDto[] Children { get; set; } = System.Array.Empty<GroupDto>();
+        public FieldDto[] Fields { get; set; } = System.Array.Empty<FieldDto>();
+
+        public UpdateGroupDto AsUpdateDto()
+        {
+            return new UpdateGroupDto
+            {
+                Id = Id,
+                GroupId = GroupId,
+                Children = Children.Select(c => c.AsUpdateDto()).ToArray(),
+                Fields = Fields.Select(f => new UpdateFieldDto
+                {
+                    Id = f.Id,
+                    Value = f.Value,
+                    UseDisplay = f.UseDisplay
+                }).ToArray()
+            };
+        }
     }
 }

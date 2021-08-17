@@ -112,6 +112,11 @@ export class DocumentEditorComponent implements OnInit, OnDestroy {
           return;
         }
         await this.autoSave();
+      }),
+      this.participantService.DocumentUpdated.subscribe(async (next) => {
+        if (next === this.metadata.id) {
+          await this.setup();
+        }
       })
     );
   }
@@ -137,34 +142,42 @@ export class DocumentEditorComponent implements OnInit, OnDestroy {
   }
 
   private async setup(): Promise<void> {
-    this.metadataDetail = await this.projectService.GetDocumentMetaData(
+    const detail = await this.projectService.GetDocumentMetaData(
       this.participant.documentedBy,
       this.metadata.documentId
     );
-    if (!this.metadataDetail.id) {
+    if (!detail.id) {
       // A documentation event was opened
       console.error('Opening this document is not supported as of right now');
       return;
     }
-    this.values = await this.participantService.GetDocumentValues(
+    const values = await this.participantService.GetDocumentValues(
       this.participant.id,
       this.participant.documentedBy,
       this.metadata.id
     );
-    this.nameControl.setValue(this.values.name);
-    this.mergedValues = this.metadataDetail.fields.map((f) => {
+
+    this.mergedValues = detail.fields.map((f) => {
       return {
         detail: f,
         value: this.values?.fields.find((v) => v.id === f.id),
       };
     });
-    this.mergedGroups = this.metadataDetail.groups.map((g) => {
+    this.mergedGroups = detail.groups.map((g) => {
       return {
         detail: g,
         values: this.values?.groups.filter((gv) => gv.groupId === g.id) ?? [],
       };
     });
-    setTimeout(() => this.accordion?.openAll(), 100);
+
+    this.values = values;
+    this.metadataDetail = detail;
+
+    this.nameControl.setValue(values.name);
+
+    setTimeout(() => {
+      this.accordion?.openAll();
+    }, 100);
   }
 
   focusNextField(event: { field: FieldDetail; direction: number }): void {

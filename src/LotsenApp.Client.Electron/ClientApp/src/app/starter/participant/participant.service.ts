@@ -59,6 +59,7 @@ export class ParticipantService {
   private saveSubject = new Subject<string>();
   private beforeSavingSubject = new Subject<string>();
   private documentRenameSubject = new Subject<DocumentRename>();
+  private documentUpdateSubject = new Subject<string>();
 
   get ParticipantCreated(): Observable<string> {
     return this.createSubject;
@@ -86,6 +87,10 @@ export class ParticipantService {
 
   get DocumentRenamed(): Observable<DocumentRename> {
     return this.documentRenameSubject;
+  }
+
+  get DocumentUpdated(): Observable<string> {
+    return this.documentUpdateSubject;
   }
 
   constructor(private httpClient: HttpClient) {}
@@ -295,16 +300,17 @@ export class ParticipantService {
       .toPromise();
   }
 
-  public CopyDocumentValues(
+  public async CopyDocumentValues(
     participantId: string,
     documentId: string,
     documentId2: string,
     preserve: boolean
   ) {
-    return this.httpClient
+    await this.httpClient
       .get(
         `/api/participants/${participantId}/document/${documentId}/copy/${documentId2}?preserve=${preserve}`
       )
       .toPromise();
+    this.documentUpdateSubject.next(documentId);
   }
 }

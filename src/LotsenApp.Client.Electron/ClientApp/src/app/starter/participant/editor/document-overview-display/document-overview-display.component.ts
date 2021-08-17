@@ -55,7 +55,9 @@ export class DocumentOverviewDisplayComponent implements OnInit {
   similarDocuments: DocumentDto[] = [];
 
   get otherDocuments() {
-    return this.similarDocuments.filter((d) => d.id !== this.documentDto.id);
+    return (
+      this.similarDocuments?.filter((d) => d.id !== this.documentDto.id) ?? []
+    );
   }
 
   subDocuments: Displayable[] = [];

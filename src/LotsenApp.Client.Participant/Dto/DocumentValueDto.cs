@@ -45,8 +45,13 @@ namespace LotsenApp.Client.Participant.Dto
             {
                 Id = Id,
                 Name = Name,
-                Fields = Fields.Cast<UpdateFieldDto>().ToArray(),
-                Groups = Groups.Cast<UpdateGroupDto>().ToArray()
+                Fields = Fields.Select(f => new UpdateFieldDto
+                {
+                    Id = f.Id,
+                    UseDisplay = f.UseDisplay,
+                    Value = f.Value
+                }).ToArray(),
+                Groups = Groups.Select(g => g.AsUpdateDto()).ToArray()
             };
             return updateDto;
         }
