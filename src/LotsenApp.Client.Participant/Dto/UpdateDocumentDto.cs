@@ -26,15 +26,19 @@
 // OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 using System;
+using System.Text.Json.Serialization;
+using LotsenApp.Client.Participant.Delta;
 
 namespace LotsenApp.Client.Participant.Dto
 {
-    public class UpdateDocumentDto
+    public class UpdateDocumentDto: IDocumentChange
     {
         public string Id { get; set; }
+        public string DocumentId { get; set; } = null;
         public string Name { get; set; }
-
-        public UpdateFieldDto[] Fields { get; set; } = Array.Empty<UpdateFieldDto>();
-        public UpdateGroupDto[] Groups { get; set; } = Array.Empty<UpdateGroupDto>();
+        [JsonConverter(typeof(FieldUpdateConverter))]
+        public IFieldChange[] Fields { get; set; } = Array.Empty<IFieldChange>();
+        [JsonConverter(typeof(GroupUpdateConverter))]
+        public IGroupChange[] Groups { get; set; } = Array.Empty<IGroupChange>();
     }
 }

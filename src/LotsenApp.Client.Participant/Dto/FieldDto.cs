@@ -25,10 +25,15 @@
 // OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
 // OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
+using LotsenApp.Client.Participant.Delta;
+
 namespace LotsenApp.Client.Participant.Dto
 {
-    public class FieldDto: UpdateFieldDto
+    public class FieldDto: IFieldChange
     {
+        public string Id { get; set; }
+        public string Value { get; set; }
+        public int? UseDisplay { get; set; }
         public bool IsDelta { get; set; }
     }
 }

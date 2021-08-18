@@ -27,6 +27,7 @@
 
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using LotsenApp.Client.Participant.Delta;
 using LotsenApp.Client.Participant.Dto;
 using LotsenApp.Client.Participant.Header;
 using Microsoft.Extensions.Logging;
@@ -125,7 +126,7 @@ namespace LotsenApp.Client.Participant
             var document1 = await GetDocumentValues(userId, participantId, documentId);
             var document2 = await GetDocumentValues(userId, participantId, documentId2);
             var updatedDocument = await _transformationService.CopyValues(document1, document2, preserve);
-            await UpdateDocument(userId, participantId, updatedDocument.AsUpdateDto());
+            await UpdateDocument(userId, participantId, updatedDocument);
         }
 
         public async Task<IdentifierResponse> CreateDocument(string userId, string participantId,
@@ -150,7 +151,7 @@ namespace LotsenApp.Client.Participant
             }
         }
 
-        public async Task UpdateDocument(string userId, string participantId, UpdateDocumentDto documentValue)
+        public async Task UpdateDocument(string userId, string participantId, IDocumentChange documentValue)
         {
             try
             {

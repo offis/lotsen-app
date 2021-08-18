@@ -139,6 +139,12 @@ export class DocumentEditorComponent implements OnInit, OnDestroy {
       .map((gv) => gv.values ?? [])
       .reduce((prev, cur) => prev.concat(cur), []);
     await this.participantService.SaveChanges(this.participant.id, this.values);
+    console.debug(
+      'Saved changes to document ',
+      this.metadata.id,
+      ' for participant ',
+      this.participant.id
+    );
   }
 
   private async setup(): Promise<void> {
@@ -157,6 +163,9 @@ export class DocumentEditorComponent implements OnInit, OnDestroy {
       this.metadata.id
     );
 
+    this.values = values;
+    this.metadataDetail = detail;
+
     this.mergedValues = detail.fields.map((f) => {
       return {
         detail: f,
@@ -169,9 +178,6 @@ export class DocumentEditorComponent implements OnInit, OnDestroy {
         values: this.values?.groups.filter((gv) => gv.groupId === g.id) ?? [],
       };
     });
-
-    this.values = values;
-    this.metadataDetail = detail;
 
     this.nameControl.setValue(values.name);
 

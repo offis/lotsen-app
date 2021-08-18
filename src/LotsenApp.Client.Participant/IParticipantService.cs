@@ -27,6 +27,7 @@
 
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using LotsenApp.Client.Participant.Delta;
 using LotsenApp.Client.Participant.Dto;
 using LotsenApp.Client.Participant.Header;
 
@@ -46,7 +47,7 @@ namespace LotsenApp.Client.Participant
 
         Task<IdentifierResponse> CreateDocument(string userId, string participantId, CreateDocumentDto createDocumentDto);
 
-        Task UpdateDocument(string userId, string participantId, UpdateDocumentDto documentValue);
+        Task UpdateDocument(string userId, string participantId, IDocumentChange documentValue);
 
         Task ReorderDocuments(string userId, string participantId, ReOrderDto[] reOrderDtos);
 

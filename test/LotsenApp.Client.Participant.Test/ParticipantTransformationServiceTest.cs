@@ -811,6 +811,31 @@ namespace LotsenApp.Client.Participant.Test
             Assert.Equal(group2[0].Fields, resultGroup.Fields);
             Assert.Equal(group2[0].Children, resultGroup.Children);
         }
+        
+        [Fact]
+        public void ShouldGiveNewIdToGroupOnPreserveCopy()
+        {
+            var service = CreateInstance();
+
+            var group1 = new[]
+            {
+                new GroupDto
+                {
+                    Id = "group1",
+                }
+            };
+            var group2 = new[]
+            {
+                new GroupDto
+                {
+                    Id = "group1",
+                }
+            };
+            var result = service.CopyGroups(group1, group2, true);
+            
+            Assert.Equal(2, result.Length);
+            Assert.NotEqual(result[0].Id, result[1].Id);
+        }
 
         [Fact]
         public async Task ShouldReplaceDocumentValues()

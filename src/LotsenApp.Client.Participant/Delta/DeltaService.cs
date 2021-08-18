@@ -35,7 +35,7 @@ using LotsenApp.Client.Participant.Model;
 
 namespace LotsenApp.Client.Participant.Delta
 {
-    public class DeltaService: IDeltaService
+    public class DeltaService : IDeltaService
     {
         private readonly ParticipantCryptographyService _participantCryptographyService;
         private readonly DocumentDeltaHelper _helper;
@@ -45,10 +45,10 @@ namespace LotsenApp.Client.Participant.Delta
             _participantCryptographyService = participantCryptographyService;
             _helper = helper;
         }
-        
+
         public async Task<EncryptedDeltaFile> UpdateDocument(string userId, EncryptedParticipantModel model,
             EncryptedDeltaFile currentDelta,
-            UpdateDocumentDto dto)
+            IDocumentChange dto)
         {
             var decryptedDelta = await _participantCryptographyService.DecryptDeltaFile(currentDelta, userId);
             var decryptedModel = await _participantCryptographyService.DecryptDataAsync(model, userId);
@@ -58,7 +58,7 @@ namespace LotsenApp.Client.Participant.Delta
             return await _participantCryptographyService.EncryptDeltaFile(decryptedDelta, userId);
         }
 
-        internal void UpdateDocument(DeltaFile delta, ParticipantModel model, UpdateDocumentDto dto)
+        internal void UpdateDocument(DeltaFile delta, ParticipantModel model, IDocumentChange dto)
         {
             var relatedDocument = model.Data.Documents.ContainsKey(dto.Id) ? model.Data.Documents[dto.Id] : null;
             var targetDelta = _helper.ResolveDelta(delta.Documents, dto.Id);
@@ -72,13 +72,14 @@ namespace LotsenApp.Client.Participant.Delta
             targetDelta.Type = targetDelta.Type != DeltaType.Create ? targetType : DeltaType.Create;
             targetDelta.OldValue = relatedDocument?.Name ?? targetDelta.Value;
             targetDelta.Value = dto.Name;
+            targetDelta.DocumentId = dto.DocumentId ?? targetDelta.DocumentId;
             targetDelta.Groups = UpdateGroups(targetDelta.Groups, relatedDocument?.Groups, dto.Groups);
             targetDelta.Values = UpdateFields(targetDelta.Values, relatedDocument?.Values, dto.Fields);
             CalculateTree(delta);
         }
 
         internal IDictionary<string, GroupDelta> UpdateGroups(IDictionary<string, GroupDelta> deltas,
-            IDictionary<string, DocumentGroup> relatedGroups, UpdateGroupDto[] dtos)
+            IDictionary<string, DocumentGroup> relatedGroups, IGroupChange[] dtos)
         {
             foreach (var dto in dtos)
             {
@@ -100,17 +101,19 @@ namespace LotsenApp.Client.Participant.Delta
                     deltas.Add(dto.Id, relatedDelta);
                 }
 
-                relatedDelta.GroupId ??= dto.GroupId;
+                relatedDelta.GroupId = dto.GroupId ?? relatedDelta.GroupId;
                 relatedDelta.Fields = UpdateFields(relatedDelta.Fields, relatedGroup?.Fields, dto.Fields);
                 relatedDelta.Children = UpdateGroups(relatedDelta.Children, relatedGroup?.Children, dto.Children);
                 relatedDelta.Ordinal = dtos.IndexOf(dto);
             }
 
-            return deltas;
+            return deltas
+                .Where(d => dtos.Any(dto => dto.Id == d.Key))
+                .ToDictionary(k => k.Key, v => v.Value);
         }
 
         internal IDictionary<string, ValueDelta> UpdateFields(IDictionary<string, ValueDelta> deltas,
-            IDictionary<string, DocumentField> relatedFields, UpdateFieldDto[] dtos)
+            IDictionary<string, DocumentField> relatedFields, IFieldChange[] dtos)
         {
             IEnumerable<ValueDelta> currentDeltas = deltas.Values;
             foreach (var dto in dtos)
@@ -145,7 +148,7 @@ namespace LotsenApp.Client.Participant.Delta
                 .Where(d => d.Type != DeltaType.Unchanged) // Unchanged value deltas are not needed.
                 .ToDictionary(k => k.Id, v => v);
         }
-        
+
         public async Task<EncryptedDeltaFile> ReorderGroups(string userId, EncryptedDeltaFile encryptedDelta,
             string documentId, ReOrderDto[] orderDtos)
         {
@@ -177,7 +180,7 @@ namespace LotsenApp.Client.Participant.Delta
 
             return currentDeltas.ToDictionary(k => k.Id, v => v);
         }
-        
+
         public async Task<(EncryptedDeltaFile, string groupId)> AddGroup(string userId, EncryptedDeltaFile deltaFile,
             CreateGroupDto dto)
         {
@@ -226,7 +229,7 @@ namespace LotsenApp.Client.Participant.Delta
 
             return newId;
         }
-        
+
         public async Task<EncryptedDeltaFile> RemoveGroup(string userId,
             EncryptedDeltaFile deltaFile, string documentId, string groupId)
         {
@@ -257,7 +260,7 @@ namespace LotsenApp.Client.Participant.Delta
                 delta.DocumentTree);
             return delta;
         }
-        
+
         public async Task<EncryptedDeltaFile> ReorderDocuments(string userId, EncryptedDeltaFile encryptedDelta,
             ReOrderDto[] orderDtos)
         {
@@ -320,7 +323,7 @@ namespace LotsenApp.Client.Participant.Delta
 
             return deltas;
         }
-        
+
         public async Task<(EncryptedDeltaFile nextDelta, string documentId)> AddDocument(string userId,
             EncryptedDeltaFile currentDelta, CreateDocumentDto dto)
         {
@@ -348,7 +351,7 @@ namespace LotsenApp.Client.Participant.Delta
             if (dto.ParentDocumentId == null)
             {
                 delta.DocumentTree =
-                    UpdateTree(new[] {newDelta.Id}, DeltaType.Create, delta.DocumentTree);
+                    UpdateTree(new[] { newDelta.Id }, DeltaType.Create, delta.DocumentTree);
                 return documentId;
             }
 
@@ -360,7 +363,7 @@ namespace LotsenApp.Client.Participant.Delta
             delta.DocumentTree = UpdateTree(pathWithChild, DeltaType.Create, delta.DocumentTree);
             return documentId;
         }
-        
+
         public async Task<EncryptedDeltaFile> DeleteDocument(string userId,
             EncryptedDeltaFile currentDelta,
             string documentId)
@@ -406,7 +409,7 @@ namespace LotsenApp.Client.Participant.Delta
             tree[currentId].Children = UpdateTree(path.Skip(1).ToArray(), type, tree[currentId].Children);
             return tree;
         }
-        
+
         public async Task<EncryptedDeltaFile> SeedDeltaFile(string userId, EncryptedParticipantModel encryptedModel,
             EncryptedDeltaFile encryptedDelta)
         {

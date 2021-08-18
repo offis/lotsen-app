@@ -26,31 +26,19 @@
 // OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 using System.Linq;
+using System.Text.Json.Serialization;
+using LotsenApp.Client.Participant.Delta;
 
 namespace LotsenApp.Client.Participant.Dto
 {
-    public class GroupDto
+    public class GroupDto: IGroupChange
     {
         public string Id { get; set; }
         public string GroupId { get; set; }
         public bool IsDelta { get; set; }
-        public GroupDto[] Children { get; set; } = System.Array.Empty<GroupDto>();
-        public FieldDto[] Fields { get; set; } = System.Array.Empty<FieldDto>();
-
-        public UpdateGroupDto AsUpdateDto()
-        {
-            return new UpdateGroupDto
-            {
-                Id = Id,
-                GroupId = GroupId,
-                Children = Children.Select(c => c.AsUpdateDto()).ToArray(),
-                Fields = Fields.Select(f => new UpdateFieldDto
-                {
-                    Id = f.Id,
-                    Value = f.Value,
-                    UseDisplay = f.UseDisplay
-                }).ToArray()
-            };
-        }
+        [JsonConverter(typeof(GroupValueConverter))]
+        public IGroupChange[] Children { get; set; } = System.Array.Empty<IGroupChange>();
+        [JsonConverter(typeof(FieldValueConverter))]
+        public IFieldChange[] Fields { get; set; } = System.Array.Empty<IFieldChange>();
     }
 }

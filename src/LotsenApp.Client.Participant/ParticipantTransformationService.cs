@@ -219,7 +219,7 @@ namespace LotsenApp.Client.Participant
             return documentDto;
         }
 
-        private FieldDto[] CreateFieldDtos(IDictionary<string, DocumentField> fields,
+        private IFieldChange[] CreateFieldDtos(IDictionary<string, DocumentField> fields,
             IDictionary<string, ValueDelta> deltas)
         {
             var deltaFields = deltas?
@@ -246,10 +246,10 @@ namespace LotsenApp.Client.Participant
                     Value = f.Value,
                     UseDisplay = f.UseDisplay
                 }) ?? Enumerable.Empty<FieldDto>();
-            return deltaFields.Concat(documentFields).ToArray();
+            return deltaFields.Concat(documentFields).Cast<IFieldChange>().ToArray();
         }
 
-        private GroupDto[] CreateGroupDtos(IDictionary<string, DocumentGroup> groups,
+        private IGroupChange[] CreateGroupDtos(IDictionary<string, DocumentGroup> groups,
             IDictionary<string, GroupDelta> deltas)
         {
             var deltaGroups = deltas?
@@ -286,6 +286,7 @@ namespace LotsenApp.Client.Participant
             return deltaGroups.Concat(documentGroups)
                 .OrderBy(d => d.Item2)
                 .Select(d => d.Item1)
+                .Cast<IGroupChange>()
                 .ToArray();
         }
 
@@ -344,33 +345,25 @@ namespace LotsenApp.Client.Participant
             return Task.FromResult(document1);
         }
 
-        internal GroupDto[] CopyGroups(GroupDto[] group1, GroupDto[] group2, bool preserve)
+        internal IGroupChange[] CopyGroups(IGroupChange[] group1, IGroupChange[] group2, bool preserve)
         {
-            var groups = new List<GroupDto>();
+            var groups = new List<IGroupChange>();
             if (preserve)
             {
                 groups.AddRange(group1);
             }
-            for (var i = 0; i < group2.Length; i++)
+            foreach (var group in group2)
             {
-                var currentGroup2 = group2[i];
-                if (i >= group1.Length || preserve)
+                if (groups.Any(g => g.Id == group.Id))
                 {
-                    groups.Add(currentGroup2);
-                    continue;
+                    group.Id = Guid.NewGuid().ToString("N");
                 }
-
-                var currentGroup1 = group1[i];
-                currentGroup1.Id = currentGroup2.Id;
-                currentGroup1.GroupId = currentGroup2.GroupId;
-                currentGroup1.Children = CopyGroups(currentGroup1.Children, currentGroup2.Children, false);
-                currentGroup1.Fields = CopyFields(currentGroup1.Fields, currentGroup2.Fields, false);
-                groups.Add(currentGroup1);
+                groups.Add(group);
             }
             return groups.ToArray();
         }
 
-        internal FieldDto[] CopyFields(FieldDto[] fields1, FieldDto[] fields2, bool preserve)
+        internal IFieldChange[] CopyFields(IFieldChange[] fields1, IFieldChange[] fields2, bool preserve)
         {
             var fields = fields1.ToDictionary(k => k.Id, v => v);
             foreach (var field in fields2)
@@ -380,13 +373,12 @@ namespace LotsenApp.Client.Participant
                     fields.Add(field.Id, field);
                     continue;
                 }
-
-                if (preserve && !string.IsNullOrEmpty(fields[field.Id].Value) || string.IsNullOrEmpty(field.Value))
+                var candidate = fields[field.Id];
+                if (preserve && !string.IsNullOrEmpty(candidate.Value) || string.IsNullOrEmpty(field.Value))
                 {
                     continue;
                 }
 
-                var candidate = fields[field.Id];
                 candidate.Value = field.Value;
                 candidate.UseDisplay = field.UseDisplay;
             }

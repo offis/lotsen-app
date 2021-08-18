@@ -27,33 +27,20 @@
 
 using System;
 using System.Linq;
+using System.Text.Json.Serialization;
+using LotsenApp.Client.Participant.Delta;
 
 namespace LotsenApp.Client.Participant.Dto
 {
-    public class DocumentValueDto
+    public class DocumentValueDto: IDocumentChange
     {
         public string Id { get; set; }
         public string DocumentId { get; set; }
         public string Name { get; set; }
         public bool IsDelta { get; set; }
-        public FieldDto[] Fields { get; set; } = Array.Empty<FieldDto>();
-        public GroupDto[] Groups { get; set; } = Array.Empty<GroupDto>();
-
-        public UpdateDocumentDto AsUpdateDto()
-        {
-            var updateDto = new UpdateDocumentDto
-            {
-                Id = Id,
-                Name = Name,
-                Fields = Fields.Select(f => new UpdateFieldDto
-                {
-                    Id = f.Id,
-                    UseDisplay = f.UseDisplay,
-                    Value = f.Value
-                }).ToArray(),
-                Groups = Groups.Select(g => g.AsUpdateDto()).ToArray()
-            };
-            return updateDto;
-        }
+        [JsonConverter(typeof(FieldValueConverter))]
+        public IFieldChange[] Fields { get; set; } = Array.Empty<IFieldChange>();
+        [JsonConverter(typeof(GroupValueConverter))]
+        public IGroupChange[] Groups { get; set; } = Array.Empty<IGroupChange>();
     }
 }

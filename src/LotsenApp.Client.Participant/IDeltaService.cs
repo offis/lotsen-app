@@ -36,7 +36,7 @@ namespace LotsenApp.Client.Participant
     {
         Task<EncryptedDeltaFile> UpdateDocument(string userId, EncryptedParticipantModel model,
             EncryptedDeltaFile currentDelta,
-            UpdateDocumentDto dto);
+            IDocumentChange dto);
 
         Task<EncryptedDeltaFile> ReorderGroups(string userId, EncryptedDeltaFile encryptedDelta,
             string documentId, ReOrderDto[] orderDtos);
