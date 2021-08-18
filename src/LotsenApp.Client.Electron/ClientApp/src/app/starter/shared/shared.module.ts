@@ -60,6 +60,10 @@ import { MatSelectModule } from '@angular/material/select';
 import { IconChooserComponent } from './icon-chooser/icon-chooser.component';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { MatGridListModule } from '@angular/material/grid-list';
+import { ColorPickerComponent } from './color-picker/color-picker.component';
+import { ColorSliderComponent } from './color-slider/color-slider.component';
+import { AlphaSliderComponent } from './alpha-slider/alpha-slider.component';
+import { ColorPaletteComponent } from './color-palette/color-palette.component';
 
 @NgModule({
   declarations: [
@@ -69,6 +73,10 @@ import { MatGridListModule } from '@angular/material/grid-list';
     ParticipantProjectComponent,
     ParticipantTintComponent,
     IconChooserComponent,
+    ColorPickerComponent,
+    ColorSliderComponent,
+    AlphaSliderComponent,
+    ColorPaletteComponent,
   ],
   imports: [
     CommonModule,
@@ -106,6 +114,7 @@ import { MatGridListModule } from '@angular/material/grid-list';
     ParticipantProjectComponent,
     ParticipantTintComponent,
     IconChooserComponent,
+    ColorPickerComponent,
   ],
   providers: [
     {

@@ -1,0 +1,18 @@
+.color-div {
+  background: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAUCAIAAAAC64paAAAAK0lEQVQ4y2P8//8/A25w7949PLJMDBSAUc0jQzML/jSkpKQ0GmCjminRDADJNQjBr5nbigAAAABJRU5ErkJggg==");;
+}
+
+.color-holder, .color-div {
+  width: 2em;
+  height: 2em;
+  border-radius: 1em;
+}
+.color-wrapper {
+  width: 300px;
+}
+.input-wrapper {
+  display: flex;
+  justify-content: space-evenly;
+  width: 300px;
+  margin: 1em 0;
+}

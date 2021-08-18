@@ -1,0 +1,14 @@
+<div class="color-wrapper">
+  <la2-color-palette [hue]="hue" [(color)]="brightness" [strokeWidth]="strokeWidth"></la2-color-palette>
+  <la2-color-slider [(hue)]="hue" [strokeWidth]="strokeWidth"></la2-color-slider>
+</div>
+<la2-alpha-slider [hue]="brightness" [(color)]="alpha" [strokeWidth]="strokeWidth"></la2-alpha-slider>
+<div class="input-wrapper">
+  <span class="text">{{color}}</span>
+  <div class="color-div" >
+    <div [style.background]="alpha ?? 'white'" class="color-holder"></div>
+  </div>
+</div>
+
+
+
