@@ -176,6 +176,9 @@ export class AlphaSliderComponent implements AfterViewInit {
   }
 
   getPositionAtColor(color: string) {
+    if (!this.canvas || !this.context || !this.canvas.nativeElement.height) {
+      return undefined;
+    }
     const height = this.canvas.nativeElement.height;
     const buffer = this.context.getImageData(0, this.offset, 1, height).data;
     const { r, g, b, a } = this.getColorInformation(color);

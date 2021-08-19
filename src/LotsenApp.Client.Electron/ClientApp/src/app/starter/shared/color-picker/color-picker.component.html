@@ -1,9 +1,9 @@
 <div class="color-wrapper">
   <div class="palette">
-    <la2-color-palette [hue]="hue" [(color)]="brightness" [strokeWidth]="strokeWidth"></la2-color-palette>
+    <la2-color-palette #palette [hue]="hue" [(color)]="brightness" [strokeWidth]="strokeWidth"></la2-color-palette>
   </div>
   <div class="slider">
-    <la2-color-slider [(hue)]="hue" [strokeWidth]="strokeWidth"></la2-color-slider>
+    <la2-color-slider #slider [(hue)]="hue" [strokeWidth]="strokeWidth"></la2-color-slider>
   </div>
 </div>
 <div class="color-wrapper">

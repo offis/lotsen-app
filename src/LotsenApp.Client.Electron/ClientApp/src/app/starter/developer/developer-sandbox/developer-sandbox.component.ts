@@ -28,13 +28,42 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
+import { ColorPickerDialogComponent } from '../../shared/color-picker-dialog/color-picker-dialog.component';
 
 @Component({
   selector: 'la2-developer-sandbox',
   templateUrl: './developer-sandbox.component.html',
   styleUrls: ['./developer-sandbox.component.scss'],
 })
-export class DeveloperSandboxComponent {
-  constructor() {}
+export class DeveloperSandboxComponent implements OnInit {
+  constructor(public dialog: MatDialog) {}
+
+  ngOnInit(): void {
+    setTimeout(() => this.openDialog(), 100);
+  }
+
+  async openDialog() {
+    const dialog = this.dialog.open(ColorPickerDialogComponent, {
+      data: {
+        initialColor: '#00ff00aa',
+        predefinedColors: [
+          '#ff0000ff',
+          '#00ff00ff',
+          '#0000ffff',
+          '#ff00ffff',
+          '#00ffffff',
+          '#ffff00ff',
+          '#ffffffff',
+          '#000000ff',
+          '#aacc00ff',
+          '#ff0ca6ff',
+        ],
+      },
+      panelClass: 'animate-height',
+    });
+    const result = await dialog.afterClosed().toPromise();
+    console.log('The resulting color was ', result);
+  }
 }

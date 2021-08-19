@@ -1,0 +1,14 @@
+<mat-tab-group class="tabs" dynamicHeight (animationDone)="draw()" (selectedTabChange)="updateInitialColor($event)">
+  <mat-tab *ngIf="predefinedColors.length" [label]="'Application.ColorPicker.Preset' | translate">
+    <div class="color-show">
+      <button mat-button class="color-button" [style.background]="color" *ngFor="let color of predefinedColors" (click)="updateColorAndCloseDialog(color)">{{color}}</button>
+    </div>
+  </mat-tab>
+  <mat-tab [label]="'Application.ColorPicker.Header' | translate">
+    <la2-color-picker #picker class="color-picker" [color]="initialColor" (colorChange)="updateColor($event)"></la2-color-picker>
+  </mat-tab>
+</mat-tab-group>
+<div mat-dialog-actions>
+  <button mat-button (click)="confirm()">{{'Application.ColorPicker.Confirm' | translate}}</button>
+  <button mat-button (click)="cancel()">{{'Application.ColorPicker.Cancel' | translate}}</button>
+</div>

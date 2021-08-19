@@ -8,5 +8,9 @@
     width: calc(100% + 0.71em);
     height: 100%;
     position: relative;
+
+    &:hover {
+      cursor: pointer;
+    }
   }
 }

@@ -544,7 +544,11 @@
 			"SaveFailure": "The changes could not be saved"
 		},
 		"ColorPicker": {
-			"Label": "Color"
+			"Label": "Color",
+			"Confirm": "Confirm",
+			"Cancel": "Cancel",
+			"Preset": "Presets",
+			"Header": "Pick a color"
 		}
 	}
 }

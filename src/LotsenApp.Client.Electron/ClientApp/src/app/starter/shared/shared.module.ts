@@ -64,6 +64,8 @@ import { ColorPickerComponent } from './color-picker/color-picker.component';
 import { ColorSliderComponent } from './color-slider/color-slider.component';
 import { AlphaSliderComponent } from './alpha-slider/alpha-slider.component';
 import { ColorPaletteComponent } from './color-palette/color-palette.component';
+import { ColorPickerDialogComponent } from './color-picker-dialog/color-picker-dialog.component';
+import { MatTabsModule } from '@angular/material/tabs';
 
 @NgModule({
   declarations: [
@@ -77,6 +79,7 @@ import { ColorPaletteComponent } from './color-palette/color-palette.component';
     ColorSliderComponent,
     AlphaSliderComponent,
     ColorPaletteComponent,
+    ColorPickerDialogComponent,
   ],
   imports: [
     CommonModule,
@@ -92,6 +95,7 @@ import { ColorPaletteComponent } from './color-palette/color-palette.component';
     MatGridListModule,
     MatMenuModule,
     FormsModule,
+    MatTabsModule,
   ],
   exports: [
     MatButtonModule,
@@ -116,6 +120,7 @@ import { ColorPaletteComponent } from './color-palette/color-palette.component';
     ParticipantTintComponent,
     IconChooserComponent,
     ColorPickerComponent,
+    ColorPickerDialogComponent,
   ],
   providers: [
     {

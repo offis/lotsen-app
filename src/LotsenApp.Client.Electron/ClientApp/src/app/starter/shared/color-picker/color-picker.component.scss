@@ -10,8 +10,8 @@
 }
 
 .color-wrapper, .input-wrapper {
-  width: 500px;
   display: flex;
+  min-height: 4em;
 }
 .input-wrapper {
   display: flex;

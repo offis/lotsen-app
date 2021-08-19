@@ -99,7 +99,7 @@ export class ColorSliderComponent implements AfterViewInit {
 
   onMouseDown(evt: MouseEvent) {
     this.mouseDown = true;
-    if (this.isOutBounds(evt.offsetX, evt.offsetX)) {
+    if (this.isOutBounds(evt.offsetX, evt.offsetY)) {
       return;
     }
     this.selectedHeight = evt.offsetY;
@@ -135,6 +135,9 @@ export class ColorSliderComponent implements AfterViewInit {
   }
 
   getPositionAtColor(color: string) {
+    if (!this.canvas || !this.context || !this.canvas.nativeElement.height) {
+      return undefined;
+    }
     const height = this.canvas.nativeElement.height;
     const buffer = this.context.getImageData(0, 0, 1, height).data;
     const match = color.match(/rgba?\((.*)\)/);

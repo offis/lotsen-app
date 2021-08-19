@@ -544,7 +544,11 @@
 			"SaveFailure": "Die Änderungen konnten nicht gespeichert werden"
 		},
 		"ColorPicker": {
-			"Label": "Farbe"
+			"Label": "Farbe",
+			"Confirm": "Bestätigen",
+			"Cancel": "Abbrechen",
+			"Preset": "Vordefinierte Farben",
+			"Header": "Freie Farbauswahl"
 		}
 	}
 }

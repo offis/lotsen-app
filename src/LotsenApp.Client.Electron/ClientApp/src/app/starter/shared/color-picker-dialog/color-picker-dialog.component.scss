@@ -1,0 +1,22 @@
+.color-picker {
+  min-height: 28em;
+  display: block;
+}
+
+.tabs {
+  transition: all 0.7s ease-in-out;
+}
+
+.color-show {
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+  flex-direction: row;
+  justify-content: space-evenly;
+}
+
+.color-button {
+  margin: 1em;
+  height: 6em;
+  box-shadow: 0 0 0.3em rgba(0, 0, 0, 0.3);
+}

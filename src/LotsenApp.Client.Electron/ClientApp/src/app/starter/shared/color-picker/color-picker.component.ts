@@ -7,6 +7,8 @@ import {
 } from '@angular/core';
 import { AlphaSliderComponent } from '../alpha-slider/alpha-slider.component';
 import { Color } from './color';
+import { ColorPaletteComponent } from '../color-palette/color-palette.component';
+import { ColorSliderComponent } from '../color-slider/color-slider.component';
 
 @Component({
   selector: 'la2-color-picker',
@@ -36,9 +38,16 @@ export class ColorPickerComponent {
 
   @ViewChild('alphaSlider')
   alphaSlider!: AlphaSliderComponent;
+  @ViewChild('palette')
+  palette!: ColorPaletteComponent;
+  @ViewChild('slider')
+  slider!: ColorSliderComponent;
 
   @Input()
   set color(value: string) {
+    if (!value) {
+      return;
+    }
     if (!this.initialColor) {
       this.initialColor = value;
       setTimeout(() => {
@@ -79,5 +88,11 @@ export class ColorPickerComponent {
     }
     this.initialColor = undefined;
     this.color = color.toHexString();
+  }
+
+  draw() {
+    this.alphaSlider.draw();
+    this.slider.draw();
+    this.palette.draw();
   }
 }

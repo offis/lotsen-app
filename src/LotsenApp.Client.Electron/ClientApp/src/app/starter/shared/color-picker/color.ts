@@ -18,10 +18,10 @@ export class Color {
       return;
     }
     const color = match[1].split(',').map(Number);
-    this.red = color[0];
-    this.green = color[1];
-    this.blue = color[2];
-    this.alpha = color[3];
+    this.red = Math.max(color[0], 0);
+    this.green = Math.max(color[1], 0);
+    this.blue = Math.max(color[2], 0);
+    this.alpha = Math.max(color[3], 0);
   }
 
   private calculateFromHexColor(color: string) {
