@@ -31,7 +31,7 @@
 <div class="create-participant-wrapper">
   <form class="input-column">
     <la2-participant-name #nameField [fieldTemplate]="nameTemplate" [nameControl]="nameControl" (keyUp)="createParticipant()"></la2-participant-name>
-    <la2-participant-tint [(color)]="color" (colorChange)="createParticipant()"></la2-participant-tint>
+    <la2-participant-tint [(color)]="color" (colorChange)="createParticipant()" [predefinedColors]="predefinedColors"></la2-participant-tint>
     <la2-participant-project [projects]="projects" [documents]="documents" [selectedProject]="selectedProject" [documentedBy]="documentedBy"></la2-participant-project>
     <button mat-raised-button color="primary" (click)="createNewParticipant()" #createButton >
       <mat-spinner

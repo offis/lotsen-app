@@ -34,4 +34,5 @@ export interface IProject {
   id: string;
   name: string;
   I18NKey: string;
+  colors?: string[];
 }

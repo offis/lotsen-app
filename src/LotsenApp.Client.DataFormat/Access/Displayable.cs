@@ -25,6 +25,8 @@
 // OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
 // OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
+using System.Collections.Generic;
+
 namespace LotsenApp.Client.DataFormat.Access
 {
     public class Displayable
@@ -32,5 +34,6 @@ namespace LotsenApp.Client.DataFormat.Access
         public string Id { get; set; }
         public string Name { get; set; }
         public string I18NKey { get; set; }
+        public List<string> Colors { get; set; } = new();
     }
 }

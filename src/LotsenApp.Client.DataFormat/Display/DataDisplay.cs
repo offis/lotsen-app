@@ -37,5 +37,6 @@ namespace LotsenApp.Client.DataFormat.Display
         public virtual List<GroupDisplay> Groups { get; set; } = new();
         public virtual List<DataTypeDisplay> DataTypes { get; set; } = new();
         public virtual List<string> TopLevelDocuments { get; set; } = new();
+        public virtual List<string> Colors { get; set; } = new();
     }
 }

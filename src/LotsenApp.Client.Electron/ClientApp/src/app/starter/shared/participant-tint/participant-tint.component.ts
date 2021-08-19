@@ -29,6 +29,8 @@
  */
 
 import { Component, Input, OnInit, EventEmitter, Output } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
+import { ColorPickerDialogComponent } from '../color-picker-dialog/color-picker-dialog.component';
 
 @Component({
   selector: 'la2-participant-tint',
@@ -49,5 +51,21 @@ export class ParticipantTintComponent {
   }
   @Output()
   colorChange = new EventEmitter<string>();
-  constructor() {}
+
+  @Input()
+  predefinedColors: string[] = [];
+  constructor(public dialog: MatDialog) {}
+
+  async openDialog() {
+    const dialog = this.dialog.open(ColorPickerDialogComponent, {
+      data: {
+        initialColor: this.color,
+        predefinedColors: this.predefinedColors,
+      },
+    });
+    const result = await dialog.afterClosed().toPromise();
+    if (result) {
+      this.color = result;
+    }
+  }
 }

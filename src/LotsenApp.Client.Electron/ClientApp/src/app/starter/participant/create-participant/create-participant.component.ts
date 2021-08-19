@@ -63,6 +63,7 @@ export class CreateParticipantComponent
   color = '#0002';
   selectedProject = new FormControl('');
   documentedBy = new FormControl(null, [Validators.required]);
+  predefinedColors: string[] = [];
 
   projects: IProject[] = [];
   documents: IProject[] = [];
@@ -90,6 +91,17 @@ export class CreateParticipantComponent
     this.documents = await this.projectService.GetDocumentationProjects();
 
     this.subscriptions.push(
+      this.documentedBy.valueChanges.subscribe((next) => {
+        console.log('documentation project set to ', next, this.documents);
+        if (next) {
+          const project = this.documents.find((d) => d.id === next);
+          if (project) {
+            this.predefinedColors = project.colors ?? [];
+          } else {
+            this.predefinedColors = [];
+          }
+        }
+      }),
       this.selectedProject.valueChanges.subscribe((next) => {
         if (next) {
           this.documentedBy.disable();

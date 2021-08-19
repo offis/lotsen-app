@@ -1,5 +1,5 @@
 <mat-tab-group class="tabs" dynamicHeight (animationDone)="draw()" (selectedTabChange)="updateInitialColor($event)">
-  <mat-tab *ngIf="predefinedColors.length" [label]="'Application.ColorPicker.Preset' | translate">
+  <mat-tab [label]="'Application.ColorPicker.Preset' | translate" [disabled]="!predefinedColors.length">
     <div class="color-show">
       <button mat-button class="color-button" [style.background]="color" *ngFor="let color of predefinedColors" (click)="updateColorAndCloseDialog(color)">{{color}}</button>
     </div>

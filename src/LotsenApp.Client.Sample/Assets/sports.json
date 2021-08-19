@@ -4,7 +4,7 @@
   "I18NKey": "Sports.Name",
   "OpenForDocumentation": true,
   "DataFormatVersion": 2,
-  "Version": 1,
+  "Version": 3,
   "DataDefinition": {
     "DataTypes": [
       {
@@ -142,6 +142,11 @@
   "DataDisplay": {
     "TopLevelDocuments": [
       "interest"
+    ],
+    "Colors":[
+      "#3f51b5",
+      "#ffc107",
+      "#ff5722"
     ]
   }
 }

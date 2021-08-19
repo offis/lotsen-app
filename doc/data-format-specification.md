@@ -652,6 +652,27 @@ ValueDelta: {
 }
 ```
 
-## Spezifikation `mk5`
+## Spezifikation `mk5` (Draft)
 
 In dieser Spezifikation wird die Barriere zwischen Datenfeldern und Gruppen aufgelöst. Dazu wird eine mögliche Data Definition und Data Validation Sprache mit LUA getestet.
+
+Aktualisierung der Datendarstellung um ein Feld von Farben:
+
+```json
+DataDisplay: {
+  "DocumentationEvents": DocumentationEventDisplay[], 
+      // Darstellungsinformationen zu Dokumentationsereignissen
+  "Documents": DocumentDisplay[], // Darstellungsinformationen zu 
+      // Dokumenten
+  "Groups": GroupDisplay[], // Darstellungsinformationen zu Gruppen
+  "DataFields": DataFieldDisplay[], // Darstellungsinformationen zu 
+      // Datenfeldern
+  "DataTypes": DataTypeDisplay[], // Darstellungsinformationen zu 
+      // Datentypen
+  "TopLevelDocuments": string[], // Referenzierung zu Dokumenten, 
+      // die auf der gleichen Ebene wie Dokumentationsereignisse 
+      // angezeigt werden sollen
+  "Colors": string[] // Farben, die in der LotsenApp einem
+      // Teilnehmer zugeordnet werden können
+}
+```

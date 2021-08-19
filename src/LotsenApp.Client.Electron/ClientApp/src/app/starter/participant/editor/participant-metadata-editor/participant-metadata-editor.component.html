@@ -43,7 +43,7 @@
     <la2-participant-project #projectComponent [projects]="projects" [documents]="documents"
                              [selectedProject]="projectControl"
                              [documentedBy]="documentControl"></la2-participant-project>
-    <la2-participant-tint #tintComponent [(color)]="participant.header.tint[0]"></la2-participant-tint>
+    <la2-participant-tint #tintComponent [(color)]="participant.header.tint[0]" [predefinedColors]="predefinedColors"></la2-participant-tint>
     <button mat-raised-button color="primary"
             (click)="save()">{{'Application.ParticipantMetadataEditor.Save' | translate}}</button>
   </div>

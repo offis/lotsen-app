@@ -28,7 +28,7 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { ParticipantService } from '../../participant.service';
 import { IParticipant } from '../../iparticipant';
 import { ActivatedRoute } from '@angular/router';
@@ -40,13 +40,14 @@ import { IProject } from '../../iproject';
 import { FormControl } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { TranslateService } from '@ngx-translate/core';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'la2-participant-metadata-editor',
   templateUrl: './participant-metadata-editor.component.html',
   styleUrls: ['./participant-metadata-editor.component.scss'],
 })
-export class ParticipantMetadataEditorComponent implements OnInit {
+export class ParticipantMetadataEditorComponent implements OnInit, OnDestroy {
   participant!: IParticipant;
   projects: IProject[] = [];
   documents: IProject[] = [];
@@ -59,6 +60,9 @@ export class ParticipantMetadataEditorComponent implements OnInit {
   projectComponent!: ParticipantProjectComponent;
   @ViewChild('tintComponent')
   tintComponent!: ParticipantTintComponent;
+  predefinedColors: string[] = [];
+
+  private subscriptions: Subscription[] = [];
 
   constructor(
     private participantService: ParticipantService,
@@ -69,6 +73,20 @@ export class ParticipantMetadataEditorComponent implements OnInit {
   ) {}
 
   async ngOnInit() {
+    this.subscriptions.push(
+      this.documentControl.valueChanges.subscribe((next) => {
+        if (!next) {
+          return;
+        }
+        const project = this.documents.find((d) => d.id === next);
+        if (!project) {
+          this.predefinedColors = [];
+          return;
+        }
+        this.predefinedColors = project.colors ?? [];
+      })
+    );
+
     const id = this.route.snapshot.params['id'];
     this.participant = await this.participantService.GetParticipant(id);
     this.projects = await this.projectService.GetProjects();
@@ -76,6 +94,10 @@ export class ParticipantMetadataEditorComponent implements OnInit {
     this.nameControl.setValue(this.participant.header.name[0]);
     this.projectControl.setValue(this.participant.projectId);
     this.documentControl.setValue(this.participant.documentedBy);
+  }
+
+  ngOnDestroy() {
+    this.subscriptions.forEach((s) => s.unsubscribe());
   }
 
   back() {

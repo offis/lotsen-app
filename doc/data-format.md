@@ -223,9 +223,11 @@ DataDisplay: {
       // Datenfeldern
   "DataTypes": DataTypeDisplay[], // Darstellungsinformationen zu 
       // Datentypen
-  "TopLevelDocuments": string[] // Referenzierung zu Dokumenten, 
+  "TopLevelDocuments": string[], // Referenzierung zu Dokumenten, 
       // die auf der gleichen Ebene wie Dokumentationsereignisse 
       // angezeigt werden sollen
+  "Colors": string[] // Farben, die in der LotsenApp einem
+      // Teilnehmer zugeordnet werden können
 }
 ```
 

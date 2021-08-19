@@ -104,7 +104,8 @@ namespace LotsenApp.Client.DataFormat
                 {
                     Id = p.Id,
                     Name = p.Name,
-                    I18NKey = p.I18NKey
+                    I18NKey = p.I18NKey,
+                    Colors = p.DataDisplay.Colors
                 }).ToArray();
             return documentationProjects;
         }
@@ -151,7 +152,8 @@ namespace LotsenApp.Client.DataFormat
             {
                 Id = project.Id,
                 I18NKey = project.I18NKey,
-                Name = project.Name
+                Name = project.Name,
+                Colors = project.DataDisplay.Colors
             };
             return Task.FromResult(displayable);
         }
