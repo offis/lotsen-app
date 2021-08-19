@@ -53,7 +53,7 @@ export class AlphaSliderComponent implements AfterViewInit {
 
   private context!: CanvasRenderingContext2D;
   private mouseDown = false;
-  private selectedWidth: number = 240;
+  private selectedWidth: number = -1;
 
   constructor() {}
 
@@ -83,6 +83,9 @@ export class AlphaSliderComponent implements AfterViewInit {
     }
     const width = this.canvas.nativeElement.width;
     const height = this.canvas.nativeElement.height;
+    if (this.selectedWidth < 0) {
+      // this.selectedWidth = width - this.offset;
+    }
     // Clear canvas to initial value
     this.context.clearRect(0, 0, width, height);
     // Create a linear gradient in our canvas
@@ -188,6 +191,15 @@ export class AlphaSliderComponent implements AfterViewInit {
     }
     // The color was not found
     return null;
+  }
+
+  setAlpha(alpha: number) {
+    if (!this.canvas) {
+      return;
+    }
+    const width = this.canvas.nativeElement.width;
+    this.selectedWidth = (width - this.offset) * alpha;
+    this.draw();
   }
 
   private euclideanDistance(

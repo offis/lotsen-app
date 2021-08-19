@@ -542,6 +542,9 @@
 			"Save": "Save changes",
 			"SaveSuccess": "The changes were saved successfully",
 			"SaveFailure": "The changes could not be saved"
+		},
+		"ColorPicker": {
+			"Label": "Color"
 		}
 	}
 }

@@ -1,5 +1,8 @@
-<div class="color-palette">
-  <canvas #canvas class="color-slider" width="250" height="50" (mousedown)="onMouseDown($event)" (mousemove)="onMouseMove($event)">
+<div class="color-palette" #wrapper>
+  <canvas #canvas class="color-slider"
+          [width]="wrapper.getBoundingClientRect().width"
+          [height]="wrapper.getBoundingClientRect().height"
+          (mousedown)="onMouseDown($event)" (mousemove)="onMouseMove($event)">
 
   </canvas>
 </div>

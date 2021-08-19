@@ -1,4 +1,12 @@
-import { Component, Input, EventEmitter, Output } from '@angular/core';
+import {
+  Component,
+  Input,
+  EventEmitter,
+  Output,
+  ViewChild,
+} from '@angular/core';
+import { AlphaSliderComponent } from '../alpha-slider/alpha-slider.component';
+import { Color } from './color';
 
 @Component({
   selector: 'la2-color-picker',
@@ -7,8 +15,9 @@ import { Component, Input, EventEmitter, Output } from '@angular/core';
 })
 export class ColorPickerComponent {
   private internalColor: string = '#ff0000ff';
+  private initialColor?: string;
 
-  hue: string = this.calculateRgbaColor(this.internalColor);
+  hue: string = this.calculateRgbaColor(this.internalColor).toString();
   brightness: string = this.hue;
 
   private internalAlpha = this.hue;
@@ -24,10 +33,22 @@ export class ColorPickerComponent {
   get color() {
     return this.internalColor;
   }
+
+  @ViewChild('alphaSlider')
+  alphaSlider!: AlphaSliderComponent;
+
   @Input()
   set color(value: string) {
+    if (!this.initialColor) {
+      this.initialColor = value;
+      setTimeout(() => {
+        const color = this.calculateRgbaColor(value);
+        this.hue = color.toString();
+        this.alphaSlider.setAlpha(color.alpha);
+      }, 17);
+    }
     this.internalColor = value;
-    // setTimeout(() => (this.hue = this.calculateRgbaColor(value)), 17);
+
     this.colorChange.emit(value);
   }
   @Output()
@@ -37,32 +58,26 @@ export class ColorPickerComponent {
   offset = 5;
   constructor() {}
 
+  calculateColor(value: string) {
+    return new Color(value);
+  }
+
   calculateHexColor(rgba: string) {
-    const match = rgba.match(/rgba?\((.*)\)/);
-    if (!match) {
-      return;
-    }
-    const color = match[1].split(',').map(Number);
-    const r = color[0].toString(16).padStart(2, '0');
-    const g = color[1].toString(16).padStart(2, '0');
-    const b = color[2].toString(16).padStart(2, '0');
-    const a = Math.trunc(color[3] * 255)
-      .toString(16)
-      .padStart(2, '0');
-    this.color = `#${r}${g}${b}${a}`;
+    const color = this.calculateColor(rgba);
+    this.color = color.toHexString();
   }
 
   calculateRgbaColor(color: string) {
-    const r = color.substring(1, 3);
-    const g = color.substring(3, 5);
-    const b = color.substring(5, 7);
-    const a = color.substring(7, 9);
-    console.log(r, g, b, a);
-    const decimalR = parseInt(r, 16);
-    const decimalG = parseInt(g, 16);
-    const decimalB = parseInt(b, 16);
-    const decimalA = parseInt(a, 16);
-    console.log(decimalR, decimalG, decimalB, decimalA);
-    return `rgba(${decimalR}, ${decimalG}, ${decimalB}, ${decimalA / 255})`;
+    return new Color(color);
+  }
+
+  updateColor(value: string) {
+    console.log(value);
+    const color = new Color(value);
+    if (color.red < 0 || value.length < 9) {
+      return;
+    }
+    this.initialColor = undefined;
+    this.color = color.toHexString();
   }
 }

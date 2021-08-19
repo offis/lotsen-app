@@ -1,13 +1,25 @@
 <div class="color-wrapper">
-  <la2-color-palette [hue]="hue" [(color)]="brightness" [strokeWidth]="strokeWidth"></la2-color-palette>
-  <la2-color-slider [(hue)]="hue" [strokeWidth]="strokeWidth"></la2-color-slider>
+  <div class="palette">
+    <la2-color-palette [hue]="hue" [(color)]="brightness" [strokeWidth]="strokeWidth"></la2-color-palette>
+  </div>
+  <div class="slider">
+    <la2-color-slider [(hue)]="hue" [strokeWidth]="strokeWidth"></la2-color-slider>
+  </div>
 </div>
-<la2-alpha-slider [hue]="brightness" [(color)]="alpha" [strokeWidth]="strokeWidth"></la2-alpha-slider>
-<div class="input-wrapper">
-  <span class="text">{{color}}</span>
-  <div class="color-div" >
+<div class="color-wrapper">
+  <div class="alpha-slider">
+    <la2-alpha-slider #alphaSlider [hue]="brightness" [(color)]="alpha" [strokeWidth]="strokeWidth"></la2-alpha-slider>
+  </div>
+  <div class="color-div">
     <div [style.background]="alpha ?? 'white'" class="color-holder"></div>
   </div>
+</div>
+
+<div class="input-wrapper">
+  <mat-form-field>
+    <mat-label>{{'Application.ColorPicker.Label' | translate}}</mat-label>
+    <input matInput #input [(ngModel)]="color" (keyup)="updateColor(input.value)" />
+  </mat-form-field>
 </div>
 
 

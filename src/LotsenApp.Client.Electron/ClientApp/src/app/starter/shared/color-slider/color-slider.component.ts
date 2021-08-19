@@ -76,7 +76,7 @@ export class ColorSliderComponent implements AfterViewInit {
 
     // Draw the gradient onto the canvas
     this.context.beginPath();
-    this.context.rect(0, this.offset, width, height - this.offset);
+    this.context.rect(0, 2 * this.offset, width, height - 4 * this.offset);
     this.context.fillStyle = gradient;
     this.context.fill();
     this.context.closePath();
@@ -99,17 +99,28 @@ export class ColorSliderComponent implements AfterViewInit {
 
   onMouseDown(evt: MouseEvent) {
     this.mouseDown = true;
+    if (this.isOutBounds(evt.offsetX, evt.offsetX)) {
+      return;
+    }
     this.selectedHeight = evt.offsetY;
     this.emitColor(evt.offsetX, evt.offsetY);
   }
 
   onMouseMove(evt: MouseEvent) {
+    if (this.isOutBounds(evt.offsetX, evt.offsetY)) {
+      return;
+    }
     if (this.mouseDown) {
       evt.preventDefault();
       this.selectedHeight = evt.offsetY;
       this.draw();
       this.emitColor(evt.offsetX, evt.offsetY);
     }
+  }
+
+  isOutBounds(x: number, y: number) {
+    const height = this.canvas.nativeElement.height;
+    return y < 2 * this.offset || y > height - 2 * this.offset - 1;
   }
 
   emitColor(x: number, y: number) {

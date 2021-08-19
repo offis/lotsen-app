@@ -52,7 +52,7 @@ import { PaginatorIntl } from './paginator-intl';
 import { ParticipantNameComponent } from './participant-name/participant-name.component';
 import { ParticipantProjectComponent } from './participant-project/participant-project.component';
 import { ParticipantTintComponent } from './participant-tint/participant-tint.component';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatInputModule } from '@angular/material/input';
 import { CoreModule } from '../core/core.module';
 import { ColorPickerModule } from 'ngx-color-picker';
@@ -91,6 +91,7 @@ import { ColorPaletteComponent } from './color-palette/color-palette.component';
     MatButtonModule,
     MatGridListModule,
     MatMenuModule,
+    FormsModule,
   ],
   exports: [
     MatButtonModule,

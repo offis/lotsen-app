@@ -185,7 +185,7 @@ export class ColorPaletteComponent implements AfterViewInit, OnChanges {
     return (
       x < this.offset ||
       y < this.offset ||
-      x > width - this.offset ||
+      x > width - this.offset - 1 ||
       y > height - this.offset
     );
   }

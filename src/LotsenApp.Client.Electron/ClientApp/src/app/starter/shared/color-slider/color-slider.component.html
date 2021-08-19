@@ -1,3 +1,6 @@
-<canvas #canvas class="color-slider" width="50" height="250" (mousedown)="onMouseDown($event)" (mousemove)="onMouseMove($event)">
+<canvas #canvas class="color-slider"
+        [width]="canvas.getBoundingClientRect().width"
+        [height]="canvas.getBoundingClientRect().height"
+        (mousedown)="onMouseDown($event)" (mousemove)="onMouseMove($event)">
 
 </canvas>

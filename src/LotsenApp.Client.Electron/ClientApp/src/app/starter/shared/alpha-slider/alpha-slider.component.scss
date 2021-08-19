@@ -1,11 +1,12 @@
 .color-palette {
-  width: 230px;
-  height: 50px;
+  width: 100%;
+  max-width: 18em;
+  height: 3.8em;
   background: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAUCAIAAAAC64paAAAAK0lEQVQ4y2P8//8/A25w7949PLJMDBSAUc0jQzML/jSkpKQ0GmCjminRDADJNQjBr5nbigAAAABJRU5ErkJggg==");
   position: relative;
-  right: -10px;
   & > * {
+    width: calc(100% + 0.71em);
+    height: 100%;
     position: relative;
-    right: 10px;
   }
 }
