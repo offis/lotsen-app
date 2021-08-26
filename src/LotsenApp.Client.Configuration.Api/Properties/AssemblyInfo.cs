@@ -1,4 +1,4 @@
-// Copyright (c) 2021 OFFIS e.V.. All rights reserved.
+﻿// Copyright (c) 2021 OFFIS e.V.. All rights reserved.
 // 
 // Redistribution and use in source and binary forms, with or without
 // modification, are permitted provided that the following conditions are met:
@@ -25,11 +25,6 @@
 // OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
 // OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
-namespace LotsenApp.Client.Configuration.Api
-{
-    public class ReplaceDataPasswordDto
-    {
-        public string NewDataPassword { get; set; }
-        public string RecoveryKey { get; set; }
-    }
-}
+using System.Runtime.CompilerServices;
+
+[assembly: InternalsVisibleTo("LotsenApp.Client.Configuration.Api.Test")]

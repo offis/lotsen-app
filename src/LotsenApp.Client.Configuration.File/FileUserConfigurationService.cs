@@ -27,23 +27,23 @@
 
 using System;
 using System.IO;
-using LotsenApp.Client.Configuration.User;
+using LotsenApp.Client.Configuration.Api;
 using LotsenApp.Client.Cryptography;
 using LotsenApp.Client.File;
 using Newtonsoft.Json;
 
-namespace LotsenApp.Client.Configuration.Api
+namespace LotsenApp.Client.Configuration.File
 {
-    public class UserConfigurationService
+    public class FileUserConfigurationService: IUserConfigurationService
     {
         private readonly IFileService _fileService;
 
-        public UserConfigurationService(IFileService fileService)
+        public FileUserConfigurationService(IFileService fileService)
         {
             _fileService = fileService;
         }
         
-        private void BackupDataKeys(UserConfiguration configuration)
+        internal void BackupDataKeys(UserConfiguration configuration)
         {
             var parentDirectory = _fileService.Join("data/key-backup");
             Directory.CreateDirectory(parentDirectory);
@@ -58,23 +58,9 @@ namespace LotsenApp.Client.Configuration.Api
             System.IO.File.WriteAllText($"{parentDirectory}/{configuration.UserId}.backup", JsonConvert.SerializeObject(backup));
         }
 
-        public UserConfiguration SetDataKeys(DataPasswordDto request, UserConfiguration userConfiguration)
+        public UserConfiguration SetDataKeys(string dataPassword, string recoveryKey, UserConfiguration userConfiguration)
         {
-            var dataPassword = request.DataPassword;
-            var recoveryKey = request.RecoveryKey;
-            var hashedPassword = OneWayHashFunction.Hash(dataPassword);
-            var (publicKey, privateKey) = PersistentAsymmetricCryptography.CreateKeyPair();
-            var dataKey = SymmetricCryptography.CreateKey();
-            var encryptedPrivateKeyByDataPassword = SymmetricCryptography.Encrypt(privateKey, dataPassword);
-            var encryptedPrivateKeyByRecoveryKey = SymmetricCryptography.Encrypt(privateKey, recoveryKey);
-            var encryptedDataKey = PersistentAsymmetricCryptography.Encrypt(dataKey, publicKey);
-            
-            userConfiguration.HashedDataPassword = hashedPassword;
-            userConfiguration.EncryptedPrivateKeyByDataPassword = encryptedPrivateKeyByDataPassword;
-            userConfiguration.EncryptedPrivateKeyByRecoveryKey = encryptedPrivateKeyByRecoveryKey;
-            userConfiguration.EncryptedDataKey = encryptedDataKey;
-
-            BackupDataKeys(userConfiguration);
+            BackupDataKeys(IUserConfigurationService.SetDataKeysDefault(dataPassword, recoveryKey, userConfiguration));
             
             return userConfiguration;
         }
@@ -82,34 +68,14 @@ namespace LotsenApp.Client.Configuration.Api
         public UserConfiguration ReplaceDataPassword(UserConfiguration userConfiguration,
             string newDataPassword, string recoveryKey)
         {
-            var hashedPassword = OneWayHashFunction.Hash(newDataPassword);
-            var encryptedPrivateKey = userConfiguration.EncryptedPrivateKeyByRecoveryKey;
-            var privateKey = SymmetricCryptography.Decrypt(encryptedPrivateKey, recoveryKey);
-
-            var encryptedPrivateKeyByDataPassword = SymmetricCryptography.Encrypt(privateKey, newDataPassword);
-
-            userConfiguration.HashedDataPassword = hashedPassword;
-            userConfiguration.EncryptedPrivateKeyByDataPassword = encryptedPrivateKeyByDataPassword;
-            BackupDataKeys(userConfiguration);
+            BackupDataKeys(IUserConfigurationService.ReplaceDataPasswordDefault(userConfiguration, newDataPassword, recoveryKey));
             return userConfiguration;
         }
 
         public UserConfiguration ReplaceRecoveryKey(UserConfiguration userConfiguration,
             string dataPassword, string newRecoveryKey)
         {
-
-            if (userConfiguration == null || OneWayHashFunction.Verify(dataPassword, userConfiguration.HashedDataPassword))
-            {
-                throw new Exception("No configuration exists or the data password was invalid");
-            }
-
-            var encryptedPrivateKey = userConfiguration.EncryptedPrivateKeyByDataPassword;
-            var privateKey = SymmetricCryptography.Decrypt(encryptedPrivateKey, dataPassword);
-
-            var encryptedPrivateKeyByRecoveryKey = SymmetricCryptography.Encrypt(privateKey, newRecoveryKey);
-            userConfiguration.EncryptedPrivateKeyByRecoveryKey = encryptedPrivateKeyByRecoveryKey;
-            
-            BackupDataKeys(userConfiguration);
+            BackupDataKeys(IUserConfigurationService.ReplaceRecoveryKeyDefault(userConfiguration, dataPassword, newRecoveryKey));
             return userConfiguration;
         }
     }

@@ -36,6 +36,7 @@ namespace LotsenApp.Client.Configuration.Rest
     {
         public void ConfigurePlugin(IServiceCollection collection, IMvcBuilder builder)
         {
+            collection.AddSingleton<IUserConfigurationRestService, UserConfigurationRestService>();
             builder.AddApplicationPart(GetType().Assembly);
         }
 

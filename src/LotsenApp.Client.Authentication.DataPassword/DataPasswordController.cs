@@ -29,7 +29,6 @@ using System;
 using System.Threading.Tasks;
 using LotsenApp.Client.Authentication.Api;
 using LotsenApp.Client.Configuration.Api;
-using LotsenApp.Client.Configuration.User;
 using LotsenApp.Client.Cryptography;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;

@@ -25,11 +25,13 @@
 // OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
 // OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
+using System.Diagnostics.CodeAnalysis;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Design;
 
 namespace LotsenApp.Client.Configuration.Database
 {
+    [ExcludeFromCodeCoverage]
     public class DatabaseConfigurationContextDesignTimeFactory: IDesignTimeDbContextFactory<DatabaseConfigurationContext>
     {
         public DatabaseConfigurationContext CreateDbContext(string[] args)

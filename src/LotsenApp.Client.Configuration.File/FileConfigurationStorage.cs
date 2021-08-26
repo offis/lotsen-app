@@ -35,10 +35,10 @@ namespace LotsenApp.Client.Configuration.File
 {
     public class FileConfigurationStorage: IConfigurationStorage
     {
-        private readonly ConfigurationFileUtility _utility;
+        private readonly IConfigurationUtility _utility;
         private readonly IFileService _fileService;
 
-        public FileConfigurationStorage(ConfigurationFileUtility utility, IFileService fileService)
+        public FileConfigurationStorage(IConfigurationUtility utility, IFileService fileService)
         {
             _utility = utility;
             _fileService = fileService;
@@ -59,7 +59,7 @@ namespace LotsenApp.Client.Configuration.File
         public Task<UserConfiguration> GetConfigurationForUser(string userId, AccessMode accessMode = AccessMode.Read)
         {
             var fileName = GetConfigurationFileName(userId);
-            var userConfiguration = _utility.ReadConfiguration<UserConfiguration>(accessMode, userId, fileName);
+            var userConfiguration = _utility.ReadUserConfiguration(userId, fileName, accessMode);
             userConfiguration.UserId = userId;
             return Task.FromResult(userConfiguration);
         }
@@ -67,17 +67,16 @@ namespace LotsenApp.Client.Configuration.File
         public Task SaveUserConfiguration(UserConfiguration configuration)
         {
             var fileName = GetConfigurationFileName(configuration.UserId);
-            _utility.SaveConfigurationFile(configuration, configuration.UserId, fileName);
+            _utility.SaveUserConfiguration(configuration, configuration.UserId, fileName);
             return Task.CompletedTask;
         }
 
         public Task<GlobalConfiguration> GetGlobalConfiguration(AccessMode accessMode = AccessMode.Read)
         {
-            var configurationFile = _fileService.Join("config/global.json");
+            var configurationFile = _fileService.Join(ConfigurationConstants.GlobalConfigurationFile);
             try
             {
-                var globalConfiguration = _utility.ReadConfiguration<GlobalConfiguration>(accessMode, null,
-                    configurationFile);
+                var globalConfiguration = _utility.ReadGlobalConfiguration(accessMode, configurationFile);
                 return Task.FromResult(globalConfiguration);
             }
             catch(Exception)
@@ -87,7 +86,7 @@ namespace LotsenApp.Client.Configuration.File
                 {
                     accessor.ExitWriteLock();
                 }
-                else
+                else if(accessor.IsReadLockHeld)
                 {
                     accessor.ExitReadLock();
                 }
@@ -99,7 +98,7 @@ namespace LotsenApp.Client.Configuration.File
 
         public Task SaveGlobalConfiguration(GlobalConfiguration configuration)
         {
-            _utility.SaveConfigurationFile(configuration, null, _fileService.Join("config/global.json"));
+            _utility.SaveGlobalConfiguration(configuration, _fileService.Join(ConfigurationConstants.GlobalConfigurationFile));
             return Task.CompletedTask;
         }
     }

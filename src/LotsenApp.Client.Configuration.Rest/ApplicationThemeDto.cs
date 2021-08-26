@@ -25,23 +25,10 @@
 // OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
 // OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
-#nullable enable
-using System;
-
-namespace LotsenApp.Client.Http
+namespace LotsenApp.Client.Configuration.Rest
 {
-    public class BadRequestException: Exception
+    public class ApplicationThemeDto
     {
-        public BadRequestException()
-        {
-        }
-
-        public BadRequestException(string? message) : base(message)
-        {
-        }
-
-        public BadRequestException(string? message, Exception? innerException) : base(message, innerException)
-        {
-        }
+        public string Theme { get; set; }
     }
 }

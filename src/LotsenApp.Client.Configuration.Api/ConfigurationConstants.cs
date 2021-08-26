@@ -27,10 +27,10 @@
 
 namespace LotsenApp.Client.Configuration.Api
 {
-    public class DataPasswordDto
+    public static class ConfigurationConstants
     {
-        public string DataPassword { get; set; }
-        public string RecoveryKey { get; set; }
-        public bool EnforceUpdate { get; set; } = false;
+        public const string GlobalConfigurationFile = "config/global.json";
+        public const string ConfigurationPurpose = "Configuration.File.User.";
+        public const string GlobalConfigurationPurpose = "Configuration.File.Global";
     }
 }

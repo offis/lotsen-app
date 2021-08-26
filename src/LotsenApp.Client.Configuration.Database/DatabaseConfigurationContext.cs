@@ -32,8 +32,8 @@ namespace LotsenApp.Client.Configuration.Database
 {
     public class DatabaseConfigurationContext: DbContext
     {
-        public DbSet<UserConfiguration> UserConfigurations { get; set; }
-        public DbSet<GlobalConfiguration> GlobalConfiguration { get; set; }
+        public DbSet<UserConfigurationEntry> UserConfigurations { get; set; }
+        public DbSet<GlobalConfigurationEntry> GlobalConfiguration { get; set; }
         public DatabaseConfigurationContext(DbContextOptions<DatabaseConfigurationContext> options): base(options)
         {
 
@@ -43,11 +43,11 @@ namespace LotsenApp.Client.Configuration.Database
         {
             base.OnModelCreating(modelBuilder);
 
-            modelBuilder.Entity<UserConfiguration>()
-                .ToTable("user_configuration")
+            modelBuilder.Entity<UserConfigurationEntry>()
+                .ToTable("user_configuration_encrypted")
                 .HasKey(m => m.UserId);
-            modelBuilder.Entity<GlobalConfiguration>()
-                .ToTable("global_configuration")
+            modelBuilder.Entity<GlobalConfigurationEntry>()
+                .ToTable("global_configuration_encrypted")
                 .HasKey(c => c.ConfigurationId);
         }
     }

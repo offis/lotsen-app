@@ -25,10 +25,12 @@
 // OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
 // OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
-namespace LotsenApp.Client.Configuration.File
+namespace LotsenApp.Client.Configuration.Rest
 {
-    public static class ConfigurationConstants
+    public class DataPasswordDto
     {
-        public const string GlobalConfigurationFile = "config/global.json";
+        public string DataPassword { get; set; }
+        public string RecoveryKey { get; set; }
+        public bool EnforceUpdate { get; set; } = false;
     }
 }

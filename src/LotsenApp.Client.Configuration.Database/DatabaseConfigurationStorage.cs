@@ -25,8 +25,10 @@
 // OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
 // OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
+using System.Linq;
 using System.Threading.Tasks;
 using LotsenApp.Client.Configuration.Api;
+using Microsoft.AspNetCore.DataProtection;
 using Microsoft.EntityFrameworkCore;
 
 namespace LotsenApp.Client.Configuration.Database
@@ -34,52 +36,68 @@ namespace LotsenApp.Client.Configuration.Database
     public class DatabaseConfigurationStorage: IConfigurationStorage
     {
         private readonly DatabaseConfigurationContext _context;
+        private readonly IDataProtectionProvider _protectionProvider;
 
-        public DatabaseConfigurationStorage(DatabaseConfigurationContext context)
+        public DatabaseConfigurationStorage(DatabaseConfigurationContext context, IDataProtectionProvider protectionProvider)
         {
             _context = context;
+            _protectionProvider = protectionProvider;
         }
 
         public async Task<UserConfiguration> GetConfigurationForUser(string userId, AccessMode accessMode = AccessMode.Read)
         {
             var userConfiguration =  await _context.UserConfigurations.FirstOrDefaultAsync(c => c.UserId == userId);
+            var protector = _protectionProvider.CreateProtector(ConfigurationConstants.ConfigurationPurpose + userId);
             if (userConfiguration == null)
             {
                 var newUserConfiguration = new UserConfiguration
                 {
                     UserId = userId
                 };
-                await _context.AddAsync(newUserConfiguration);
+                await _context.AddAsync(newUserConfiguration.FromConfiguration(protector));
                 await _context.SaveChangesAsync();
                 return newUserConfiguration;
             }
 
-            return userConfiguration;
+            return userConfiguration.ToConfiguration(protector);
         }
 
         public async Task SaveUserConfiguration(UserConfiguration configuration)
         {
-            _context.UserConfigurations.Update(configuration);
+            var protector = _protectionProvider.CreateProtector(ConfigurationConstants.ConfigurationPurpose + configuration.UserId);
+            var existingConfiguration =
+                await _context.UserConfigurations.FirstOrDefaultAsync(c => c.UserId == configuration.UserId);
+            if (existingConfiguration != null)
+            {
+                _context.UserConfigurations.Remove(existingConfiguration);
+            }
+            await _context.UserConfigurations.AddAsync(configuration.FromConfiguration(protector));
             await _context.SaveChangesAsync();
         }
 
         public async Task<GlobalConfiguration> GetGlobalConfiguration(AccessMode accessMode = AccessMode.Read)
         {
+            var protector = _protectionProvider.CreateProtector(ConfigurationConstants.GlobalConfigurationPurpose);
             var globalConfiguration = await _context.GlobalConfiguration.FirstOrDefaultAsync();
             if (globalConfiguration == null)
             {
                 var newGlobalConfiguration = new GlobalConfiguration();
-                await _context.GlobalConfiguration.AddAsync(newGlobalConfiguration);
+                await _context.GlobalConfiguration.AddAsync(newGlobalConfiguration.FromConfiguration(protector));
                 await _context.SaveChangesAsync();
                 return newGlobalConfiguration;
             }
 
-            return globalConfiguration;
+            return globalConfiguration.ToConfiguration(protector);
         }
 
         public async Task SaveGlobalConfiguration(GlobalConfiguration configuration)
         {
-            _context.GlobalConfiguration.Update(configuration);
+            var protector = _protectionProvider.CreateProtector(ConfigurationConstants.GlobalConfigurationPurpose);
+            if (await _context.GlobalConfiguration.AnyAsync())
+            {
+                _context.GlobalConfiguration.Remove(await _context.GlobalConfiguration.FirstAsync());
+            }
+            await _context.GlobalConfiguration.AddAsync(configuration.FromConfiguration(protector));
             await _context.SaveChangesAsync();
         }
     }

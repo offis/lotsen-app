@@ -42,8 +42,7 @@ namespace LotsenApp.Client.Configuration.Database
         public void ConfigurePlugin(IServiceCollection collection, IMvcBuilder builder)
         {
             collection.AddScoped<IConfigurationStorage, DatabaseConfigurationStorage>();
-
-            builder.AddApplicationPart(GetType().Assembly);
+            collection.AddSingleton<IUserConfigurationService, DatabaseUserConfigurationService>();
         }
         
         public void AfterConfiguration(IServiceCollection collection, IServiceProvider serviceProvider)

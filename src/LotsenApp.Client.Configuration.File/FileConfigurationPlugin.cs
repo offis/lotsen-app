@@ -39,6 +39,8 @@ namespace LotsenApp.Client.Configuration.File
         {
             collection.AddSingleton<ConfigurationFileUtility>();
             collection.AddSingleton<IConfigurationStorage, FileConfigurationStorage>();
+            collection.AddSingleton<IConfigurationUtility, ConfigurationFileUtility>();
+            collection.AddSingleton<IUserConfigurationService, FileUserConfigurationService>();
         }
 
         public void ActivatePlugin(IApplicationBuilder app, IHostEnvironment env)

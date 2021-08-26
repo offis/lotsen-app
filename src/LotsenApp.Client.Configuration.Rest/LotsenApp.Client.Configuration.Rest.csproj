@@ -39,6 +39,7 @@
     <ItemGroup>
       <ProjectReference Include="..\LotsenApp.Client.Authentication.Api\LotsenApp.Client.Authentication.Api.csproj" />
       <ProjectReference Include="..\LotsenApp.Client.Configuration.Api\LotsenApp.Client.Configuration.Api.csproj" />
+      <ProjectReference Include="..\LotsenApp.Client.Http\LotsenApp.Client.Http.csproj" />
     </ItemGroup>
 
 </Project>

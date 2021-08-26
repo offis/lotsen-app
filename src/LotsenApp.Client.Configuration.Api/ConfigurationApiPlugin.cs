@@ -36,7 +36,6 @@ namespace LotsenApp.Client.Configuration.Api
     {
         public void ConfigurePlugin(IServiceCollection collection, IMvcBuilder builder)
         {
-            collection.AddTransient<UserConfigurationService>();
         }
 
         public void ActivatePlugin(IApplicationBuilder app, IHostEnvironment env)

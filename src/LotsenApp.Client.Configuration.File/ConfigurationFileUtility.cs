@@ -25,18 +25,18 @@
 // OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
 // OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
+using System;
+using System.IO;
 using LotsenApp.Client.Configuration.Api;
 using LotsenApp.Client.File;
-using LotsenApp.Client.Plugin;
 using Microsoft.AspNetCore.DataProtection;
 using Newtonsoft.Json;
 
 namespace LotsenApp.Client.Configuration.File
 {
-    public class ConfigurationFileUtility
+    public class ConfigurationFileUtility: IConfigurationUtility
     {
-        private const string ConfigurationPurpose = "Configuration.File.User.";
-        private const string GlobalConfigurationPurpose = "Configuration.File.Global";
+        
         private readonly IDataProtectionProvider _provider;
 
         public ConfigurationFileUtility(IDataProtectionProvider provider)
@@ -44,10 +44,19 @@ namespace LotsenApp.Client.Configuration.File
             _provider = provider;
         }
         
-        public T ReadConfiguration<T>(AccessMode accessMode = AccessMode.Read, string userId = null, string fileName = ConfigurationConstants.GlobalConfigurationFile) where T: new()
+        public UserConfiguration ReadUserConfiguration(string userId, string fileName, AccessMode accessMode = AccessMode.Read)
         {
-            var file = fileName;
-            var lockSlim = ConcurrentFileAccessHelper.GetAccessor(file);
+            if (string.IsNullOrEmpty(userId))
+            {
+                throw new ArgumentNullException(nameof(userId));
+            }
+
+            if (string.IsNullOrEmpty(fileName))
+            {
+                throw new ArgumentNullException(nameof(fileName));
+            }
+
+            var lockSlim = ConcurrentFileAccessHelper.GetAccessor(fileName);
             if (accessMode == AccessMode.Read)
             {
                 lockSlim.EnterReadLock();
@@ -56,50 +65,98 @@ namespace LotsenApp.Client.Configuration.File
             {
                 lockSlim.EnterWriteLock();
             }
-            if (!System.IO.File.Exists(file))
+            if (!System.IO.File.Exists(fileName))
             {
                 if (accessMode == AccessMode.Read)
                 {
                     lockSlim.ExitReadLock();
                 }
-                return new T();
+                return new UserConfiguration();
             }
-            var text = System.IO.File.ReadAllText(file);
-            if (userId == null)
-            {
-                var protector = _provider.CreateProtector(GlobalConfigurationPurpose);
-                text = protector.Unprotect(text);
-            } 
-            else 
-            {
-                var protector = _provider.CreateProtector(ConfigurationPurpose + userId);
-                text = protector.Unprotect(text);
-            }
+            var text = System.IO.File.ReadAllText(fileName);
+            var protector = _provider.CreateProtector(ConfigurationConstants.ConfigurationPurpose + userId);
+            text = protector.Unprotect(text);
             if (accessMode == AccessMode.Read)
             {
                 lockSlim.ExitReadLock();
             }
 
-            return JsonConvert.DeserializeObject<T>(text);
+            return JsonConvert.DeserializeObject<UserConfiguration>(text);
         }
 
-        public void SaveConfigurationFile<T>(T configuration, string userId = null, string fileName = ConfigurationConstants.GlobalConfigurationFile)
+        public void SaveUserConfiguration(UserConfiguration configuration, string userId, string fileName)
         {
+            if (string.IsNullOrEmpty(userId))
+            {
+                throw new ArgumentNullException(nameof(userId));
+            }
+
+            if (string.IsNullOrEmpty(fileName))
+            {
+                throw new ArgumentNullException(nameof(fileName));
+            }
             var file = fileName;
+            var writeLock = ConcurrentFileAccessHelper.GetAccessor(file);
+            if (!writeLock.IsWriteLockHeld)
+            {
+                throw new InvalidOperationException("The write lock is not held and writing to the file is not safe");
+            }
             var serializedConfiguration = JsonConvert.SerializeObject(configuration);
             
-            if (userId == null)
+            var protector = _provider.CreateProtector(ConfigurationConstants.ConfigurationPurpose + userId);
+            serializedConfiguration = protector.Protect(serializedConfiguration);
+            System.IO.File.WriteAllText(file, serializedConfiguration);
+            writeLock.ExitWriteLock();
+        }
+
+        public GlobalConfiguration ReadGlobalConfiguration(AccessMode accessMode = AccessMode.Read, string fileName = ConfigurationConstants.GlobalConfigurationFile)
+        {
+            var lockSlim = ConcurrentFileAccessHelper.GetAccessor(fileName);
+            if (accessMode == AccessMode.Read)
             {
-                var protector = _provider.CreateProtector(GlobalConfigurationPurpose);
-                serializedConfiguration = protector.Protect(serializedConfiguration);
+                lockSlim.EnterReadLock();
             }
             else
             {
-                var protector = _provider.CreateProtector(ConfigurationPurpose + userId);
-                serializedConfiguration = protector.Protect(serializedConfiguration);
+                lockSlim.EnterWriteLock();
             }
-            System.IO.File.WriteAllText(file, serializedConfiguration);
-            ConcurrentFileAccessHelper.GetAccessor(file).ExitWriteLock();
+            if (!System.IO.File.Exists(fileName))
+            {
+                if (accessMode == AccessMode.Read)
+                {
+                    lockSlim.ExitReadLock();
+                }
+                return new GlobalConfiguration();
+            }
+            var text = System.IO.File.ReadAllText(fileName);
+            var protector = _provider.CreateProtector(ConfigurationConstants.GlobalConfigurationPurpose);
+            text = protector.Unprotect(text);
+            if (accessMode == AccessMode.Read)
+            {
+                lockSlim.ExitReadLock();
+            }
+
+            return JsonConvert.DeserializeObject<GlobalConfiguration>(text);
+        }
+        
+        public void SaveGlobalConfiguration(GlobalConfiguration configuration, string fileName = ConfigurationConstants.GlobalConfigurationFile)
+        {
+            var writeLock = ConcurrentFileAccessHelper.GetAccessor(fileName);
+            if (!writeLock.IsWriteLockHeld)
+            {
+                throw new InvalidOperationException("The write lock is not held and writing to the file is not safe");
+            }
+            var serializedConfiguration = JsonConvert.SerializeObject(configuration);
+            var protector = _provider.CreateProtector(ConfigurationConstants.GlobalConfigurationPurpose);
+            serializedConfiguration = protector.Protect(serializedConfiguration);
+            var file = new FileInfo(fileName);
+            var directoryName = file.Directory?.FullName;
+            if (directoryName != null)
+            {
+                Directory.CreateDirectory(directoryName);                
+            }
+            System.IO.File.WriteAllText(fileName, serializedConfiguration);
+            writeLock.ExitWriteLock();
         }
     }
 }

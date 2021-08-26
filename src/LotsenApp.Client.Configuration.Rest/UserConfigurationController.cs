@@ -31,6 +31,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using LotsenApp.Client.Authentication.Api;
 using LotsenApp.Client.Configuration.Api;
+using LotsenApp.Client.Http;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Identity;
@@ -42,14 +43,12 @@ namespace LotsenApp.Client.Configuration.Rest
     public class UserConfigurationController: ControllerBase
     {
         private readonly UserManager<LocalLotsenAppUser> _userManager;
-        private readonly IConfigurationStorage _storage;
-        private readonly UserConfigurationService _configurationService;
+        private readonly IUserConfigurationRestService _restService;
 
-        public UserConfigurationController(UserManager<LocalLotsenAppUser> userManager, IConfigurationStorage storage, UserConfigurationService configurationService)
+        public UserConfigurationController(UserManager<LocalLotsenAppUser> userManager, IUserConfigurationRestService restService)
         {
             _userManager = userManager;
-            _storage = storage;
-            _configurationService = configurationService;
+            _restService = restService;
         }
 
         [HttpGet]
@@ -57,10 +56,8 @@ namespace LotsenApp.Client.Configuration.Rest
         public async Task<UserConfigurationDto> GetUserConfiguration()
         {
             var user = await _userManager.GetUserAsync(HttpContext.User);
-
-            var userConfiguration = await _storage.GetConfigurationForUser(user.Id);
-
-            return new UserConfigurationDto(userConfiguration);
+            
+            return await _restService.GetUserConfiguration(user.Id);
         }
         
         [HttpPost]
@@ -69,30 +66,14 @@ namespace LotsenApp.Client.Configuration.Rest
         {
             var user = await _userManager.GetUserAsync(HttpContext.User);
 
-            var userConfiguration = await _storage.GetConfigurationForUser(user.Id, AccessMode.Write);
-
-            await _storage.SaveUserConfiguration(dto.Merge(userConfiguration));
+            await _restService.SetUserConfiguration(user.Id, dto);
         }
 
         [HttpGet("app-theme")]
         public async Task<ApplicationThemeDto> GetApplicationTheme()
         {
             var user = await _userManager.GetUserAsync(HttpContext.User);
-            var globalConfiguration = await _storage.GetGlobalConfiguration();
-            if (user == null)
-            {
-                return new ApplicationThemeDto
-                {
-                    Theme = globalConfiguration.DefaultTheme
-                };
-            }
-
-            var userConfiguration = await _storage.GetConfigurationForUser(user.Id);
-            return new ApplicationThemeDto
-            {
-                Theme = userConfiguration.DisplayConfiguration.Theme ?? globalConfiguration.DefaultTheme
-
-            };
+            return await _restService.GetApplicationTheme(user?.Id);
         }
 
         [HttpPost("app-theme")]
@@ -100,32 +81,14 @@ namespace LotsenApp.Client.Configuration.Rest
         public async Task SetApplicationTheme([FromBody] ApplicationThemeDto dto)
         {
             var user = await _userManager.GetUserAsync(HttpContext.User);
-            var userConfiguration = await _storage.GetConfigurationForUser(user.Id, AccessMode.Write);
-            userConfiguration.DisplayConfiguration.Theme = dto.Theme;
-            await _storage.SaveUserConfiguration(userConfiguration);
+            await _restService.SetApplicationTheme(user.Id, dto);
         }
 
         [HttpGet("language")]
         public async Task<LanguageDto> GetLanguage()
         {
             var user = await _userManager.GetUserAsync(HttpContext.User);
-            var globalConfiguration = await _storage.GetGlobalConfiguration();
-            if (user == null)
-            {
-                var locale = Thread.CurrentThread.CurrentCulture.TwoLetterISOLanguageName;
-                var supportedLanguages = new[] {"en", "de"};
-                return new LanguageDto()
-                {
-                    Language = supportedLanguages.Contains(locale) ? locale : globalConfiguration.DefaultLanguage
-                };
-            }
-
-            var userConfiguration = await _storage.GetConfigurationForUser(user.Id);
-            return new LanguageDto
-            {
-                Language = userConfiguration.LocalisationConfiguration.Language ?? "de"
-
-            };
+            return await _restService.GetLanguage(user?.Id);
         }
 
         [HttpPost("language")]
@@ -133,9 +96,7 @@ namespace LotsenApp.Client.Configuration.Rest
         public async Task SetLanguage([FromBody] LanguageDto dto)
         {
             var user = await _userManager.GetUserAsync(HttpContext.User);
-            var userConfiguration = await _storage.GetConfigurationForUser(user.Id, AccessMode.Write);
-            userConfiguration.LocalisationConfiguration.Language = dto.Language;
-            await _storage.SaveUserConfiguration(userConfiguration);
+            await _restService.SetLanguage(user.Id, dto);
         }
 
         [HttpGet("first-time")]
@@ -143,8 +104,7 @@ namespace LotsenApp.Client.Configuration.Rest
         public async Task<bool> IsFirstTime()
         {
             var user = await _userManager.GetUserAsync(HttpContext.User);
-            var userConfiguration = await _storage.GetConfigurationForUser(user.Id);
-            return userConfiguration.FirstSignIn;
+            return await _restService.IsFirstTime(user.Id);
         }
 
         [HttpGet("first-time-complete")]
@@ -152,9 +112,7 @@ namespace LotsenApp.Client.Configuration.Rest
         public async Task FirstTimeCompleted()
         {
             var user = await _userManager.GetUserAsync(HttpContext.User);
-            var userConfiguration = await _storage.GetConfigurationForUser(user.Id, AccessMode.Write);
-            userConfiguration.FirstSignIn = false;
-            await _storage.SaveUserConfiguration(userConfiguration);
+            await _restService.FirstTimeCompleted(user.Id);
         }
 
 
@@ -163,17 +121,15 @@ namespace LotsenApp.Client.Configuration.Rest
         public async Task<IActionResult> SaveDataPassword([FromBody] DataPasswordDto request)
         {
             var user = await _userManager.GetUserAsync(HttpContext.User);
-            var userConfiguration = await _storage.GetConfigurationForUser(user.Id, AccessMode.Write);
-            if (userConfiguration.HashedDataPassword != null)
+            try
             {
-                await _storage.SaveUserConfiguration(userConfiguration);
-                return BadRequest();
+                await _restService.SaveDataPassword(user.Id, request);
+                return Ok();
             }
-
-            userConfiguration = _configurationService.SetDataKeys(request, userConfiguration);
-
-            await _storage.SaveUserConfiguration(userConfiguration);
-            return Ok();
+            catch (BadRequestException ex)
+            {
+                return BadRequest(ex);
+            }
         }
 
         [HttpPut("data-password")]
@@ -181,45 +137,31 @@ namespace LotsenApp.Client.Configuration.Rest
         public async Task<IActionResult> ReplaceDataPassword([FromBody] ReplaceDataPasswordDto request)
         {
             var user = await _userManager.GetUserAsync(HttpContext.User);
-            var userConfiguration = await _storage.GetConfigurationForUser(user.Id, AccessMode.Write);
             try
             {
-                _configurationService.ReplaceDataPassword(userConfiguration, request.NewDataPassword,
-                    request.RecoveryKey);
+                await _restService.ReplaceDataPassword(user.Id, request);
+                return Ok();
             }
-            catch (Exception)
+            catch (BadRequestException ex)
             {
-                return BadRequest("Could not replace the data password");
+                return BadRequest(ex);
             }
-            finally
-            {
-                await _storage.SaveUserConfiguration(userConfiguration);
-            }
-
-            return Ok();
         }
 
         [HttpPost("recovery-key")]
         [Authorize]
-        public async Task<IActionResult> ReplaceRecoverKey([FromBody] ReplaceDataPasswordDto request)
+        public async Task<IActionResult> ReplaceRecoveryKey([FromBody] ReplaceDataPasswordDto request)
         {
             var user = await _userManager.GetUserAsync(HttpContext.User);
-            var userConfiguration = await _storage.GetConfigurationForUser(user.Id);
             try
             {
-                _configurationService.ReplaceRecoveryKey(userConfiguration, request.NewDataPassword,
-                    request.RecoveryKey);
+                await _restService.ReplaceRecoveryKey(user.Id, request);
+                return Ok();
             }
-            catch (Exception)
+            catch (BadRequestException ex)
             {
-                return BadRequest("Could not replace the recovery key");
+                return BadRequest(ex);
             }
-            finally
-            {
-                await _storage.SaveUserConfiguration(userConfiguration);
-            }
-
-            return Ok();
         }
 
         [HttpGet("data-password")]
@@ -227,8 +169,7 @@ namespace LotsenApp.Client.Configuration.Rest
         public async Task<bool> HasDataPassword()
         {
             var user = await _userManager.GetUserAsync(HttpContext.User);
-            var userConfiguration = await _storage.GetConfigurationForUser(user.Id);
-            return userConfiguration.HashedDataPassword != null;
+            return await _restService.HasDataPassword(user.Id);
         }
         
         [HttpGet("dashboard")]
@@ -236,8 +177,7 @@ namespace LotsenApp.Client.Configuration.Rest
         public async Task<DashboardConfiguration[]> LoadDashboardConfiguration()
         {
             var user = await _userManager.GetUserAsync(HttpContext.User);
-            var userConfiguration = await _storage.GetConfigurationForUser(user.Id);
-            return userConfiguration.DashboardConfigurations;
+            return await _restService.LoadDashboardConfiguration(user.Id);
         }
         
         [HttpPost("dashboard")]
@@ -245,9 +185,7 @@ namespace LotsenApp.Client.Configuration.Rest
         public async Task UpdateDashboardConfiguration([FromBody] DashboardConfiguration[] newConfiguration)
         {
             var user = await _userManager.GetUserAsync(HttpContext.User);
-            var userConfiguration = await _storage.GetConfigurationForUser(user.Id, AccessMode.Write);
-            userConfiguration.DashboardConfigurations = newConfiguration;
-            await _storage.SaveUserConfiguration(userConfiguration);
+            await _restService.UpdateDashboardConfiguration(user.Id, newConfiguration);
         }
         
         [HttpGet("programme")]
@@ -255,8 +193,7 @@ namespace LotsenApp.Client.Configuration.Rest
         public async Task<ProgrammeDefinition[]> LoadProgrammeConfiguration()
         {
             var user = await _userManager.GetUserAsync(HttpContext.User);
-            var userConfiguration = await _storage.GetConfigurationForUser(user.Id);
-            return userConfiguration.ProgrammeConfiguration;
+            return await _restService.LoadProgrammeConfiguration(user.Id);
         }
         
         [HttpPost("programme")]
@@ -264,9 +201,7 @@ namespace LotsenApp.Client.Configuration.Rest
         public async Task UpdateProgrammeConfiguration([FromBody] ProgrammeDefinition[] newConfiguration)
         {
             var user = await _userManager.GetUserAsync(HttpContext.User);
-            var userConfiguration = await _storage.GetConfigurationForUser(user.Id, AccessMode.Write);
-            userConfiguration.ProgrammeConfiguration = newConfiguration;
-            await _storage.SaveUserConfiguration(userConfiguration);
+            await _restService.UpdateProgrammeConfiguration(user.Id, newConfiguration);
         }
         
         [HttpGet("reminder")]
@@ -274,8 +209,7 @@ namespace LotsenApp.Client.Configuration.Rest
         public async Task<ReminderConfiguration> LoadReminderConfiguration()
         {
             var user = await _userManager.GetUserAsync(HttpContext.User);
-            var userConfiguration = await _storage.GetConfigurationForUser(user.Id);
-            return userConfiguration.ReminderConfiguration;
+            return await _restService.LoadReminderConfiguration(user.Id);
         }
         
         [HttpPost("reminder")]
@@ -283,10 +217,7 @@ namespace LotsenApp.Client.Configuration.Rest
         public async Task UpdateReminderConfiguration([FromBody] ReminderConfiguration newConfiguration)
         {
             var user = await _userManager.GetUserAsync(HttpContext.User);
-            var userConfiguration = await _storage.GetConfigurationForUser(user.Id, AccessMode.Write);
-            userConfiguration.ReminderConfiguration = newConfiguration;
-            await _storage.SaveUserConfiguration(userConfiguration);
+            await _restService.UpdateReminderConfiguration(user.Id, newConfiguration);
         }
-
     }
 }
