@@ -29,6 +29,7 @@ using System;
 using System.Collections;
 using System.Diagnostics;
 using System.IO;
+using System.Runtime.InteropServices;
 using System.Security.Cryptography;
 using System.Security.Cryptography.X509Certificates;
 using Microsoft.Extensions.Configuration;
@@ -132,7 +133,7 @@ namespace LotsenApp.Client.Electron
             }
             Debug.WriteLine("Creating new certificate");
             var certificate = GenerateTransientCertificate(password: password);
-            PersistCertificate(keyDirectory, password, certificate);
+            PersistCertificate(keyDirectory, RuntimeInformation.IsOSPlatform(OSPlatform.Windows) ? null : password, certificate);
             return certificate;
         }
 
@@ -145,7 +146,6 @@ namespace LotsenApp.Client.Electron
 
         public static void PersistCertificate(string keyDirectory, string password, X509Certificate2 cert2, string name = "cert")
         {
-            // Export Certificate with private key
             System.IO.File.WriteAllBytes(Path.Join(keyDirectory, $"{name}.pfx"), cert2.Export(X509ContentType.Pkcs12, password));
         }
 
@@ -167,7 +167,11 @@ namespace LotsenApp.Client.Electron
             
             // Set private key on our X509Certificate2
             //cert2.PrivateKey = rsaPrivateKey; // Throws on .NET Core
-            return cert2.CopyWithPrivateKey(rsaPrivateKey);
+            var completeCertificate = cert2.CopyWithPrivateKey(rsaPrivateKey);
+            // workaround of https://github.com/dotnet/runtime/issues/45680#issuecomment-739912495
+            return RuntimeInformation.IsOSPlatform(OSPlatform.Windows) ? 
+                new X509Certificate2(completeCertificate.Export(X509ContentType.Pkcs12), (string) null, X509KeyStorageFlags.Exportable) : 
+                completeCertificate;
         }
 
         private static X509Certificate2 CheckExistingCertificate(string keyDirectory, string password)
@@ -177,8 +181,8 @@ namespace LotsenApp.Client.Electron
             {
                 return null;
             }
-            Debug.WriteLine($"Returning cached certificate.");
-            return new X509Certificate2(file, password);
+            Debug.WriteLine("Returning cached certificate.");
+            return new X509Certificate2(file, RuntimeInformation.IsOSPlatform(OSPlatform.Windows) ? null : password);
         }
     }
 }

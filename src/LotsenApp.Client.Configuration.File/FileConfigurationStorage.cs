@@ -42,11 +42,11 @@ namespace LotsenApp.Client.Configuration.File
         {
             _utility = utility;
             _fileService = fileService;
-            Task.WaitAll(Task.Run(async () =>
-            {
-                var globalConfiguration = await GetGlobalConfiguration(AccessMode.Write);
-                await SaveGlobalConfiguration(globalConfiguration);
-            }));
+            // Task.WaitAll(Task.Run(async () =>
+            // {
+            //     var globalConfiguration = await GetGlobalConfiguration(AccessMode.Write);
+            //     await SaveGlobalConfiguration(globalConfiguration);
+            // }));
         }
 
         private string GetConfigurationFileName(string userId)

@@ -36,6 +36,7 @@ import {
   transition,
   trigger,
 } from '@angular/animations';
+import {ElectronService} from "../../core/electron.service";
 
 @Component({
   selector: 'la2-sign-in-workflow',

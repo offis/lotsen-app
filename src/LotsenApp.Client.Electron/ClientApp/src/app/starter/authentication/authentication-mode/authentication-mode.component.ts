@@ -30,6 +30,7 @@
 
 import { Component, EventEmitter, Output } from '@angular/core';
 import { UserService } from '../../core/user.service';
+import {ElectronService} from "../../core/electron.service";
 
 @Component({
   selector: 'la2-authentication-mode',
@@ -46,7 +47,11 @@ export class AuthenticationModeComponent {
 
   anyUser = false;
 
-  constructor(private userService: UserService) {}
+  get showOfflineMode() {
+    return this.electronService.isElectronApp;
+  }
+
+  constructor(private userService: UserService, private electronService: ElectronService) {}
 
   passwordAuthentication(): void {
     this.authenticateWithPassword.emit(true);

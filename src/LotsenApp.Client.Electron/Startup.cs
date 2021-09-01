@@ -30,6 +30,7 @@ using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using ElectronNET.API.Entities;
+using LotsenApp.Client.Configuration.Api;
 using LotsenApp.Client.Electron.Hooks;
 using LotsenApp.Client.File;
 using LotsenApp.Client.Plugin;
@@ -95,7 +96,8 @@ namespace LotsenApp.Client.Electron
             #endregion
 
             serviceProvider = providerFactory.CreateServiceProvider(services);
-
+            logger.LogDebug("Finished plugin configuration");
+            
             // Add information about the data store using electron to the file service
             var fileService = serviceProvider.GetService<IFileService>();
             if (fileService == null)
@@ -104,27 +106,55 @@ namespace LotsenApp.Client.Electron
                 throw new Exception("The FileService must not be null");
             }
 
-            if (Mode == ApplicationMode.Desktop)
-            {
-                logger.LogDebug("Application is started as Electron Application");
-                Task.WaitAll(new[]
+            Task.WaitAll(new[]
                 {
                     Task.Run(async () =>
                     {
+                        if (Mode != ApplicationMode.Desktop)
+                        {
+                            return;
+                        }
                         logger.LogDebug("Receiving data directory from electron");
                         var rootPath = await ElectronNET.API.Electron.App.GetPathAsync(PathName.UserData);
                         fileService.Root = rootPath;
                         logger.LogDebug($"Data will be stored in {rootPath}");
                     })
                 }, TimeSpan.FromSeconds(10));
-            }
-
+            logger.LogDebug("Setting up application encryption");
             // Use Root-Path
             var keyDirectory = fileService.Join("config/keys");
             Directory.CreateDirectory(keyDirectory);
-            services.AddDataProtection()
-                .PersistKeysToFileSystem(new DirectoryInfo(keyDirectory))
-                .ProtectKeysWithCertificate(CertificateProvider.ProvideCertificate(Configuration, keyDirectory));
+            try
+            {
+                services.AddDataProtection()
+                    .PersistKeysToFileSystem(new DirectoryInfo(keyDirectory))
+                    .ProtectKeysWithCertificate(CertificateProvider.ProvideCertificate(Configuration, keyDirectory));
+            }
+            catch (Exception ex)
+            {
+                logger.LogError("There was an error during application encryption. The encryption keys are unencrypted. {ex}", ex);
+            }
+
+            logger.LogDebug("Application encryption is done");
+            
+            Task.WaitAll(new[]
+            {
+                Task.Run(async () =>
+                {
+                    logger.LogDebug("Trying to set application mode in global configuration");
+                    var configurationStorage = serviceProvider.GetService<IConfigurationStorage>();
+                    if (configurationStorage == null)
+                    {
+                        return;
+                    }
+                    var globalConfiguration = await configurationStorage.GetGlobalConfiguration(AccessMode.Write);
+                    globalConfiguration.ApplicationMode = Mode == ApplicationMode.Desktop
+                        ? Client.Configuration.ApplicationMode.Offline
+                        : Client.Configuration.ApplicationMode.Online;
+                    await configurationStorage.SaveGlobalConfiguration(globalConfiguration);
+                    logger.LogDebug($"Application mode: {globalConfiguration.ApplicationMode}");
+                })
+            }, TimeSpan.FromSeconds(10));
 
             services
                 .AddTransient<IElectronHook, CloseApplicationHook>()
@@ -160,6 +190,7 @@ namespace LotsenApp.Client.Electron
             {
                 configuration.RootPath = "ClientApp/dist/lotsen-app-view/";
             });
+            logger.LogInformation("Finished application setup for the execution mode.");
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -237,6 +268,7 @@ namespace LotsenApp.Client.Electron
                 }
 
             });
+            logger.LogInformation("Finished application configuration for the server environment");
             if (Mode == ApplicationMode.Server)
             {
                 return;
@@ -300,6 +332,7 @@ namespace LotsenApp.Client.Electron
                 hook.Down();
                 hook.Up();
             }
+            logger.LogInformation("Finished application configuration for the desktop environment");
         }
     }
 }

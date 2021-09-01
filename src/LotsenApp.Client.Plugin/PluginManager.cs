@@ -69,6 +69,7 @@ namespace LotsenApp.Client.Plugin
 
             plugins = plugins.Where(p =>
                 p.GetType().GetCustomAttribute<PluginDefaultAttribute>()?.AutomaticallyActivate ?? true).ToArray();
+            _logger.LogInformation($"Discovered {plugins.Length} plugins.");
             return plugins;
         }
 
@@ -117,11 +118,12 @@ namespace LotsenApp.Client.Plugin
 
         private ILotsenAppPlugin[] DiscoverFromAssemblies()
         {
-            var files = Directory.GetFiles(".", "LotsenApp.Client.*.dll")
+            var files = Directory.GetFiles(AppDomain.CurrentDomain.BaseDirectory, "LotsenApp.Client.*.dll")
                 .Where(f => !f.EndsWith("Views.dll"));
             var assemblies = files
                 .Select(f => f.Replace(".dll", "")
-                    .Replace(".\\", ""))
+                    .Replace(".\\", "")
+                    .Replace(AppDomain.CurrentDomain.BaseDirectory, ""))
                 .ToArray();
             foreach (var assembly in assemblies)
             {

@@ -26,16 +26,11 @@
 // OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 using System;
-using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
-using System.Threading.Tasks;
 using ElectronNET.API;
-using LotsenApp.Client.Configuration.Api;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
 
 namespace LotsenApp.Client.Electron
 {
@@ -45,23 +40,12 @@ namespace LotsenApp.Client.Electron
         public static string Version = typeof(Program).Assembly.GetName().Version?.ToString() ?? "<unknown>";
         public static void Main(string[] args)
         {
-            var index = args.ToList().FindIndex(a => a == "--mode" || a == "-m");
-            if (args.Length > index + 1)
-            {
-                var mode = args[index + 1];
-                var parsable = Enum.TryParse(mode, out ApplicationMode parsedMode);
-                if (parsable)
-                {
-                    Startup.Mode = parsedMode;
-                }
-            }
-
-            // Cannot be used since the ASP.NET Core Server is started after electron is ready
-            // if (Startup.Mode == ApplicationMode.Desktop)
-            // {
-                // ElectronNET.API.Electron.App.CommandLine.AppendArgument("ignore-certificate-errors");            
-                // ElectronNET.API.Electron.App.CommandLine.AppendSwitch("allow-insecure-localhost", "true");
-            // }
+            // Console.WriteLine(string.Join(", ", args));
+            
+            Startup.Mode = args.Any(a => a.Contains("electronPort") || a.Contains("electronWebPort")) ? 
+                ApplicationMode.Desktop : ApplicationMode.Server;
+            
+            Console.WriteLine($"Starting LotsenApp in mode: {Startup.Mode}");
 
             CreateHostBuilder(args).Build().Run();
         }
@@ -70,14 +54,18 @@ namespace LotsenApp.Client.Electron
             Host.CreateDefaultBuilder(args)
                 .ConfigureWebHostDefaults(webBuilder =>
                 {
-                    webBuilder.UseUrls();
+                    if (Startup.Mode == ApplicationMode.Server)
+                    {
+                        webBuilder.UseUrls();    
+                    }
+                    
                     if (Startup.Mode == ApplicationMode.Desktop)
                     {
                         webBuilder.UseElectron(args);
                     }
                     
                     webBuilder.UseStartup<Startup>();
-                    if (Startup.Mode != ApplicationMode.Desktop)
+                    if (Startup.Mode == ApplicationMode.Server)
                     {
                         webBuilder.UseKestrel(options => options.ConfigureEndpoints());
                     }

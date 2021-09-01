@@ -41,7 +41,7 @@
     <PackageIcon>splashscreen.png</PackageIcon>
     <AssemblyVersion>2.1.0.0</AssemblyVersion>
     <FileVersion>2.1.0.0</FileVersion>
-    <PackageVersion>2.1.0-alpha</PackageVersion>
+    <PackageVersion>2.1.0-beta</PackageVersion>
     <LangVersion>9</LangVersion>
   </PropertyGroup>
   <ItemGroup>
@@ -67,6 +67,8 @@
     </None>
 	<Content Remove="config\plugins.json" />
 	<Content Remove="config/**/*" />
+	<Content Remove="appsettings.Development.json" />
+	<None Include="appsettings.Development.json" />
   </ItemGroup>
   <Target Name="DebugEnsureNodeEnv" BeforeTargets="Build" Condition=" '$(Configuration)' == 'Debug' And !Exists('$(SpaRoot)node_modules') ">
     <!-- Ensure Node.js is installed -->

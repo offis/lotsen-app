@@ -39,7 +39,7 @@
   <a href="https://www.offis.de/index.html">OFFIS</a>{{'Application.AboutUs.Description3-2' | translate}}
 </p>
 <h2 *ngIf="showInformation">{{'Application.AboutUs.Update' | translate}}</h2>
-<la2-update-check></la2-update-check>
+<la2-update-check *ngIf="showInformation"></la2-update-check>
 <h2>{{'Application.AboutUs.License' | translate}}</h2>
 <pre>
   {{license}}

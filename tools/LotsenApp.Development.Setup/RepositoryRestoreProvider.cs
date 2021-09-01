@@ -36,11 +36,11 @@ namespace LotsenApp.Development.Setup
     {
         public Task PerformSetup()
         {
-            Console.WriteLine("Executing 'dotnet restore' in repository root");
+            Console.WriteLine("Executing 'dotnet build' in repository root");
             var root = Helper.GetRepositoryRoot();
             var process = Process.Start(new ProcessStartInfo
             {
-                Arguments = "restore",
+                Arguments = "build",
                 FileName = "dotnet",
                 WorkingDirectory = root.FullName,
                 RedirectStandardOutput = true,

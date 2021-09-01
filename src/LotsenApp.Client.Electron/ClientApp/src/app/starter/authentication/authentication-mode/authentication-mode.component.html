@@ -27,6 +27,6 @@
 
 <div class="button-panel">
   <button mat-flat-button color="primary" (click)="passwordAuthentication()">{{'Application.AuthenticationMode.SignInOnline' | translate}}</button>
-  <button mat-flat-button color="accent" (click)="useOffline()">{{'Application.AuthenticationMode.SignInOffline' | translate}}</button>
+  <button mat-flat-button color="accent" *ngIf="showOfflineMode" (click)="useOffline()">{{'Application.AuthenticationMode.SignInOffline' | translate}}</button>
 </div>
 <p class="error" *ngIf="error !== ''">{{error | translate}}</p>

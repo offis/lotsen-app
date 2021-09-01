@@ -35,7 +35,7 @@ using LotsenApp.Tools.Common;
 
 namespace LotsenApp.Development.Setup
 {
-    public abstract class AbstractNpmInstallProvider: ISetupProvider
+    public abstract class AbstractNpmInstallProvider
     {
         protected virtual string WorkingDirectory => "./";
 
