@@ -1,5 +1,38 @@
 # Changelog
 
+## v2.1.0
+
+### Visuell
+
+  * Projekte können Farben vordefinieren, die durch Anwender für Teilnehmer ausgewählt werden können. Die freie Auswahl von Farben ist immer noch möglich
+  * Austausch der Implementierung für die Farbauswahl durch eine eigene Implementierung
+
+### Inhaltlich
+
+  * Entfernen der STROKE OWL Inhalte. Das Datenformat wird nicht mehr mit der LotsenApp ausgeliefert
+  * Beispielprojekt "Sports Sample" hinzugefügt, um verschiedene Funktionen des Datenformats zu zeigen
+  * Werte aus gleichen Dokumenten können kopiert werden. Beim Kopieren gibt es 2 Optionen
+    * Bestehende Werte können beibehalten werden
+    * Alles kann überschrieben werden
+
+### Technisch
+
+  * Verschlüsselung der internen kryptographischen Schlüssel durch ein generiertes oder konfiguriertes Zertifikat
+  * SSL Unterstützung im Server-Modus. Falls kein SSL-Zertifikat konfiguriert ist, wird ein selbst-signiertes Zertifikat generiert
+  * Konfigurierbarkeit des Node.JS Entwicklungsprozesses. Der Prozess kann in den Server-Entwicklungsprozess eingebettet oder autark sein
+  * Projekt zur Konfiguration des Repositories für Entwickler hinzugefügt
+  * Github Actions für CI Pipeline hinzugefügt
+  * Update auf Angular 12.2.x
+  * Update auf .NET 5.0.9
+  * Verbesserung der sensiblen Default Werte, insbesondere für die Erkennung des Servers, ob dieser in Electron oder eigenständig gestartet wurde
+
+### Bugfixes
+
+  * Falls ein Fehler beim Lesen der Konfiguration auftritt, wird die Standardkonfiguration zurückgegeben, sodass die Anwendung benutzbar bleibt
+  * Fehler bei diversen Integrationstests und Unit Tests behoben
+  * Integrationstests werden sequentiell und nicht mehr parallel ausgeführt
+  * Der PluginManager nutzt nicht mehr das Ausführungsverzeichnis, sondern das Domänenverzeichnis der Anwendung, um nach Plugins zu suchen
+
 ## v2.0.6
 
 ### Visuell

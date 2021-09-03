@@ -11,7 +11,7 @@
     "appId": "LotsenApp",
     "productName": "LotsenApp",
     "copyright": "© 2021 OFFIS e.V.",
-    "buildVersion": "2.1.0-beta",
+    "buildVersion": "2.1.0",
     "compression": "maximum",
     "asar": true,
     "generateUpdatesFilesForAllChannels": true,

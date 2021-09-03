@@ -41,7 +41,7 @@
     <PackageIcon>splashscreen.png</PackageIcon>
     <AssemblyVersion>2.1.0.0</AssemblyVersion>
     <FileVersion>2.1.0.0</FileVersion>
-    <PackageVersion>2.1.0-beta</PackageVersion>
+    <PackageVersion>2.1.0</PackageVersion>
     <LangVersion>9</LangVersion>
   </PropertyGroup>
   <ItemGroup>
