@@ -698,5 +698,16 @@
     "SeeAlso": null,
     "IsOsiApproved": false,
     "LicenseTextHtml": null
+  },
+  {
+    "IsDeprecatedLicenseId": false,
+    "IsFsfLibre": false,
+    "LicenseText": null,
+    "Name": null,
+    "LicenseId": "(MIT OR GPL-3.0-or-later)",
+    "CrossRef": null,
+    "SeeAlso": null,
+    "IsOsiApproved": false,
+    "LicenseTextHtml": null
   }
 ]
