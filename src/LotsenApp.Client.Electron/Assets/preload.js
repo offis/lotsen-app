@@ -46,6 +46,8 @@ const validChannels = ['close-channel',
     'update-downloaded',
     'update-restart',
     'update-cache',
+    'open-save-file-dialog',
+    'save-file-dialog-complete',
     'print-page'];
 // All of the Node.js APIs are available in the preload process.
 // It has the same sandbox as a Chrome extension.
@@ -96,8 +98,8 @@ contextBridge.exposeInMainWorld('electron', {
         },
     },
     'debug': {
-        'cpuUsage': process.cpuUsage,
-        'memoryUsage': process.memoryUsage,
+        'cpuUsage': process.getCPUUsage,
+        'memoryUsage': process.getHeapStatistics,
         'uptime': process.uptime,
     }
 });

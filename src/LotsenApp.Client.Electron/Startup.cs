@@ -163,6 +163,7 @@ namespace LotsenApp.Client.Electron
                 .AddTransient<IElectronHook, MaximizeHook>()
                 .AddTransient<IElectronHook, PrintHook>()
                 .AddTransient<IElectronHook, UpdateHook>()
+                .AddTransient<IElectronHook, SaveFileDialogHook>()
                 .AddTransient<IElectronHook, VersionHook>();
 
             // Execute the AfterConfiguration method for the plugins
@@ -288,6 +289,7 @@ namespace LotsenApp.Client.Electron
                         NodeIntegration = false,
                         ContextIsolation = true,
                         Preload = preloadPath,
+                        Sandbox = true
                     },
 #if RELEASE
                     // Do not Show the window frame in Release mode. The view should handle all operations (closing, minimizing, maximizing).
@@ -297,7 +299,6 @@ namespace LotsenApp.Client.Electron
 #if DEBUG
                 await window.WebContents.Session.ClearCacheAsync();
 #endif
-
                 // customize window
                 window.SetTitle($"LotsenApp v{Program.Version}");
 

@@ -80,17 +80,21 @@ export class DebugComponent implements OnInit, OnDestroy {
         this.changeDetector.detectChanges();
       }
     });
-    this.memoryInterval = setInterval(() => {
-      const memoryUsage = this.electronService.debug.memoryUsage();
-      this.heapMemory = memoryUsage.rss;
-      this.memoryUsage = memoryUsage.heapUsed + memoryUsage.external;
-      const cpuUsage = this.electronService.debug.cpuUsage();
-      const cpuTime = cpuUsage.user - this.previousCpuTime; // cpu time in micro seconds
-      this.previousCpuTime = cpuUsage.user;
+    this.memoryInterval = setInterval(async () => {
+      // console.log(this.electronService.debug);
+      const memoryUsage = this.electronService.debug.memoryUsage() as any;
+      // console.log(memoryUsage);
+      this.heapMemory = memoryUsage.totalHeapSize * 1000;
+      this.memoryUsage = memoryUsage.usedHeapSize * 1000;
+      const cpuUsage = this.electronService.debug.cpuUsage() as any;
+      // console.log(cpuUsage);
+      // const cpuTime = cpuUsage.user - this.previousCpuTime; // cpu time in micro seconds
+      // this.previousCpuTime = cpuUsage.user;
       const upTime = this.electronService.debug.uptime() * 1000;
-      const processTime = upTime - this.previousUpTime; // uptime in micro seconds
-      this.cpuUsage = cpuTime / this.cpuCount / processTime;
-      this.previousUpTime = upTime;
+      // const processTime = upTime - this.previousUpTime; // uptime in micro seconds
+      // this.cpuUsage = cpuTime / this.cpuCount / processTime;
+      this.cpuUsage = (cpuUsage.percentCPUUsage * 100) / this.cpuCount;
+      // this.previousUpTime = upTime;
       this.changeDetector.detectChanges();
     }, 1000);
   }

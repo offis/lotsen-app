@@ -31,6 +31,10 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { ColorPickerDialogComponent } from '../../shared/color-picker-dialog/color-picker-dialog.component';
+import { HttpClient } from '@angular/common/http';
+import { Observable, Subject } from 'rxjs';
+import { map } from 'rxjs/operators';
+import { ElectronService } from '../../core/electron.service';
 
 @Component({
   selector: 'la2-developer-sandbox',
@@ -38,32 +42,104 @@ import { ColorPickerDialogComponent } from '../../shared/color-picker-dialog/col
   styleUrls: ['./developer-sandbox.component.scss'],
 })
 export class DeveloperSandboxComponent implements OnInit {
-  constructor(public dialog: MatDialog) {}
+  private tan = '';
+  tanList = '';
+  constructor(
+    private http: HttpClient,
+    private electronService: ElectronService
+  ) {}
 
   ngOnInit(): void {
-    setTimeout(() => this.openDialog(), 100);
+    // setTimeout(() => this.openDialog(), 100);
+    // (window as any).showSaveFilePicker();
   }
 
-  async openDialog() {
-    const dialog = this.dialog.open(ColorPickerDialogComponent, {
-      data: {
-        initialColor: '#00ff00aa',
-        predefinedColors: [
-          '#ff0000ff',
-          '#00ff00ff',
-          '#0000ffff',
-          '#ff00ffff',
-          '#00ffffff',
-          '#ffff00ff',
-          '#ffffffff',
-          '#000000ff',
-          '#aacc00ff',
-          '#ff0ca6ff',
-        ],
-      },
-      panelClass: 'animate-height',
+  async openLoadFileDialog() {
+    const options = {
+      types: [
+        {
+          description: 'Text Files',
+          accept: {
+            'text/plain': ['.txt'],
+          },
+        },
+      ],
+    };
+    const [handle] = await (window as any).showOpenFilePicker(options);
+    const file = await handle.getFile();
+    const text = (await file.text()) as string;
+    const tan = text.replace('\r', '').split('\n');
+    this.tan = tan[0];
+  }
+
+  async openSaveFileDialog() {
+    if (this.electronService.isElectronApp) {
+      await this.OpenSaveFileDialogInElectron();
+    } else {
+      await this.OpenSaveFileDialogInBrowser();
+    }
+  }
+
+  async OpenSaveFileDialogInElectron() {
+    console.log('Requesting new tan');
+    const list = await this.http
+      .get<string[]>('/api/authorization/tan/list')
+      .pipe(map((input) => input.join('\n')))
+      .toPromise();
+    console.log(list);
+    // this.tanList = `data:text/plain;charset=utf-8,${encodeURIComponent(list)}`;
+    this.electronService.ipcRenderer.once(
+      'save-file-dialog-complete',
+      (result) => {
+        console.log('Saving file to ', result);
+      }
+    );
+    console.log('Requesting save file dialog');
+    this.electronService.ipcRenderer.send('open-save-file-dialog', {
+      name: 'tan-list',
+      data: list,
     });
-    const result = await dialog.afterClosed().toPromise();
-    console.log('The resulting color was ', result);
+  }
+
+  async OpenSaveFileDialogInBrowser() {
+    const options = {
+      suggestedName: 'tan-list.txt',
+      startIn: 'documents',
+      types: [
+        {
+          description: 'Text Files',
+          accept: {
+            'text/plain': ['.txt'],
+          },
+        },
+      ],
+    };
+    console.log('Show Save file dialog');
+    const handle = await (window as any).showSaveFilePicker(options);
+    console.log('Checking permissions', handle, await handle.getFile());
+    if ((await handle.queryPermission({ mode: 'readwrite' })) !== 'granted') {
+      console.log('No write permissions have been granted');
+      console.log('Requesting permission');
+      if (
+        (await handle.requestPermission({ mode: 'readwrite' })) !== 'granted'
+      ) {
+        console.log(
+          'Write permissions have not been granted. Cannot save tan list'
+        );
+        return;
+      }
+    }
+
+    console.log('Requesting new tan');
+    const list = await this.http
+      .get<string[]>('/api/authorization/tan/list')
+      .pipe(map((input) => input.join('\n')))
+      .toPromise();
+    console.log('Creating writeable handle');
+    const writeable = await handle.createWritable();
+    console.log('Writing content');
+    await writeable.write(list);
+    console.log('closing file');
+    await writeable.close();
   }
 }

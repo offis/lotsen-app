@@ -25,6 +25,7 @@
 <!-- OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE -->
 <!-- OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE. -->
 
-<la2-color-picker></la2-color-picker>
-<button (click)="openDialog()">Open Dialog</button>
-<la2-participant-tint></la2-participant-tint>
+<!--<la2-tan-list></la2-tan-list>-->
+<button (click)="openLoadFileDialog()">Show Load File Dialog</button>
+<button (click)="openSaveFileDialog()">Show Save File Dialog</button>
+<a *ngIf="tanList" download="tan-list.txt" [href]="tanList">Anderer Download Link</a>

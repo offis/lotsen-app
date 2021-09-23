@@ -62,5 +62,6 @@ import { PasswordSetComponent } from './password-set/password-set.component';
     MatInputModule,
     CoreModule,
   ],
+  exports: [TanListComponent],
 })
 export class FirstTimeSetupModule {}

@@ -35,6 +35,7 @@ import { DeveloperRoutingModule } from './developer-routing.module';
 import { UserModule } from '../user/user.module';
 import { UpdateModule } from '../update/update.module';
 import { SharedModule } from '../shared/shared.module';
+import { FirstTimeSetupModule } from '../user/first-time-setup/first-time-setup.module';
 
 @NgModule({
   declarations: [DeveloperSandboxComponent],
@@ -44,6 +45,7 @@ import { SharedModule } from '../shared/shared.module';
     UserModule,
     UpdateModule,
     SharedModule,
+    FirstTimeSetupModule,
   ],
 })
 export class DeveloperModule {}

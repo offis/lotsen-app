@@ -70,7 +70,7 @@ namespace LotsenApp.Client.TanList
             {
                 // Initial creation of a tan list
                 var initialTanList = await _service.CreateOrUpdateTanList(user.Id);
-                return CreateResultFromModel(initialTanList);
+                return CreateResultFromModel(initialTanList);//Ok(initialTanList); 
             }
 
             var (success, _) = await _service.UseTan(user.Id, tan);
@@ -80,7 +80,15 @@ namespace LotsenApp.Client.TanList
             }
 
             var tanList = await _service.CreateOrUpdateTanList(user.Id);
-            return CreateResultFromModel(tanList);
+            return CreateResultFromModel(tanList); // Ok(tanList);
+        }
+        
+        [HttpGet("list")]
+        [Authorize]
+        public async Task<IActionResult> GenerateTanList()
+        {
+            var user = await _userManager.GetUserAsync(HttpContext.User);
+            return Ok(await _service.CreateOrUpdateTanList(user.Id));
         }
 
         private static FileStreamResult CreateResultFromModel(string[] tans)
