@@ -48,6 +48,7 @@ const validChannels = ['close-channel',
     'update-cache',
     'open-save-file-dialog',
     'save-file-dialog-complete',
+    'save-file-dialog-abort',
     'print-page'];
 // All of the Node.js APIs are available in the preload process.
 // It has the same sandbox as a Chrome extension.

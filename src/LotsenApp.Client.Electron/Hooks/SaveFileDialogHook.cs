@@ -46,6 +46,10 @@ namespace LotsenApp.Client.Electron.Hooks
             }).ContinueWith(continuationTask =>
             {
                 var result = continuationTask.Result;
+                if (string.IsNullOrEmpty(result.Trim()))
+                {
+                    ElectronNET.API.Electron.IpcMain.Send(window, "save-file-dialog-abort", result);
+                }
                 _logger.LogDebug($"User selected file {result}");
                 if (data != null)
                 {

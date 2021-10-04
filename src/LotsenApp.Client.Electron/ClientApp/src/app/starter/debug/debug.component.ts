@@ -68,7 +68,7 @@ export class DebugComponent implements OnInit, OnDestroy {
 
   async ngOnInit(): Promise<void> {
     this.changeDetector.detach();
-    if (this.production) {
+    if (this.production || !this.electronService.isElectronApp) {
       return;
     }
     this.cpuCount = await this.http

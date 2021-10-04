@@ -94,6 +94,12 @@ export class DeveloperSandboxComponent implements OnInit {
         console.log('Saving file to ', result);
       }
     );
+    this.electronService.ipcRenderer.once(
+      'save-file-dialog-abort',
+      (result) => {
+        console.log('User aborted file saving');
+      }
+    );
     console.log('Requesting save file dialog');
     this.electronService.ipcRenderer.send('open-save-file-dialog', {
       name: 'tan-list',

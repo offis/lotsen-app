@@ -26,6 +26,5 @@
 <!-- OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE. -->
 
 <!--<la2-tan-list></la2-tan-list>-->
-<button (click)="openLoadFileDialog()">Show Load File Dialog</button>
-<button (click)="openSaveFileDialog()">Show Save File Dialog</button>
-<a *ngIf="tanList" download="tan-list.txt" [href]="tanList">Anderer Download Link</a>
+<button (click)="OpenSaveFileDialogInBrowser()">Show Browser Save File Dialog</button>
+<button (click)="openSaveFileDialog()">Show Desktop Save File Dialog</button>
