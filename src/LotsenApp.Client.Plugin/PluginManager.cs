@@ -118,17 +118,24 @@ namespace LotsenApp.Client.Plugin
 
         private ILotsenAppPlugin[] DiscoverFromAssemblies()
         {
-            var files = Directory.GetFiles(AppDomain.CurrentDomain.BaseDirectory, "LotsenApp.Client.*.dll")
-                .Where(f => !f.EndsWith("Views.dll"));
-            var assemblies = files
-                .Select(f => f.Replace(".dll", "")
-                    .Replace(".\\", "")
-                    .Replace(AppDomain.CurrentDomain.BaseDirectory, ""))
-                .ToArray();
+            // var files = Directory.GetFiles(AppDomain.CurrentDomain.BaseDirectory, "LotsenApp.Client.*.dll")
+            //     .Where(f => !f.EndsWith("Views.dll"));
+            // var assemblies = files
+            //     .Select(f => f.Replace(".dll", "")
+            //         .Replace(".\\", "")
+            //         .Replace(AppDomain.CurrentDomain.BaseDirectory, ""))
+            //     .ToArray();
+            var assemblies = AppDomain.CurrentDomain.GetAssemblies().Select(a => (a.GetName().Name, a.FullName))
+                .Where(f => !f.Name.EndsWith("Views") && f.Name.StartsWith("LotsenApp"))
+                .Select(f => f.FullName);
             foreach (var assembly in assemblies)
             {
                 try
                 {
+                    if (assembly == null)
+                    {
+                        continue;
+                    }
                     _logger.LogDebug($"Trying to load assembly {assembly}");
                     AppDomain.CurrentDomain.Load(assembly);
                 }
