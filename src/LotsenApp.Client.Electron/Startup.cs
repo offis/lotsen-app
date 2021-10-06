@@ -62,6 +62,19 @@ namespace LotsenApp.Client.Electron
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            var pathTask = 
+            Task.Run(async () =>
+            {
+                if (Mode != ApplicationMode.Desktop)
+                {
+                    return Guid.NewGuid().ToString();
+                }
+
+                return await ElectronNET.API.Electron.App.GetPathAsync(PathName.UserData);
+            });
+            pathTask.Wait(TimeSpan.FromSeconds(10));
+            var path = pathTask.Result;
+            
             var mvcBuilder = services.AddMvc(option => option.EnableEndpointRouting = false);
             services.AddLogging();
 
@@ -75,6 +88,7 @@ namespace LotsenApp.Client.Electron
             var logger = serviceProvider.GetService<ILogger<PluginManager>>();
             if (pluginManager != null)
             {
+                pluginManager.PluginFilePath = path;
 #if DEBUG
                 if (Mode == ApplicationMode.Server)
                 {
@@ -106,20 +120,7 @@ namespace LotsenApp.Client.Electron
                 throw new Exception("The FileService must not be null");
             }
 
-            Task.WaitAll(new[]
-                {
-                    Task.Run(async () =>
-                    {
-                        if (Mode != ApplicationMode.Desktop)
-                        {
-                            return;
-                        }
-                        logger.LogDebug("Receiving data directory from electron");
-                        var rootPath = await ElectronNET.API.Electron.App.GetPathAsync(PathName.UserData);
-                        fileService.Root = rootPath;
-                        logger.LogDebug($"Data will be stored in {rootPath}");
-                    })
-                }, TimeSpan.FromSeconds(10));
+            fileService.Root = path;
             logger.LogDebug("Setting up application encryption");
             // Use Root-Path
             var keyDirectory = fileService.Join("config/keys");
